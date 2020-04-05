@@ -1,13 +1,7 @@
-const { Router } = require('express');
-const path = require('path');
+const {Router} = require('express');
 const router = Router();
+const signupRoutes = require('./signup.routes');
 
-router.get('/', (req, res) => {
-    try {
-        res.sendFile(path.join(__dirname, '..', 'public', '/index.html'));
-    } catch (e) {
-        res.status(500).json({ message: 'Something is wrong'})
-    }
-});
+router.use('/signup', signupRoutes);
 
 module.exports = router;

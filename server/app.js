@@ -6,12 +6,12 @@ const favicon = require('serve-favicon');
 const path = require('path');
 const app = express();
 
-const routes = require('./routes');
+const routes = require('./routes/signup.routes');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-const { port, mongoUri } = config;
+const {port, mongoUri} = config;
 
 app.use(routes);
 
