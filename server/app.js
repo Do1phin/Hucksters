@@ -6,14 +6,16 @@ const favicon = require('serve-favicon');
 const path = require('path');
 const app = express();
 
-const routes = require('./routes/signup.routes');
+const signupRoutes = require('./routes/signup.routes');
+const signinRoutes = require('./routes/signin.routes');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 const {port, mongoUri} = config;
 
-app.use(routes);
+app.use(signupRoutes);
+app.use(signinRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
