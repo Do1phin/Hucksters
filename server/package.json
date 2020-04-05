@@ -10,7 +10,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6",
     "path": "^0.12.7",
-    "react-router-dom": "^5.1.2",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
@@ -26,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Do1phin/huckster.git"
+    "url": "git+https://github.com/Do1phin/hucksters.git"
   },
   "author": "Do1phin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Do1phin/huckster/issues"
+    "url": "https://github.com/Do1phin/hucksters/issues"
   },
-  "homepage": "https://github.com/Do1phin/huckster#readme"
+  "homepage": "https://github.com/Do1phin/hucksters#readme"
 }
