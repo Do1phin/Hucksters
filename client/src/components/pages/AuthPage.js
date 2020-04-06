@@ -9,68 +9,107 @@ function AuthPage(props) {
     const [password, setPassword] = useState('');
 
     let info;
-        if (props.location.pathname === '/signup') {
-            info = {
-                title: 'Registration',
-                btnName: 'Reg',
-                urlPath: '/signup',
-            }
-        } else {
-            info = {
-                title: 'Authorisation',
-                btnName: 'Sign',
-                urlPath: '/signin',
-            }
+    if (props.location.pathname === '/signup') {
+        info = {
+            title: 'Registration',
+            btnName: 'Sign UP',
+            urlPath: '/signup',
         }
+    } else {
+        info = {
+            title: 'Authorisation',
+            btnName: 'Sign IN',
+            urlPath: '/signin',
+        }
+    }
 
 
     const renderPage = (action) => {
 
         if (!registered && !error && !authorised) {
             return <Fragment>
-                <Link to='/'>Main Page</Link>
+                <br/>
+                <div className="jumbotron">
+                    <h1>{info.title}</h1>
+                    <form onSubmit={(e) => handleSubmit(e)}>
 
-                <h1>{info.title}</h1>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <label>
-                        Email:
-                        <input
-                            type="text"
-                            name='email'
-                            id="email"
-                            value={email}
-                            onChange={(e) => handleChange(e.target)}/>
-                    </label>
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            name='password'
-                            id="password"
-                            value={password}
-                            onChange={(e) => handleChange(e.target)}
-                        />
-                    </label>
-                    <input
-                        type="submit"
-                        value={info.btnName}
-                        onClick={(e) => handleAction(action)}
-                    />
+                        <div className="form-group">
+                            <input
+                                type="email"
+                                className="form-control"
+                                name="email"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                                placeholder="Enter email"
+                                value={email}
+                                onChange={(e) => handleChange(e.target)}
+                            />
+                            <br/>
+                            <input
+                                type="password"
+                                className="form-control"
+                                name="password"
+                                id="exampleInputPassword1"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => handleChange(e.target)}
+                            />
+                            <br/>
+                            <button
+                                className="btn btn-info"
+                                type="submit button"
+                                value={info.btnName}
+                                onClick={(e) => handleAction(action)}
+                            >
+                                {info.btnName}
+                            </button>
+                        </div>
+                        <br/>
+                        <p>OR</p>
 
-                </form>
+                        <Link to='/signup' type='button' className='btn btn-link'>CREATE ACCOUNT</Link>
+
+                    </form>
+                </div>
             </Fragment>
         } else if (registered && !error) {
-
-            return <Fragment>
-                <h1>Спасибо за регистрацию</h1>
+            return <Fragment><br/>
+                <div className="card border-success mb-3">
+                    <div className="card-header">Поздравляем</div>
+                    <div className="card-body">
+                        <h4 className="card-title">Вы успешно зарегистрированы!</h4>
+                        <p className="card-text">
+                            В течении 3 секунды произойдёт перенаправление на страницу авторизации.
+                            Если этого не произошло нажмите пожалуйста <Link to='/signin'>сюда</Link>
+                        </p>
+                    </div>
+                </div>
             </Fragment>
         } else if (authorised && !error) {
-            return <Fragment>
-                <h1>Вы успешно авторизованы</h1>
+            return <Fragment><br/>
+                <div className="card border-info mb-3">
+                    <div className="card-header">Поздравляем</div>
+                    <div className="card-body">
+                        <h4 className="card-title">Вы успешно авторизованы!</h4>
+                        <p className="card-text">
+                            В течении 3 секунды произойдёт перенаправление на главную страницу сайта.
+                            Если этого не произошло нажмите пожалуйста <Link to='/'>сюда</Link>
+                        </p>
+                    </div>
+                </div>
             </Fragment>
         } else if (error) {
-            return <Fragment>
-                <h1>Ошибка введённых данных</h1>
+            return <Fragment><br/>
+                <div className="card border-danger mb-3">
+                    <div className="card-header">Ошибка</div>
+                    <div className="card-body">
+                        <h4 className="card-title">Ошибка введённых данных!</h4>
+                        <p className="card-text">
+                            В течении 3 секунды произойдёт перенаправление на главную страницу сайта.
+                            Если этого не произошло нажмите пожалуйста <Link to='/'>сюда</Link>
+                        </p>
+                    </div>
+                </div>
             </Fragment>
         }
     };
