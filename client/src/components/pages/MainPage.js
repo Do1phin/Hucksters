@@ -10,8 +10,7 @@ class MainPage extends Component {
     render() {
         return (
             <Fragment>
-                <Link to='/signup'>SignUP</Link><br />
-                <Link to='/signin'>SignIN</Link>
+
             </Fragment>
         );
     }

@@ -8,6 +8,7 @@ const app = express();
 
 const signupRoutes = require('./routes/signup.routes');
 const signinRoutes = require('./routes/signin.routes');
+const sellerRoutes = require('./routes/sellers.routes');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -16,6 +17,8 @@ const {port, mongoUri} = config;
 
 app.use(signupRoutes);
 app.use(signinRoutes);
+app.use(sellerRoutes);
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
