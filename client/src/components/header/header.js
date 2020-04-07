@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 import './header.css';
 
@@ -18,7 +18,7 @@ const Header = () => {
             <div className="collapse navbar-collapse" id="navbarColor01">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        {/*<Link to='/sellers' className="nav-link">Продавцы</Link>*/}
+                        <NavLink to='/sellers' className="nav-link">Продавцы</NavLink>
                     </li>
                 </ul>
 
@@ -27,7 +27,7 @@ const Header = () => {
             <form className="form-inline my-2 my-lg-0">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <Link to='/signin' className="nav-link">SignIN</Link>
+                        <NavLink to='/signin' className="nav-link">SignIN</NavLink>
                     </li>
                 </ul>
             </form>
