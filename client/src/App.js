@@ -15,7 +15,7 @@ function App() {
             <Header/>
             <Switch>
                 <Route path='/' exact component={MainPage}/>
-                <Route path='/sellers' exact component={SellersPage}/>
+                <Route path='/sellers' component={SellersPage}/>
                 <Route path='/signup' action="signup" component={AuthPage}/>
                 <Route path='/signin' action="signin" component={AuthPage}/>
             </Switch>

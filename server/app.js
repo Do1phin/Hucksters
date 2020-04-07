@@ -2,13 +2,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 const config = require('../config/config');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const favicon = require('serve-favicon');
 const path = require('path');
 const app = express();
 
 const signupRoutes = require('./routes/signup.routes');
 const signinRoutes = require('./routes/signin.routes');
-const sellerRoutes = require('./routes/sellers.routes');
+const sellersRoutes = require('./routes/sellers.routes');
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// require('../config/passport')(passport);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -17,7 +24,7 @@ const {port, mongoUri} = config;
 
 app.use(signupRoutes);
 app.use(signinRoutes);
-app.use(sellerRoutes);
+app.use(sellersRoutes);
 
 
 app.use(express.static(path.join(__dirname, 'public')));

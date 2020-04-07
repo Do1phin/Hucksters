@@ -145,6 +145,7 @@ function AuthPage(props) {
                 })
                 .catch(error => console.log('Error -> ', error))
         } catch (e) {
+            throw new Error(e)
         }
     };
 
