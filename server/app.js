@@ -10,6 +10,7 @@ const app = express();
 const signupRoutes = require('./routes/signup.routes');
 const signinRoutes = require('./routes/signin.routes');
 const sellersRoutes = require('./routes/sellers.routes');
+const vkRoutes = require('./routes/vk.routes');
 
 
 app.use(passport.initialize());
@@ -25,6 +26,7 @@ const {port, mongoUri} = config;
 app.use(signupRoutes);
 app.use(signinRoutes);
 app.use(sellersRoutes);
+app.use(vkRoutes);
 
 
 app.use(express.static(path.join(__dirname, 'public')));

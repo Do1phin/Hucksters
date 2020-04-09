@@ -6,24 +6,12 @@ const schema = new Schema({
         required: true,
         unique: true
     },
-    firstName: {
-        type: String,
-    },
-    lastName: {
-        type: String,
-    },
-    seller: {
-        type: Boolean,
-    },
-    avatar: {
-        type: String,
-    },
-    albums: {
-        type: Number,
-    },
-    picturesInAlbums: {
-        type: Number
-    }
+    firstName: { type: String, default:  null },
+    lastName: { type: String, default: null },
+    seller: { type: Boolean, default: null },
+    avatar: { type: String, default: null },
+    albums: { type: Number, default: null },
+    picturesInAlbums: { type: Number, default: null },
 });
 
 module.exports = model('Seller', schema);
