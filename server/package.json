@@ -4,9 +4,13 @@
   "description": "",
   "main": "server/app.js",
   "dependencies": {
+    "VK-Promise": "^0.5.1",
+    "ajax": "0.0.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "fetch-jsonp": "^1.1.3",
+    "jquery": "^3.4.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6",
     "passport": "^0.4.1",
