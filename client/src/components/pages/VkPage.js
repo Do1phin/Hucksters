@@ -2,7 +2,10 @@ import React, {Fragment, useState} from "react";
 import jsonp from './jsonp';
 
 const VkPage = () => {
-    const [data, setData ] = useState(null);
+    const [data, setData] = useState(null);
+    const [albums, setAlbums] = useState([]);
+
+    let keys = ['обнова', 'скидка', 'продано', 'vk', 'ТЕСТ'];
 
 
     let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.52'
@@ -16,7 +19,7 @@ const VkPage = () => {
     };
 
     const getUrl = (method, params) => {
-        const token = '1ebeb1d831ee18c9ad24cc59b5032292989693a270448bfa62c15ca03758aa7367787ca9be553828d2350';
+        const token = '7f07c09d1f2582ec081c9fbc4a2d645dfc526c5126ca2986a8e9d9387c33b48185eab876c98b3324b26c8';
         const url = 'https://api.vk.com/method/'
             + method
             + '?' + params
@@ -32,36 +35,45 @@ const VkPage = () => {
 
         method = 'groups.getMembers';
         params = 'group_id=115050558&sort=id_asc&count=1000&offset=0';
-        getUrl(method, params);
-        return sendVkRequest(getUrl(method, params))
+        const url = getUrl(method, params);
+        return sendVkRequest(url)
     };
+
+    const getUserAlbums = async () => {
+        method = 'photos.getAlbums';
+        params = 'owner_id=' + 16914329;
+        const url = await getUrl(method, params);
+        return await sendVkRequest(url);
+    };
+
+    const checkSeller = async () => {
+        data.items.map((item) => {
+            keys.map((element) => {
+                if (item.title.toLowerCase().includes(element.toLowerCase())) {
+                    console.log(element, item.title);
+                    albums.push(item.id)
+                }
+            })
+        });
+        console.log('albums -> ', albums);
+    };
+
 
     const saveUserToDB = async () => {
-        getUsers();
-
+        let data = await getUsers();
         console.log('DData ', data);
-        return (
-            <Fragment>
-                <ul>
-                    {
-                        data.map((item) => {
-                            console.log(item)
-                        })
-                    }
-                </ul>
-            </Fragment>
-        )
+
+
     };
 
 
-    const sendVkRequest = (url) => {
-        jsonp(url, (res => {
+    const sendVkRequest = async (url) => {
+        await jsonp(url, (res => {
             if (res.error) {
                 return console.log(`ERROR: `, res.error.error_msg)
             } else {
                 console.log(`Response: `, res.response);
-                return setData(res.response.items);
-
+                return setData(res.response);
             }
         }));
 
@@ -73,16 +85,26 @@ const VkPage = () => {
 
             <button
                 onClick={getUsers}
-            >Загрузить пользователей
+            >
+                Загрузить пользователей
             </button>
 
             <button
-                onClick={saveUserToDB}
-                disabled={false}
-            >Распарсить пользователей
+                onClick={getUserAlbums}
+            >
+                Получить альбомы
             </button>
 
+            <button
+                onClick={checkSeller}
+            >
+                Прочекать альбомы
+            </button>
+
+
         </Fragment>
+
+
     )
 
 };

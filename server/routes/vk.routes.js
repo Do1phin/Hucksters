@@ -16,9 +16,15 @@ router.get(
 );
 
 
-router.post('/vk/users/get',
-    (req, res) => {
+router.post('/vk/users/add',
+    async (req, res) => {
+    try {
 
+        User.save({})
+
+    } catch (e) {
+        res.status(500).json({ message: 'Something wen wrong'})
+    }
     });
 
 
