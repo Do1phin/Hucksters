@@ -1,3 +1,3 @@
-import sellerCard from "./sellerCard";
+import SellerCard from "./SellerCard";
 
-export default sellerCard;
+export default SellerCard;
