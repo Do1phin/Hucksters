@@ -2,14 +2,18 @@ import React, {Fragment, useState} from "react";
 import jsonp from './jsonp';
 
 const VkPage = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState();
+    const [users, setUsers] = useState([]);
     const [albums, setAlbums] = useState([]);
+    const [photos, setPhotos] = useState([]);
 
-    let keys = ['обнова', 'скидка', 'продано', 'vk', 'ТЕСТ'];
+    let albumTitleKeys = ['дорого', 'скидк', 'в наличи', 'футболки', 'поло', 'ремни', 'галстуки', 'одежда',
+        'продаж', 'new', 'о б н о в а', 'обнова', 'o b n o v a',
+    ];
 
 
     let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.52'
-    let data2, method, params;
+    let data2, method, params, group;
 
     const params2 = {
         group_id: 115050558,
@@ -19,7 +23,7 @@ const VkPage = () => {
     };
 
     const getUrl = (method, params) => {
-        const token = '7f07c09d1f2582ec081c9fbc4a2d645dfc526c5126ca2986a8e9d9387c33b48185eab876c98b3324b26c8';
+        const token = 'b933997c980d6742a0247af5fe4ade67a8f9d1c796205776d97b8f08f896cdc0d13e9a5863f1fb0786fef';
         const url = 'https://api.vk.com/method/'
             + method
             + '?' + params
@@ -29,26 +33,35 @@ const VkPage = () => {
         return url
     };
 
-    const getUsers = () => {
+    const getUsers = async () => {
 
-        const interval = 61;
-
+        group = 115050558;
         method = 'groups.getMembers';
-        params = 'group_id=115050558&sort=id_asc&count=1000&offset=0';
-        const url = getUrl(method, params);
-        return sendVkRequest(url)
+
+        for (let i = 7; i < 8; i++) {
+            await setTimeout((function (i) {
+                return () => {
+                    params = 'group_id=' + group + '&sort=id_asc&count=1000&offset=' + i * 1000;
+                        const url = getUrl(method, params);
+                        sendVkRequest(url);
+                        return setUsers(data);
+                };
+            })(i), 1000 * (i + 1))
+        }
+
     };
+
 
     const getUserAlbums = async () => {
         method = 'photos.getAlbums';
-        params = 'owner_id=' + 16914329;
+        params = 'owner_id=' + 131934298;
         const url = await getUrl(method, params);
         return await sendVkRequest(url);
     };
 
     const checkSeller = async () => {
         data.items.map((item) => {
-            keys.map((element) => {
+            albumTitleKeys.map((element) => {
                 if (item.title.toLowerCase().includes(element.toLowerCase())) {
                     console.log(element, item.title);
                     albums.push(item.id)
@@ -56,14 +69,39 @@ const VkPage = () => {
             })
         });
         console.log('albums -> ', albums);
+        return setAlbums(albums);
     };
 
+    const getPicturesOneAlbum = async () => {
 
-    const saveUserToDB = async () => {
-        let data = await getUsers();
-        console.log('DData ', data);
+        method = 'photos.get';
+        params = 'owner_id=131934298&album_id=161517835';
+        const url = await getUrl(method, params);
+        await sendVkRequest(url);
+        return setPhotos(data);
+    };
 
+    const addUserToDB = () => {
 
+        data.items.map((item) => {
+            try {
+                const body = {vkId: item};
+                fetch(
+                    './sellers/add', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(body)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('data - ', data)
+                    })
+            } catch (e) {
+                console.log('ERROR: ', e)
+            }
+        })
     };
 
 
@@ -86,19 +124,37 @@ const VkPage = () => {
             <button
                 onClick={getUsers}
             >
-                Загрузить пользователей
+                Получить всех пользователей группы
             </button>
+            <br/>
 
             <button
                 onClick={getUserAlbums}
             >
-                Получить альбомы
+                Получить все альбомы выбранного пользователя
             </button>
+            <br/>
 
             <button
                 onClick={checkSeller}
             >
-                Прочекать альбомы
+                Проверить есть ли альбомы с товарами
+            </button>
+            <br/>
+
+            <button
+                onClick={getPicturesOneAlbum}
+            >
+                Получить все фотографии выбранного альбома
+            </button>
+            <br/>
+
+            <hr/>
+
+            <button
+                onClick={addUserToDB}
+            >
+                Добавить пользователей в базу
             </button>
 
 
