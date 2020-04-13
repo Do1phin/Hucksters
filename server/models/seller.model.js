@@ -1,6 +1,6 @@
-const {Schema, model} = require('mongoose');
+import mongoose from 'mongoose';
 
-const schema = new Schema({
+const schema = new mongoose.Schema({
     vkId: { type: Number, required: true, unique: true},
     firstName: {type: String, default: null},
     lastName: {type: String, default: null},
@@ -11,4 +11,5 @@ const schema = new Schema({
     picturesInAlbums: {type: Number, default: null},
 });
 
-module.exports = model('Seller', schema);
+export default mongoose.model('Sellers', schema);
+

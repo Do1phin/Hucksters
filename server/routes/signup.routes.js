@@ -1,7 +1,8 @@
-const {Router} = require('express');
-const bcrypt = require('bcryptjs');
-const User = require('../models/User');
-const router = Router();
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import User from '../models/user.model.js';
+
+const router = express.Router();
 
 router.post(
     '/signup',
@@ -36,4 +37,4 @@ router.get(
         console.log("Registration router")
     });
 
-module.exports = router;
+export default router;

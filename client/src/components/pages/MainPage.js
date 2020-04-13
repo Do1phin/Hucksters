@@ -1,20 +1,13 @@
-import React, {Component, Fragment} from "react";
-import {Link} from "react-router-dom";
+import React, {Fragment} from "react";
 
-class MainPage extends Component {
-    constructor(props) {
-        super(props);
+const MainPage = () => {
 
-    }
+    return (
+        <Fragment>
 
-    render() {
-        return (
-            <Fragment>
+        </Fragment>
+    );
+};
 
-            </Fragment>
-        );
-    }
-
-}
 
 export default MainPage;

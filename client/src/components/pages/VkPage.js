@@ -17,18 +17,18 @@ const VkPage = () => {
     ];
 
 
-    let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=popup&response_type=token&v=5.52';
-    let data2, method, params, group;
+    // let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=popup&response_type=token&v=5.52';
+    let method, params, group;
 
-    const params2 = {
-        group_id: 115050558,
-        sort: 'id_asc',
-        count: 1000,
-        offset: 0
-    };
+    // const params2 = {
+    //     group_id: 115050558,
+    //     sort: 'id_asc',
+    //     count: 1000,
+    //     offset: 0
+    // };
 
     const getUrl = (method, params) => {
-        const token = 'b5cfd2aa3d6b213cc3fc8bb287af5c81b7b33756fb74338bde4125d6235742a2f0bb1a44ddf639075ce22';
+        const token = '378689a32a17e108ceb0edb651b2624287dce9f7b112828edb516ef2522dc2715e454dd6f01eadc42707f';
         const url = 'https://api.vk.com/method/'
             + method
             + '?' + params
@@ -43,13 +43,13 @@ const VkPage = () => {
         group = 115050558;
         method = 'groups.getMembers';
 
-        for (let i = 7; i < 8; i++) {
+        for (let i = 8; i < 9; i++) {
             await setTimeout((function (i) {
                 return async () => {
                     params = 'group_id=' + group + '&sort=id_asc&count=1000&offset=' + i * 1000;
                         const url = await getUrl(method, params);
                         await sendVkRequest(url);
-                        return setUsers([data]);
+                        return setUsers(data.items);
                 };
             })(i), 1000 * (i + 1))
         }
@@ -71,7 +71,9 @@ const VkPage = () => {
                     console.log(element, item);
                     albums.push(item)
                 }
-            })
+                return null
+            });
+            return null
         });
         console.log('albums -> ', albums);
         return setAlbums(albums);
@@ -107,7 +109,9 @@ const VkPage = () => {
             } catch (e) {
                 console.log('ERROR: ', e)
             }
-        })
+            return null
+        });
+        return null
     };
 
     const addAlbumsToDB = () => {
@@ -137,7 +141,9 @@ const VkPage = () => {
             } catch (e) {
                 console.log('ERROR: ', e)
             }
-        })
+            return null
+        });
+        return null
     };
 
     const addPhotosToDB = () => {
@@ -170,7 +176,9 @@ const VkPage = () => {
             } catch (e) {
                 console.log('ERROR ', e)
             }
-        })
+            return null
+        });
+        return null
     };
 
     const checkPhotosText = () => {
@@ -179,8 +187,10 @@ const VkPage = () => {
                 console.log(item.text);
 
             }
+            return null
         });
-        console.log(searchStr)
+        console.log(searchStr);
+        return null
     };
 
 
@@ -206,12 +216,6 @@ const VkPage = () => {
     const handleChange = (props) => {
         setSearchStr(props.value)
     };
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-    };
-
-
 
 
     return (
