@@ -6,13 +6,18 @@ const VkPage = () => {
     const [users, setUsers] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [photos, setPhotos] = useState([]);
+    const [searchStr, setSearchStr] = useState(null);
 
-    let albumTitleKeys = ['дорого', 'скидк', 'в наличи', 'футболки', 'поло', 'ремни', 'галстуки', 'одежда',
-        'продаж', 'new', 'о б н о в а', 'обнова', 'o b n o v a',
+    let albumTitleKeys = ['дорого', 'скидк', 'в наличи', 'футболк', 'поло', 'ремни', 'галстук', 'одежда',
+        'продаж', 'new', 'о б н о в а', 'обнова', 'o b n o v a', 'куртк', 'ветровк','пальто','плащ',
+        'обувь', 'свитер', 'кардиган', 'худи', 'свитшот', 'олимпийк', 'рубашк', 'рубах', 'джинс', 'чинос', 'брюк',
+        'пиджак', 'костюм', 'майк', 'аксессуар', 'женск', 'шорты', 'низ', 'верх', 'взуття', 'одяг', 'обновление',
+        'в наявност', 'обновка', 'кепк', 'шапк', 'есть', 'в продаж', 'мужское', 'о б у в ь', 'а к с е с с у а р ы',
+        'о б н о в л е н и е', 'наличи', 'C L O T H I N G', 'новые'
     ];
 
 
-    let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends&response_type=token&v=5.52'
+    let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=popup&response_type=token&v=5.52';
     let data2, method, params, group;
 
     const params2 = {
@@ -23,7 +28,7 @@ const VkPage = () => {
     };
 
     const getUrl = (method, params) => {
-        const token = 'b933997c980d6742a0247af5fe4ade67a8f9d1c796205776d97b8f08f896cdc0d13e9a5863f1fb0786fef';
+        const token = 'b5cfd2aa3d6b213cc3fc8bb287af5c81b7b33756fb74338bde4125d6235742a2f0bb1a44ddf639075ce22';
         const url = 'https://api.vk.com/method/'
             + method
             + '?' + params
@@ -40,11 +45,11 @@ const VkPage = () => {
 
         for (let i = 7; i < 8; i++) {
             await setTimeout((function (i) {
-                return () => {
+                return async () => {
                     params = 'group_id=' + group + '&sort=id_asc&count=1000&offset=' + i * 1000;
-                        const url = getUrl(method, params);
-                        sendVkRequest(url);
-                        return setUsers(data);
+                        const url = await getUrl(method, params);
+                        await sendVkRequest(url);
+                        return setUsers([data]);
                 };
             })(i), 1000 * (i + 1))
         }
@@ -54,7 +59,7 @@ const VkPage = () => {
 
     const getUserAlbums = async () => {
         method = 'photos.getAlbums';
-        params = 'owner_id=' + 131934298;
+        params = 'owner_id=' + 314441151;
         const url = await getUrl(method, params);
         return await sendVkRequest(url);
     };
@@ -63,8 +68,8 @@ const VkPage = () => {
         data.items.map((item) => {
             albumTitleKeys.map((element) => {
                 if (item.title.toLowerCase().includes(element.toLowerCase())) {
-                    console.log(element, item.title);
-                    albums.push(item.id)
+                    console.log(element, item);
+                    albums.push(item)
                 }
             })
         });
@@ -75,7 +80,7 @@ const VkPage = () => {
     const getPicturesOneAlbum = async () => {
 
         method = 'photos.get';
-        params = 'owner_id=131934298&album_id=161517835';
+        params = 'owner_id='+ 314441151 + '&album_id=' + 218737155 + '&count=1000&extended=1';
         const url = await getUrl(method, params);
         await sendVkRequest(url);
         return setPhotos(data);
@@ -83,7 +88,8 @@ const VkPage = () => {
 
     const addUserToDB = () => {
 
-        data.items.map((item) => {
+        // data.items.map((item) => {
+        users.map((item) => {
             try {
                 const body = {vkId: item};
                 fetch(
@@ -104,6 +110,79 @@ const VkPage = () => {
         })
     };
 
+    const addAlbumsToDB = () => {
+
+        albums.map((item) => {
+            try {
+                const body = {
+                    vkId: item.owner_id,
+                    albumId: item.id,
+                    albumTitle: item.title,
+                    albumSize: item.size,
+                    albumCreated: item.created,
+                    albumUpdated: item.updated,
+                };
+                fetch(
+                    './albums/add',{
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(body)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('data ', data)
+                    })
+            } catch (e) {
+                console.log('ERROR: ', e)
+            }
+        })
+    };
+
+    const addPhotosToDB = () => {
+        data.items.map((item) => {
+            try {
+
+                const body = {
+                    vkId: item.owner_id,
+                    albumId: item.album_id,
+                    photoId: item.id,
+                    photoText: item.text,
+                    photoSrc: item.photo_604,
+                    photoDate: item.date,
+                };
+
+                fetch(
+                    './photos/add', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(body)
+                    }
+                )
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('data ', data)
+                    })
+
+            } catch (e) {
+                console.log('ERROR ', e)
+            }
+        })
+    };
+
+    const checkPhotosText = () => {
+        data.items.map((item) => {
+            if (item.text.toLowerCase().includes(searchStr.toLowerCase())) {
+                console.log(item.text);
+
+            }
+        });
+        console.log(searchStr)
+    };
+
 
     const sendVkRequest = async (url) => {
         await jsonp(url, (res => {
@@ -117,6 +196,24 @@ const VkPage = () => {
 
     };
 
+    const checkData = () => {
+        console.log('data ', data);
+        console.log('users ', users);
+        console.log('albums ', albums);
+        console.log('photos ', photos);
+    };
+
+    const handleChange = (props) => {
+        setSearchStr(props.value)
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+    };
+
+
+
+
     return (
         <Fragment>
             <h1>Вк страница</h1>
@@ -126,7 +223,12 @@ const VkPage = () => {
             >
                 Получить всех пользователей группы
             </button>
-            <br/>
+            <button
+                onClick={addUserToDB}
+            >
+                Добавить пользователей в базу
+            </button>
+            <hr/><br/>
 
             <button
                 onClick={getUserAlbums}
@@ -140,23 +242,47 @@ const VkPage = () => {
             >
                 Проверить есть ли альбомы с товарами
             </button>
-            <br/>
+            <button
+                onClick={addAlbumsToDB}
+            >
+                Добавить альбомы в базу
+            </button>
+            <br/><hr/>
 
             <button
                 onClick={getPicturesOneAlbum}
             >
                 Получить все фотографии выбранного альбома
             </button>
-            <br/>
-
-            <hr/>
-
             <button
-                onClick={addUserToDB}
+                onClick={addPhotosToDB}
             >
-                Добавить пользователей в базу
+                Добавить фотографии в базу
+            </button>
+            <br/><hr/>
+
+            <input
+                type='text'
+                className='form-control'
+                name='search-string'
+                value={searchStr}
+                onChange={(e) => handleChange(e.target)}
+            />
+            <button
+                onClick={checkPhotosText}
+            >
+                Искать бренд
             </button>
 
+
+
+            <br/><hr/>
+
+            <button
+                onClick={checkData}
+            >
+                check
+            </button>
 
         </Fragment>
 
