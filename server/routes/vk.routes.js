@@ -1,8 +1,9 @@
-const {Router} = require('express');
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const router = Router();
+import express from 'express';
+import passport from 'passport';
+import jwt from 'jsonwebtoken';
+import User from '../models/user.model.js';
+
+const router = express.Router();
 
 const authenticate = passport.authenticate('jwt', {session: false});
 
@@ -28,4 +29,4 @@ router.post('/vk/users/add',
     });
 
 
-module.exports = router;
+export default router;

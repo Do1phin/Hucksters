@@ -1,16 +1,18 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const config = require('../config/config');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const favicon = require('serve-favicon');
-const path = require('path');
+import express from 'express';
+import mongoose from 'mongoose';
+import config from '../config/config.js';
+import bodyParser from 'body-parser';
+import passport from 'passport';
+import favicon from 'serve-favicon';
+import path from 'path';
+
+const __dirname = path.resolve();
 const app = express();
 
-const signupRoutes = require('./routes/signup.routes');
-const signinRoutes = require('./routes/signin.routes');
-const sellersRoutes = require('./routes/sellers.routes');
-const vkRoutes = require('./routes/vk.routes');
+import signupRoutes from './routes/signup.routes.js';
+import signinRoutes from './routes/signin.routes.js';
+import sellersRoutes from './routes/seller.routes.js';
+import vkRoutes from './routes/vk.routes.js';
 
 
 app.use(passport.initialize());
@@ -21,7 +23,10 @@ app.use(passport.session());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-const {port, mongoUri} = config;
+// const {port, mongoUri} = config;
+
+const port = 5000;
+const mongoUri = 'mongodb+srv://mikhail:FXMyt2Aq52zf9qP@cluster0-v5uip.azure.mongodb.net/test?retryWrites=true&w=majority';
 
 app.use(signupRoutes);
 app.use(signinRoutes);
@@ -53,4 +58,4 @@ async function startApp() {
 
 startApp();
 
-module.exports = app;
+export default app;

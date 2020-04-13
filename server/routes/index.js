@@ -1,9 +1,10 @@
-const {Router} = require('express');
-const router = Router();
-const signupRoutes = require('./signup.routes');
-const signinRoutes = require('./signin.routes');
+import express from 'express';
+import signupRoutes from './signup.routes';
+import signinRoutes from './signin.routes';
+
+const router = express.Router();
 
 router.use('/signup', signupRoutes);
 router.use('/signin', signinRoutes);
 
-module.exports = router;
+export default router;

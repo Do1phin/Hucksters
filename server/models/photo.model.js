@@ -1,6 +1,6 @@
-const {Schema, model} = require('mongoose');
+import mongoose from 'mongoose';
 
-const schema = new Schema({
+const schema = new mongoose.Schema({
     vkId: {type: Number, required: false, default: null},
     albumId: {type: Number, required: false, default: null},
     photoId: {type: Number, required: false, default: null, unique: true},
@@ -9,4 +9,4 @@ const schema = new Schema({
     photoDate: {type: Number, default: null},
 });
 
-module.exports = model('Photo', schema);
+export default mongoose.model('Photo', schema);

@@ -1,10 +1,11 @@
-const {Router} = require('express');
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const config = require('../../config/config');
-const router = Router();
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import passport from 'passport';
+import jwt from 'jsonwebtoken';
+import User from '../models/user.model.js';
+import config from '../../config/config.js';
+
+const router = express.Router();
 
 router.post(
     '/signin',
@@ -64,4 +65,4 @@ router.get(
         return res.status(400).json({message: 'Authorisation router'});
     });
 
-module.exports = router;
+export default router;
