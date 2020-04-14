@@ -1,10 +1,10 @@
 const list = (params) => {
     try {
         return fetch(
-            '/sellers', {
-                method: "GET",
+            '/sellers/albums/photos', {
+                method: 'GET',
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": 'application/json'
                 },
             })
             .then((res) => {
@@ -12,12 +12,11 @@ const list = (params) => {
             })
             .catch((error) => {
                 console.log('Error -> ', error);
-            });
+            })
     } catch (e) {
         throw new Error(e)
     }
 };
-
 
 export {
     list

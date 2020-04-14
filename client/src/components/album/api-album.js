@@ -1,7 +1,7 @@
 const list = (params) => {
     try {
         return fetch(
-            '/sellers', {
+            '/sellers/albums', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -11,13 +11,12 @@ const list = (params) => {
                 return res.json()
             })
             .catch((error) => {
-                console.log('Error -> ', error);
+                console.log('Error -> ', error)
             });
     } catch (e) {
-        throw new Error(e)
+        throw new Error(e);
     }
 };
-
 
 export {
     list

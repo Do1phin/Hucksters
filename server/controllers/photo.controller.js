@@ -1,18 +1,7 @@
-import jsonp from "../helpers/jsonpHandler.js";
-import vk from "../helpers/vkApiHandler.js";
 import Photo from '../models/photo.model.js';
 
-
-// const getPicturesOneAlbum = async () => {
-//     const method = 'photos.get';
-//     const params = 'owner_id=' + 314441151 + '&album_id=' + 218737155 + '&count=1000&extended=1';
-//     const url = await getUrl(method, params);
-//     await sendVkRequest(url);
-//     return setPhotos(data);
-// };
-
-
 const create = async (req, res) => {
+
     try {
 
         const {vkId, albumId, photoId, photoText, photoSrc, photoDate} = req.body;
@@ -42,6 +31,19 @@ const create = async (req, res) => {
     }
 };
 
+const list = async (req, res) => {
+    try {
+        const photos = await Photo.find({});
+
+        return res.json(photos)
+
+    } catch (e) {
+        return res.status(500).json({message: 'Something went wrong with loading photos from DB'})
+    }
+
+};
+
 export default {
-    create
+    create,
+    list,
 }

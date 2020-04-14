@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {list} from './api-seller';
 import SellerCard from "./SellerCard";
 import Spinner from '../spinner';
@@ -10,7 +10,6 @@ const Sellers = () => {
     useEffect(() => {
         loadSellers()
     }, []);
-
 
     const loadSellers = () => {
         list({
