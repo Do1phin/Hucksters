@@ -6,4 +6,7 @@ const router = express.Router();
 router.route('/photos')
     .post(photoCtrl.create);
 
+router.route('/sellers/albums/photos')
+    .get(photoCtrl.list);
+
 export default router;

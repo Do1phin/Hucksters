@@ -1,8 +1,7 @@
-import jsonp from '../helpers/jsonpHandler.js';
-import vk from '../helpers/vkApiHandler.js';
 import Album from '../models/album.model.js';
 
 const create = async (req, res) => {
+
     try {
         const {vkId, albumId, albumTitle, albumSize, albumCreated, albumUpdated} = req.body;
 
@@ -29,6 +28,20 @@ const create = async (req, res) => {
     }
 };
 
+const list = async (req, res) => {
+
+    try {
+
+        const albums = await Album.find({});
+
+        return res.json(albums);
+
+    } catch (e) {
+        return res.status(500).json({message: 'Something went wrong with loaded albums from DB'})
+    }
+};
+
 export default {
-    create
+    create,
+    list,
 }

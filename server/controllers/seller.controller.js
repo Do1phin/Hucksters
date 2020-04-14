@@ -1,5 +1,3 @@
-import jsonp from '../helpers/jsonpHandler.js';
-import vk from '../helpers/vkApiHandler.js';
 import Seller from '../models/seller.model.js';
 
 const create = async (req, res) => {
@@ -34,7 +32,7 @@ const create = async (req, res) => {
 const list = async (req, res) => {
 
     try {
-        const sellers = await Seller.find({ seller: null });
+        const sellers = await Seller.find({seller: true});
 
         return res.json(sellers)
     } catch (e) {
@@ -45,5 +43,5 @@ const list = async (req, res) => {
 
 export default {
     create,
-    list
+    list,
 }
