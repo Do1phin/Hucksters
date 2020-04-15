@@ -9,7 +9,7 @@ const VkPage = () => {
     const [searchStr, setSearchStr] = useState(null);
 
     let albumTitleKeys = ['дорого', 'скидк', 'в наличи', 'футболк', 'поло', 'ремни', 'галстук', 'одежда',
-        'продаж', 'new', 'о б н о в а', 'обнова', 'o b n o v a', 'куртк', 'ветровк','пальто','плащ',
+        'продаж', 'new', 'о б н о в а', 'обнова', 'o b n o v a', 'куртк', 'ветровк', 'пальто', 'плащ',
         'обувь', 'свитер', 'кардиган', 'худи', 'свитшот', 'олимпийк', 'рубашк', 'рубах', 'джинс', 'чинос', 'брюк',
         'пиджак', 'костюм', 'майк', 'аксессуар', 'женск', 'шорты', 'низ', 'верх', 'взуття', 'одяг', 'обновление',
         'в наявност', 'обновка', 'кепк', 'шапк', 'есть', 'в продаж', 'мужское', 'о б у в ь', 'а к с е с с у а р ы',
@@ -28,7 +28,7 @@ const VkPage = () => {
     // };
 
     const getUrl = (method, params) => {
-        const token = '378689a32a17e108ceb0edb651b2624287dce9f7b112828edb516ef2522dc2715e454dd6f01eadc42707f';
+        const token = 'c441c02a8bf6aac5584754b7098f6c8c6ba3ad6074809258b00928e1ac3ff403f55e05eed22906b080d72';
         const url = 'https://api.vk.com/method/'
             + method
             + '?' + params
@@ -43,13 +43,14 @@ const VkPage = () => {
         group = 115050558;
         method = 'groups.getMembers';
 
-        for (let i = 8; i < 9; i++) {
+        for (let i = 5; i < 6; i++) {
             await setTimeout((function (i) {
                 return async () => {
                     params = 'group_id=' + group + '&sort=id_asc&count=1000&offset=' + i * 1000;
-                        const url = await getUrl(method, params);
-                        await sendVkRequest(url);
-                        return setUsers(data.items);
+                    const url = await getUrl(method, params);
+                    await sendVkRequest(url);
+                    setUsers(data);
+                    return addUserToDB
                 };
             })(i), 1000 * (i + 1))
         }
@@ -82,7 +83,7 @@ const VkPage = () => {
     const getPicturesOneAlbum = async () => {
 
         method = 'photos.get';
-        params = 'owner_id='+ 314441151 + '&album_id=' + 218737155 + '&count=1000&extended=1';
+        params = 'owner_id=' + 314441151 + '&album_id=' + 218737155 + '&count=1000&extended=1';
         const url = await getUrl(method, params);
         await sendVkRequest(url);
         return setPhotos(data);
@@ -91,7 +92,7 @@ const VkPage = () => {
     const addUserToDB = () => {
 
         // data.items.map((item) => {
-        users.map((item) => {
+        data.items.map((item) => {
             try {
                 const body = {vkId: item};
                 fetch(
@@ -127,7 +128,7 @@ const VkPage = () => {
                     albumUpdated: item.updated,
                 };
                 fetch(
-                    './albums/add',{
+                    './albums/add', {
                         method: 'POST',
                         headers: {
                             "Content-Type": "application/json",
@@ -232,7 +233,8 @@ const VkPage = () => {
             >
                 Добавить пользователей в базу
             </button>
-            <hr/><br/>
+            <hr/>
+            <br/>
 
             <button
                 onClick={getUserAlbums}
@@ -251,7 +253,8 @@ const VkPage = () => {
             >
                 Добавить альбомы в базу
             </button>
-            <br/><hr/>
+            <br/>
+            <hr/>
 
             <button
                 onClick={getPicturesOneAlbum}
@@ -263,7 +266,8 @@ const VkPage = () => {
             >
                 Добавить фотографии в базу
             </button>
-            <br/><hr/>
+            <br/>
+            <hr/>
 
             <input
                 type='text'
@@ -279,8 +283,8 @@ const VkPage = () => {
             </button>
 
 
-
-            <br/><hr/>
+            <br/>
+            <hr/>
 
             <button
                 onClick={checkData}

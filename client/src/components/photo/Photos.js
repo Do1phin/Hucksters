@@ -1,7 +1,9 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {list} from './api-photo';
 import PhotoCard from './PhotoCard';
 import Spinner from "../spinner";
+
+import './photo.style.css';
 
 
 const Photos = () => {
@@ -24,20 +26,18 @@ const Photos = () => {
 
     const photosView = photos.map((item) => {
         return (
-            <li key={item.photoId}>
+            <div className='photo-card-wrapper' key={item.photoId}>
                 <PhotoCard {...item} />
-            </li>
+            </div>
         )
     });
 
     const content = loading ? <Spinner/> : photosView;
 
     return (
-        <Fragment><br/>
-            <ul>
-                {content}
-            </ul>
-        </Fragment>
+        <div className='photos'>
+            {content}
+        </div>
     )
 
 };
