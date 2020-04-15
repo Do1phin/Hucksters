@@ -1,0 +1,30 @@
+.header {
+    display: grid;
+    background-color: #3C3E4E;
+    grid-template-columns: 250px 2fr 1fr 200px;
+    grid-auto-rows: 50px;
+    align-items: center;
+}
+
+.header-menu {
+    display: grid;
+    grid-template-columns: repeat(4, 140px);
+    align-items: center;
+}
+
+
+.menu-item {
+    align-content: center;
+    color: #FFFFFF;
+}
+
+.header-logo span {
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 25px;
+}
+
+.header-logo img {
+    padding-left: 25px;
+    padding-right: 10px;
+}

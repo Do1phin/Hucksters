@@ -1,0 +1,44 @@
+.photos {
+    display: grid;
+    background-color: #2E2F42;
+    grid-gap: 10px;
+    padding: 25px 25px 25px 25px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.photo-card-wrapper {
+    display: grid;
+    background-color: #404258;
+}
+
+.photo-card-header {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 25px 25px;
+    border: 1px solid #F44336;
+}
+
+.photo-card-header_avatar {
+    grid-rows: row 1 / row 2;
+    border: 1px solid #3125f4;
+}
+
+.photo-card-header_username {
+    border: 1px solid #00C853;
+}
+
+
+.photo-card-body {
+    border: 1px solid #f48304;
+    height: 200px;
+}
+
+.photo-card-body_img img {
+    width: 100%;
+
+}
+
+.photo-card-footer {
+    border: 1px solid #e1f400;
+}
+

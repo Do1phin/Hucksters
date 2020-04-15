@@ -1,7 +1,8 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {list} from './api-seller';
 import SellerCard from "./SellerCard";
 import Spinner from '../spinner';
+import './seller.style.css';
 
 const Sellers = () => {
     const [loading, setLoading] = useState(true);
@@ -25,20 +26,18 @@ const Sellers = () => {
 
     const sellersView = sellers.map((item) => {
         return (
-            <li key={item.vkId}>
+            <div className='seller-card-wrapper' key={item.vkId}>
                 <SellerCard {...item}/>
-            </li>
+            </div>
         );
     });
 
     let content = loading ? <Spinner/> : sellersView;
 
     return (
-        <Fragment><br/>
-            <ul>
-                {content}
-            </ul>
-        </Fragment>
+        <div className='sellers'>
+            {content}
+        </div>
     )
 };
 
