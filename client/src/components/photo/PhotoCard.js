@@ -1,13 +1,13 @@
 import React, { Fragment} from 'react';
 import { Link} from 'react-router-dom';
 
-const PhotoCard = ({vkId, albumId, photoId, photoText, photoSrc, photoDate}) => {
+const PhotoCard = ({userId, albumId, photoId, text, photo, date}) => {
     // const date = new Date(photoDate).toLocaleString();
 
     return (
         <Fragment>
             <div className='photo-card-header'>
-                <Link to={`/sellers/${vkId}/albums/${albumId}/photos/${photoId}`}>
+                <Link to={`/sellers/${userId}/albums/${albumId}/photos/${photoId}`}>
                 <div className='photo-card-header_avatar'>
                     Ava
                 </div>
@@ -16,18 +16,18 @@ const PhotoCard = ({vkId, albumId, photoId, photoText, photoSrc, photoDate}) => 
                     Имя Фамилия
                 </div>
                 <div className='photo-card-header_date'>
-                    {photoDate}
+                    {date}
                 </div>
             </div>
 
             <div className='photo-card-body'>
                 <div className="photo-card-body_img">
-                    <img src={photoSrc} alt={photoId}/>
+                    <img src={photo} alt={photoId}/>
                 </div>
             </div>
 
             <div className="photo_card-footer">
-                <span>{photoText}</span>
+                <span>{text}</span>
             </div>
         </Fragment>
     )

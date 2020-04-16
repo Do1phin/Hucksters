@@ -1,12 +1,14 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-    vkId: {type: Number, required: false, default: null},
+    userId: {type: Number, required: false, default: null},
     albumId: {type: Number, required: false, default: null, unique: true},
-    albumTitle: {type: String, required: false, default: null},
-    albumSize: {type: Number, default: null},
-    albumCreated: {type: Number, default: null},
-    albumUpdated: {type: Number, default: null},
+    thumbId: {type: Number, required: false, default: null},
+    title: {type: String, required: false, default: null},
+    size: {type: Number, required: false, default: null},
+    photo: {type: String, required: false, default: null},
+    created: {type: Number, required: false, default: null},
+    updated: {type: Number, required: false, default: null}
 });
 
 export default mongoose.model('Album', schema);

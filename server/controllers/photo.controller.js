@@ -4,26 +4,26 @@ const create = async (req, res) => {
 
     try {
 
-        const {vkId, albumId, photoId, photoText, photoSrc, photoDate} = req.body;
+        const {id, album_id, owner_id, sizes, text, date} = req.body;
 
-        const photoCandidate = await Photo.findOne({photoId});
+        const photoCandidate = await Photo.findOne({id});
 
         if (photoCandidate) {
-            return res.status(400).json({message: 'This photo is already exist in DB'})
+            return res.status(400).json({message: 'This photo with id ' + id + ' is already exist in DB'})
         }
 
         const photo = new Photo({
-            vkId,
-            albumId,
-            photoId,
-            photoText,
-            photoSrc,
-            photoDate
+            userId: owner_id,
+            albumId: album_id,
+            photoId: id,
+            text,
+            photo: sizes[4].url,
+            date
         });
 
         await photo.save();
 
-        return res.status(200).json({message: 'Photo in DB created successfully'})
+        return res.status(200).json({message: 'Photo with id '+ id + ' in DB created successfully'})
 
 
     } catch (e) {

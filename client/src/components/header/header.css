@@ -19,7 +19,7 @@
 }
 
 .header-logo span {
-    align-items: center;
+    justify-self: center;
     color: #FFFFFF;
     font-size: 25px;
 }

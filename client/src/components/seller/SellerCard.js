@@ -2,15 +2,15 @@ import React from "react";
 import {NavLink} from 'react-router-dom';
 import './seller.style.css';
 
-const SellerCard = ({vkId, firstName, lastName, avatar}) => {
+const SellerCard = ({userId, firstName, lastName, domain, photo, }) => {
 
     return (
-        <NavLink to={'/sellers/' + vkId}>
-            <div className='seller-card-info'>Имя Фамилия</div>
+        <NavLink to={'/sellers/' + userId}>
+            <div className='seller-card-info'>{firstName} {lastName}</div>
             <div className='seller-card-img'>
-                <img src={avatar} alt={firstName + ' ' + lastName}/>
+                <img src={photo} alt={firstName + ' ' + lastName + ' [' + domain + ']'}/>
             </div>
-            <div className='seller-card-id'>id: {vkId}</div>
+            <div className='seller-card-id'>id: {userId}</div>
         </NavLink>
     );
 };
