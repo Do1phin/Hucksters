@@ -1,6 +1,7 @@
-#root {
+body {
     background-color: #2f2e42;
     margin: 0;
+    font-family: sans-serif;
 }
 * {
     margin: 0;

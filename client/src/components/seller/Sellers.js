@@ -26,7 +26,7 @@ const Sellers = () => {
 
     const sellersView = sellers.map((item) => {
         return (
-            <div className='seller-card-wrapper' key={item.vkId}>
+            <div className='seller-card-wrapper' key={item.userId}>
                 <SellerCard {...item}/>
             </div>
         );

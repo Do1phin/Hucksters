@@ -9,4 +9,7 @@ router.route('/sellers')
 router.route('/sellers/add')
     .post(sellerCtrl.create);
 
+router.route('/sellers/update')
+    .post(sellerCtrl.update);
+
 export default router;
