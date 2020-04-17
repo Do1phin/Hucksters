@@ -35,7 +35,7 @@ const VkPage = () => {
             path += key + '=' + value + '&'
         }
 
-        const token = 'f223214073f91ce336f5646b49e6e285af5a32af82d9b997a2fc1cb138fd983c7f280aa2f37981aecd927';
+        const token = 'bbbd291831769b25cf0ff698875e9b83b089b8cee34d44a01ae3ad9aa045771f2e53562010491a9427fc7';
         const url = 'https://api.vk.com/method/' + method + '?' + path
             + 'access_token=' + token;
         console.log('url - > ', url);

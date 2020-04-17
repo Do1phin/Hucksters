@@ -1,5 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import { stampToDate} from "../../services/date.service";
 
 const AlbumCard = ({userId, albumId, title, size, created, updated, photo}) => {
 
@@ -15,8 +16,8 @@ const AlbumCard = ({userId, albumId, title, size, created, updated, photo}) => {
                 Фотографий: {size}
             </div>
             <div className='album-card-date-info'>
-                <span>Обновлён: {updated}</span><br/>
-                <span>Создан: {created}</span>
+                <span>Обновлён: {stampToDate(updated)}</span><br/>
+                <span>Создан: {stampToDate(created)}</span>
             </div>
         </NavLink>
     )

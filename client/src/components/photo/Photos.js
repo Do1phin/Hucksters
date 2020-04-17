@@ -6,7 +6,7 @@ import Spinner from "../spinner";
 import './photo.style.css';
 
 
-const Photos = () => {
+const Photos = ({pathname}) => {
     const [loading, setLoading] = useState(true);
     const [photos, setPhotos] = useState([]);
 
@@ -36,6 +36,7 @@ const Photos = () => {
 
     return (
         <div className='photos'>
+            {pathname}
             {content}
         </div>
     )

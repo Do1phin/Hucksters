@@ -63,7 +63,7 @@ const update = async (req, res) => {
 const list = async (req, res) => {
 
     try {
-        const sellers = await Seller.find({isSeller: null});
+        const sellers = await Seller.find({isSeller: null}).limit(100);
 
         return res.json(sellers)
     } catch (e) {

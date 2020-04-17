@@ -4,41 +4,36 @@
     grid-gap: 10px;
     padding: 25px 25px 25px 25px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
 }
+
+.photo-card-header_avatar { grid-area: avatar}
+.photo-card-header_username { grid-area: username}
+.photo-card-header_date { grid-area: date}
 
 .photo-card-wrapper {
     display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 200px 200px;
     background-color: #404258;
 }
 
 .photo-card-header {
     display: grid;
+    height: 50px;
     grid-template-columns: 50px 1fr;
     grid-template-rows: 25px 25px;
-    border: 1px solid #F44336;
-}
+    grid-template-areas: 'avatar username' 'avatar date';
 
-.photo-card-header_avatar {
-    grid-rows: row 1 / row 2;
-    border: 1px solid #3125f4;
 }
-
-.photo-card-header_username {
-    border: 1px solid #00C853;
-}
-
 
 .photo-card-body {
-    border: 1px solid #f48304;
     height: 200px;
+
 }
 
 .photo-card-body_img img {
+    padding-top: 5px;
     width: 100%;
-
-}
-
-.photo-card-footer {
-    border: 1px solid #e1f400;
 }
 

@@ -1,4 +1,5 @@
-const search = (params) => {
+const list = ({searchStr}) => {
+    console.log('props ', searchStr)
     try {
         return fetch(
             '/search', {
@@ -8,6 +9,7 @@ const search = (params) => {
                 }
             })
             .then((res) => {
+                console.log('res ... ', res)
                 return res.json()
             })
             .catch((error) => {
@@ -18,3 +20,7 @@ const search = (params) => {
         throw new Error(e)
     }
 };
+
+export {
+    list
+}
