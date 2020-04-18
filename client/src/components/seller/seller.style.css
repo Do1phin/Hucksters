@@ -1,42 +1,41 @@
 .sellers {
     display: grid;
     background-color: #2E2F42;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-auto-rows: 250px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-rows: 220px;
     grid-gap: 10px;
     padding: 25px 25px 25px 25px;
-    align-content: center;
 }
+
+.seller-card-header_info { grid-area: info }
+.seller-card-header_img { grid-area: img}
+.seller-card-header_id { grid-area: id}
+
 
 .seller-card-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 45px 150px 20px;
+    align-content: center;
     background-color: #404258;
     border-radius: 5px;
+    text-align: center;
+    color: #FFFFFF;
 }
 
-.seller-card-block {
-    display: grid;
-    align-items: center;
-    grid-template-rows: 4fr;
+a {
+    align-content: center;
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
-.seller-card-id {
-    color: #ededef;
-    heigth: 30px;
+.seller-card-header_id {
+    color: #a3a3af;
     /*background-color: #0f9d58;*/
 }
 
-.seller-card-img img {
-    width: 200px;
-    height: 200px;
+.seller-card-body_img img {
+    width: 90%;
+    border-radius: 100px;
 }
 
-.seller-card-info {
-    heigth: 40px;
-    /*background-color: #fbc02d;*/
-    color: #a3a3af;
-}
-
-.img {
-    object-fit: cover;
-    width: 100px;
-}

@@ -32,9 +32,11 @@ const create = async (req, res) => {
 };
 
 const list = async (req, res) => {
+
+    const limit = 100;
+    const pageNumber = 1;
+
     try {
-        const limit = 100;
-        const pageNumber = 1;
         const photos = await Photo.find({}).limit(limit).skip((pageNumber - 1) * limit);
 
         if (photos == []) {

@@ -32,9 +32,12 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
 
+    const limit = 100;
+    const pageNumber = 1;
+
     try {
 
-        const albums = await Album.find({});
+        const albums = await Album.find({}).limit(limit).skip((pageNumber - 1) * limit);
 
         return res.json(albums);
 

@@ -11,29 +11,64 @@
 .photo-card-header_username { grid-area: username}
 .photo-card-header_date { grid-area: date}
 
+a {
+    text-decoration: none;
+    align-content: center;
+}
+
 .photo-card-wrapper {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 50px 200px 200px;
     background-color: #404258;
+    align-content: center;
+}
+
+.body {
+    background-color: #2E2F42;
+    text-align: center;
 }
 
 .photo-card-header {
     display: grid;
     height: 50px;
+    grid-column-gap: 10px;
     grid-template-columns: 50px 1fr;
     grid-template-rows: 25px 25px;
     grid-template-areas: 'avatar username' 'avatar date';
+}
+
+
+.photo-card-header_avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.photo-card-header_username {
+    color: #FFFFFF;
 
 }
 
+.photo-card-header_date {
+    color: #a3a3af;
+}
+
 .photo-card-body {
-    height: 200px;
+    height: 100%;
 
 }
 
 .photo-card-body_img img {
     padding-top: 5px;
     width: 100%;
+}
+
+.photo-card-footer span {
+    color: #a3a3af;
+    white-space: pre-line;
+}
+
+.photo-card-footer {
+    padding-left: 10px;
 }
 

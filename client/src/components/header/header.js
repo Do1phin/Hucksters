@@ -1,26 +1,10 @@
-import React, {useState} from "react";
-import {Link, NavLink, Redirect} from "react-router-dom";
+import React from "react";
+import {Link, NavLink} from "react-router-dom";
 
 import './header.css';
 
 
 const Header = () => {
-    const [searchStr, setSearchStr] = useState();
-    const [result, setResult] = useState();
-
-    const handleSubmit = (props) => {
-
-        if (props === 'Enter' && searchStr) {
-            // return props.history.push('/path')
-            // return window.location.href = '/search' //?q=' + searchStr;
-            //     return props.history.push('/hadpageUrl')
-            // return <Redirect to='/login'  />
-        }
-    };
-
-    const handleChange = (props) => {
-        setSearchStr(props);
-    };
 
     return (
         <div className='header'>
@@ -41,12 +25,6 @@ const Header = () => {
             </div>
 
             <div className='header-finder-str'>
-                <input
-                    placeholder='Искать ...'
-                    value={searchStr}
-                    onChange={(e) => handleChange(e.target.value)}
-                    onKeyPress={(e) => handleSubmit(e.key)}
-                />
             </div>
 
             <div className='header-auth-block'>

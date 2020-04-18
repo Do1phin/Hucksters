@@ -1,15 +1,14 @@
-const list = ({searchStr}) => {
-    console.log('props ', searchStr)
+const list = ({q}) => {
+
     try {
         return fetch(
-            '/search', {
+            '/search?q=' + q, {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
             .then((res) => {
-                console.log('res ... ', res)
                 return res.json()
             })
             .catch((error) => {

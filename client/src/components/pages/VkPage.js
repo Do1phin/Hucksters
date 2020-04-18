@@ -21,8 +21,7 @@ const VkPage = () => {
 
 
     // let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=popup&response_type=token&v=5.52';
-    let method, params;
-
+    // let method, params;
 
     // собираем адрес для перехода
     const getUrl = (method, params) => {
@@ -58,8 +57,9 @@ const VkPage = () => {
 
     // получаем данные пользователя
     const getUserInfo = async () => {
-        // const ids = data.items.join();
-        const ids = [9392, 10649, 22023, 21144, 38902, 45867, 67890, 68860, 83728, 93661, 103719, 160011, 174230, 176497, 195976, 206255].join();
+        users.items.length = 400;
+        let ids = users.items.join();
+
         const params = {
             user_ids: ids,
             fields: 'id,first_name,last_name,nickname,maiden_name,deactivated,is_closed,connections,country,domain,photo_50,photo_100,photo_200,photo_200_orig,sex,verified',
@@ -88,7 +88,7 @@ const VkPage = () => {
     const checkSeller = async () => {
         data.items.map((item) => {
             albumTitleKeys.map((element) => {
-                if (item.title.toLowerCase().includes(element.toLowerCase())) {
+                if (item.title.toLowerCase().includes(element.toLowerCase()) && !albums.includes(item)) {
                     console.log(element, item);
                     albums.push(item)
                 }
@@ -247,6 +247,7 @@ const VkPage = () => {
     };
 
     const checkData = () => {
+        setUsers(data)
         console.log('data ', data);
         console.log('users ', users);
         console.log('albums ', albums);
