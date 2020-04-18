@@ -1,7 +1,8 @@
-const search = (params) => {
+const list = ({q}) => {
+
     try {
         return fetch(
-            '/search', {
+            '/search?q=' + q, {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json"
@@ -18,3 +19,7 @@ const search = (params) => {
         throw new Error(e)
     }
 };
+
+export {
+    list
+}

@@ -1,22 +1,26 @@
-import React, { Fragment} from 'react';
-import { Link} from 'react-router-dom';
+import React, {Fragment} from 'react';
+import {Link} from 'react-router-dom';
+import {stampToDate} from "../../services/date.service";
 
 const PhotoCard = ({userId, albumId, photoId, text, photo, date}) => {
-    // const date = new Date(photoDate).toLocaleString();
 
     return (
         <Fragment>
             <div className='photo-card-header'>
-                <Link to={`/sellers/${userId}/albums/${albumId}/photos/${photoId}`}>
-                <div className='photo-card-header_avatar'>
-                    Ava
-                </div>
+                <Link to={`/sellers/${userId}`}>
+                    <div className='photo-card-header_avatar'>
+                        <img src='https://vk.com/images/camera_200.png?ava=1' alt={userId}/>
+                    </div>
                 </Link>
+
+                <Link to={`/sellers/${userId}`}>
                 <div className='photo-card-header_username'>
                     Имя Фамилия
                 </div>
+                </Link>
+
                 <div className='photo-card-header_date'>
-                    {date}
+                    {stampToDate(date)}
                 </div>
             </div>
 
@@ -26,7 +30,7 @@ const PhotoCard = ({userId, albumId, photoId, text, photo, date}) => {
                 </div>
             </div>
 
-            <div className="photo_card-footer">
+            <div className="photo-card-footer">
                 <span>{text}</span>
             </div>
         </Fragment>

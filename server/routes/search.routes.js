@@ -6,5 +6,8 @@ const router = express.Router();
 router.route('/search')
     .get(searchCtrl.search);
 
+router.route('/test')
+    .get(searchCtrl.test);
+
 
 export default router;

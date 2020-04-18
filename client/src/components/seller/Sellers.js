@@ -4,18 +4,23 @@ import SellerCard from "./SellerCard";
 import Spinner from '../spinner';
 import './seller.style.css';
 
-const Sellers = () => {
+const Sellers = (props) => {
     const [loading, setLoading] = useState(true);
     const [sellers, setSellers] = useState([]);
+
+    const userId = props.match.params.userId;
 
     useEffect(() => {
         loadSellers()
     }, []);
 
+
     const loadSellers = () => {
-        list({
-            seller: true
-        })
+        const prms = userId ? {seller: true} : {userId: userId};
+
+        list(
+            prms
+        )
             .then(data => {
                 if (!data.error) {
                     setSellers(data);
@@ -36,6 +41,7 @@ const Sellers = () => {
 
     return (
         <div className='sellers'>
+            {console.log('params ', props.match.params.userId)}
             {content}
         </div>
     )

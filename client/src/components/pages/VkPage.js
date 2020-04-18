@@ -21,8 +21,7 @@ const VkPage = () => {
 
 
     // let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=popup&response_type=token&v=5.52';
-    let method, params;
-
+    // let method, params;
 
     // собираем адрес для перехода
     const getUrl = (method, params) => {
@@ -35,7 +34,7 @@ const VkPage = () => {
             path += key + '=' + value + '&'
         }
 
-        const token = 'f223214073f91ce336f5646b49e6e285af5a32af82d9b997a2fc1cb138fd983c7f280aa2f37981aecd927';
+        const token = 'bbbd291831769b25cf0ff698875e9b83b089b8cee34d44a01ae3ad9aa045771f2e53562010491a9427fc7';
         const url = 'https://api.vk.com/method/' + method + '?' + path
             + 'access_token=' + token;
         console.log('url - > ', url);
@@ -58,8 +57,9 @@ const VkPage = () => {
 
     // получаем данные пользователя
     const getUserInfo = async () => {
-        // const ids = data.items.join();
-        const ids = [9392, 10649, 22023, 21144, 38902, 45867, 67890, 68860, 83728, 93661, 103719, 160011, 174230, 176497, 195976, 206255].join();
+        users.items.length = 400;
+        let ids = users.items.join();
+
         const params = {
             user_ids: ids,
             fields: 'id,first_name,last_name,nickname,maiden_name,deactivated,is_closed,connections,country,domain,photo_50,photo_100,photo_200,photo_200_orig,sex,verified',
@@ -88,7 +88,7 @@ const VkPage = () => {
     const checkSeller = async () => {
         data.items.map((item) => {
             albumTitleKeys.map((element) => {
-                if (item.title.toLowerCase().includes(element.toLowerCase())) {
+                if (item.title.toLowerCase().includes(element.toLowerCase()) && !albums.includes(item)) {
                     console.log(element, item);
                     albums.push(item)
                 }
@@ -247,6 +247,7 @@ const VkPage = () => {
     };
 
     const checkData = () => {
+        setUsers(data)
         console.log('data ', data);
         console.log('users ', users);
         console.log('albums ', albums);

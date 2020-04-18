@@ -6,7 +6,7 @@ import Spinner from "../spinner";
 import './photo.style.css';
 
 
-const Photos = () => {
+const Photos = (props) => {
     const [loading, setLoading] = useState(true);
     const [photos, setPhotos] = useState([]);
 
@@ -24,7 +24,9 @@ const Photos = () => {
             })
     };
 
-    const photosView = photos.map((item) => {
+    const source = props.source || photos;
+
+    const photosView = source.map((item) => {
         return (
             <div className='photo-card-wrapper' key={item.photoId}>
                 <PhotoCard {...item} />

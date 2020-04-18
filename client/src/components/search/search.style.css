@@ -1,0 +1,20 @@
+.search-block-wrapper {
+    display: grid;
+    padding-top: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px 30px 1fr;
+    grid-gap: 5px;
+    background-color: #2E2F42;
+    text-align: center;
+}
+
+.search-block-info {
+    background-color: #2E2F42;
+    height: 60px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.search-block-result {
+    border: 1px solid #FFFFFF;
+}

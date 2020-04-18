@@ -62,8 +62,11 @@ const update = async (req, res) => {
 
 const list = async (req, res) => {
 
+    const limit = 100;
+    const pageNumber = 1;
+
     try {
-        const sellers = await Seller.find({isSeller: null});
+        const sellers = await Seller.find({isSeller: null}).limit(limit).skip((pageNumber - 1) * limit);
 
         return res.json(sellers)
     } catch (e) {

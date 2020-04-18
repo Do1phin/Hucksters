@@ -23,7 +23,7 @@ const create = async (req, res) => {
 
         await photo.save();
 
-        return res.status(200).json({message: 'Photo with id '+ id + ' in DB created successfully'})
+        return res.status(200).json({message: 'Photo with id ' + id + ' in DB created successfully'})
 
 
     } catch (e) {
@@ -32,8 +32,16 @@ const create = async (req, res) => {
 };
 
 const list = async (req, res) => {
+
+    const limit = 100;
+    const pageNumber = 1;
+
     try {
-        const photos = await Photo.find({});
+        const photos = await Photo.find({}).limit(limit).skip((pageNumber - 1) * limit);
+
+        if (photos == []) {
+            return res.status(400).json({message: 'No more photos'})
+        }
 
         return res.json(photos)
 

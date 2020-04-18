@@ -7,8 +7,10 @@ import Sellers from "./components/seller/Sellers";
 import Albums from "./components/album/Albums";
 import Photos from "./components/photo/Photos";
 import VkPage from "./components/pages/VkPage";
+import Search from "./components/search/Search";
 // import VkAdmin from './components/admin/Vk';
 import Header from './components/header';
+
 
 import './App.css';
 
@@ -18,15 +20,19 @@ function App() {
 
         <Router>
             <Header/>
+            <Search/>
             <Switch>
                 <Route exact path='/' component={MainPage}/>
-                <Route exact path='/sellers' component={Sellers}/>
-                <Route exact path='/sellers/albums' component={Albums}/>
-                <Route exact path='/sellers/albums/photos' component={Photos}/>
+                <Route exact path='/sellers/' component={Sellers}/>
+                <Route exact path='/sellers/albums/' component={Albums}/>
+                <Route exact path='/sellers/:userId/albums/:albumId?' component={Albums}/>
+                <Route exact path='/sellers/albums/photos/' component={Photos}/>
+                <Route exact path='/sellers/:userId/albums/:albumId/photos/:photoId?' component={Photos}/>
                 <Route path='/vk' component={VkPage}/>
                 {/*<Route path='/vk' component={VkAdmin}/>*/}
                 <Route path='/signup' action="signup" component={AuthPage}/>
                 <Route path='/signin' action="signin" component={AuthPage}/>
+                <Route path='/search' component={Search}/>
                 <Route component={NotFound}/>
             </Switch>
         </Router>

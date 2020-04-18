@@ -3,23 +3,23 @@
     background-color: #3C3E4E;
     grid-template-columns: 250px 2fr 1fr 200px;
     grid-auto-rows: 50px;
+    height: 50px;
     align-items: center;
+    grid-template-areas: 'logo menu search auth';
+    justify-content: center;
 }
+
+.header-logo { grid-area: logo}
+.header-menu { grid-area: menu}
+.header-finder-str { grid-area: search}
+.header-auth-block { grid-area: auth}
 
 .header-menu {
     display: grid;
     grid-template-columns: repeat(4, 140px);
-    align-items: center;
-}
-
-
-.menu-item {
-    align-content: center;
-    color: #FFFFFF;
 }
 
 .header-logo span {
-    justify-self: center;
     color: #FFFFFF;
     font-size: 25px;
 }
@@ -27,4 +27,8 @@
 .header-logo img {
     padding-left: 25px;
     padding-right: 10px;
+}
+
+.menu-item {
+    color: #FFFFFF;
 }
