@@ -9,13 +9,12 @@ const Header = () => {
     return (
         <div className='header'>
 
-            <div className='header-logo'>
-                <Link to='/' className="">
-                    <img src="https://www.iconshock.com/image/Stroke/people/seller/" width='50px' height='50px'
-                         alt='HUCKSTER'/>
-                </Link>
-                <span>HUCKSTERS</span>
-            </div>
+            <Link to='/' className="">
+                <div className='header-logo'>
+                    <img src="https://www.iconshock.com/image/Stroke/people/seller/" alt='HUCKSTER'/>
+                    <span>HUCKSTERS</span>
+                </div>
+            </Link>
 
             <div className='header-menu'>
                 <NavLink to='/sellers/' className="menu-item">Продавцы</NavLink>

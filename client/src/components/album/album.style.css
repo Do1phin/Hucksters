@@ -53,3 +53,18 @@ a {
     height: 200px;
     text-align: center;
 }
+
+
+.album-size span {
+    color: #FFFFFF;
+}
+
+.album-size {
+    text-align: center;
+    background-color: #2E2F42;
+}
+
+.album-load-more {
+    text-align: center;
+    background-color: #2E2F42;
+}

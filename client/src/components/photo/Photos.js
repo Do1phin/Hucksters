@@ -16,8 +16,18 @@ const Photos = () => {
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(100);
 
-
     let source;
+
+    useEffect(() => {
+
+        const variables = {
+            title: searchText,
+            skip,
+            limit
+        };
+
+        loadPhotos(variables);
+    }, [searchText]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
@@ -25,19 +35,9 @@ const Photos = () => {
             setPhotoSize(0);
             setAllPhotoSize(0);
         }
-        setSearchText(newSearchText)
+        setSearchText(newSearchText);
     };
 
-    useEffect(() => {
-
-        const variables = {
-            text: searchText,
-            skip,
-            limit
-        };
-
-        loadPhotos(variables);
-    }, [searchText]);
 
     const loadPhotos = (variables) => {
 
@@ -89,15 +89,17 @@ const Photos = () => {
             <Search
                 refreshFunction={updateSearchText}
             />
+
             <div className='photos-size'>
                 {allPhotoSize
                     ? <span>Результатов - {allPhotoSize}</span>
-                    : null}
+                    : null
+                }
             </div>
+
             <div className='photos'>
                 {content}
             </div>
-
 
             {photoSize >= limit
                 ? <div className='photos-load-more'>

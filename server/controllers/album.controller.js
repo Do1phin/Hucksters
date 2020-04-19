@@ -32,14 +32,24 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
 
-    const limit = 100;
-    const pageNumber = 1;
+    const {title, skip, limit} = req.body;
+    let params;
+
+    if (!title) {
+        params = {}
+    } else {
+        params = {title: new RegExp(title, 'i')}
+    }
 
     try {
 
-        const albums = await Album.find({}).limit(limit).skip((pageNumber - 1) * limit);
-
-        return res.json(albums);
+        await Album.find(params)
+            .limit(limit)
+            .skip(skip)
+            .exec((e, albums) => {
+                if (e) return res.status(400).json({message: 'No albums', e});
+                return res.status(200).json({albums, albumSize: albums.length})
+            });
 
     } catch (e) {
         return res.status(500).json({message: 'Something went wrong with loaded albums from DB'})

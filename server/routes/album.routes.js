@@ -7,7 +7,7 @@ router.route('/albums/add')
     .post(albumCtrl.create);
 
 router.route('/sellers/albums')
-    .get(albumCtrl.list);
+    .post(albumCtrl.list);
 
 
 export default router;

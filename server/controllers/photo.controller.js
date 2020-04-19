@@ -34,24 +34,25 @@ const create = async (req, res) => {
 const list = async (req, res) => {
 
     const {text, skip, limit} = req.body;
-    let f;
+    let params;
+
     if (!text) {
-        f = {}
+        params = {}
     } else {
-        f = {text: new RegExp(text, 'i')}
+        params = {text: new RegExp(text, 'i')}
     }
 
     try {
-        await Photo.find(f)
+        await Photo.find(params)
             .limit(limit)
             .skip(skip)
-            .exec((err, photos) => {
-                if (err) return res.status(400).json({message: 'No more photos', err});
+            .exec((e, photos) => {
+                if (e) return res.status(400).json({message: 'No photos', e});
                 return res.status(200).json({photos, photoSize: photos.length})
             });
 
     } catch (e) {
-        return res.status(500).json({message: 'Something went wrong with loading photos from DB'})
+        return res.status(500).json({message: 'Something went wrong with loading photos from DB', e})
     }
 
 };
