@@ -13,11 +13,15 @@ const Search = (props) => {
 
     const handleSubmit = (event) => {
         if (event.key === "Enter") {
-            return props.refreshFunction(searchText);
+            return props.refreshFunction(searchText, 0);
         }
     };
 
     const handleChange = (event) => {
+        if (!event.target.value) {
+            setSearchText(event.target.value);
+            return props.refreshFunction(searchText);
+        }
         return setSearchText(event.target.value);
     };
 
@@ -31,10 +35,6 @@ const Search = (props) => {
                     onChange={(event) => handleChange(event)}
                     onKeyPress={(event) => handleSubmit(event)}
                 />
-            </div>
-            <div className='search-block-info'>
-                <span>Результатов: </span>
-                <strong>*</strong>
             </div>
         </div>
     )

@@ -1,16 +1,9 @@
 .search-block-wrapper {
     display: grid;
-    padding-top: 20px;
+    padding: 20px 0 10px 0;
     grid-template-columns: 1fr;
-    grid-template-rows: 30px 30px;
+    grid-template-rows: 30px;
     grid-gap: 5px;
     background-color: #2E2F42;
     text-align: center;
-}
-
-.search-block-info {
-    background-color: #2E2F42;
-    height: 60px;
-    color: #FFFFFF;
-    font-size: 14px;
 }
