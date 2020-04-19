@@ -20,7 +20,7 @@ function App() {
 
         <Router>
             <Header/>
-            <Search/>
+
             <Switch>
                 <Route exact path='/' component={MainPage}/>
                 <Route exact path='/sellers/' component={Sellers}/>

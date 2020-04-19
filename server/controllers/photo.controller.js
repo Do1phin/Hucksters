@@ -33,15 +33,20 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
 
-    const limit = 100;
-    const pageNumber = 1;
+    const { text, page, limit } = req.body;
+    let f;
+    if (!text) {
+        f = {}
+    } else {
+        f = {text: new RegExp(text, 'i')}
+    }
 
     try {
-        const photos = await Photo.find({}).limit(limit).skip((pageNumber - 1) * limit);
+        const photos = await Photo.find(f).limit(limit).skip((page - 1) * limit);
 
-        if (photos == []) {
-            return res.status(400).json({message: 'No more photos'})
-        }
+        // if (photos == []) {
+        //     return res.status(400).json({message: 'No more photos'})
+        // }
 
         return res.json(photos)
 

@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {list} from './api-photo';
 import PhotoCard from './PhotoCard';
 import Spinner from "../spinner";
+import Search from "../search/Search";
 
 import './photo.style.css';
 
@@ -9,15 +10,24 @@ import './photo.style.css';
 const Photos = (props) => {
     const [loading, setLoading] = useState(true);
     const [photos, setPhotos] = useState([]);
+    const [searchText, setSearchText] = useState('');
+
+
+    const updateSearchText = (newSearchText) => {
+        setSearchText(newSearchText)
+    };
 
     useEffect(() => {
         loadPhotos();
-    }, []);
+    }, [searchText]);
 
     const loadPhotos = () => {
-        list({})
+
+        list({
+            text: searchText
+        })
             .then(data => {
-                if (!data.error) {
+                if (data) {
                     setPhotos(data);
                     setLoading(false);
                 }
@@ -37,9 +47,14 @@ const Photos = (props) => {
     const content = loading ? <Spinner/> : photosView;
 
     return (
-        <div className='photos'>
-            {content}
-        </div>
+        <Fragment>
+            <Search
+                refreshFunction={updateSearchText}
+            />
+            <div className='photos'>
+                {content}
+            </div>
+        </Fragment>
     )
 
 };
