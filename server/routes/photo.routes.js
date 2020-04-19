@@ -7,6 +7,6 @@ router.route('/photos/add')
     .post(photoCtrl.create);
 
 router.route('/sellers/albums/photos')
-    .get(photoCtrl.list);
+    .post(photoCtrl.list);
 
 export default router;

@@ -55,7 +55,6 @@ a {
 
 .photo-card-body {
     height: 100%;
-
 }
 
 .photo-card-body_img img {
@@ -72,3 +71,16 @@ a {
     padding-left: 10px;
 }
 
+.photos-size span {
+    color: #FFFFFF;
+}
+
+.photos-size {
+    text-align: center;
+    background-color: #2E2F42;
+}
+
+.photos-load-more {
+    text-align: center;
+    background-color: #2E2F42;
+}
