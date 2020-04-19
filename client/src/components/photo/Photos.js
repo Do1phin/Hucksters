@@ -21,7 +21,7 @@ const Photos = () => {
     useEffect(() => {
 
         const variables = {
-            title: searchText,
+            text: searchText,
             skip,
             limit
         };
@@ -40,7 +40,6 @@ const Photos = () => {
 
 
     const loadPhotos = (variables) => {
-
         list(variables)
             .then(data => {
                 source = data;
@@ -65,7 +64,7 @@ const Photos = () => {
         const variables = {
             text: searchText,
             skip: skipAfter,
-            limit: limit,
+            limit,
             loadMore: true
         };
 

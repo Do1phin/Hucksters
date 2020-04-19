@@ -13,14 +13,14 @@ const Search = (props) => {
 
     const handleSubmit = (event) => {
         if (event.key === "Enter") {
-            return props.refreshFunction(searchText, 0);
+            return props.refreshFunction(searchText);
         }
     };
 
     const handleChange = (event) => {
         if (!event.target.value) {
             setSearchText(event.target.value);
-            return props.refreshFunction(searchText);
+            return props.refreshFunction();
         }
         return setSearchText(event.target.value);
     };

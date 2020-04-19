@@ -1,12 +1,21 @@
 const list = (params) => {
+
+    const url = '/sellers/';
+
+    const {firstName, skip, limit} = params;
+
+    const body = {
+        firstName, skip, limit
+    };
+
     try {
-        return fetch(
-            '/sellers', {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            })
+        return fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
             .then((res) => {
                 return res.json()
             })

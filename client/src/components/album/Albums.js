@@ -20,7 +20,7 @@ const Albums = () => {
     useEffect(() => {
 
         const variables = {
-            text: searchText,
+            title: searchText,
             skip,
             limit
         };
@@ -62,7 +62,7 @@ const Albums = () => {
         const variables = {
             title: searchText,
             skip: skipAfter,
-            limit: limit,
+            limit,
             loadMore: true
         };
 

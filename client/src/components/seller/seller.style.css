@@ -11,7 +11,6 @@
 .seller-card-header_img { grid-area: img}
 .seller-card-header_id { grid-area: id}
 
-
 .seller-card-wrapper {
     display: grid;
     grid-template-columns: 1fr;
@@ -39,3 +38,16 @@ a {
     border-radius: 100px;
 }
 
+.seller-size span {
+    color: #FFFFFF;
+}
+
+.seller-size {
+    text-align: center;
+    background-color: #2E2F42;
+}
+
+.seller-load-more {
+    text-align: center;
+    background-color: #2E2F42;
+}

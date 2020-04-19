@@ -62,13 +62,24 @@ const update = async (req, res) => {
 
 const list = async (req, res) => {
 
-    const limit = 100;
-    const pageNumber = 1;
+    const {firstName, skip, limit} = req.body;
+    let params;
+
+    if (!firstName) {
+        params = {}
+    } else {
+        params = {firstName: new RegExp(firstName, 'i')}
+    }
 
     try {
-        const sellers = await Seller.find({isSeller: null}).limit(limit).skip((pageNumber - 1) * limit);
+        await Seller.find(params)
+            .limit(limit)
+            .skip(skip)
+            .exec((e, sellers) => {
+                if (e) return res.status(400).json({message: 'No sellers', e});
+                return res.status(200).json({sellers, sellerSize: sellers.length})
+            });
 
-        return res.json(sellers)
     } catch (e) {
         return res.status(500).json({message: 'Something went wrong with download users from DB'})
     }
