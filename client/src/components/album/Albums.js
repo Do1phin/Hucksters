@@ -2,10 +2,12 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {list} from './api-album';
 import AlbumCard from './AlbumCard';
 import Spinner from "../spinner";
-
-import './album.style.css';
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
+import SortSelect from "../UI/SortSelect/SortSelect";
+
+import './album.style.css';
+import '../UI/SortSelect/sortSelect.style.css';
 
 const Albums = () => {
     const [loading, setLoading] = useState(true);
@@ -15,6 +17,7 @@ const Albums = () => {
     const [allAlbumSize, setAllAlbumSize] = useState(0);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(100);
+    const [sort, setSort] = useState(-1);
 
     let source;
 
@@ -23,11 +26,12 @@ const Albums = () => {
         const variables = {
             title: searchText,
             skip,
-            limit
+            limit,
+            sort
         };
 
         loadAlbums(variables)
-    }, [searchText, limit]);
+    }, [searchText, limit, skip, sort]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
@@ -67,6 +71,7 @@ const Albums = () => {
             title: searchText,
             skip: skipAfter,
             limit,
+            sort,
             loadMore: true
         };
 
@@ -99,6 +104,8 @@ const Albums = () => {
             </div>
 
             <LimitSelect limit={limit} refreshFunction={setLimit}/>
+
+            <SortSelect sort={sort} refreshFunction={setSort}/>
 
             <div className='albums'>
                 {content}

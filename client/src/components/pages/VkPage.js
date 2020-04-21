@@ -6,7 +6,7 @@ const VkPage = () => {
     const [users, setUsers] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [photos, setPhotos] = useState([]);
-    const [searchStr, setSearchStr] = useState(null);
+    const [searchStr, setSearchStr] = useState('');
     const [groupId, setGroupId] = useState(115050558);
     const [userId, setUserId] = useState(314441151);
     const [albumId, setAlbumId] = useState(218737167);

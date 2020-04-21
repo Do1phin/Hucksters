@@ -33,7 +33,9 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
 
-    const {text, skip, limit} = req.body;
+    const {text, skip, limit, sort} = req.body;
+    console.log('req.body ', req.body);
+
     let params;
 
     if (!text) {
@@ -42,8 +44,11 @@ const list = async (req, res) => {
         params = {text: new RegExp(text, 'i')}
     }
 
+    const sortParams = {'date':sort};
+
     try {
         await Photo.find(params)
+            .sort(sortParams)
             .limit(limit)
             .skip(skip)
             .exec((e, photos) => {

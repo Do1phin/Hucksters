@@ -2,12 +2,13 @@ const list = (params) => {
 
     let url = '/sellers/albums/photos';
 
-    const {text, skip, limit} = params;
+    const {text, skip, limit, sort} = params;
 
     const body = {
-        text: text,
-        skip: skip,
-        limit: limit
+        text,
+        skip,
+        limit,
+        sort
     };
 
     try {

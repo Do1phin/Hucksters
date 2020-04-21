@@ -4,6 +4,7 @@ import PhotoCard from './PhotoCard';
 import Spinner from "../spinner";
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
+import SortSelect from "../UI/SortSelect/SortSelect";
 
 import './photo.style.css';
 
@@ -15,19 +16,21 @@ const Photos = () => {
     const [allPhotoSize, setAllPhotoSize] = useState(0);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(100);
+    const [sort, setSort] = useState(-1);
 
     let source;
 
     useEffect(() => {
 
-        const variables = {
+        let variables = {
             text: searchText,
             skip,
-            limit
+            limit,
+            sort
         };
 
         loadPhotos(variables);
-    }, [searchText, limit]);
+    }, [searchText, limit, skip, sort]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
@@ -40,6 +43,7 @@ const Photos = () => {
 
 
     const loadPhotos = (variables) => {
+
         list(variables)
             .then(data => {
                 source = data;
@@ -61,12 +65,15 @@ const Photos = () => {
 
         let skipAfter = skip + limit;
 
-        const variables = {
+        let variables = {
             text: searchText,
             skip: skipAfter,
             limit,
+            sort,
             loadMore: true
         };
+
+        console.log('variables 2 ', variables)
 
         loadPhotos(variables);
         setSkip(skipAfter);
@@ -96,6 +103,8 @@ const Photos = () => {
             </div>
 
             <LimitSelect limit={limit} refreshFunction={setLimit}/>
+
+            <SortSelect sort={sort} refreshFunction={setSort}/>
 
             <div className='photos'>
                 {content}

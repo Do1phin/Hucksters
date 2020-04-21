@@ -12,6 +12,7 @@ const app = express();
 import routes from './routes/index.js';
 
 
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -20,7 +21,7 @@ app.use(passport.session());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-// const {port, mongoUri} = config;
+// const {port, mongoUri} = require('../config/config.js');
 
 const port = 5000;
 const mongoUri = 'mongodb+srv://mikhail:FXMyt2Aq52zf9qP@cluster0-v5uip.azure.mongodb.net/test?retryWrites=true&w=majority';
