@@ -26,7 +26,7 @@ const Sellers = () => {
         };
 
         loadSellers(variables)
-    }, [searchText, limit]);
+    }, [searchText, limit, skip]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {

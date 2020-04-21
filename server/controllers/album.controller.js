@@ -32,7 +32,7 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
 
-    const {title, skip, limit} = req.body;
+    const {title, skip, limit, sort} = req.body;
     let params;
 
     if (!title) {
@@ -41,9 +41,12 @@ const list = async (req, res) => {
         params = {title: new RegExp(title, 'i')}
     }
 
+    const sortParams = {"updated":sort};
+
     try {
 
         await Album.find(params)
+            .sort(sortParams)
             .limit(limit)
             .skip(skip)
             .exec((e, albums) => {
