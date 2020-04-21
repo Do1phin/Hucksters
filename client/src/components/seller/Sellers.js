@@ -4,6 +4,7 @@ import SellerCard from "./SellerCard";
 import Spinner from '../spinner';
 import './seller.style.css';
 import Search from "../search/Search";
+import LimitSelect from "../UI/LimitSelect/LimitSelect";
 
 const Sellers = () => {
     const [loading, setLoading] = useState(true);
@@ -25,7 +26,7 @@ const Sellers = () => {
         };
 
         loadSellers(variables)
-    }, [searchText]);
+    }, [searchText, limit]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
@@ -92,6 +93,8 @@ const Sellers = () => {
                     : null
                 }
             </div>
+
+            <LimitSelect limit={limit} refreshFunction={setLimit}/>
 
             <div className='sellers'>
                 {content}

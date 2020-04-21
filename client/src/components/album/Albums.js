@@ -5,6 +5,7 @@ import Spinner from "../spinner";
 
 import './album.style.css';
 import Search from "../search/Search";
+import LimitSelect from "../UI/LimitSelect/LimitSelect";
 
 const Albums = () => {
     const [loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ const Albums = () => {
         };
 
         loadAlbums(variables)
-    }, [searchText]);
+    }, [searchText, limit]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
@@ -41,6 +42,8 @@ const Albums = () => {
         list(variables)
             .then(data => {
                 source = data;
+                console.log('data ', data)
+                console.log('source ', source)
 
                 if (data) {
                     if (variables.loadMore) {
@@ -53,6 +56,7 @@ const Albums = () => {
                     setLoading(false);
                 }
             })
+            .then(aaa => console.log('aaa ', aaa))
     };
 
     const loadMore = () => {
@@ -93,6 +97,8 @@ const Albums = () => {
                     : null
                 }
             </div>
+
+            <LimitSelect limit={limit} refreshFunction={setLimit}/>
 
             <div className='albums'>
                 {content}
