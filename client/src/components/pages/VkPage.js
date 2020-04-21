@@ -2,7 +2,7 @@ import React, {Fragment, useState} from "react";
 import jsonp from './jsonp';
 
 const VkPage = () => {
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [users, setUsers] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [photos, setPhotos] = useState([]);
@@ -11,6 +11,8 @@ const VkPage = () => {
     const [userId, setUserId] = useState(314441151);
     const [albumId, setAlbumId] = useState(218737167);
 
+    let source;
+
     let albumTitleKeys = ['дорого', 'скидк', 'в наличи', 'футболк', 'поло', 'ремни', 'галстук', 'одежда',
         'продаж', 'new', 'о б н о в а', 'обнова', 'o b n o v a', 'куртк', 'ветровк', 'пальто', 'плащ',
         'обувь', 'свитер', 'кардиган', 'худи', 'свитшот', 'олимпийк', 'рубашк', 'рубах', 'джинс', 'чинос', 'брюк',
@@ -18,7 +20,6 @@ const VkPage = () => {
         'в наявност', 'обновка', 'кепк', 'шапк', 'есть', 'в продаж', 'мужское', 'о б у в ь', 'а к с е с с у а р ы',
         'о б н о в л е н и е', 'наличи', 'C L O T H I N G', 'новые'
     ];
-
 
     // let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=popup&response_type=token&v=5.52';
     // let method, params;
@@ -34,31 +35,61 @@ const VkPage = () => {
             path += key + '=' + value + '&'
         }
 
-        const token = 'bbbd291831769b25cf0ff698875e9b83b089b8cee34d44a01ae3ad9aa045771f2e53562010491a9427fc7';
+        const token = '1bedba26523d44df24703bb4160b91118f3d4948008f7e1dbf91aaba77019a8c24cedd773e5cdeae90e3a';
         const url = 'https://api.vk.com/method/' + method + '?' + path
             + 'access_token=' + token;
         console.log('url - > ', url);
         return url
     };
 
+    const testFunc = () => {
+
+    };
+
+    const getAllMembers = () => {
+        let count = 0;
+        (function f() {
+            if (count > 0) {
+                // document.querySelector(".save-user-button").click();
+                // addUserToDB()
+            }
+
+            if (count < 2) {
+                getMembers(count);
+                // getUserInfo();
+                count++;
+                setTimeout(f, 3000);
+            } else {
+                console.log('Users loaded');
+            }
+        })();
+    };
+
     // получаем пользователей группы
-    const getMembers = async () => {
+    const getMembers = async (offset) => {
+        // на 24.04.2020
+        // 115050558 - ЖИРНЫЙ УЛОВ - 113720
+        // 25697392 - CASUAL UKRAINE - 186125
+
+
         const params = {
             group_id: 115050558,
             sort: 'id_asc',
-            count: 1000,
-            offset: 0,
+            count: 300,
+            offset: offset * 1000,
             v: 5.9
         };
-        const data = await sendVkRequest('groups.getMembers', params);
-        setUsers(data);
-        return data;
+
+        let response = await sendVkRequest('groups.getMembers', params);
+        setUsers(response);
+        return response;
     };
 
     // получаем данные пользователя
+    source = data;
     const getUserInfo = async () => {
-        users.items.length = 400;
-        let ids = users.items.join();
+        source.items.length = 400;
+        let ids = source.items.join();
 
         const params = {
             user_ids: ids,
@@ -119,27 +150,29 @@ const VkPage = () => {
     // добавить аккаунт в базу данных
     const addUserToDB = () => {
 
-        data.items.map((item) => {
-            try {
-                const body = {item};
-                fetch(
-                    './sellers/add', {
-                        method: 'POST',
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(body)
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log('data - ', data)
-                    })
-            } catch (e) {
-                console.log('ERROR: ', e)
-            }
-            return null
-        });
+        const body = {source: data.items};
+
+        try {
+
+            fetch(
+                './sellers/add', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(body)
+                })
+                .then(res => {
+                    if (!res.ok) return console.log(`Error: status(${res.status}), text - "${res.statusText}"`);
+                    return console.log(`Success: status(${res.status}), text - "${res.statusText}"`);
+                })
+
+        } catch (e) {
+            console.log('ERROR: ', e)
+        }
         return null
+
+
     };
 
     // обновить в базе информацию аккаунта (только общая инфа)
@@ -234,16 +267,16 @@ const VkPage = () => {
         return null
     };
 
-    const sendVkRequest = async (method, params) => {
-        await jsonp(getUrl(method, params), (res => {
-            if (res.error) {
-                return console.log(`ERROR: `, res.error.error_msg)
-            } else {
+    const sendVkRequest = (method, params) => {
+        jsonp(getUrl(method, params), (res => {
+                if (res.error) {
+                    return console.log(`ERROR: `, res.error.error_msg)
+                }
                 console.log(`Response: `, res.response);
-                return setData(res.response);
-            }
-        }));
-
+                setData(res.response);
+                return res.response;
+            })
+        );
     };
 
     const checkData = () => {
@@ -272,7 +305,7 @@ const VkPage = () => {
             <h1>Вк страница</h1>
 
             <button
-                onClick={getMembers}
+                onClick={getAllMembers}
             >
                 Get members from group
             </button>
@@ -281,8 +314,8 @@ const VkPage = () => {
                 value={groupId}
                 onChange={(e) => handleChange(e.target)}
             />
-            <button
-                onClick={addUserToDB}
+            <button className='save-user-button'
+                    onClick={addUserToDB}
             >
                 Save members to DB
             </button>
@@ -371,6 +404,15 @@ const VkPage = () => {
                 onClick={checkData}
             >
                 check
+            </button>
+
+            <br/>
+            <hr/>
+
+            <button
+                onClick={testFunc}
+            >
+                Тестовая функция
             </button>
 
         </Fragment>

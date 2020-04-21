@@ -9,7 +9,7 @@ const PhotoCard = ({userId, albumId, photoId, text, photo, date}) => {
             <div className='photo-card-header'>
                 <Link to={`/sellers/${userId}`}>
                     <div className='photo-card-header_avatar'>
-                        <img src='https://vk.com/images/camera_200.png?ava=1' alt={userId}/>
+                        <img src='https://vk.com/images/camera_200.png' alt={userId}/>
                     </div>
                 </Link>
 

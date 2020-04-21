@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import config from '../config/config.js';
+// import config from '../config/config.js';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import favicon from 'serve-favicon';

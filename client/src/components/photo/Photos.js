@@ -3,9 +3,9 @@ import {list} from './api-photo';
 import PhotoCard from './PhotoCard';
 import Spinner from "../spinner";
 import Search from "../search/Search";
+import LimitSelect from "../UI/LimitSelect/LimitSelect";
 
 import './photo.style.css';
-
 
 const Photos = () => {
     const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ const Photos = () => {
         };
 
         loadPhotos(variables);
-    }, [searchText]);
+    }, [searchText, limit]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
@@ -72,7 +72,6 @@ const Photos = () => {
         setSkip(skipAfter);
     };
 
-
     const photosView = photos.map((item) => {
         return (
             <div className='photo-card-wrapper' key={item.photoId}>
@@ -95,6 +94,8 @@ const Photos = () => {
                     : null
                 }
             </div>
+
+            <LimitSelect limit={limit} refreshFunction={setLimit}/>
 
             <div className='photos'>
                 {content}
