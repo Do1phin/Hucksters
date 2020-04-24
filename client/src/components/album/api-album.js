@@ -20,6 +20,7 @@ const list = (params) => {
                 body: JSON.stringify(body)
             })
             .then((res) => {
+                console.log('res ', res)
                 return res.json()
             })
             .catch((error) => {

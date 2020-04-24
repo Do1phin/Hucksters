@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import './sortSelect.style.css';
 
@@ -19,6 +20,14 @@ const SortSelect = (props) => {
             </select>
         </div>
     )
+
+
 };
+
+SortSelect.propTypes = {
+    sort: PropTypes.number.isRequired,
+    refreshFunction: PropTypes.func.isRequired
+};
+
 
 export default SortSelect;

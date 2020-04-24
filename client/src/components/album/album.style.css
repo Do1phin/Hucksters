@@ -1,3 +1,6 @@
+#Content {
+    text-align: end;
+}
 .albums {
     display: grid;
     background-color: #2E2F42;
