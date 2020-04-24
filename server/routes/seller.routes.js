@@ -6,6 +6,9 @@ const router = express.Router();
 router.route('/sellers')
     .post(sellerCtrl.list);
 
+// router.route('/sellers/:userId')
+//     .post(sellerCtrl.page);
+
 router.route('/sellers/add')
     .post(sellerCtrl.create);
 

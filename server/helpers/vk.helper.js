@@ -1,7 +1,4 @@
-import jsonp from "./jsonpHandler.js";
-
 let authUrl = 'https://oauth.vk.com/authorize?client_id=6907721&display=popup&response_type=token&v=5.52';
-
 
 const getUrl = (method, params) => {
 
@@ -20,23 +17,22 @@ const getUrl = (method, params) => {
     return url
 };
 
-const sendRequest = async (method, params) => {
-    console.log('vkApiHandler.js - > sendRequest', method, params);
-    await jsonp(getUrl(method, params), (res => {
-        if (res.error) {
-            return console.log(`ERROR: `, res.error.error_msg)
-        } else {
-            console.log(`Response: `, res.response);
-            return setData(res.response);
-        }
-    }));
-
-};
+// const sendRequest = async (method, params) => {
+//     console.log('vk.helper.js - > sendRequest', method, params);
+//     await jsonp(getUrl(method, params), (res => {
+//         if (res.error) {
+//             return console.log(`ERROR: `, res.error.error_msg)
+//         } else {
+//             console.log(`Response: `, res.response);
+//             return setData(res.response);
+//         }
+//     }));
+//
+// };
 
 
 export {
     getUrl,
-    sendRequest,
 }
 
 

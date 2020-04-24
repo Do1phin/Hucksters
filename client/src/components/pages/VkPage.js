@@ -1,5 +1,4 @@
 import React, {Fragment, useState} from "react";
-import jsonp from './jsonp';
 
 const VkPage = () => {
     const [data, setData] = useState([]);
@@ -35,7 +34,7 @@ const VkPage = () => {
             path += key + '=' + value + '&'
         }
 
-        const token = '1bedba26523d44df24703bb4160b91118f3d4948008f7e1dbf91aaba77019a8c24cedd773e5cdeae90e3a';
+        const token = "9b44881498a7e7fbc3ef75cc44988be0500cb91768fe38623a44bdc217e7afb201425f8d5a37d8cdb0b7e";
         const url = 'https://api.vk.com/method/' + method + '?' + path
             + 'access_token=' + token;
         console.log('url - > ', url);
@@ -171,8 +170,6 @@ const VkPage = () => {
             console.log('ERROR: ', e)
         }
         return null
-
-
     };
 
     // обновить в базе информацию аккаунта (только общая инфа)
@@ -268,15 +265,15 @@ const VkPage = () => {
     };
 
     const sendVkRequest = (method, params) => {
-        jsonp(getUrl(method, params), (res => {
-                if (res.error) {
-                    return console.log(`ERROR: `, res.error.error_msg)
-                }
-                console.log(`Response: `, res.response);
-                setData(res.response);
-                return res.response;
-            })
-        );
+        // jsonp(getUrl(method, params), (res => {
+        //         if (res.error) {
+        //             return console.log(`ERROR: `, res.error.error_msg)
+        //         }
+        //         console.log(`Response: `, res.response);
+        //         setData(res.response);
+        //         return res.response;
+        //     })
+        // );
     };
 
     const checkData = () => {

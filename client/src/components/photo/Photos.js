@@ -5,6 +5,7 @@ import Spinner from "../spinner";
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import SortSelect from "../UI/SortSelect/SortSelect";
+import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
 
 import './photo.style.css';
 
@@ -12,13 +13,12 @@ const Photos = () => {
     const [loading, setLoading] = useState(true);
     const [photos, setPhotos] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const [photoSize, setPhotoSize] = useState(0);
-    const [allPhotoSize, setAllPhotoSize] = useState(0);
+    const [itemSize, setItemSize] = useState(0);
+    const [allItemSize, setAllItemSize] = useState(0);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(100);
     const [sort, setSort] = useState(-1);
-
-    let source;
+    const [more, setMore] = useState(false);
 
     useEffect(() => {
 
@@ -29,53 +29,42 @@ const Photos = () => {
             sort
         };
 
+        const loadPhotos = (variables) => {
+
+            list(variables)
+                .then(data => {
+
+                    if (data) {
+                        setItemSize(data.itemSize);
+
+                        if (more) {
+                            setPhotos([...photos, ...data.photos]);
+                            setAllItemSize(allItemSize + data.itemSize);
+                        } else {
+                            setPhotos(data.photos);
+                            setAllItemSize(data.itemSize);
+                        }
+                        setLoading(false);
+                    }
+                });
+        };
+
         loadPhotos(variables);
+        setMore(false);
     }, [searchText, limit, skip, sort]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
             setSkip(0);
-            setPhotoSize(0);
-            setAllPhotoSize(0);
+            setItemSize(0);
+            setAllItemSize(0);
         }
         setSearchText(newSearchText);
     };
 
-
-    const loadPhotos = (variables) => {
-
-        list(variables)
-            .then(data => {
-                source = data;
-
-                if (data) {
-                    if (variables.loadMore) {
-                        setPhotos([...photos, ...source.photos]);
-                    } else {
-                        setPhotos(source.photos);
-                    }
-                    setPhotoSize(source.photoSize);
-                    setAllPhotoSize(allPhotoSize + source.photoSize);
-                    setLoading(false);
-                }
-            });
-    };
-
     const loadMore = () => {
-
         let skipAfter = skip + limit;
-
-        let variables = {
-            text: searchText,
-            skip: skipAfter,
-            limit,
-            sort,
-            loadMore: true
-        };
-
-        console.log('variables 2 ', variables)
-
-        loadPhotos(variables);
+        setMore(true);
         setSkip(skipAfter);
     };
 
@@ -87,40 +76,29 @@ const Photos = () => {
         )
     });
 
-    const content = loading ? <Spinner/> : photosView;
-
-    return (
-        <Fragment>
-            <Search
-                refreshFunction={updateSearchText}
-            />
-
+    const PhotoSize = () => {
+        return (
             <div className='photos-size'>
-                {allPhotoSize
-                    ? <span>Результатов - {allPhotoSize}</span>
+                {allItemSize
+                    ? <span>Результатов - {allItemSize}</span>
                     : null
                 }
             </div>
+        )
+    };
 
+    const Content = () => {
+        return loading ? <Spinner/> : <div className='photos'>{photosView}</div>
+    };
+
+    return (
+        <Fragment>
+            <Search refreshFunction={updateSearchText}/>
+            <PhotoSize/>
             <LimitSelect limit={limit} refreshFunction={setLimit}/>
-
             <SortSelect sort={sort} refreshFunction={setSort}/>
-
-            <div className='photos'>
-                {content}
-            </div>
-
-            {photoSize >= limit
-                ? <div className='photos-load-more'>
-                    <button
-                        className='load-more-btn'
-                        onClick={loadMore}
-                    >
-                        Показать ещё
-                    </button>
-                </div>
-                : null
-            }
+            <Content/>
+            <LoadMoreBtn limit={limit} size={itemSize} refreshFunction={loadMore}/>
         </Fragment>
     )
 

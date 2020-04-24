@@ -5,21 +5,20 @@ import Spinner from "../spinner";
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import SortSelect from "../UI/SortSelect/SortSelect";
-
 import './album.style.css';
 import '../UI/SortSelect/sortSelect.style.css';
+import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
 
 const Albums = () => {
     const [loading, setLoading] = useState(true);
     const [albums, setAlbums] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const [albumSize, setAlbumSize] = useState(0);
-    const [allAlbumSize, setAllAlbumSize] = useState(0);
+    const [itemSize, setItemSize] = useState(0);
+    const [allItemSize, setAllItemSize] = useState(0);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(100);
     const [sort, setSort] = useState(-1);
-
-    let source;
+    const [more, setMore] = useState(false);
 
     useEffect(() => {
 
@@ -30,55 +29,44 @@ const Albums = () => {
             sort
         };
 
+        const loadAlbums = (variables) => {
+            list(variables)
+                .then(data => {
+
+                    if (data) {
+                        setItemSize(data.itemSize);
+
+                        if (more) {
+                            setAllItemSize(allItemSize + data.itemSize);
+                            setAlbums([...albums, ...data.albums]);
+                        } else {
+                            setAllItemSize(data.itemSize);
+                            setAlbums(data.albums);
+                        }
+                        return setLoading(false);
+                    }
+                })
+        };
+
+        setMore(false);
         loadAlbums(variables)
     }, [searchText, limit, skip, sort]);
+
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
             setSkip(0);
-            setAlbumSize(0);
-            setAllAlbumSize(0);
+            setItemSize(0);
+            setAllItemSize(0);
         }
         setSearchText(newSearchText);
     };
 
-    const loadAlbums = (variables) => {
-        list(variables)
-            .then(data => {
-                source = data;
-                console.log('data ', data)
-                console.log('source ', source)
-
-                if (data) {
-                    if (variables.loadMore) {
-                        setAlbums([...albums, ...source.albums]);
-                    } else {
-                        setAlbums(source.albums);
-                    }
-                    setAlbumSize(source.albumSize);
-                    setAllAlbumSize(allAlbumSize + source.albumSize);
-                    setLoading(false);
-                }
-            })
-            .then(aaa => console.log('aaa ', aaa))
-    };
-
     const loadMore = () => {
-
         let skipAfter = skip + limit;
-
-        const variables = {
-            title: searchText,
-            skip: skipAfter,
-            limit,
-            sort,
-            loadMore: true
-        };
-
-        loadAlbums(variables);
+        setMore(true);
         setSkip(skipAfter);
     };
-
 
     const albumsView = albums.map((item) => {
         return (
@@ -88,45 +76,31 @@ const Albums = () => {
         )
     });
 
-    let content = loading ? <Spinner/> : albumsView;
-
-    return (
-        <Fragment>
-            <Search
-                refreshFunction={updateSearchText}
-            />
-
+    const AlbumSize = () => {
+        return (
             <div className='album-size'>
-                {allAlbumSize
-                    ? <span>Результатов - {allAlbumSize}</span>
+                {allItemSize
+                    ? <span>Результатов - {allItemSize}</span>
                     : null
                 }
             </div>
+        )
+    };
 
+    const Content = () => {
+        return loading ? <Spinner/> : <div className='albums'>{albumsView}</div>
+    };
+
+    return (
+        <Fragment>
+            <Search refreshFunction={updateSearchText}/>
+            <AlbumSize/>
             <LimitSelect limit={limit} refreshFunction={setLimit}/>
-
             <SortSelect sort={sort} refreshFunction={setSort}/>
-
-            <div className='albums'>
-                {content}
-            </div>
-
-            {albumSize >= limit
-                ? <div className='album-load-more'>
-                    <button
-                        className='load-more-button'
-                        onClick={loadMore}
-                    >
-                        Показать ещё
-                    </button>
-                </div>
-                : null
-            }
-
+            <Content/>
+            <LoadMoreBtn limit={limit} size={itemSize} refreshFunction={loadMore}/>
         </Fragment>
     )
-
-
 };
 
 export default Albums;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import './limitSelect.style.css';
 
@@ -18,6 +19,11 @@ const LimitSelect = (props) => {
             </select>
         </div>
     )
+};
+
+LimitSelect.propTypes = {
+    limit: PropTypes.number.isRequired,
+    refreshFunction: PropTypes.func.isRequired
 };
 
 export default LimitSelect;

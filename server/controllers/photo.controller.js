@@ -34,7 +34,6 @@ const create = async (req, res) => {
 const list = async (req, res) => {
 
     const {text, skip, limit, sort} = req.body;
-    console.log('req.body ', req.body);
 
     let params;
 
@@ -53,13 +52,12 @@ const list = async (req, res) => {
             .skip(skip)
             .exec((e, photos) => {
                 if (e) return res.status(400).json({message: 'No photos', e});
-                return res.status(200).json({photos, photoSize: photos.length})
+                return res.status(200).json({photos, itemSize: photos.length})
             });
 
     } catch (e) {
         return res.status(500).json({message: 'Something went wrong with loading photos from DB', e})
     }
-
 };
 
 export default {

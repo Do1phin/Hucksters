@@ -5,7 +5,9 @@ const list = (params) => {
     const {firstName, skip, limit} = params;
 
     const body = {
-        firstName, skip, limit
+        firstName,
+        skip,
+        limit
     };
 
     try {

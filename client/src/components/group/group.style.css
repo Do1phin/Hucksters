@@ -1,0 +1,26 @@
+.group-add {
+    grid-template-rows: repeat(auto-fill, 60px);
+    gap: 5px;
+}
+
+.group-card-wrapper {
+    display: grid;
+    grid-template-columns: 50px 150px 200px 100px 1fr;
+    height: 50px;
+    width: 90%;
+    border: 1px solid #94a9ce;
+    column-gap: 10px;
+    align-content: center;
+    color: #FFFFFF;
+    background-color: #404258;
+}
+
+.group-add_input {
+    height: 50px;
+    text-align: center;
+    background-color: #404258;
+}
+
+.group-card_id {
+    grid-template-columns: 1fr;
+}

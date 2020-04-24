@@ -1,14 +1,13 @@
 import React, {Fragment} from 'react';
-import {getGroupMembers} from "./api-vk";
+import Groups from "../group/Groups";
+import GroupsCheck from "../group/GroupsCheck";
 
 const VkAdmin = () => {
+
     return (
-        <Fragment><br/>
-            <button
-                onClick={getGroupMembers}
-            >
-                Загрузить пользователей группы
-            </button>
+        <Fragment>
+            <Groups/>
+            <GroupsCheck/>
         </Fragment>
     )
 };

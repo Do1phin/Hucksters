@@ -51,7 +51,7 @@ const list = async (req, res) => {
             .skip(skip)
             .exec((e, albums) => {
                 if (e) return res.status(400).json({message: 'No albums', e});
-                return res.status(200).json({albums, albumSize: albums.length})
+                return res.status(200).json({albums, itemSize: albums.length})
             });
 
     } catch (e) {

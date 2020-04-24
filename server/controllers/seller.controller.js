@@ -13,7 +13,7 @@ const create = async (req, res) => {
 
         await Seller.insertMany(arr)
             .then(data => {
-                console.log('data ',data);
+                // console.log('data ',data);
                 return res.status(200).json({success: true, data, message: 'Users created successfully in DB'})
             })
 
@@ -41,7 +41,7 @@ const update = async (req, res) => {
                     sex: sex,
                     country: country ? country.title : null,
                     photo: photo_200,
-
+                    _updated: Date.now()
                 }
             },
             {
@@ -76,7 +76,7 @@ const list = async (req, res) => {
             .skip(skip)
             .exec((e, sellers) => {
                 if (e) return res.status(400).json({success: false, e, message: 'No sellers'});
-                return res.status(200).json({success: true, sellers, sellerSize: sellers.length})
+                return res.status(200).json({success: true, sellers, itemSize: sellers.length})
             });
 
     } catch (e) {
@@ -84,9 +84,15 @@ const list = async (req, res) => {
     }
 };
 
+const page = async (req, res) => {
+    return res.status(200).json({success: true})
+};
+
+
 
 export default {
     create,
     list,
     update,
+    page,
 }

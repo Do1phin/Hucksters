@@ -5,17 +5,17 @@ import Spinner from '../spinner';
 import './seller.style.css';
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
+import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
 
 const Sellers = () => {
     const [loading, setLoading] = useState(true);
     const [sellers, setSellers] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const [sellerSize, setSellerSize] = useState(0);
-    const [allSellerSize, setAllSellerSize] = useState(0);
+    const [itemSize, setItemSize] = useState(0);
+    const [allItemSize, setAllItemSize] = useState(0);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(100);
-
-    let source;
+    const [more, setMore] = useState(false);
 
     useEffect(() => {
 
@@ -25,49 +25,41 @@ const Sellers = () => {
             limit
         };
 
-        loadSellers(variables)
+        const loadSellers = (variables) => {
+            list(variables)
+                .then(data => {
+
+                    if (data) {
+                        setItemSize(data.itemSize);
+
+                        if (more) {
+                            setSellers([...sellers, ...data.sellers]);
+                            setAllItemSize(allItemSize + data.itemSize);
+                        } else {
+                            setSellers(data.sellers);
+                            setAllItemSize(data.itemSize);
+                        }
+                        setLoading(false);
+                    }
+                })
+        };
+
+        loadSellers(variables);
+        setMore(false);
     }, [searchText, limit, skip]);
 
     const updateSearchText = (newSearchText) => {
         if (newSearchText !== searchText) {
             setSkip(0);
-            setSellerSize(0);
-            setAllSellerSize(0);
+            setItemSize(0);
+            setAllItemSize(0);
         }
         setSearchText(newSearchText);
     };
 
-
-    const loadSellers = (variables) => {
-        list(variables)
-            .then(data => {
-                source = data;
-
-                if (data) {
-                    if (variables.loadMore) {
-                        setSellers([...sellers, ...source.sellers]);
-                    } else {
-                        setSellers(source.sellers);
-                    }
-                    setSellerSize(source.sellerSize);
-                    setAllSellerSize(allSellerSize + source.sellerSize);
-                    setLoading(false);
-                }
-            })
-    };
-
     const loadMore = () => {
-
         let skipAfter = skip + limit;
-
-        const variables = {
-            firstName: searchText,
-            skip: skipAfter,
-            limit,
-            loadMore: true
-        };
-
-        loadSellers(variables);
+        setMore(true);
         setSkip(skipAfter);
     };
 
@@ -79,38 +71,29 @@ const Sellers = () => {
         );
     });
 
-    let content = loading ? <Spinner/> : sellersView;
-
-    return (
-        <Fragment>
-            <Search
-                refreshFunction={updateSearchText}
-            />
-
+    const SellerSize = () => {
+        return (
             <div className='seller-size'>
-                {allSellerSize
-                    ? <span>Результатов - {allSellerSize}</span>
+                {allItemSize
+                    ? <span>Результатов - {allItemSize}</span>
                     : null
                 }
             </div>
+        )
 
+    };
+
+    const Content = () => {
+        return loading ? <Spinner/> : <div className='sellers'>{sellersView}</div>
+    };
+
+    return (
+        <Fragment>
+            <Search refreshFunction={updateSearchText}/>
+            <SellerSize/>
             <LimitSelect limit={limit} refreshFunction={setLimit}/>
-
-            <div className='sellers'>
-                {content}
-            </div>
-
-            {sellerSize >= limit
-                ? <div className='seller-load-more'>
-                    <button
-                        className='load-more-button'
-                        onClick={loadMore}
-                    >
-                        Показать ещё
-                    </button>
-                </div>
-                : null
-            }
+            <Content/>
+            <LoadMoreBtn limit={limit} size={itemSize} refreshFunction={loadMore}/>
         </Fragment>
     )
 };

@@ -14,6 +14,7 @@ const schema = new mongoose.Schema({
     photo: {type: String, default: null},
     albums: {type: Array, default: null},
     picturesInAlbums: {type: Number, default: null},
+    _updated: {type: Date, default: Date.now()}
 });
 
 export default mongoose.model('Sellers', schema);
