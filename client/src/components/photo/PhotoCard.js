@@ -31,7 +31,16 @@ const PhotoCard = ({userId, albumId, photoId, text, photo, date}) => {
             </div>
 
             <div className="photo-card-footer">
-                <span>{text}</span>
+                <div className='photo-card-footer_info'>
+                    info
+                </div>
+                <div className='photo-card-footer_photos'>
+                    photos
+                </div>
+                <div className='photo-card-footer_size'>
+                    size
+                </div>
+                {/*<span>{text}</span>*/}
             </div>
         </Fragment>
     )

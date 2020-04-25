@@ -24,3 +24,9 @@
 .group-card_id {
     grid-template-columns: 1fr;
 }
+
+.group-add_photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

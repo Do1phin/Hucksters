@@ -15,4 +15,10 @@ router.route('/sellers/add')
 router.route('/sellers/update')
     .post(sellerCtrl.update);
 
+router.route('/seller/updateSeller')
+    .post(sellerCtrl.updateIsSeller);
+
+router.route('/sellers/listForCheck')
+    .post(sellerCtrl.listForCheck);
+
 export default router;

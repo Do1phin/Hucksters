@@ -4,12 +4,6 @@ import './search.style.css';
 
 const Search = (props) => {
     const [searchText, setSearchText] = useState();
-    // const [result, setResult] = useState();
-    // const [loading, setLoading] = useState(true);
-
-    // useEffect(() => {
-    //     loadContent()
-    // }, []);
 
     const handleSubmit = (event) => {
         if (event.key === "Enter") {

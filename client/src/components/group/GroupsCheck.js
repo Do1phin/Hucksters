@@ -1,8 +1,10 @@
 import React, {Fragment} from "react";
 import {call} from "../admin/api-vk";
+import SellerCheckAlbumAccess from "../admin/SellerCheckAlbumAccess";
 
 const GroupsCheck = () => {
     // const [data, setData] = useState(null);
+
 
     // получаем всех пользователей группы
     const getAllMembers = async () => {
@@ -13,7 +15,7 @@ const GroupsCheck = () => {
 
             let count = 0;
             await (function f() {
-                console.info(`Step ${count} from ${membersSize/1000}`);
+                console.info(`Step ${count} from ${membersSize / 1000}`);
                 if (count < Math.ceil(membersSize / 1000)) {
 
                     Promise.resolve(count)
@@ -50,7 +52,9 @@ const GroupsCheck = () => {
             .then((result) => {
                 console.log('1. Members ', members);
                 if (!result) reject('пусто');
-                setTimeout(() => {console.log('members pause')}, 5000);
+                setTimeout(() => {
+                    console.log('members pause')
+                }, 5000);
                 resolve(members);
             });
         console.info('1. Get members [finish]');
@@ -81,7 +85,9 @@ const GroupsCheck = () => {
             .then((result) => {
                 console.log('membersWithInfo ', membersWithInfo);
                 if (!result) reject('пусто');
-                setTimeout(() => {console.log('members info pause')}, 5000);
+                setTimeout(() => {
+                    console.log('members info pause')
+                }, 5000);
                 resolve(membersWithInfo);
             });
         console.info('3. Get members info [finish]');
@@ -106,7 +112,9 @@ const GroupsCheck = () => {
                 .then(res => {
                     if (!res.ok) return console.log(`Error: status(${res.status}), text - "${res.statusText}"`);
                     console.log(`Success: status(${res.status}), text - "${res.statusText}"`);
-                    setTimeout(() => {console.log('create members pause')}, 5000);
+                    setTimeout(() => {
+                        console.log('create members pause')
+                    }, 5000);
                     resolve(members)
                 })
 
@@ -144,19 +152,41 @@ const GroupsCheck = () => {
             return null
         });
         console.log('Members added');
-        setTimeout(() => {console.log('update members pause')}, 5000);
+        setTimeout(() => {
+            console.log('update members pause')
+        }, 5000);
         resolve('Members added');
         console.info('4. Update members info in DB [finish]');
     });
 
-    return(
+
+
+
+
+    const test = () => {
+        console.log('membersinfo ', );
+        console.log('members ', );
+    };
+
+    return (
         <Fragment>
-            проверка групп<br />
+            проверка групп<br/>
             <button
                 onClick={getAllMembers}
             >
                 Загрузить пользователей группы
-            </button><br />
+            </button>
+
+            <br/><br/>
+
+            <SellerCheckAlbumAccess/>
+
+
+            <button
+            onClick={test}
+            >
+            TEST
+        </button>
         </Fragment>
     )
 };
