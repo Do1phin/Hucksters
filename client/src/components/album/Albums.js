@@ -30,6 +30,7 @@ const Albums = () => {
         };
 
         const loadAlbums = (variables) => {
+
             list(variables)
                 .then(data => {
 
@@ -51,16 +52,6 @@ const Albums = () => {
         setMore(false);
         loadAlbums(variables)
     }, [searchText, limit, skip, sort]);
-
-
-    const updateSearchText = (newSearchText) => {
-        if (newSearchText !== searchText) {
-            setSkip(0);
-            setItemSize(0);
-            setAllItemSize(0);
-        }
-        setSearchText(newSearchText);
-    };
 
     const loadMore = () => {
         let skipAfter = skip + limit;
@@ -93,12 +84,27 @@ const Albums = () => {
 
     return (
         <Fragment>
-            <Search refreshFunction={updateSearchText}/>
+            <Search
+                setSkip={setSkip}
+                setItemSize={setItemSize}
+                setAllItemSize={setAllItemSize}
+                setSearchText={setSearchText}
+            />
             <AlbumSize/>
-            <LimitSelect limit={limit} refreshFunction={setLimit}/>
-            <SortSelect sort={sort} refreshFunction={setSort}/>
+            <LimitSelect
+                limit={limit}
+                refreshFunction={setLimit}
+            />
+            <SortSelect
+                sort={sort}
+                refreshFunction={setSort}
+            />
             <Content/>
-            <LoadMoreBtn limit={limit} size={itemSize} refreshFunction={loadMore}/>
+            <LoadMoreBtn
+                limit={limit}
+                size={itemSize}
+                refreshFunction={loadMore}
+            />
         </Fragment>
     )
 };

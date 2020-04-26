@@ -28,9 +28,7 @@ const SellerCheckAlbumAccess = () => {
 
     const checkAccessToAlbums = async () => {
         console.log('start');
-
         try {
-
             await Promise.resolve()
                 .then(getSizesMembers)
                 .then((result) => {
@@ -49,18 +47,10 @@ const SellerCheckAlbumAccess = () => {
                     .catch((error) => console.error(`Member with id ${memberId} does not checked`, error));
             }
 
-
-            for (let i = 1; i <= 16000; i++) {
+            for (let i = 1; i <= 1000; i++) {
                 setTimeout(action, i * 1000, i);
             }
 
-            // Promise.resolve(memberId)
-            // .then(getSizesMembers)
-            // .then(getMemberAlbums)
-            // .catch((error) => console.error(`Member with id ${memberId} does not checked`, error));
-
-
-            // .then(() => console.log('info ', data))
             console.log('finish')
         } catch (e) {
             throw new Error(e)
@@ -68,13 +58,11 @@ const SellerCheckAlbumAccess = () => {
     };
 
     const getSizesMembers = (memberId) => new Promise((resolve, reject) => {
+        setCheckStatus('Получение пользователей...');
         const url = './sellers/listForCheck';
         const body = {};
 
-        setCheckStatus('Получение пользователей...');
-
         try {
-
             fetch(
                 url, {
                     method: 'POST',
@@ -124,7 +112,6 @@ const SellerCheckAlbumAccess = () => {
                     setCheckStatus(' - пользователь ' + memberId + ' не обработан!');
                     reject(error)
                 })
-
         } catch (e) {
             throw new Error(e)
         }
@@ -132,8 +119,9 @@ const SellerCheckAlbumAccess = () => {
     });
 
     const checkAlbumsNames = (memberArr) => new Promise((resolve, reject) => {
-        console.log('memberObj ', memberArr)
+        setCheckStatus('Проверка альбомов пользователя');
         let arr = [];
+
         memberArr.map((item) => {
             albumTitleKeys.map((element) => {
                 if (item.title.toLowerCase().includes(element.toLowerCase()) && !arr.includes(item)) {
@@ -149,6 +137,7 @@ const SellerCheckAlbumAccess = () => {
     });
 
     const addAlbumsToDB = (albumsArr) => new Promise((resolve, reject) => {
+        setCheckStatus('Добавление альбомов в базу');
         if (!albumsArr) reject('(empty albums)');
 
         albumsArr.map((item) => {
@@ -164,8 +153,7 @@ const SellerCheckAlbumAccess = () => {
                     })
                     .then(res => res.json())
                     .then(data => {
-                        console.log('data ', data)
-                        resolve('ok')
+                        resolve(item.owner_id)
                     })
             } catch (e) {
                 console.log('ERROR: ', e);
@@ -177,11 +165,12 @@ const SellerCheckAlbumAccess = () => {
     });
 
     const updateMemberInfo = (memberId) => new Promise((resolve, reject) => {
+        setCheckStatus('Обновление информации о пользователе ' + memberId);
 
         try {
             const body = {memberId};
             fetch(
-                './sellers/updateSeller', {
+                '/seller/updateSeller', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -190,7 +179,7 @@ const SellerCheckAlbumAccess = () => {
                 })
                 .then((res) => res.json())
                 .then((data) => {
-                    // console.log('data - ', data);
+                    resolve('updated')
                 })
         } catch (e) {
             console.log('ERROR: ', e);

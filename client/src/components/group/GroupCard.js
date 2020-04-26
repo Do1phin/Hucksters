@@ -1,31 +1,42 @@
 import React, {Fragment} from "react";
+import {delGroupFromDb} from './api-group.js';
 
-const GroupCard = (item) => {
+const GroupCard = (props) => {
+    const {photo, name, groupId, size} = props.item;
+    console.log('item ', props)
 
+    const handleRemoveBtn = async (event) => {
+        const groupId = event.target.id;
+        const newGroups = await props.groups.filter((item) => !item.groupId);
+        props.refreshFunc(newGroups)
+    };
 
     return (
         <Fragment>
             <div className='group-add_photo'>
-                <img src={item.photo} alt={item.name}/>
+                <img src={photo} alt={name}/>
             </div>
             <div className='group-add_id'>
-                {item.groupId}
+                {groupId}
             </div>
 
             <div className='group-add_name'>
-                {item.name}
+                {name}
             </div>
 
             <div className='group-add_size'>
-                {item.size}
+                {size}
             </div>
 
             <div className='group-add_actions'>
                 <button>
                     Обновить данные
                 </button>
-                <button id={item.groupId}
-                        // onClick={handleRemoveBtn}
+                <button id={groupId}
+                        onClick={handleRemoveBtn}
+                        // groupId={groupId}
+                        // groups={props.groups}
+                        // refreshFunc={props.refreshFunc}
                 >
                     Удалить группу
                 </button>

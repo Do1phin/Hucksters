@@ -9,7 +9,7 @@ import Albums from "./components/album/Albums";
 import Photos from "./components/photo/Photos";
 import VkPage from "./components/pages/VkPage";
 import Search from "./components/search/Search";
-import VkAdmin from './components/admin/Vk';
+import AdminPanel from './components/admin/AdminPanel';
 import Header from './components/header';
 
 
@@ -32,7 +32,7 @@ function App() {
                     <Route exact path='/sellers/albums/photos/' component={Photos}/>
                     <Route exact path='/sellers/:userId/albums/:albumId/photos/:photoId?' component={Photos}/>
                     <Route path='/vk' component={VkPage}/>
-                    <Route path='/vk2' component={VkAdmin}/>
+                    <Route path='/vk2' component={AdminPanel}/>
                     <Route path='/signup' action="signup" component={AuthPage}/>
                     <Route path='/signin' action="signin" component={AuthPage}/>
                     <Route path='/search' component={Search}/>

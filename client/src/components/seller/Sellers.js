@@ -48,15 +48,6 @@ const Sellers = () => {
         setMore(false);
     }, [searchText, limit, skip]);
 
-    const updateSearchText = (newSearchText) => {
-        if (newSearchText !== searchText) {
-            setSkip(0);
-            setItemSize(0);
-            setAllItemSize(0);
-        }
-        setSearchText(newSearchText);
-    };
-
     const loadMore = () => {
         let skipAfter = skip + limit;
         setMore(true);
@@ -89,11 +80,23 @@ const Sellers = () => {
 
     return (
         <Fragment>
-            <Search refreshFunction={updateSearchText}/>
+            <Search
+                setSkip={setSkip}
+                setItemSize={setItemSize}
+                setAllItemSize={setAllItemSize}
+                setSearchText={setSearchText}
+            />
             <SellerSize/>
-            <LimitSelect limit={limit} refreshFunction={setLimit}/>
+            <LimitSelect
+                limit={limit}
+                refreshFunction={setLimit}
+            />
             <Content/>
-            <LoadMoreBtn limit={limit} size={itemSize} refreshFunction={loadMore}/>
+            <LoadMoreBtn
+                limit={limit}
+                size={itemSize}
+                refreshFunction={loadMore}
+            />
         </Fragment>
     )
 };

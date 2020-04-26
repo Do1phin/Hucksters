@@ -6,11 +6,13 @@ const schema = new mongoose.Schema({
         trim: true,
         unique: 'Email already exists',
         match: [/.+\@.+\..+/, 'Please fill a valid email address'],
-        required: 'Email is required'
+        required: 'Email is required',
+        lowercase: true
     },
     password: {
         type: String,
-        required: 'Password is required'
+        required: 'Password is required',
+        minlength: 8
     },
     _created: {
         type: Date,

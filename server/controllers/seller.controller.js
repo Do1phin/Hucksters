@@ -60,13 +60,11 @@ const update = async (req, res) => {
 };
 
 const updateIsSeller = async (req, res) => {
-
     try {
-
-        const {id} = req.body;
+        const {memberId} = req.body;
 
         const sellerNew = await Seller.findOneAndUpdate(
-            {userId: id},
+            {userId: memberId},
             {
                 $set: {
                     isSeller: true,
@@ -115,7 +113,7 @@ const list = async (req, res) => {
 
 const listForCheck = async (req, res) => {
     try {
-        const membersList = await Seller.find({});
+        const membersList = await Seller.find({isSeller:null, isClosed:null, isDeactivated:null});
         const allMembers = await Seller.find({}).count();
         const bannedMembers = await Seller.find({"isDeactivated": "banned"}).count();
         const deletedMembers = await Seller.find({"isDeactivated": "deleted"}).count();
