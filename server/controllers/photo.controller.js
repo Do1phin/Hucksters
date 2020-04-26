@@ -1,4 +1,5 @@
 import Photo from '../models/photo.model.js';
+import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const create = async (req, res) => {
 
@@ -32,9 +33,8 @@ const create = async (req, res) => {
 };
 
 const list = async (req, res) => {
-
     const {text, skip, limit, sort} = req.body;
-
+    const sortParams = {'date':sort};
     let params;
 
     if (!text) {
@@ -43,15 +43,15 @@ const list = async (req, res) => {
         params = {text: new RegExp(text, 'i')}
     }
 
-    const sortParams = {'date':sort};
-
     try {
         await Photo.find(params)
             .sort(sortParams)
             .limit(limit)
             .skip(skip)
-            .exec((e, photos) => {
-                if (e) return res.status(400).json({message: 'No photos', e});
+            .exec((error, photos) => {
+                if (error) return res.status(400).json({
+                    error: getErrorMessage(error)
+                });
                 return res.status(200).json({photos, itemSize: photos.length})
             });
 

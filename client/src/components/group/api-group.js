@@ -1,29 +1,19 @@
 import {call} from "../admin/api-vk";
 
 const groupList = (params) => {
-    const url = '/vk/group/list';
-
     try {
-        return fetch(url, {
+        return fetch('/vk/group/list', {
             method: "GET"
-        })
-            .then((res) => {
-                return res.json()
-            })
-            .catch((error) => {
-                console.log('Error -> ', error);
-            });
-
+        }).then((response) => {
+            return response.json()
+        }).catch((err) => console.error(err));
     } catch (e) {
         throw new Error(e);
     }
 };
 
 const groupCreate = (params) => {
-    const url = '/vk/group/add';
-
     const {id, name, size, photo_50} = params;
-
     const body = {
         groupId: +id,
         name,
@@ -32,19 +22,15 @@ const groupCreate = (params) => {
     };
 
     try {
-        return fetch(url, {
+        return fetch('/vk/group/add', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body)
-        })
-            .then((res) => {
-                return res.json()
-            })
-            .catch((error) => {
-                console.error('Error -> ', error);
-            })
+        }).then((response) => {
+            return response.json()
+        }).catch((err) => console.error(err))
     } catch (e) {
         throw new Error(e);
     }
@@ -61,15 +47,12 @@ const getGroupInfo = (groupId) => new Promise((resolve, reject) => {
 
     call('groups.getById', params)
         .then((result) => {
-            if (!result) {
-                reject('No group info');
-            }
+            if (!result) reject('No group info');
             resolve({...result[0]});
-        })
-        .catch((error) => {
-            console.error('Error -> ', error);
-            reject(error)
-        })
+        }).catch((err) => {
+        console.error('Error -> ', err);
+        reject(err)
+    })
 });
 
 const getGroupSize = (groupObj) => new Promise((resolve, reject) => {
@@ -85,16 +68,37 @@ const getGroupSize = (groupObj) => new Promise((resolve, reject) => {
             }
             groupObj['size'] = +result.count;
             resolve({groupObj});
-        })
-        .catch((error) => {
-            console.error('Error -> ', error);
-            reject(error)
-        })
+        }).catch((err) => {
+        console.error('Error -> ', err);
+        reject(err)
+    })
 });
+
+const delGroupFromDb = (props) => {
+    console.log('props ', props)
+    const {groupId} = props;
+    const newGroups = props.groups.filter((item) => !item.groupId);
+
+    try {
+        fetch('/vk/group/remove', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({groupId})
+        }).then((response) => {
+            return response.json()
+        }).catch((err) => console.log(err))
+    } catch (e) {
+        throw new Error(e)
+    }
+    props.setGroups(newGroups);
+};
 
 export {
     getGroupInfo,
     getGroupSize,
     groupList,
-    groupCreate
+    groupCreate,
+    delGroupFromDb
 };

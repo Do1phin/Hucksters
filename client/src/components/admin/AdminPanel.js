@@ -1,15 +1,17 @@
 import React, {Fragment} from 'react';
 import Groups from "../group/Groups";
 import GroupsCheck from "../group/GroupsCheck";
+import GetPhotos from './GetPhotos';
 
-const VkAdmin = () => {
+const AdminPanel = () => {
 
     return (
         <Fragment>
             <Groups/>
             <GroupsCheck/>
+            <GetPhotos/>
         </Fragment>
     )
 };
 
-export default VkAdmin;
+export default AdminPanel;

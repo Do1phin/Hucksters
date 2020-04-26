@@ -4,25 +4,26 @@ import './search.style.css';
 
 const Search = (props) => {
     const [searchText, setSearchText] = useState();
-    // const [result, setResult] = useState();
-    // const [loading, setLoading] = useState(true);
-
-    // useEffect(() => {
-    //     loadContent()
-    // }, []);
 
     const handleSubmit = (event) => {
         if (event.key === "Enter") {
-            return props.refreshFunction(searchText);
+            return updateSearchText(searchText);
         }
     };
 
     const handleChange = (event) => {
         if (!event.target.value) {
             setSearchText(event.target.value);
-            return props.refreshFunction();
+            return updateSearchText();
         }
         return setSearchText(event.target.value);
+    };
+
+    const updateSearchText = (newSearchText) => {
+            props.setSkip(0);
+            props.setItemSize(0);
+            props.setAllItemSize(0);
+            props.setSearchText(newSearchText);
     };
 
 

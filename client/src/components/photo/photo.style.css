@@ -19,7 +19,7 @@ a {
 .photo-card-wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 200px 200px;
+    grid-template-rows: 50px 200px 50px;
     background-color: #404258;
     align-content: center;
 }
@@ -59,7 +59,9 @@ a {
 
 .photo-card-body_img img {
     padding-top: 5px;
+    /*object-fit: cover;*/
     width: 100%;
+    height: 200px;
     /*background-image: url(./img.jpg);*/
 }
 
@@ -69,8 +71,23 @@ a {
 }
 
 .photo-card-footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     padding-left: 10px;
+    color: #FFFFFF;
+    gap: 5px;
+    padding-top: 5px;
+    text-align: center;
+    align-items: center;
 }
+
+.photo-card-footer_info, .photo-card-footer_photos, .photo-card-footer_size {
+    background-color: #667395;
+    border-radius: 5px;
+    height: 70%;
+    width: 90%;
+}
+
 
 .photos-size span {
     color: #FFFFFF;

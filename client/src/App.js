@@ -1,15 +1,15 @@
 import React from 'react';
-import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import NotFound from './components/errors';
+import ErrorBoundary from "./components/errors/ErrorBoundary";
 import AuthPage from './components/pages/AuthPage';
 import MainPage from "./components/pages/MainPage";
 import Sellers from "./components/seller/Sellers";
-import SellerPage from "./components/seller/SellerPage";
 import Albums from "./components/album/Albums";
 import Photos from "./components/photo/Photos";
 import VkPage from "./components/pages/VkPage";
 import Search from "./components/search/Search";
-import VkAdmin from './components/admin/Vk';
+import AdminPanel from './components/admin/AdminPanel';
 import Header from './components/header';
 
 
@@ -18,27 +18,28 @@ import './App.css';
 
 function App() {
     return (
+        <ErrorBoundary>
+            <Router>
+                <Header/>
 
-        <Router>
-            <Header/>
-
-            <Switch>
-                <Route exact path='/' component={MainPage}/>
-                <Route exact path='/sellers/' component={Sellers}/>
-                {/*<Route exact path='/sellers/' component={SellerPage}/>*/}
-                <Route exact path='/sellers/albums/' component={Albums}/>
-                {/*<Route exact path='/sellers/:userId/albums/' component={Albums}/>*/}
-                <Route exact path='/sellers/:userId/albums/:albumId?' component={Albums}/>
-                <Route exact path='/sellers/albums/photos/' component={Photos}/>
-                <Route exact path='/sellers/:userId/albums/:albumId/photos/:photoId?' component={Photos}/>
-                <Route path='/vk' component={VkPage}/>
-                <Route path='/vk2' component={VkAdmin}/>
-                <Route path='/signup' action="signup" component={AuthPage}/>
-                <Route path='/signin' action="signin" component={AuthPage}/>
-                <Route path='/search' component={Search}/>
-                <Route component={NotFound}/>
-            </Switch>
-        </Router>
+                <Switch>
+                    <Route exact path='/' component={MainPage}/>
+                    <Route exact path='/sellers/' component={Sellers}/>
+                    {/*<Route exact path='/sellers/' component={SellerPage}/>*/}
+                    <Route exact path='/sellers/albums/' component={Albums}/>
+                    {/*<Route exact path='/sellers/:userId/albums/' component={Albums}/>*/}
+                    <Route exact path='/sellers/:userId/albums/:albumId?' component={Albums}/>
+                    <Route exact path='/sellers/albums/photos/' component={Photos}/>
+                    <Route exact path='/sellers/:userId/albums/:albumId/photos/:photoId?' component={Photos}/>
+                    <Route path='/vk' component={VkPage}/>
+                    <Route path='/vk2' component={AdminPanel}/>
+                    <Route path='/signup' action="signup" component={AuthPage}/>
+                    <Route path='/signin' action="signin" component={AuthPage}/>
+                    <Route path='/search' component={Search}/>
+                    <Route component={NotFound}/>
+                </Switch>
+            </Router>
+        </ErrorBoundary>
     );
 }
 

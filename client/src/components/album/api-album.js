@@ -1,7 +1,4 @@
 const list = (params) => {
-
-    const url = '/sellers/albums';
-
     const {title, skip, limit, sort} = params;
 
     const body = {
@@ -12,25 +9,40 @@ const list = (params) => {
     };
 
     try {
-        return fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(body)
-            })
-            .then((res) => {
-                console.log('res ', res)
-                return res.json()
-            })
-            .catch((error) => {
-                console.log('Error -> ', error)
-            });
+        return fetch('/sellers/albums', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        }).then((response) => {
+            return response.json()
+        }).catch((err) => console.error(err));
     } catch (e) {
         throw new Error(e);
     }
 };
 
+const getAlbumsFromDB = () => new Promise((resolve, reject) => {
+    const body = {
+        title: '',
+        skip: 0,
+        limit: 0,
+        sort: -1
+    };
+
+    return fetch('/sellers/albums_for_check', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    }).then((response) => {
+        resolve(response.json())
+    }).catch((err) => reject(err))
+});
+
 export {
-    list
+    list,
+    getAlbumsFromDB
 }

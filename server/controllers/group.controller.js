@@ -52,8 +52,10 @@ const groupList = async (req, res) => {
     }
 };
 
+
+
 export default {
     groupCreate,
     groupList,
-    groupRemove
+    groupRemove,
 }

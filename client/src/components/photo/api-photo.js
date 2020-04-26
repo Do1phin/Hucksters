@@ -1,9 +1,5 @@
 const list = (params) => {
-
-    let url = '/sellers/albums/photos';
-
     const {text, skip, limit, sort} = params;
-
     const body = {
         text,
         skip,
@@ -12,20 +8,15 @@ const list = (params) => {
     };
 
     try {
-        return fetch(url, {
-
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json'
-                },
-                body: JSON.stringify(body)
-            })
-            .then((res) => {
-                return res.json()
-            })
-            .catch((error) => {
-                console.log('Error -> ', error);
-            })
+        return fetch('/sellers/albums/photos', {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(body)
+        }).then((response) => {
+            return response.json()
+        }).catch((err) => console.error(err))
     } catch (e) {
         throw new Error(e)
     }

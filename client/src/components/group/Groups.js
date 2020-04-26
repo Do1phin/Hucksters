@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from "react";
 import Spinner from "../spinner";
 import GroupCard from "./GroupCard";
 import './group.style.css';
-import {getGroupInfo, groupCreate, groupList, getGroupSize} from "./api-group";
+import {getGroupInfo, getGroupSize, groupCreate, groupList} from "./api-group";
 
 const Groups = () => {
     const [groups, setGroups] = useState([]);
@@ -17,29 +17,23 @@ const Groups = () => {
     const loadGroups = () => {
         groupList()
             .then((data) => {
-                if (!data) {
-                    return console.error('Groups not loaded')
-                } else {
-                    setGroups([...data.groups]);
-                    return data
-                }
+                if (!data) return console.error('Groups not loaded');
+                setGroups([...data.groups]);
+                return data
             });
         setLoading(false)
     };
 
     const addGroup = ({groupObj}) => new Promise((resolve, reject) => {
-
         return groupCreate(groupObj)
             .then((data) => {
-                if (!data) {
-                    return console.error('Group not created')
-                } else {
-                    return data
-                }
+                if (!data) return console.error('Group not created');
+                return data
             })
     });
 
     const handleChange = (event) => {
+        event.preventDefault();
         setGroupId(event.target.value);
     };
 
@@ -53,24 +47,21 @@ const Groups = () => {
     };
 
     const handleRemoveBtn = async (event) => {
-        const url = '/vk/group/remove';
         const groupId = event.target.id;
         const newGroups = await groups.filter((item) => !item.groupId);
 
         try {
-            fetch(url, {
+            fetch('/vk/group/remove', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({groupId})
-            })
-                .then((res) => {
-                    if (res) return console.error('Group not deleted');
-                    return console.info('Group deleted successfully')
-                })
+            }).then((response) => {
+                return response.json()
+            }).catch((err) => console.log(err))
         } catch (e) {
-
+            throw new Error(e)
         }
         setGroups(newGroups);
     };
@@ -78,10 +69,9 @@ const Groups = () => {
     const groupsView = groups.map((item) => {
         return (
             <div className='group-card-wrapper' key={item.groupId}>
-                <GroupCard {...item}/>
+                <GroupCard item={item} groups={groups} refreshFunc={setGroups}/>
             </div>
         )
-
     });
 
     const isDisabled = groups.some((item) => item.groupId === +groupId);

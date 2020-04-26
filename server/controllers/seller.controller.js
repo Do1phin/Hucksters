@@ -59,6 +59,33 @@ const update = async (req, res) => {
     }
 };
 
+const updateIsSeller = async (req, res) => {
+    try {
+        const {memberId} = req.body;
+
+        const sellerNew = await Seller.findOneAndUpdate(
+            {userId: memberId},
+            {
+                $set: {
+                    isSeller: true,
+                    _updated: Date.now()
+                }
+            },
+            {
+                returnOriginal: false
+            }
+        );
+
+        if (!sellerNew) {
+            return res.status(400).json({success: false, message: 'User with id ' + id + ' not found in DB'});
+        }
+        return res.status(200).json({success: true, message: 'User with id ' + id + ' updated successfully'});
+
+    } catch (e) {
+        return res.status(500).json({success: false, e, message: 'Something went wrong with updated user in DB'})
+    }
+};
+
 const list = async (req, res) => {
 
     const {firstName, skip, limit} = req.body;
@@ -84,10 +111,38 @@ const list = async (req, res) => {
     }
 };
 
+const listForCheck = async (req, res) => {
+    try {
+        const membersList = await Seller.find({isSeller:null, isClosed:null, isDeactivated:null});
+        const allMembers = await Seller.find({}).count();
+        const bannedMembers = await Seller.find({"isDeactivated": "banned"}).count();
+        const deletedMembers = await Seller.find({"isDeactivated": "deleted"}).count();
+        const closedPageMembers = await Seller.find({"isClosed": true}).count();
+        // const closedAlbumMembers = await Seller.find({}).count();
+        const sellerMembers = await Seller.find({"isSeller": true}).count();
+
+
+        const info = {
+            allMembers,
+            bannedMembers,
+            deletedMembers,
+            closedPageMembers,
+            sellerMembers,
+            membersList
+        };
+
+        return res.status(200).json({success: true, info})
+
+    } catch (e) {
+        return res.status(500).json({success: false, e,
+            message: 'Something went wrong with load list members for check'
+        })
+    }
+};
+
 const page = async (req, res) => {
     return res.status(200).json({success: true})
 };
-
 
 
 export default {
@@ -95,4 +150,6 @@ export default {
     list,
     update,
     page,
+    listForCheck,
+    updateIsSeller
 }

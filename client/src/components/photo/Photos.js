@@ -44,7 +44,7 @@ const Photos = () => {
                             setPhotos(data.photos);
                             setAllItemSize(data.itemSize);
                         }
-                        setLoading(false);
+                        return setLoading(false);
                     }
                 });
         };
@@ -52,15 +52,6 @@ const Photos = () => {
         loadPhotos(variables);
         setMore(false);
     }, [searchText, limit, skip, sort]);
-
-    const updateSearchText = (newSearchText) => {
-        if (newSearchText !== searchText) {
-            setSkip(0);
-            setItemSize(0);
-            setAllItemSize(0);
-        }
-        setSearchText(newSearchText);
-    };
 
     const loadMore = () => {
         let skipAfter = skip + limit;
@@ -93,12 +84,27 @@ const Photos = () => {
 
     return (
         <Fragment>
-            <Search refreshFunction={updateSearchText}/>
+            <Search
+                setSkip={setSkip}
+                setItemSize={setItemSize}
+                setAllItemSize={setAllItemSize}
+                setSearchText={setSearchText}
+            />
             <PhotoSize/>
-            <LimitSelect limit={limit} refreshFunction={setLimit}/>
-            <SortSelect sort={sort} refreshFunction={setSort}/>
+            <LimitSelect
+                limit={limit}
+                refreshFunction={setLimit}
+            />
+            <SortSelect
+                sort={sort}
+                refreshFunction={setSort}
+            />
             <Content/>
-            <LoadMoreBtn limit={limit} size={itemSize} refreshFunction={loadMore}/>
+            <LoadMoreBtn
+                limit={limit}
+                size={itemSize}
+                refreshFunction={loadMore}
+            />
         </Fragment>
     )
 

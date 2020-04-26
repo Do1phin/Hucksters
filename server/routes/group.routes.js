@@ -12,4 +12,5 @@ router.route('/vk/group/remove')
 router.route('/vk/group/list')
     .get(groupCtrl.groupList);
 
+
 export default router;
