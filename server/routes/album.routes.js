@@ -9,5 +9,8 @@ router.route('/albums/add')
 router.route('/sellers/albums')
     .post(albumCtrl.list);
 
+router.route('/sellers/albums_for_check')
+    .post(albumCtrl.listForCheck);
+
 
 export default router;

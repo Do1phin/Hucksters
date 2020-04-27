@@ -22,9 +22,10 @@ const login = () => {
 const call = (method, params) => {
     try {
         return new Promise((resolve, reject) => {
-            VK.Api.call(method, params, res => {
+            VK.Api.call(method, params, (err, res) => {
                 if (res) resolve(res.response);
-                reject();
+                console.error(err);
+                reject(`VkApiError: code[${err.error.error_code}] - ${err.error.error_msg}`, err);
             });
         });
     } catch (e) {
@@ -79,9 +80,53 @@ const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => 
     console.info('3. Get members info [finish]');
 });
 
+// получаем все фотографии из альбома
+const getPhotosFromVk = (groupObj) => new Promise((resolve, reject) => {
+    const {userId, albumId} = groupObj;
+    const params = {
+        owner_id: userId,
+        album_id: albumId,
+        rev: 0,
+        extended: 1,
+        count: 1000,
+        photo_sizes: 1,
+        v: 5.103
+    };
+
+    call('photos.get', params)
+        .then((response) => {
+            if (response) resolve(response.items);
+        }).catch((err) => reject(err))
+});
+
+const getCommentsFromVk = (photoObj) => new Promise((resolve, reject) => {
+    const {userId, photoId} = photoObj;
+    const params = {
+        owner_id: userId,
+        photo_id: photoId,
+        count: 100,
+        sort: 'asc',
+        fields: 'photo_id',
+        v: 5.103
+    };
+
+
+
+    call('photos.getComments', params)
+        .then((response) => {
+            console.log('respon ', response)
+            if (response) resolve(response)
+        }).catch((err) => {
+        console.log('err ', err)
+            reject(err)})
+
+});
+
 export {
     call,
     login,
     getMembersGroupFromVk,
-    getMembersInfoFromVk
+    getMembersInfoFromVk,
+    getPhotosFromVk,
+    getCommentsFromVk
 }

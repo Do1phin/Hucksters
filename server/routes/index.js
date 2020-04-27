@@ -4,6 +4,7 @@ import sellersRoutes from './seller.routes.js';
 import albumsRoutes from './album.routes.js';
 import photosRoutes from './photo.routes.js';
 import groupsRoutes from './group.routes.js';
+import commentsRoutes from './comment.routes.js';
 import vkRoutes from './vk.routes.js';
 import searchRoutes from './search.routes.js';
 
@@ -14,6 +15,7 @@ router.use('/', sellersRoutes);
 router.use('/', albumsRoutes);
 router.use('/', photosRoutes);
 router.use('/', groupsRoutes);
+router.use('/', commentsRoutes);
 router.use('/', vkRoutes);
 router.use('/', searchRoutes);
 
