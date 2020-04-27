@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import {stampToDate} from "../../services/date.service";
 
-const PhotoCard = ({userId, albumId, photoId, text, photo, date}) => {
+const PhotoCard = ({userId, albumId, photoId, text, photoSizes, date}) => {
 
     return (
         <Fragment>
@@ -26,7 +26,7 @@ const PhotoCard = ({userId, albumId, photoId, text, photo, date}) => {
 
             <div className='photo-card-body'>
                 <div className="photo-card-body_img">
-                    <img src={photo} alt={photoId}/>
+                    <img src={photoSizes[4].url} alt={photoId}/>
                 </div>
             </div>
 

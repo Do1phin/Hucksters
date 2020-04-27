@@ -4,7 +4,7 @@ const create = async (req, res) => {
 
     try {
 
-        const {owner_id, id, thumb_id, title, sizes, created, updated} = req.body;
+        const {owner_id, id, thumb_id, title, sizes, created, updated, size} = req.body;
 
         const albumCandidate = await Album.findOne({id});
         if (albumCandidate) {
@@ -19,6 +19,7 @@ const create = async (req, res) => {
             photo: sizes[4].src,
             created,
             updated,
+            size
         });
 
         await album.save();
@@ -55,11 +56,25 @@ const list = async (req, res) => {
             });
 
     } catch (e) {
-        return res.status(500).json({message: 'Something went wrong with loaded albums from DB'})
+        return res.status(500).json({message: 'Something went wrong with loaded albums from DB', e})
+    }
+};
+
+const listForCheck = async (req, res) => {
+
+    try {
+        await Album.find()
+            .exec((e, albums) => {
+                if (e) return res.status(400).json({message: 'No albums', e})
+                return res.status(200).json({albums, itemSize: albums.length})
+            })
+    } catch (e) {
+        return res.status(500).json({message: 'Something went wrong with loaded albums from DB', e})
     }
 };
 
 export default {
     create,
     list,
+    listForCheck,
 }

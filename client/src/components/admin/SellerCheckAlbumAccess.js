@@ -44,10 +44,10 @@ const SellerCheckAlbumAccess = () => {
                     .then(checkAlbumsNames)
                     .then(addAlbumsToDB)
                     .then(updateMemberInfo)
-                    .catch((error) => console.error(`Member with id ${memberId} does not checked`, error));
+                    .catch((err) => console.error(`Member with id ${memberId} does not checked`, err));
             }
 
-            for (let i = 1; i <= 1000; i++) {
+            for (let i = 1; i <= 100000; i++) {
                 setTimeout(action, i * 1000, i);
             }
 
@@ -59,19 +59,16 @@ const SellerCheckAlbumAccess = () => {
 
     const getSizesMembers = (memberId) => new Promise((resolve, reject) => {
         setCheckStatus('Получение пользователей...');
-        const url = './sellers/listForCheck';
         const body = {};
 
         try {
-            fetch(
-                url, {
+            fetch('./sellers/listForCheck', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(body)
-                })
-                .then((res) => res.json())
+                }).then((response) => response.json())
                 .then((data) => {
                     setMembersInfo({...data.info});
                     setMembers(data.info.membersList);
@@ -79,7 +76,6 @@ const SellerCheckAlbumAccess = () => {
                     resolve(data.info.membersList)
                 })
         } catch (e) {
-            console.log('ERROR: ', e);
             setCheckStatus('Ошибка получения пользователей!');
             reject(e)
         }
@@ -96,9 +92,7 @@ const SellerCheckAlbumAccess = () => {
         };
 
         try {
-            const albums = call('photos.getAlbums', params);
-
-            albums
+            call('photos.getAlbums', params)
                 .then((data) => {
                     if (!data || !data.count) {
                         reject('(reject - empty)')
@@ -106,14 +100,12 @@ const SellerCheckAlbumAccess = () => {
                         setCheckStatus(' - пользователь ' + memberId + ' успешно обработан!');
                         resolve(data.items)
                     }
-                })
-                .catch((error) => {
-                    console.error('error ', error);
-                    setCheckStatus(' - пользователь ' + memberId + ' не обработан!');
-                    reject(error)
-                })
+                }).catch((err) => {
+                setCheckStatus(' - пользователь ' + memberId + ' не обработан!');
+                reject(err)
+            })
         } catch (e) {
-            throw new Error(e)
+            reject(e)
         }
 
     });
@@ -142,21 +134,18 @@ const SellerCheckAlbumAccess = () => {
 
         albumsArr.map((item) => {
             try {
-                const body = item;
-                fetch(
-                    './albums/add', {
-                        method: 'POST',
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(body)
-                    })
-                    .then(res => res.json())
+                // const body = item;
+                fetch('./albums/add', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(item)
+                }).then((response) => response.json())
                     .then(data => {
                         resolve(item.owner_id)
                     })
             } catch (e) {
-                console.log('ERROR: ', e);
                 reject(e)
             }
             return null
@@ -169,20 +158,17 @@ const SellerCheckAlbumAccess = () => {
 
         try {
             const body = {memberId};
-            fetch(
-                '/seller/updateSeller', {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(body)
-                })
-                .then((res) => res.json())
+            fetch('/seller/updateSeller', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body)
+            }).then((response) => response.json())
                 .then((data) => {
                     resolve('updated')
                 })
         } catch (e) {
-            console.log('ERROR: ', e);
             reject(e)
         }
     });

@@ -9,4 +9,7 @@ router.route('/photos/add')
 router.route('/sellers/albums/photos')
     .post(photoCtrl.list);
 
+router.route('/sellers/albums/photos_for_check')
+    .post(photoCtrl.list2);
+
 export default router;

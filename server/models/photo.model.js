@@ -19,8 +19,16 @@ const schema = new mongoose.Schema({
         type: String,
         default: null
     },
-    photo: {
-        type: String,
+    photoSizes: {
+        type: Array,
+        default: null
+    },
+    likes: {
+        type: Number,
+        default: null
+    },
+    comments: {
+        type: Number,
         default: null
     },
     date: {
