@@ -1,8 +1,8 @@
 import React, {Fragment} from "react";
-import {getAlbumsFromDB} from "../album/api-album";
-import {addPhotosToDb} from '../photo/api-photo';
-import {getMembersGroupFromVk, getMembersInfoFromVk, getPhotosFromVk} from "./api-vk";
-import {createMembersToDB, updateMembersInDB} from "../seller/api-seller";
+import {getAlbumsFromDB} from "../album/_api-album";
+import {addPhotosToDb} from '../photo/_api-photo';
+import {getMembersGroupFromVk, getMembersInfoFromVk, getPhotosFromVk} from "./_api-vk";
+import {createMembersToDB, updateMembersInDB} from "../seller/_api-seller";
 
 const GetPhotos = () => {
 

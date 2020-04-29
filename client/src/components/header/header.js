@@ -11,7 +11,7 @@ const Header = () => {
 
             <Link to='/' className="">
                 <div className='header-logo'>
-                    <img src="" alt='HUCKSTER'/>
+                    {/*<img src="#" alt='HUCKSTER'/>*/}
                     <span>HUCKSTERS</span>
                 </div>
             </Link>
@@ -21,7 +21,6 @@ const Header = () => {
                 <NavLink to='/sellers/albums/' className="menu-item">Альбомы</NavLink>
                 <NavLink to='/sellers/albums/photos/' className="menu-item">Фотографии</NavLink>
                 <NavLink to='/vk' className="menu-item">VK админка</NavLink>
-                <NavLink to='/vk2' className="menu-item">VK 2</NavLink>
             </div>
 
             <div className='header-finder-str'>

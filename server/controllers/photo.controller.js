@@ -1,37 +1,37 @@
 import Photo from '../models/photo.model.js';
 import getErrorMessage from "../helpers/dbErrorHandler.js";
 
-const create = async (req, res) => {
+const createPhoto = async (req, res) => {
     const {id, album_id, owner_id, sizes, text, date, likes, comments} = req.body;
 
     try {
-        Photo.findOne({albumId: id})
-            .then((response) => {
-                if (response) return res.status(400).json({message: 'Album is already exist'})
-            }).catch((err) => console.error(err));
+        Photo.findOne({album_id: id}, (err, photo) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
 
-        const photo = new Photo({
-            userId: owner_id,
-            albumId: album_id,
-            photoId: id,
-            text,
-            date,
-            likes: likes.count,
-            comments: comments.count,
-            photoSizes: sizes,
-        });
-
-        await photo.save()
-            .catch((err) => getErrorMessage(err));
-
-        return res.status(200).json({message: 'Photo with id ' + id + ' in DB created successfully'})
-
+            new Photo({
+                user_id: owner_id,
+                album_id,
+                photo_id: id,
+                text,
+                date,
+                likes: likes.count,
+                comments: comments.count,
+                photoSizes: sizes,
+            });
+        }).save((err, photo) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(200).json({photo})
+        })
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 
-const list = async (req, res) => {
+const readPhoto = async (req, res) => {
     const {text, skip, limit, sort} = req.body;
     const sortParams = {'date': sort};
     let params;
@@ -41,40 +41,54 @@ const list = async (req, res) => {
     } else {
         params = {text: new RegExp(text, 'i')}
     }
+    console.log('prm ', params)
 
     try {
         await Photo.find(params)
             .sort(sortParams)
             .limit(limit)
             .skip(skip)
-            .exec((error, photos) => {
-                if (error) return res.status(400).json({
-                    error: getErrorMessage(error)
+            .exec((err, photo) => {
+                if (err) return res.status(400).json({
+                    error: getErrorMessage(err)
                 });
-                return res.status(200).json({photos, itemSize: photos.length})
+                return res.status(200).json({photo})
             });
-
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 
-const list2 = async (req, res) => {
+// updateAdditionalPhotosCount
+const updatePhoto = async (req, res) => {
+    console.log('req,body ', req.body)
+    const {photo_id, additionalPhotosCount} = req.body;
     try {
-        Photo.find()
-            .exec((error, photos) => {
-                if (error) return res.status(400).json({
-                    error: getErrorMessage(error)
+        Photo.findOneAndUpdate(
+            {photoId: id},
+            {
+                $set: {
+                    additionalPhotos: 77
+                }
+            },
+            {returnOriginal: false},
+            (err, photo) => {
+                if (err) return res.status(400).json({
+                    error: getErrorMessage(err)
                 });
-                return res.status(200).json({photos, itemSize: photos.length})
-            });
+                return res.status(200).json({photo})
+            }
+        )
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
     }
 };
+
+const deletePhoto = async (req, res) => {};
 
 export default {
-    create,
-    list,
-    list2
+    createPhoto,
+    readPhoto,
+    updatePhoto,
+    deletePhoto,
 }

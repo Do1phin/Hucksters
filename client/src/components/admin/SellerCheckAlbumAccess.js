@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from "react";
-import {call} from "./api-vk";
+import {call} from "./_api-vk";
+import {getMembersFromDB, getMembersSizesFromDB} from "../seller/_api-seller";
 
 import './sellerCheckAlbumAccess.style.css';
 
@@ -30,7 +31,8 @@ const SellerCheckAlbumAccess = () => {
         console.log('start');
         try {
             await Promise.resolve()
-                .then(getSizesMembers)
+                .then(getMembersFromDB)
+                .then(getMembersSizesFromDB)
                 .then((result) => {
                     source = result
                 });
@@ -42,7 +44,7 @@ const SellerCheckAlbumAccess = () => {
                 await Promise.resolve(memberId)
                     .then(getMemberAlbums)
                     .then(checkAlbumsNames)
-                    .then(addAlbumsToDB)
+                    .then(createAlbumsToDB)
                     .then(updateMemberInfo)
                     .catch((err) => console.error(`Member with id ${memberId} does not checked`, err));
             }
@@ -59,10 +61,10 @@ const SellerCheckAlbumAccess = () => {
 
     const getSizesMembers = (memberId) => new Promise((resolve, reject) => {
         setCheckStatus('Получение пользователей...');
-        const body = {};
+        const body = {limit:1000, skip: 0, firstName: ''};
 
         try {
-            fetch('./sellers/listForCheck', {
+            fetch('./sellers', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -70,10 +72,11 @@ const SellerCheckAlbumAccess = () => {
                     body: JSON.stringify(body)
                 }).then((response) => response.json())
                 .then((data) => {
-                    setMembersInfo({...data.info});
-                    setMembers(data.info.membersList);
+                    console.log('data ', data)
+                    setMembersInfo({...data.itemSize});
+                    setMembers(data.sellers);
                     setCheckStatus('Пользователи получены успешно!');
-                    resolve(data.info.membersList)
+                    resolve(data.sellers)
                 })
         } catch (e) {
             setCheckStatus('Ошибка получения пользователей!');
@@ -94,11 +97,11 @@ const SellerCheckAlbumAccess = () => {
         try {
             call('photos.getAlbums', params)
                 .then((data) => {
-                    if (!data || !data.count) {
+                    if (!data || !data.response.count) {
                         reject('(reject - empty)')
                     } else {
                         setCheckStatus(' - пользователь ' + memberId + ' успешно обработан!');
-                        resolve(data.items)
+                        resolve(data.response.items)
                     }
                 }).catch((err) => {
                 setCheckStatus(' - пользователь ' + memberId + ' не обработан!');
@@ -110,11 +113,12 @@ const SellerCheckAlbumAccess = () => {
 
     });
 
-    const checkAlbumsNames = (memberArr) => new Promise((resolve, reject) => {
+    const checkAlbumsNames = (albumsArray) => new Promise((resolve, reject) => {
+        console.log('checkAlbumsNames', albumsArray)
         setCheckStatus('Проверка альбомов пользователя');
         let arr = [];
 
-        memberArr.map((item) => {
+        albumsArray.map((item) => {
             albumTitleKeys.map((element) => {
                 if (item.title.toLowerCase().includes(element.toLowerCase()) && !arr.includes(item)) {
                     console.log(element, item);
@@ -128,11 +132,12 @@ const SellerCheckAlbumAccess = () => {
         resolve(arr);
     });
 
-    const addAlbumsToDB = (albumsArr) => new Promise((resolve, reject) => {
+    const createAlbumsToDB = (albumsArray) => new Promise((resolve, reject) => {
+        console.log('addAlbumsToDB')
         setCheckStatus('Добавление альбомов в базу');
-        if (!albumsArr) reject('(empty albums)');
+        if (!albumsArray) reject('(empty albums)');
 
-        albumsArr.map((item) => {
+        albumsArray.map((item) => {
             try {
                 // const body = item;
                 fetch('./albums/add', {
@@ -154,6 +159,7 @@ const SellerCheckAlbumAccess = () => {
     });
 
     const updateMemberInfo = (memberId) => new Promise((resolve, reject) => {
+        console.log('updateMemberInfo')
         setCheckStatus('Обновление информации о пользователе ' + memberId);
 
         try {

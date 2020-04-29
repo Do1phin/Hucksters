@@ -5,7 +5,7 @@ const getErrorMessage = (error) => {
     } else {
         return `Ошибка ${error}`
     }
-    console.log('ОШИБКА ДЛЯ ОТСЛЕЖИВАНИЯ ', error)
+    console.error('ОШИБКА ДЛЯ ОТСЛЕЖИВАНИЯ ', error)
 };
 
 export default getErrorMessage;

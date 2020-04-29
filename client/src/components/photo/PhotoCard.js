@@ -26,7 +26,7 @@ const PhotoCard = ({userId, albumId, photoId, text, photoSizes, date}) => {
 
             <div className='photo-card-body'>
                 <div className="photo-card-body_img">
-                    <img src={photoSizes[4].url} alt={photoId}/>
+                    <img src={photoSizes[photoSizes.length-1].url} alt={photoId}/>
                 </div>
             </div>
 

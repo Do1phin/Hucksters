@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
-import {getPhotosFromDb} from '../photo/api-photo';
-import {addCommentsToDb} from '../comment/api-comment';
-import {getCommentsFromVk} from "./api-vk";
+import {getPhotosFromDb, updateAddPhotosCount} from '../photo/_api-photo';
+import {addCommentsToDb, checkCommentsBeforeAdd} from '../comment/_api-comment';
+import {getCommentsFromVk, login} from "./_api-vk";
 
 const GetComments = () => {
 
@@ -11,22 +11,21 @@ const GetComments = () => {
         await Promise.resolve()
             .then(getPhotosFromDb)
             .then((response) => {
-                console.log('resp ', response)
-                    items = response;
+                    items = response.photos;
                     itemSize = response.itemSize;
-                })
+                });
 
-        console.log('items ', items, itemSize)
         let count = 0;
         await (function f() {
             console.info(`Step ${count} from ${itemSize}`);
             if (count < itemSize) {
-                const photoObj = items.photos[count];
-                console.log('photoOgh ', photoObj)
+                const photoObj = items[count];
 
                 Promise.resolve(photoObj)
                     .then(getCommentsFromVk)
+                    .then(checkCommentsBeforeAdd)
                     .then(addCommentsToDb)
+                    .then(updateAddPhotosCount)
                     .catch((err) => console.error(err));
 
                 count++;

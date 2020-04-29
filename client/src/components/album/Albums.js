@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {list} from './api-album';
+import {getAlbumsFromDB} from './_api-album';
 import AlbumCard from './AlbumCard';
 import Spinner from "../spinner";
 import Search from "../search/Search";
@@ -31,8 +31,9 @@ const Albums = () => {
 
         const loadAlbums = (variables) => {
 
-            list(variables)
+            getAlbumsFromDB(variables)
                 .then(data => {
+                    console.log('data ', data)
 
                     if (data) {
                         setItemSize(data.itemSize);

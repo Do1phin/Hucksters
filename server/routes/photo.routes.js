@@ -3,13 +3,16 @@ import photoCtrl from '../controllers/photo.controller.js';
 
 const router = express.Router();
 
-router.route('/photos/add')
-    .post(photoCtrl.create);
+router.route('/photos/create')
+    .post(photoCtrl.createPhoto);
 
 router.route('/sellers/albums/photos')
-    .post(photoCtrl.list);
+    .post(photoCtrl.readPhoto);
 
-router.route('/sellers/albums/photos_for_check')
-    .post(photoCtrl.list2);
+// router.route('/photos/update')
+//     .post(photoCtrl.updatePhoto);
+//
+// router.route('/photos/delete')
+//     .post(photoCtrl.deletePhoto);
 
 export default router;

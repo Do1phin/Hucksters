@@ -1,17 +1,17 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-    userId: {
+    user_id: {
         type: Number,
         default: null
     },
-    albumId: {
+    album_id: {
         type: Number,
         required: 'Album id is required true',
         default: null,
         unique: true
     },
-    thumbId: {
+    thumb_id: {
         type: Number,
         default: null
     },

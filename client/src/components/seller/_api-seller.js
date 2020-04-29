@@ -1,4 +1,6 @@
-const list = (params) => {
+// Получаем продавцов из базы
+const getMembersFromDB = (params) => {
+    console.log('getMembersFromDB ', params);
     const {firstName, skip, limit} = params;
     const body = {
         firstName,
@@ -21,7 +23,12 @@ const list = (params) => {
     }
 };
 
-// добавить аккаунты в базу данных * надо смотреть что здесь принимает
+// Получаем количество продавцов в базе
+const getMembersSizesFromDB = () => new Promise((resolve, reject) => {
+
+});
+
+// Добавляем продавцов в базу
 const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
     const body = {source: membersArray};
     console.info('2. Create members in DB [start]');
@@ -42,7 +49,7 @@ const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
     console.info('2. Create members in DB [finish]');
 });
 
-// обновить в базе информацию аккаунта (только общая инфа)
+// Обновляем информацию в аккаунте (только общая инфа)
 const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject) => {
     console.info('4. Update members info in DB [start]');
     membersWithInfoArray.map((item) => {
@@ -66,7 +73,8 @@ const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject
 });
 
 export {
-    list,
+    getMembersFromDB,
+    getMembersSizesFromDB,
     createMembersToDB,
     updateMembersInDB
 }

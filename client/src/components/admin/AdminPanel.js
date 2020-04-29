@@ -1,17 +1,21 @@
-import React, {Fragment} from 'react';
-import Groups from "../group/Groups";
+import React, {Fragment, useEffect, useState} from 'react';
+import {getGroupListFromDB} from "../group/_api-group";
+import GroupsAdd from "../group/GroupsAdd";
 import GroupsCheck from "../group/GroupsCheck";
-import GetPhotos from './GetPhotos';
+import GroupsList from "../group/GroupsList";
 import GetComments from "./GetComments";
+import GetPhotos from "./GetPhotos";
 
 const AdminPanel = () => {
 
     return (
         <Fragment>
-            <Groups/>
+            <GroupsAdd/>
+            <GroupsList/>
             <GroupsCheck/>
             <GetPhotos/>
             <GetComments/>
+
         </Fragment>
     )
 };

@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {list} from './api-photo';
+import {getPhotosFromDB} from './_api-photo';
 import PhotoCard from './PhotoCard';
 import Spinner from "../spinner";
 import Search from "../search/Search";
@@ -31,7 +31,7 @@ const Photos = () => {
 
         const loadPhotos = (variables) => {
 
-            list(variables)
+            getPhotosFromDB(variables)
                 .then(data => {
 
                     if (data) {

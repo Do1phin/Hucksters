@@ -1,31 +1,31 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-    userId: {
+    user_id: {
         type: Number,
         required: 'User id is required true',
         unique: true
     },
-    isSeller: {
+    seller: {
         type: Boolean,
         default: null
     },
-    isClosed: {
+    is_closed: {
         type: Boolean,
         default: null
     },
-    isDeactivated: {
+    deactivated: {
         type: String,
         default: null
     },
-    firstName: {
+    first_name: {
         type: String,
         default: null
     },
-    lastName: {
+    last_name: {
         type: String,
         default: null},
-    nickName: {
+    nickname: {
         type: String,
         default: null
     },
@@ -46,7 +46,7 @@ const schema = new mongoose.Schema({
         default: null
     },
     albums: {
-        type: Array,
+        type: Number,
         default: null
     },
     picturesInAlbums: {

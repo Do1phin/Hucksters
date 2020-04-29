@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {list} from './api-seller';
+import {getMembersFromDB} from './_api-seller';
 import SellerCard from "./SellerCard";
 import Spinner from '../spinner';
 import './seller.style.css';
@@ -26,7 +26,7 @@ const Sellers = () => {
         };
 
         const loadSellers = (variables) => {
-            list(variables)
+            getMembersFromDB(variables)
                 .then(data => {
 
                     if (data) {

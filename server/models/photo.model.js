@@ -1,15 +1,15 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-    userId: {
+    user_id: {
         type: Number,
         default: null
     },
-    albumId: {
+    album_id: {
         type: Number,
         default: null
     },
-    photoId: {
+    photo_id: {
         type: Number,
         required: 'Photo id required true',
         default: null,
@@ -23,6 +23,10 @@ const schema = new mongoose.Schema({
         type: Array,
         default: null
     },
+    additional_photos: {
+        type: Number,
+        default: 0
+    },
     likes: {
         type: Number,
         default: null
@@ -32,7 +36,7 @@ const schema = new mongoose.Schema({
         default: null
     },
     date: {
-        type: String,
+        type: Number,
         default: null
     },
     _updated: {

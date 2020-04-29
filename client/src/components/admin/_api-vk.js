@@ -1,39 +1,33 @@
 /* global VK */
 
-const getGroupMembers = (params) => {
-    try {
-        return fetch('/vk/getmembers', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then((response) => {
-            return response.json()
-        }).catch((err) => console.error(err))
-    } catch (e) {
-        throw new Error(e);
-    }
-};
-
-const login = () => {
-    VK.Auth.login(response => console.log('session ', response))
-};
-
+// Обращение к API
 const call = (method, params) => {
     try {
         return new Promise((resolve, reject) => {
-            VK.Api.call(method, params, (err, res) => {
-                if (res) resolve(res.response);
-                console.error(err);
-                reject(`VkApiError: code[${err.error.error_code}] - ${err.error.error_msg}`, err);
-            });
-        });
+            VK.Api.call(method, params, (response) => {
+                if (response) {
+                    resolve(response)
+                } else {
+                    if (response.err) {
+                        reject(`VkApiError: code[${response.error.error_code}] - ${response.error.error_msg}`);
+                    }
+                    reject(`VkApiError: code[${response.error.error_code}] - ${response.error.error_msg}`)
+                }
+            })
+        })
     } catch (e) {
         throw new Error(e);
     }
 };
 
-// получаем всех пользователей группы * надо получить count для цикла и айди группы
+// Проходим авторизацию
+const login = () => {
+    VK.Auth.login((response => {
+        console.log('session ', response)
+    }), 4)
+};
+
+// Получаем всех пользователей группы
 const getMembersGroupFromVk = ({groupId, count}) => new Promise((resolve, reject) => {
     console.info('1. Get members [start]');
     const params = {
@@ -52,7 +46,7 @@ const getMembersGroupFromVk = ({groupId, count}) => new Promise((resolve, reject
     console.info('1. Get members [finish]');
 });
 
-// получаем подробную информацию по пользователям * тоже посмотреть что получаем, надо привести к одному айди юзера
+// Получаем подробную информацию по пользователям
 const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => {
 
     console.info('3. Get members info [start]');
@@ -80,7 +74,7 @@ const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => 
     console.info('3. Get members info [finish]');
 });
 
-// получаем все фотографии из альбома
+// Получаем все фотографии из альбома
 const getPhotosFromVk = (groupObj) => new Promise((resolve, reject) => {
     const {userId, albumId} = groupObj;
     const params = {
@@ -99,27 +93,73 @@ const getPhotosFromVk = (groupObj) => new Promise((resolve, reject) => {
         }).catch((err) => reject(err))
 });
 
+// Получаем комментарии
 const getCommentsFromVk = (photoObj) => new Promise((resolve, reject) => {
     const {userId, photoId} = photoObj;
     const params = {
         owner_id: userId,
         photo_id: photoId,
         count: 100,
+        extended: 1,
         sort: 'asc',
         fields: 'photo_id',
         v: 5.103
     };
 
-
-
     call('photos.getComments', params)
         .then((response) => {
-            console.log('respon ', response)
-            if (response) resolve(response)
+            if (response.response.items.length) {
+                console.log('response.items ', response.response.items);
+                resolve([...response.response.items, photoId])
+            } else {
+                reject()
+            }
         }).catch((err) => {
-        console.log('err ', err)
-            reject(err)})
+        reject(err)
+    })
+});
 
+
+// Получаем подробную информацию о группе
+const getGroupInfoFromVk = (groupId) => new Promise((resolve, reject) => {
+    if (groupId < 0) {
+        reject('Group not found')
+    }
+
+    const params = {
+        group_id: groupId,
+        fields: 'city, country, place, description, wiki_page, market, members_count, counters, start_date, ' +
+            'finish_date, can_post, can_see_all_posts, activity, status, contacts, links, fixed_post, verified, ' +
+            'site, ban_info, cover',
+        v: 5.120
+    };
+
+    call('groups.getById', params)
+        .then((result) => {
+            if (!result) reject('No group info');
+            resolve({...result.response[0]});
+        }).catch((err) => reject(err));
+});
+
+// Получаем количество пользователей в группе
+const getGroupSizeFromVk = (groupObj) => new Promise((resolve, reject) => {
+    if (groupObj.deactivated || groupObj.id < 0) {
+        reject('Group not found');
+    }
+
+    const params = {
+        group_id: groupObj.id,
+        v: 5.103
+    };
+
+    call('groups.getMembers', params)
+        .then((result) => {
+            if (!result) {
+                reject('No group size');
+            }
+            groupObj['size'] = +result.response.count;
+            resolve(groupObj);
+        }).catch((err) => reject(err))
 });
 
 export {
@@ -127,6 +167,8 @@ export {
     login,
     getMembersGroupFromVk,
     getMembersInfoFromVk,
+    getGroupInfoFromVk,
+    getGroupSizeFromVk,
     getPhotosFromVk,
     getCommentsFromVk
 }

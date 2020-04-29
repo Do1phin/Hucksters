@@ -31,8 +31,7 @@ function App() {
                     <Route exact path='/sellers/:userId/albums/:albumId?' component={Albums}/>
                     <Route exact path='/sellers/albums/photos/' component={Photos}/>
                     <Route exact path='/sellers/:userId/albums/:albumId/photos/:photoId?' component={Photos}/>
-                    <Route path='/vk' component={VkPage}/>
-                    <Route path='/vk2' component={AdminPanel}/>
+                    <Route path='/vk' component={AdminPanel}/>
                     <Route path='/signup' action="signup" component={AuthPage}/>
                     <Route path='/signin' action="signin" component={AuthPage}/>
                     <Route path='/search' component={Search}/>

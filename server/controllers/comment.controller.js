@@ -1,31 +1,58 @@
 import Comment from '../models/comment.model.js';
+import Photo from "../models/photo.model.js";
+import getErrorMessage from "../helpers/dbErrorHandler";
 
 const createComment = async (req, res) => {
-    const {userId, albumId, photoId, commentId, text, date, attachment} = req.body;
-    console.log('req.body ', req.body);
+    console.log('createComment ', req.body);
+    const {from_id, id, text, date, photo_id, attachments} = req.body;
+    const album_id = attachments[0].photo.album_id;
+    const attach = attachments.length > 1
+        ?
+        [attachments[0].photo.sizes[attachments[0].photo.sizes.length - 1].url,
+            attachments[1].photo.sizes[attachments[1].photo.sizes.length - 1].url]
+        : [attachments[0].photo.sizes[attachments[0].photo.sizes.length - 1].url];
 
     try {
-        await Comment.findOne({commentId: commentId})
-            .then((response) => {
-                console.log('fffff ', response)
-                if (response) return res.status(400).json({message: 'Comment is already exist'})
-            });
-
-        const comment = new Comment({
-            userId: userId,
-            albumId: albumId,
-            photoId: photoId,
-            commentId: commentId,
-            text: text,
-            date: date,
-            attachment: attachment,
+        await Comment.find({comment_id: id}, (err, comment) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(400).json({message: 'Comment is already exist', comment})
         });
 
-        await comment.save();
-        return res.status(200).json({message: 'Comment was created successfully'})
+        new Comment({
+            user_id: from_id,
+            album_id,
+            photo_id,
+            comment_id: id,
+            text,
+            date,
+            attach,
+        }).save((err, comment) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(200).json({comment})
+        });
 
+        await Photo.findOneAndUpdate(
+            {photoId: photo_id},
+            {
+                $set: {
+                    additional_photos: 1,
+                    _updated: Date.now()
+                }
+            },
+            {returnOriginal: false},
+            (err, photo) => {
+                if (err) {
+                    return res.status(400).json({error: getErrorMessage(err)})
+                }
+                return res.status(200).json({photo})
+            }
+        );
     } catch (e) {
-        throw new Error(e);
+        return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 

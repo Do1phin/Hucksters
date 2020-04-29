@@ -1,61 +1,92 @@
 import Group from '../models/group.model.js';
+import getErrorMessage from "../helpers/dbErrorHandler.js";
 
-const groupCreate = async (req, res) => {
-    const {groupId, name, photo, size} = req.body;
-
-    try {
-        const groupCandidate = await Group.findOne({groupId});
-
-        if (groupCandidate) {
-            return res.status(400).json({success: false, message: `Group with id ${groupId} already exist`})
-        }
-
-        const group = new Group({
-            groupId,
-            size,
-            name,
-            photo
-        });
-
-        await group.save();
-
-        return res.status(200).json({success: true, message: `Group with id ${groupId} was created successfully in DB`})
-
-    } catch (e) {
-        return res.status(500).json({success: false, e, message: 'Something went wrong with created group in DB'})
-    }
-};
-
-const groupRemove = async (req, res) => {
-    const {groupId} = req.body;
-    console.log(req.body)
+const createGroup = async (req, res) => {
+    console.log('req b ', req.body)
+    const {group_id, name, photo, size} = req.body;
 
     try {
-        await Group.deleteOne({groupId:groupId})
-    } catch (e) {
-        return res.status(500).json({success: false, e, message: 'Something went wrong with deleted group in DB'})
-    }
-};
+        await Group.findOne({group_id}, (err, group) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
 
-const groupList = async (req, res) => {
-
-    try {
-
-        await Group.find()
-            .exec((e, groups) => {
-                if (e) return res.status(400).json({success: false, e, message: 'No groups'});
-                return res.status(200).json({success: true, groups})
+            new Group({
+                group_id,
+                name,
+                size,
+                photo
+            }).save((err, group) => {
+                if (err) {
+                    return res.status(400).json({error: getErrorMessage(err)})
+                }
+                return res.status(200).json({group})
             });
-
+        });
     } catch (e) {
-        return res.status(500).json({success: false, e, message: 'Something went wrong with load list groups'})
+        return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 
+const readGroup = async (req, res) => {
+
+    try {
+        await Group.find((err, group) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(200).json({group})
+        })
+    } catch (e) {
+        return res.status(500).json({error: getErrorMessage(e)})
+    }
+};
+
+const updateGroup = async (req, res) => {
+    const {id, name, size, photo_200} = req.body;
+    console.log('groupUpdate ', req.body);
+
+    try {
+        await Group.findOneAndUpdate({group_id: id},
+            {
+                $set: {
+                    name: name,
+                    size: size,
+                    photo: photo_200,
+                }
+            },
+            {returnOriginal: false},
+            (err, group) => {
+                if (err) {
+                    return res.status(400).json({error: getErrorMessage(err)})
+                }
+                return res.status(200).json({group})
+            })
+    } catch (e) {
+        return res.status(500).json({error: getErrorMessage(e)})
+    }
+};
+
+const deleteGroup = async (req, res) => {
+    const {group_id} = req.body;
+    console.log('groupRemove', req.body);
+
+    try {
+        await Group.deleteOne({group_id: group_id}, (err, group) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(200).json({group})
+        })
+    } catch (e) {
+        return res.status(500).json({error: getErrorMessage(e)})
+    }
+};
 
 
 export default {
-    groupCreate,
-    groupList,
-    groupRemove,
+    createGroup,
+    readGroup,
+    updateGroup,
+    deleteGroup,
 }
