@@ -1,4 +1,5 @@
-const list = (params) => {
+const getAlbumsFromDB = (params) => {
+    console.log('params ', params)
     const {title, skip, limit, sort} = params;
 
     const body = {
@@ -8,6 +9,14 @@ const list = (params) => {
         sort
     };
 
+    // const body = {
+    //     title: '',
+    //     skip: 0,
+    //     limit: 0,
+    //     sort: -1
+    // };
+
+    console.log('body  b ', body);
     try {
         return fetch('/sellers/albums', {
             method: "POST",
@@ -23,26 +32,6 @@ const list = (params) => {
     }
 };
 
-const getAlbumsFromDB = () => new Promise((resolve, reject) => {
-    const body = {
-        title: '',
-        skip: 0,
-        limit: 0,
-        sort: -1
-    };
-
-    return fetch('/sellers/albums_for_check', {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-    }).then((response) => {
-        resolve(response.json())
-    }).catch((err) => reject(err))
-});
-
 export {
-    list,
-    getAlbumsFromDB
+    getAlbumsFromDB,
 }

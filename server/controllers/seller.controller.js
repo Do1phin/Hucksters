@@ -1,8 +1,9 @@
 import Seller from '../models/seller.model.js';
+import getErrorMessage from "../helpers/dbErrorHandler.js";
 
-const create = async (req, res) => {
+const createMember = async (req, res) => {
+    console.log('createMembersToDB ', req.body)
     let arr = [];
-
     const {source} = req.body;
 
     source.map((item) => {
@@ -10,52 +11,73 @@ const create = async (req, res) => {
     });
 
     try {
-
-        await Seller.insertMany(arr)
-            .then(data => {
-                // console.log('data ',data);
-                return res.status(200).json({success: true, data, message: 'Users created successfully in DB'})
-            })
-
+        await Seller.insertMany({arr}, (err, sellers) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(200).json({sellers})
+        })
     } catch (e) {
-        return res.status(500).json({success: false, e, message: 'Something went wrong with creating user in DB'})
+        return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 
-const update = async (req, res) => {
+const readMember = async (req, res) => {
+    console.log('req.body ', req.body );
+    const {first_name, skip, limit} = req.body;
+    let params;
+
+    if (!first_name) {
+        params = {}
+    } else {
+        params = {firstName: new RegExp(first_name, 'i')}
+    }
 
     try {
+        await Seller.find(params)
+            .limit(limit)
+            .skip(skip)
+            .exec((err, sellers) => {
+                if (err) {
+                    return res.status(400).json({error: getErrorMessage(err)})
+                }
+                return res.status(200).json({sellers, itemSize: sellers.length})
+            });
+    } catch (e) {
+        return res.status(500).json({error: getErrorMessage(e)})
+    }
+};
 
+const updateMember = async (req, res) => {
+
+    try {
         const {id, is_closed, first_name, last_name, nickname, domain, sex, country, photo_200, deactivated} = req.body;
-
-        const sellerNew = await Seller.findOneAndUpdate(
+        await Seller.findOneAndUpdate(
             {userId: id},
             {
                 $set: {
-                    isClosed: is_closed,
-                    isDeactivated: deactivated ? deactivated : null,
-                    firstName: first_name,
-                    lastName: last_name,
-                    nickName: nickname,
-                    domain: domain,
+                    is_closed,
+                    deactivated: deactivated ? deactivated : null,
+                    first_name,
+                    last_name,
+                    nickname,
+                    domain,
                     sex: sex,
                     country: country ? country.title : null,
                     photo: photo_200,
                     _updated: Date.now()
                 }
             },
-            {
-                returnOriginal: false
+            {returnOriginal: false},
+            (err, seller) => {
+                if (err) {
+                    return res.status(400).json({error: getErrorMessage(err)})
+                }
+                return res.status(200).json({seller});
             }
-        );
-
-        if (!sellerNew) {
-            return res.status(400).json({success: false, message: 'User with id ' + id + ' not found in DB'});
-        }
-        return res.status(200).json({success: true, message: 'User with id ' + id + ' updated successfully'});
-
+        )
     } catch (e) {
-        return res.status(500).json({success: false, e, message: 'Something went wrong with updated user in DB'})
+        return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 
@@ -63,7 +85,7 @@ const updateIsSeller = async (req, res) => {
     try {
         const {memberId} = req.body;
 
-        const sellerNew = await Seller.findOneAndUpdate(
+        await Seller.findOneAndUpdate(
             {userId: memberId},
             {
                 $set: {
@@ -71,49 +93,23 @@ const updateIsSeller = async (req, res) => {
                     _updated: Date.now()
                 }
             },
-            {
-                returnOriginal: false
+            {returnOriginal: false},
+            (err, seller) => {
+                if (err) {
+                    return res.status(400).json({error: getErrorMessage(err)})
+                }
+                return res.status(200).json({message: 'User with id ' + id + ' updated', seller});
             }
         );
 
-        if (!sellerNew) {
-            return res.status(400).json({success: false, message: 'User with id ' + id + ' not found in DB'});
-        }
-        return res.status(200).json({success: true, message: 'User with id ' + id + ' updated successfully'});
-
     } catch (e) {
-        return res.status(500).json({success: false, e, message: 'Something went wrong with updated user in DB'})
-    }
-};
-
-const list = async (req, res) => {
-
-    const {firstName, skip, limit} = req.body;
-    let params;
-
-    if (!firstName) {
-        params = {}
-    } else {
-        params = {firstName: new RegExp(firstName, 'i')}
-    }
-
-    try {
-        await Seller.find(params)
-            .limit(limit)
-            .skip(skip)
-            .exec((e, sellers) => {
-                if (e) return res.status(400).json({success: false, e, message: 'No sellers'});
-                return res.status(200).json({success: true, sellers, itemSize: sellers.length})
-            });
-
-    } catch (e) {
-        return res.status(500).json({success: false, e, message: 'Something went wrong with download users from DB'})
+        return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 
 const listForCheck = async (req, res) => {
     try {
-        const membersList = await Seller.find({isSeller:null, isClosed:null, isDeactivated:null});
+
         const allMembers = await Seller.find({}).count();
         const bannedMembers = await Seller.find({"isDeactivated": "banned"}).count();
         const deletedMembers = await Seller.find({"isDeactivated": "deleted"}).count();
@@ -121,6 +117,14 @@ const listForCheck = async (req, res) => {
         // const closedAlbumMembers = await Seller.find({}).count();
         const sellerMembers = await Seller.find({"isSeller": true}).count();
 
+        const membersList = await Seller.find({
+            isSeller:null, isClosed:null, isDeactivated:null
+        }, (err, membersLis) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(200).json({membersList})
+        });
 
         const info = {
             allMembers,
@@ -134,22 +138,14 @@ const listForCheck = async (req, res) => {
         return res.status(200).json({success: true, info})
 
     } catch (e) {
-        return res.status(500).json({success: false, e,
-            message: 'Something went wrong with load list members for check'
-        })
+        return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 
-const page = async (req, res) => {
-    return res.status(200).json({success: true})
-};
-
-
 export default {
-    create,
-    list,
-    update,
-    page,
+    createMember,
+    readMember,
+    updateMember,
     listForCheck,
     updateIsSeller
 }

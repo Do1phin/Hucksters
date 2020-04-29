@@ -1,29 +1,35 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-    userId: {
+    user_id: {
         type: Number,
+        default: null,
     },
-    albumId: {
+    album_id: {
         type: Number,
+        default: null,
     },
-    photoId: {
+    photo_id: {
         type: Number,
-        required: true,
+        default: null,
     },
-    commentId: {
+    comment_id: {
         type: Number,
         required: true,
         unique: true,
+        default: null,
     },
     text: {
         type: String,
+        default: null,
     },
     date: {
-        type: String,
+        type: Number,
+        default: null,
     },
-    attachment: {
+    attach: {
         type: Array,
+        default: null,
     },
     _updated: {type: Date, default: Date.now()}
 });

@@ -3,14 +3,16 @@ import albumCtrl from '../controllers/album.controller.js';
 
 const router = express.Router();
 
-router.route('/albums/add')
-    .post(albumCtrl.create);
+router.route('/albums/create')
+    .post(albumCtrl.createAlbum);
 
 router.route('/sellers/albums')
-    .post(albumCtrl.list);
+    .post(albumCtrl.readAlbum);
 
-router.route('/sellers/albums_for_check')
-    .post(albumCtrl.listForCheck);
+// router.route('/albums/update')
+//     .post(albumCtrl.updateAlbum);
 
+// router.route('/albums/delete')
+//     .post(albumCtrl.deleteAlbum);
 
 export default router;

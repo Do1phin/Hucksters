@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
-import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/api-vk";
-import {createMembersToDB, updateMembersInDB} from '../seller/api-seller';
+import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
+import {createMembersToDB, updateMembersInDB} from '../seller/_api-seller';
 import SellerCheckAlbumAccess from "../admin/SellerCheckAlbumAccess";
 
 const GroupsCheck = () => {
@@ -40,28 +40,29 @@ const GroupsCheck = () => {
     };
 
     const test = () => {
-        console.log('membersinfo ', );
-        console.log('members ', );
+        console.log('membersinfo ',);
+        console.log('members ',);
     };
 
     return (
         <Fragment>
-            проверка групп<br/>
-            <button
-                onClick={getAllMembers}
-            >
-                Загрузить пользователей группы
-            </button>
+            <div className='get-all-members'>
+                <button
+                    onClick={getAllMembers}
+                >
+                    Загрузить пользователей группы
+                </button>
 
-            <br/><br/>
+                <br/><br/>
 
-            <SellerCheckAlbumAccess/>
+                <SellerCheckAlbumAccess/>
 
-            <button
-            onClick={test}
-            >
-            TEST
-        </button>
+                <button
+                    onClick={test}
+                >
+                    TEST
+                </button>
+            </div>
         </Fragment>
     )
 };
