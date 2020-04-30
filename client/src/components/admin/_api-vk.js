@@ -5,10 +5,11 @@ const call = (method, params) => {
     try {
         return new Promise((resolve, reject) => {
             VK.Api.call(method, params, (response) => {
-                if (response) {
+                console.log('vk call response ', response);
+                if (!response.error) {
                     resolve(response)
                 } else {
-                    if (response.err) {
+                    if (response.error) {
                         reject(`VkApiError: code[${response.error.error_code}] - ${response.error.error_msg}`);
                     }
                     reject(`VkApiError: code[${response.error.error_code}] - ${response.error.error_msg}`)
@@ -28,10 +29,10 @@ const login = () => {
 };
 
 // Получаем всех пользователей группы
-const getMembersGroupFromVk = ({groupId, count}) => new Promise((resolve, reject) => {
+const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, reject) => {
     console.info('1. Get members [start]');
     const params = {
-        group_id: groupId,
+        group_id,
         sort: 'id_asc',
         count: 1000,
         offset: count * 1000,
@@ -40,7 +41,7 @@ const getMembersGroupFromVk = ({groupId, count}) => new Promise((resolve, reject
 
     call('groups.getMembers', params)
         .then((response) => {
-            if (response) resolve(response.items);
+            if (response) resolve(response.response.items);
         }).catch((err) => reject(err));
 
     console.info('1. Get members [finish]');
@@ -48,7 +49,6 @@ const getMembersGroupFromVk = ({groupId, count}) => new Promise((resolve, reject
 
 // Получаем подробную информацию по пользователям
 const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => {
-
     console.info('3. Get members info [start]');
     let ids = membersArray.join();
 
@@ -68,7 +68,7 @@ const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => 
 
     call('users.get', params)
         .then((response) => {
-            if (response) resolve(response);
+            if (response) resolve(response.response);
         }).catch((err) => reject(err));
 
     console.info('3. Get members info [finish]');
@@ -121,13 +121,13 @@ const getCommentsFromVk = (photoObj) => new Promise((resolve, reject) => {
 
 
 // Получаем подробную информацию о группе
-const getGroupInfoFromVk = (groupId) => new Promise((resolve, reject) => {
-    if (groupId < 0) {
+const getGroupInfoFromVk = (group_id) => new Promise((resolve, reject) => {
+    if (group_id < 0) {
         reject('Group not found')
     }
 
     const params = {
-        group_id: groupId,
+        group_ids: group_id,
         fields: 'city, country, place, description, wiki_page, market, members_count, counters, start_date, ' +
             'finish_date, can_post, can_see_all_posts, activity, status, contacts, links, fixed_post, verified, ' +
             'site, ban_info, cover',
@@ -146,6 +146,9 @@ const getGroupSizeFromVk = (groupObj) => new Promise((resolve, reject) => {
     if (groupObj.deactivated || groupObj.id < 0) {
         reject('Group not found');
     }
+    // } else if (groupObj.is_closed = 2) {
+    //     reject('Group is closed')
+    // }
 
     const params = {
         group_id: groupObj.id,

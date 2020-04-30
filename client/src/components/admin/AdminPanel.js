@@ -1,5 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {getGroupListFromDB} from "../group/_api-group";
+import React, {Fragment} from 'react';
 import GroupsAdd from "../group/GroupsAdd";
 import GroupsCheck from "../group/GroupsCheck";
 import GroupsList from "../group/GroupsList";

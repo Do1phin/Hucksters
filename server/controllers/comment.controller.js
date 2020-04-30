@@ -1,6 +1,6 @@
 import Comment from '../models/comment.model.js';
 import Photo from "../models/photo.model.js";
-import getErrorMessage from "../helpers/dbErrorHandler";
+import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createComment = async (req, res) => {
     console.log('createComment ', req.body);

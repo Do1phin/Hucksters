@@ -7,10 +7,10 @@ const GroupsCheck = () => {
     // const [data, setData] = useState(null);
 
     // получаем всех пользователей группы
-    const groupId = 115050558;
-    const getAllMembers = async (groupId) => {
+    // const group_id = 115050558;
+    const getAllMembers = async (group_id) => {
         try {
-            const members = await call('groups.getMembers', {group_id: groupId, v: 5.9});
+            const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
             const membersSize = await members.count;
 
             let count = 0;
@@ -18,7 +18,7 @@ const GroupsCheck = () => {
                 console.info(`Step ${count} from ${membersSize / 1000}`);
                 if (count < Math.ceil(membersSize / 1000)) {
 
-                    const obj = {groupId: groupId, count};
+                    const obj = {group_id, count};
 
                     Promise.resolve(obj)
                         .then(getMembersGroupFromVk)
@@ -55,7 +55,7 @@ const GroupsCheck = () => {
 
                 <br/><br/>
 
-                <SellerCheckAlbumAccess/>
+
 
                 <button
                     onClick={test}
@@ -63,6 +63,7 @@ const GroupsCheck = () => {
                     TEST
                 </button>
             </div>
+            <SellerCheckAlbumAccess/>
         </Fragment>
     )
 };

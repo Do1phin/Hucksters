@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {getPhotosFromDB} from './_api-photo';
 import PhotoCard from './PhotoCard';
+import ErrorNotFound from '../errors/ErrorNotFound';
 import Spinner from "../spinner";
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
@@ -35,14 +36,14 @@ const Photos = () => {
                 .then(data => {
 
                     if (data) {
-                        setItemSize(data.itemSize);
+                        setItemSize(data.photos.length);
 
                         if (more) {
                             setPhotos([...photos, ...data.photos]);
-                            setAllItemSize(allItemSize + data.itemSize);
+                            setAllItemSize(allItemSize + data.photos.length);
                         } else {
                             setPhotos(data.photos);
-                            setAllItemSize(data.itemSize);
+                            setAllItemSize(data.photos.length);
                         }
                         return setLoading(false);
                     }
@@ -59,13 +60,20 @@ const Photos = () => {
         setSkip(skipAfter);
     };
 
-    const photosView = photos.map((item) => {
-        return (
-            <div className='photo-card-wrapper' key={item.photoId}>
-                <PhotoCard {...item} />
-            </div>
-        )
-    });
+    const photosView = () => {
+
+        if (photos.length !== 0) {
+            return photos.map((item) => {
+                return (
+                    <div className='photo-card-wrapper' key={item.photoId}>
+                        <PhotoCard {...item} />
+                    </div>
+                )
+            });
+        } else {
+            return <ErrorNotFound title={'photos'}/>
+        }
+    };
 
     const PhotoSize = () => {
         return (
@@ -79,7 +87,9 @@ const Photos = () => {
     };
 
     const Content = () => {
-        return loading ? <Spinner/> : <div className='photos'>{photosView}</div>
+        return loading
+            ? <Spinner/>
+            : <div className='photos'>{photosView()}</div>
     };
 
     return (

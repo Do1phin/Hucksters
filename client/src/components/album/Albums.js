@@ -8,6 +8,7 @@ import SortSelect from "../UI/SortSelect/SortSelect";
 import './album.style.css';
 import '../UI/SortSelect/sortSelect.style.css';
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
+import ErrorNotFound from "../errors/ErrorNotFound";
 
 const Albums = () => {
     const [loading, setLoading] = useState(true);
@@ -60,13 +61,19 @@ const Albums = () => {
         setSkip(skipAfter);
     };
 
-    const albumsView = albums.map((item) => {
-        return (
-            <div className="album-card-wrapper" key={item.albumId}>
-                <AlbumCard {...item}/>
-            </div>
-        )
-    });
+    const albumsView = () => {
+        if (albums.length !== 0) {
+            return albums.map((item) => {
+                return (
+                    <div className="album-card-wrapper" key={item.albumId}>
+                        <AlbumCard {...item}/>
+                    </div>
+                )
+            });
+        } else {
+            return <ErrorNotFound title={'albums'}/>
+        }
+    }
 
     const AlbumSize = () => {
         return (
@@ -80,7 +87,9 @@ const Albums = () => {
     };
 
     const Content = () => {
-        return loading ? <Spinner/> : <div className='albums'>{albumsView}</div>
+        return loading
+            ? <Spinner/>
+            : <div className='albums'>{albumsView()}</div>
     };
 
     return (

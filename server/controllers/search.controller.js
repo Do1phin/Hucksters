@@ -1,5 +1,5 @@
 import Photo from '../models/photo.model.js';
-import getErrorMessage from "../helpers/dbErrorHandler";
+import getErrorMessage from "../helpers/dbErrorHandler.js";
 const search = async (req, res) => {
 
     const path = req.headers.referer;

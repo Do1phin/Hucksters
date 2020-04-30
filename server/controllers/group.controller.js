@@ -2,7 +2,7 @@ import Group from '../models/group.model.js';
 import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createGroup = async (req, res) => {
-    console.log('req b ', req.body)
+
     const {group_id, name, photo, size} = req.body;
 
     try {
@@ -20,7 +20,7 @@ const createGroup = async (req, res) => {
                 if (err) {
                     return res.status(400).json({error: getErrorMessage(err)})
                 }
-                return res.status(200).json({group})
+                return res.status(200).json(group)
             });
         });
     } catch (e) {
@@ -31,11 +31,11 @@ const createGroup = async (req, res) => {
 const readGroup = async (req, res) => {
 
     try {
-        await Group.find((err, group) => {
+        await Group.find({}, (err, group) => {
             if (err) {
                 return res.status(400).json({error: getErrorMessage(err)})
             }
-            return res.status(200).json({group})
+            return res.status(200).json(group)
         })
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})

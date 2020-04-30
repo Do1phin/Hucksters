@@ -48,11 +48,12 @@ const readPhoto = async (req, res) => {
             .sort(sortParams)
             .limit(limit)
             .skip(skip)
-            .exec((err, photo) => {
+            .exec((err, photos) => {
                 if (err) return res.status(400).json({
                     error: getErrorMessage(err)
                 });
-                return res.status(200).json({photo})
+                console.log('photos ', {photos})
+                return res.status(200).json({photos})
             });
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})

@@ -8,13 +8,12 @@ const SellerCheckAlbumAccess = () => {
     const [members, setMembers] = useState(null);
     const [checkStatus, setCheckStatus] = useState('');
     const [membersInfo, setMembersInfo] = useState({
-        allMembers: 0,
-        bannedMembers: 0,
-        deletedMembers: 0,
-        closedPageMembers: 0,
-        sellerMembers: 0,
+        all_sellers: 0,
+        banned: 0,
+        deleted: 0,
+        closed: 0,
+        seller: 0,
     });
-
 
     let source;
 
@@ -26,31 +25,32 @@ const SellerCheckAlbumAccess = () => {
         'о б н о в л е н и е', 'наличи', 'C L O T H I N G', 'новые',
     ];
 
-
     const checkAccessToAlbums = async () => {
         console.log('start');
         try {
-            await Promise.resolve()
+            await Promise.resolve([])
+                // .then(getMembersSizesFromDB)
                 .then(getMembersFromDB)
-                .then(getMembersSizesFromDB)
                 .then((result) => {
-                    source = result
+                    source = result.sellers;
                 });
+            console.log('rs ', source)
 
             async function action(i) {
-                let memberId = source[i].userId;
+                let user_id = source[i].user_id;
                 console.info('count ', i);
+                console.log('user_id ', user_id)
 
-                await Promise.resolve(memberId)
+                await Promise.resolve(user_id)
                     .then(getMemberAlbums)
                     .then(checkAlbumsNames)
                     .then(createAlbumsToDB)
                     .then(updateMemberInfo)
-                    .catch((err) => console.error(`Member with id ${memberId} does not checked`, err));
+                    .catch((err) => console.error(`Member with id ${user_id} does not checked`, err));
             }
 
             for (let i = 1; i <= 100000; i++) {
-                setTimeout(action, i * 1000, i);
+                setTimeout(action, i * 10000, i);
             }
 
             console.log('finish')
@@ -59,18 +59,19 @@ const SellerCheckAlbumAccess = () => {
         }
     };
 
-    const getSizesMembers = (memberId) => new Promise((resolve, reject) => {
+    const getSizesMembers = (user_id) => new Promise((resolve, reject) => {
         setCheckStatus('Получение пользователей...');
-        const body = {limit:1000, skip: 0, firstName: ''};
+        console.info('getSizesMembers')
+        const body = {limit: 1000, skip: 0, first_name: ''};
 
         try {
             fetch('./sellers', {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(body)
-                }).then((response) => response.json())
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body)
+            }).then((response) => response.json())
                 .then((data) => {
                     console.log('data ', data)
                     setMembersInfo({...data.itemSize});
@@ -84,10 +85,11 @@ const SellerCheckAlbumAccess = () => {
         }
     });
 
-    const getMemberAlbums = (memberId) => new Promise((resolve, reject) => {
-        setCheckStatus('Получение информации пользователя ' + memberId);
+    const getMemberAlbums = (user_id) => new Promise((resolve, reject) => {
+        setCheckStatus('Получение информации пользователя ' + user_id);
+        console.log('getMemberAlbums')
         const params = {
-            owner_id: memberId,
+            owner_id: user_id,
             need_covers: 1,
             photo_sizes: 1,
             count: 1000,
@@ -100,11 +102,11 @@ const SellerCheckAlbumAccess = () => {
                     if (!data || !data.response.count) {
                         reject('(reject - empty)')
                     } else {
-                        setCheckStatus(' - пользователь ' + memberId + ' успешно обработан!');
+                        setCheckStatus(' - пользователь ' + user_id + ' успешно обработан!');
                         resolve(data.response.items)
                     }
                 }).catch((err) => {
-                setCheckStatus(' - пользователь ' + memberId + ' не обработан!');
+                setCheckStatus(' - пользователь ' + user_id + ' не обработан!');
                 reject(err)
             })
         } catch (e) {
@@ -140,7 +142,7 @@ const SellerCheckAlbumAccess = () => {
         albumsArray.map((item) => {
             try {
                 // const body = item;
-                fetch('./albums/add', {
+                fetch('/albums/create', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -179,20 +181,64 @@ const SellerCheckAlbumAccess = () => {
         }
     });
 
+    const createCountersToDB = () => new Promise((resolve, reject) => {
+        try {
+            fetch('/vk/info/create', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            }).then((response) => {
+                console.log('reso ', response)
+                 // setMembersInfo(response.json())
+                resolve(response)
+            })
+        } catch (e) {
+            reject(e)
+        }
+    });
+
+    const readCountersToDB = () => {
+        try {
+            fetch('/vk/info')
+                .then((response) => {
+                    console.info(response)
+                    // console.log('response ', response)
+                }).then(data => console.info(data))
+                .catch((err) => {
+                console.log('err ', err)
+                // reject(err)
+            })
+        } catch (e) {
+            console.error(e)
+        }
+    };
+
     return (
         <Fragment>
             <div className='check-albums-access'>
+                <button
+                    onClick={createCountersToDB}
+                >
+                    Создать счётчики данных
+                </button>
+                <button
+                    onClick={readCountersToDB}
+                >
+                    Обновить счётчики
+                </button>
+
                 <button
                     onClick={checkAccessToAlbums}
                 >
                     Проверить на закрытие альбомов
                 </button>
                 <br/>
-                <span>Всего пользователей - {membersInfo.allMembers}</span><br/>
-                <span>Продавцы - {membersInfo.sellerMembers}</span><br/>
-                <span>Скрытые - {membersInfo.closedPageMembers}</span><br/>
-                <span>Забаненные - {membersInfo.bannedMembers}</span><br/>
-                <span>Удалённые - {membersInfo.deletedMembers}</span><br/><br/>
+                <span>Всего пользователей - {membersInfo.all_sellers}</span><br/>
+                <span>Продавцы - {membersInfo.seller}</span><br/>
+                <span>Скрытые - {membersInfo.closed}</span><br/>
+                <span>Забаненные - {membersInfo.banned}</span><br/>
+                <span>Удалённые - {membersInfo.deleted}</span><br/><br/>
 
                 <span>Статус: {checkStatus}</span>
             </div>
