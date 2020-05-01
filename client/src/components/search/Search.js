@@ -1,38 +1,38 @@
 import React, {useState} from "react";
+import PropTypes from 'prop-types';
 
 import './search.style.css';
 
-const Search = (props) => {
-    const [searchText, setSearchText] = useState();
+const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
+    const [text, setText] = useState();
 
     const handleSubmit = (event) => {
         if (event.key === "Enter") {
-            return updateSearchText(searchText);
+            return updateSearchText(text);
         }
     };
 
     const handleChange = (event) => {
         if (!event.target.value) {
-            setSearchText(event.target.value);
+            setText(event.target.value);
             return updateSearchText();
         }
         return setSearchText(event.target.value);
     };
 
     const updateSearchText = (newSearchText) => {
-            props.setSkip(0);
-            props.setItemSize(0);
-            props.setAllItemSize(0);
-            props.setSearchText(newSearchText);
+            setSkip(0);
+            setItemSize(0);
+            setAllItemSize(0);
+            setSearchText(newSearchText);
     };
-
 
     return (
         <div className='search-block-wrapper'>
             <div className='search-block-str'>
                 <input
                     placeholder='Искать ...'
-                    value={searchText}
+                    value={text}
                     onChange={(event) => handleChange(event)}
                     onKeyPress={(event) => handleSubmit(event)}
                 />
@@ -40,6 +40,13 @@ const Search = (props) => {
         </div>
     )
 
+};
+
+Search.propTypes = {
+    setSkip: PropTypes.func.isRequired,
+    setItemSize: PropTypes.func.isRequired,
+    setAllItemSize: PropTypes.func.isRequired,
+    setSearchText: PropTypes.func.isRequired
 };
 
 export default Search;

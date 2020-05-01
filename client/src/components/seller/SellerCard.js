@@ -1,5 +1,7 @@
 import React, {Fragment} from "react";
 import {NavLink} from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import './seller.style.css';
 
 const SellerCard = ({user_id, first_name, last_name, domain, photo}) => {
@@ -9,7 +11,7 @@ const SellerCard = ({user_id, first_name, last_name, domain, photo}) => {
             <NavLink to={'/sellers/' + user_id}>
                 <div className="seller-card-header">
                     <div className='seller-card-header_info'>
-                        {first_name}<br />{last_name}
+                        {first_name}<br/>{last_name}
                     </div>
                 </div>
 
@@ -29,4 +31,11 @@ const SellerCard = ({user_id, first_name, last_name, domain, photo}) => {
     );
 };
 
+SellerCard.propTypes = {
+    user_id: PropTypes.number.isRequired,
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    domain: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired
+};
 export default SellerCard;

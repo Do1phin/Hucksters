@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {getPhotosFromDb, updateAddPhotosCount} from '../photo/_api-photo';
 import {addCommentsToDb, checkCommentsBeforeAdd} from '../comment/_api-comment';
-import {getCommentsFromVk, login} from "./_api-vk";
+import {getCommentsFromVk} from "./_api-vk";
 
 const GetComments = () => {
 

@@ -1,14 +1,18 @@
 import React from "react";
-import picture from './assets/no-albums-available.jpg';
+import PropTypes from 'prop-types';
 
-const ErrorNotFound = (props) => {
-    const title = `${props.title} not found =(`.toUpperCase();
+const ErrorNotFound = ({title}) => {
+    title = `${title} not found =(`.toUpperCase();
+        let className = 'not-found';
+
+    if (title) {
+        className = title + "-" + className;
+    }
 
     const Content = () => {
         return (
-            <div className='not-found'>
+            <div className={className}>
                 <h1>{title}</h1>
-                <img src={picture} alt={title}/>
             </div>
         )
     };
@@ -16,6 +20,10 @@ const ErrorNotFound = (props) => {
     return (
         <Content/>
     )
+};
+
+ErrorNotFound.propTypes = {
+    title: PropTypes.string
 };
 
 export default ErrorNotFound;

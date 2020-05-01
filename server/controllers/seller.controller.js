@@ -6,11 +6,11 @@ const createMember = async (req, res) => {
     const {source} = req.body;
 
     source.map((item) => {
-        arr.push({user_id: +item})
+        arr.push({_id: +item, user_id: +item})
     });
 
     try {
-        await Seller.insertMany(arr, (err, sellers) => {
+        await Seller.insertMany(arr, { ordered: false }, (err, sellers) => {
             if (err) {
                 return res.status(400).json({error: getErrorMessage(err)})
             }

@@ -8,14 +8,15 @@ import GetPhotos from "./GetPhotos";
 const AdminPanel = () => {
 
     return (
+
         <Fragment>
             <GroupsAdd/>
             <GroupsList/>
             <GroupsCheck/>
             <GetPhotos/>
             <GetComments/>
-
         </Fragment>
+
     )
 };
 

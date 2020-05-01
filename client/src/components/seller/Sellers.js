@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {getMembersFromDB} from './_api-seller';
 import SellerCard from "./SellerCard";
+import PropTypes from 'prop-types';
 import ErrorNotFound from "../errors/ErrorNotFound";
 import Spinner from '../spinner';
 import './seller.style.css';
@@ -17,6 +18,7 @@ const Sellers = () => {
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(100);
     const [more, setMore] = useState(false);
+
 
     useEffect(() => {
 

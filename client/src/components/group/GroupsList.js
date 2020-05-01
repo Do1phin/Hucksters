@@ -30,7 +30,7 @@ const GroupsList = () => {
     const groupsView = groups.map((item) => {
         return (
             <div className='group-card-wrapper' key={item.groupId}>
-                <GroupCard item={item} groupsCount={groupsCount} refreshFunc={setGroupsCount}/>
+                <GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>
             </div>
         )
     });
@@ -44,7 +44,6 @@ const GroupsList = () => {
             <Content/>
         </Fragment>
     )
-
 };
 
 export default GroupsList;

@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
+    _id: {
+        type: Number,
+        unique: true,
+        required: true
+    },
     user_id: {
         type: Number,
         required: 'User id is required true',

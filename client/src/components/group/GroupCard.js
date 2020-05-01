@@ -1,20 +1,21 @@
 import React, {Fragment, useState} from "react";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../admin/_api-vk.js';
 import {updateGroupInfoInDB, delGroupFromDB} from './_api-group.js';
+import PropTypes from 'prop-types';
 import SpinnerItem from "../spinner-item";
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
 import {createMembersToDB, updateMembersInDB} from "../seller/_api-seller";
 
-const GroupCard = (props) => {
+const GroupCard = ({item, groupsCount, refreshFunction}) => {
     const [loading, setLoading] = useState(false);
 
-    const {photo, name, group_id, size} = props.item;
+    const {photo, name, group_id, size} = item;
     // console.log('item ', props)
 
     const handleRemoveBtn = async (event) => {
         const groupId = event.target.id;
         delGroupFromDB(group_id);
-        props.refreshFunc(props.groupsCount - 1)
+        refreshFunction(groupsCount - 1)
     };
 
     const handleRefreshInfoBtn = (event) => {
@@ -113,6 +114,12 @@ const GroupCard = (props) => {
     return (
         <Content/>
     )
+};
+
+GroupCard.propTypes = {
+    item: PropTypes.object.isRequired,
+    groupsCount: PropTypes.number.isRequired,
+    refreshFunction: PropTypes.func.isRequired
 };
 
 export default GroupCard;

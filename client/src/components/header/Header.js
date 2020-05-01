@@ -3,7 +3,6 @@ import {Link, NavLink} from "react-router-dom";
 
 import './header.style.css';
 
-
 const Header = () => {
 
     return (

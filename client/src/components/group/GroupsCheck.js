@@ -55,8 +55,6 @@ const GroupsCheck = () => {
 
                 <br/><br/>
 
-
-
                 <button
                     onClick={test}
                 >

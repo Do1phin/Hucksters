@@ -1,5 +1,6 @@
 // Получаем продавцов из базы
 const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
+
     console.log('getMembersFromDB ', params);
     const {first_name, skip, limit} = params;
 
