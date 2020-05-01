@@ -1,6 +1,8 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {getMembersFromDB} from './_api-seller';
 import SellerCard from "./SellerCard";
+import PropTypes from 'prop-types';
+import ErrorNotFound from "../errors/ErrorNotFound";
 import Spinner from '../spinner';
 import './seller.style.css';
 import Search from "../search/Search";
@@ -17,10 +19,11 @@ const Sellers = () => {
     const [limit, setLimit] = useState(100);
     const [more, setMore] = useState(false);
 
+
     useEffect(() => {
 
         const variables = {
-            firstName: searchText,
+            first_name: searchText,
             skip,
             limit
         };
@@ -30,14 +33,14 @@ const Sellers = () => {
                 .then(data => {
 
                     if (data) {
-                        setItemSize(data.itemSize);
+                        setItemSize(data.sellers.length);
 
                         if (more) {
                             setSellers([...sellers, ...data.sellers]);
-                            setAllItemSize(allItemSize + data.itemSize);
+                            setAllItemSize(allItemSize + data.sellers.length);
                         } else {
                             setSellers(data.sellers);
-                            setAllItemSize(data.itemSize);
+                            setAllItemSize(data.sellers.length);
                         }
                         setLoading(false);
                     }
@@ -54,13 +57,19 @@ const Sellers = () => {
         setSkip(skipAfter);
     };
 
-    const sellersView = sellers.map((item) => {
-        return (
-            <div className='seller-card-wrapper' key={item.userId}>
-                <SellerCard {...item}/>
-            </div>
-        );
-    });
+    const sellersView = () => {
+        if (sellers.length !== 0) {
+            return sellers.map((item) => {
+                return (
+                    <div className='seller-card-wrapper' key={item.userId}>
+                        <SellerCard {...item}/>
+                    </div>
+                );
+            });
+        } else {
+            return <ErrorNotFound title={'sellers'}/>
+        }
+    };
 
     const SellerSize = () => {
         return (
@@ -75,7 +84,9 @@ const Sellers = () => {
     };
 
     const Content = () => {
-        return loading ? <Spinner/> : <div className='sellers'>{sellersView}</div>
+        return loading
+            ? <Spinner/>
+            : <div className='sellers'>{sellersView()}</div>
     };
 
     return (

@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import './sortSelect.style.css';
 
-const SortSelect = (props) => {
+const SortSelect = ({sort, refreshFunction}) => {
 
     const handleChanger = (event) => {
-        return props.refreshFunction(+event.target.value)
+        return refreshFunction(+event.target.value)
     };
 
-    return(
+    return (
         <div className='sort-select'>
             <select
-                value={props.sort}
+                value={sort}
                 onChange={(event) => handleChanger(event)}
             >
                 <option value="-1">от новых к старым</option>
@@ -28,6 +28,5 @@ SortSelect.propTypes = {
     sort: PropTypes.number.isRequired,
     refreshFunction: PropTypes.func.isRequired
 };
-
 
 export default SortSelect;

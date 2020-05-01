@@ -2,6 +2,7 @@ import React, {Fragment, useState} from "react";
 import Spinner from "../spinner";
 import {createGroupInDB} from "./_api-group";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../admin/_api-vk';
+import GroupsList from "./GroupsList";
 
 // import './group.style.css';
 

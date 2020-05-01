@@ -54,7 +54,7 @@ const readAlbum = async (req, res) => {
                 if (err) {
                     return res.status(400).json({error: getErrorMessage(err)})
                 }
-                return res.status(200).json({albums, itemSize: albums.length})
+                return res.status(200).json({albums})
             })
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})

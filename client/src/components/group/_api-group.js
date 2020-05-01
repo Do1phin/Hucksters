@@ -1,8 +1,8 @@
 // Получаем список групп из базы
 const getGroupListFromDB = (params) => {
     try {
-        return fetch('/vk/group/list', {
-            method: "GET"
+        return fetch('/vk/groups', {
+            method: "POST"
         }).then((response) => {
             return response.json()
         }).catch((err) => console.error(err));
@@ -12,17 +12,17 @@ const getGroupListFromDB = (params) => {
 };
 
 // Создаём группу в базе
-const createGroupInDB = (params) => {
-    const {id, name, size, photo_50} = params;
+const createGroupInDB = (groupObj) => {
+    const {id, name, size, photo_200} = groupObj;
     const body = {
-        groupId: +id,
+        group_id: +id,
         name,
         size,
-        photo: photo_50
+        photo: photo_200
     };
 
     try {
-        return fetch('/vk/group/add', {
+        return fetch('/vk/groups/create', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -39,7 +39,7 @@ const createGroupInDB = (params) => {
 // Обновляем информацию о базе
 const updateGroupInfoInDB = (groupObject) => new Promise((resolve, reject) => {
     try {
-        return fetch('/vk/group/update', {
+        return fetch('/vk/groups/update', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,14 +54,14 @@ const updateGroupInfoInDB = (groupObject) => new Promise((resolve, reject) => {
 });
 
 // Удаляем группу из базы
-const delGroupFromDB = (groupId) => {
+const delGroupFromDB = (group_id) => {
     try {
-        fetch('/vk/group/remove', {
+        fetch('/vk/groups/delete', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({groupId: groupId})
+            body: JSON.stringify({group_id})
         }).then((response) => {
             return response.json()
         }).catch((err) => console.log(err))

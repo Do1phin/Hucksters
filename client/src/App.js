@@ -7,10 +7,10 @@ import MainPage from "./components/pages/MainPage";
 import Sellers from "./components/seller/Sellers";
 import Albums from "./components/album/Albums";
 import Photos from "./components/photo/Photos";
-import VkPage from "./components/pages/VkPage";
 import Search from "./components/search/Search";
 import AdminPanel from './components/admin/AdminPanel';
 import Header from './components/header';
+import Footer from './components/footer';
 
 
 import './App.css';
@@ -37,6 +37,8 @@ function App() {
                     <Route path='/search' component={Search}/>
                     <Route component={NotFound}/>
                 </Switch>
+
+                <Footer/>
             </Router>
         </ErrorBoundary>
     );

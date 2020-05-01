@@ -1,12 +1,13 @@
 import React, {Fragment} from "react";
 import { NavLink} from "react-router-dom";
+import PropTypes from 'prop-types';
 import {stampToDate} from "../../services/date.service";
 
-const AlbumCard = ({userId, albumId, title, size, created, updated, photo}) => {
+const AlbumCard = ({user_id, album_id, title, size, created, updated, photo}) => {
 
     return (
         <Fragment>
-             <NavLink to={'/sellers/' + userId + '/albums/' + albumId}>
+             <NavLink to={'/sellers/' + user_id + '/albums/' + album_id}>
             <div className='album-card-header'>
                 <div className='album-card-header_title'>
                     <span>{title}</span>
@@ -33,5 +34,15 @@ const AlbumCard = ({userId, albumId, title, size, created, updated, photo}) => {
         </Fragment>
     )
 };
+
+AlbumCard.propTypes = {
+    user_id: PropTypes.number.isRequired,
+    album_id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    size: PropTypes.number.isRequired,
+    created: PropTypes.number.isRequired,
+    updated: PropTypes.number.isRequired,
+    photo: PropTypes.string.isRequired
+}
 
 export default AlbumCard;

@@ -59,8 +59,8 @@ const signin = async (req, res) => {
         //     token: 'JWT ' + token,
         //     user: {
         //         vkId: candidateEmail.vkId,
-        //         firstName: candidateEmail.firstName,
-        //         lastName: candidateEmail.lastName,
+        //         first_name: candidateEmail.firstName,
+        //         last_name: candidateEmail.lastName,
         //         seller: candidateEmail.seller,
         //         avatar: candidateEmail.avatar,
         //     }

@@ -7,7 +7,7 @@ router.route('/vk/groups/create')
     .post(groupCtrl.createGroup);
 
 router.route('/vk/groups')
-    .get(groupCtrl.readGroup);
+    .post(groupCtrl.readGroup);
 
 router.route('/vk/groups/update')
     .post(groupCtrl.updateGroup);

@@ -1,40 +1,39 @@
 import React, {Fragment, useState} from "react";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../admin/_api-vk.js';
 import {updateGroupInfoInDB, delGroupFromDB} from './_api-group.js';
+import PropTypes from 'prop-types';
 import SpinnerItem from "../spinner-item";
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
 import {createMembersToDB, updateMembersInDB} from "../seller/_api-seller";
 
-const GroupCard = (props) => {
+const GroupCard = ({item, groupsCount, refreshFunction}) => {
     const [loading, setLoading] = useState(false);
 
-    const {photo, name, groupId, size} = props.item;
+    const {photo, name, group_id, size} = item;
     // console.log('item ', props)
 
     const handleRemoveBtn = async (event) => {
         const groupId = event.target.id;
-        delGroupFromDB(groupId);
-        props.refreshFunc(props.groupsCount - 1)
+        delGroupFromDB(group_id);
+        refreshFunction(groupsCount - 1)
     };
 
     const handleRefreshInfoBtn = (event) => {
         setLoading(true);
-        const groupId = +event.target.id;
-        Promise.resolve(groupId)
+        const group_id = +event.target.id;
+        Promise.resolve(group_id)
             .then(getGroupInfoFromVk)
             .then(getGroupSizeFromVk)
-            .then(updateGroupInfoInDB)
+            .then(updateGroupInfoInDB);
 
         setLoading(false);
     };
 
 
     const getAllMembers = async (group_id) => {
-        console.log('groupId ', group_id)
         try {
             const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
             const membersSize = await members.response.count;
-            console.log('members ', members.response.count, membersSize)
 
             let count = 0;
             await (function f() {
@@ -42,7 +41,6 @@ const GroupCard = (props) => {
                 if (count < Math.ceil(membersSize / 1000)) {
 
                     const obj = {group_id: group_id, count};
-
                     Promise.resolve(obj)
                         .then(getMembersGroupFromVk)
                         .then(createMembersToDB)
@@ -51,7 +49,7 @@ const GroupCard = (props) => {
                         .catch((err) => console.error(err));
 
                     count++;
-                    setTimeout(f, 60000);
+                    setTimeout(f, 150000);
                 } else {
                     console.log('All members added');
                 }
@@ -63,7 +61,7 @@ const GroupCard = (props) => {
     };
 
     const handleGetMembersBtn = (event) => {
-        const group_id = event.target.id;
+        const group_id = +event.target.id;
         getAllMembers(group_id)
     };
 
@@ -74,7 +72,7 @@ const GroupCard = (props) => {
                     <img src={photo} alt={name}/>
                 </div>
                 <div className='group-add_id'>
-                    {groupId}
+                    {group_id}
                 </div>
 
                 <div className='group-add_name'>
@@ -87,19 +85,19 @@ const GroupCard = (props) => {
 
                 <div className='group-add_actions'>
                     <button
-                        id={groupId}
+                        id={group_id}
                         onClick={(event) => handleRefreshInfoBtn(event)}
                     >
                         Обновить данные
                     </button>
                     <button
-                        id={groupId}
+                        id={group_id}
                         onClick={(event) => handleRemoveBtn(event)}
                     >
                         Удалить группу
                     </button>
                     <button
-                        id={groupId}
+                        id={group_id}
                         onClick={(event) => handleGetMembersBtn(event)}
                     >
                         Получить пользователей
@@ -116,6 +114,12 @@ const GroupCard = (props) => {
     return (
         <Content/>
     )
+};
+
+GroupCard.propTypes = {
+    item: PropTypes.object.isRequired,
+    groupsCount: PropTypes.number.isRequired,
+    refreshFunction: PropTypes.func.isRequired
 };
 
 export default GroupCard;

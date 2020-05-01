@@ -15,7 +15,4 @@ router.route('/sellers/update')
 // router.route('/sellers/delete')
 //     .post(sellerCtrl.deleteMember);
 
-router.route('/seller/updateSeller')
-    .post(sellerCtrl.updateIsSeller);
-
 export default router;

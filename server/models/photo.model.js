@@ -19,7 +19,7 @@ const schema = new mongoose.Schema({
         type: String,
         default: null
     },
-    photoSizes: {
+    photo_sizes: {
         type: Array,
         default: null
     },

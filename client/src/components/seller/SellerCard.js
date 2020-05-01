@@ -1,27 +1,29 @@
 import React, {Fragment} from "react";
 import {NavLink} from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import './seller.style.css';
 
-const SellerCard = ({userId, firstName, lastName, domain, photo,}) => {
+const SellerCard = ({user_id, first_name, last_name, domain, photo}) => {
 
     return (
         <Fragment>
-            <NavLink to={'/sellers/' + userId}>
+            <NavLink to={'/sellers/' + user_id}>
                 <div className="seller-card-header">
                     <div className='seller-card-header_info'>
-                        {firstName}<br />{lastName}
+                        {first_name}<br/>{last_name}
                     </div>
                 </div>
 
                 <div className="seller-card-body">
                     <div className='seller-card-body_img'>
-                        <img src={photo} alt={firstName + ' ' + lastName + ' [' + domain + ']'}/>
+                        <img src={photo} alt={first_name + ' ' + last_name + ' [' + domain + ']'}/>
                     </div>
                 </div>
 
                 <div className="seller-card-footer">
                     <div className='seller-card-footer_id'>
-                        id: {userId}
+                        id: {user_id}
                     </div>
                 </div>
             </NavLink>
@@ -29,4 +31,11 @@ const SellerCard = ({userId, firstName, lastName, domain, photo,}) => {
     );
 };
 
+SellerCard.propTypes = {
+    user_id: PropTypes.number.isRequired,
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    domain: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired
+};
 export default SellerCard;

@@ -15,7 +15,7 @@ const getPhotosFromDB = (params) => {
             },
             body: JSON.stringify(body)
         }).then((response) => {
-              return response.json()
+            return response.json()
         }).catch((err) => console.error(err))
     } catch (e) {
         throw new Error(e)
@@ -33,8 +33,8 @@ const getPhotosFromDb = () => new Promise((resolve, reject) => {
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify(body)
-            }).then((response) => {
-                resolve(response.json())
+        }).then((response) => {
+            resolve(response.json())
         }).catch((err) => reject(err))
     } catch (e) {
 
@@ -59,7 +59,7 @@ const addPhotosToDb = (photoArray) => new Promise((resolve, reject) => {
         } catch (e) {
             reject(e)
         }
-    })
+    });
 });
 
 const updateAddPhotosCount = (props) => new Promise((resolve, reject) => {
