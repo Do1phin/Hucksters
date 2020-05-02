@@ -122,6 +122,13 @@ const getCommentsFromVk = (photoObj) => new Promise((resolve, reject) => {
 
 // Получаем подробную информацию о группе
 const getGroupInfoFromVk = (group_id) => new Promise((resolve, reject) => {
+    let gr_id;
+    if (group_id.type !== 'string') {
+
+    } else {
+        gr_id = new RegExp(/\/.*/g, 'asdf')
+    }
+
     if (group_id < 0) {
         reject('Group not found')
     }

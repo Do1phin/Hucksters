@@ -2,7 +2,6 @@ import React, {Fragment, useState} from "react";
 import Spinner from "../spinner";
 import {createGroupInDB} from "./_api-group";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../admin/_api-vk';
-import GroupsList from "./GroupsList";
 
 // import './group.style.css';
 
@@ -34,20 +33,29 @@ const GroupsAdd = () => {
             ? <Spinner/>
             : (<Fragment>
                 <div className='group-add'>
-                    <div className='group-add_input'>
-                        <span>Введите id группы</span>
-                        <input
-                            value={groupId}
-                            type='number'
-                            onChange={(event) => handleChange(event)}
-                        />
-                        <button
-                            disabled={loading}
-                            onClick={(event) => handleGroupAddBtn(event)}
-                        >
-                            Добавить
-                        </button>
-                    </div>
+                    <p
+                        className='group-add__text'
+                        aria-label='Введите группу'
+                    >
+                        Введите id группы
+                    </p>
+                    <input
+                        className='group-add__input'
+                        aria-label='Значение группы'
+                        placeholder='https://vk.com/group1'
+                        disabled={loading}
+                        value={groupId}
+                        onChange={(event) => handleChange(event)}
+                    />
+                    <button
+                        className='group-add__button'
+                        aria-label='Добавить группу'
+                        disabled={loading}
+                        onClick={(event) => handleGroupAddBtn(event)}
+                    >
+                        Добавить
+                    </button>
+
                 </div>
             </Fragment>))
 };

@@ -8,8 +8,9 @@ import './seller.style.css';
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
+import SellerPage from "./SellerPage";
 
-const Sellers = () => {
+const Sellers = (props) => {
     const [loading, setLoading] = useState(true);
     const [sellers, setSellers] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -29,6 +30,7 @@ const Sellers = () => {
         };
 
         const loadSellers = (variables) => {
+
             getMembersFromDB(variables)
                 .then(data => {
 
@@ -58,6 +60,11 @@ const Sellers = () => {
     };
 
     const sellersView = () => {
+        const user_id = +props.match.params.user_id;
+        if (user_id) {
+            return <SellerPage user_id={user_id}/>
+        }
+
         if (sellers.length !== 0) {
             return sellers.map((item) => {
                 return (

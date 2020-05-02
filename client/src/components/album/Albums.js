@@ -9,8 +9,9 @@ import './album.style.css';
 import '../UI/SortSelect/sortSelect.style.css';
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
 import ErrorNotFound from "../errors/ErrorNotFound";
+import AlbumPage from "./AlbumPage";
 
-const Albums = () => {
+const Albums = (props) => {
     const [loading, setLoading] = useState(true);
     const [albums, setAlbums] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -34,7 +35,6 @@ const Albums = () => {
 
             getAlbumsFromDB(variables)
                 .then(data => {
-                    console.log('data ', data)
 
                     if (data) {
                         setItemSize(data.itemSize);
@@ -62,6 +62,12 @@ const Albums = () => {
     };
 
     const albumsView = () => {
+        const {user_id, album_id} = props.match.params;
+
+        if (album_id) {
+            return <AlbumPage user_id={+user_id} album_id={+album_id}/>
+        }
+
         if (albums.length !== 0) {
             return albums.map((item) => {
                 return (
@@ -73,7 +79,7 @@ const Albums = () => {
         } else {
             return <ErrorNotFound title={'albums'}/>
         }
-    }
+    };
 
     const AlbumSize = () => {
         return (

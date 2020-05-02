@@ -4,10 +4,7 @@ import {createMembersToDB, updateMembersInDB} from '../seller/_api-seller';
 import SellerCheckAlbumAccess from "../admin/SellerCheckAlbumAccess";
 
 const GroupsCheck = () => {
-    // const [data, setData] = useState(null);
 
-    // получаем всех пользователей группы
-    // const group_id = 115050558;
     const getAllMembers = async (group_id) => {
         try {
             const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
@@ -39,27 +36,10 @@ const GroupsCheck = () => {
         }
     };
 
-    const test = () => {
-        console.log('membersinfo ',);
-        console.log('members ',);
-    };
 
     return (
         <Fragment>
             <div className='get-all-members'>
-                <button
-                    onClick={getAllMembers}
-                >
-                    Загрузить пользователей группы
-                </button>
-
-                <br/><br/>
-
-                <button
-                    onClick={test}
-                >
-                    TEST
-                </button>
             </div>
             <SellerCheckAlbumAccess/>
         </Fragment>

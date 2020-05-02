@@ -8,25 +8,30 @@ const Header = () => {
     return (
         <div className='header'>
 
-            <Link to='/' className="">
+            <Link to='/'>
                 <div className='header-logo'>
-                    {/*<img src="#" alt='HUCKSTER'/>*/}
-                    <span>HUCKSTERS</span>
+                    <img src="/logo.png" className='header-logo__picture' alt='HUCKSTER'/>
+                    <span className='header-logo__text'>HUCKSTERS</span>
                 </div>
             </Link>
 
-            <div className='header-menu'>
-                <NavLink to='/sellers/' className="menu-item">Продавцы</NavLink>
-                <NavLink to='/sellers/albums/' className="menu-item">Альбомы</NavLink>
-                <NavLink to='/sellers/albums/photos/' className="menu-item">Фотографии</NavLink>
-                <NavLink to='/vk' className="menu-item">VK админка</NavLink>
-            </div>
+            <nav className='header-menu'>
+                <NavLink to='/sellers/' className="header-menu__item">Продавцы</NavLink>
+                <NavLink to='/sellers/albums/' className="header-menu__item">Альбомы</NavLink>
+                <NavLink to='/sellers/albums/photos/' className="header-menu__item">Фотографии</NavLink>
+                <NavLink to='/panel' className="header-menu__item">Управление</NavLink>
+            </nav>
 
-            <div className='header-finder-str'>
-            </div>
-
-            <div className='header-auth-block'>
-                <NavLink to='/signin' className="menu-item">SignIN</NavLink>
+            <div className='header-auth'>
+                <div className='header-auth__info'>
+                    <div className='header-auth__info-avatar'>
+                        <img src='https://vk.com/images/camera_200.png?ava=1' alt='user-avatar'/>
+                    </div>
+                    <div className='header-auth__info-profile'>
+                        Иван<br/>Иванов
+                    </div>
+                </div>
+                {/*<NavLink to='/signin' className="menu-item">SignIN</NavLink>*/}
             </div>
 
         </div>
