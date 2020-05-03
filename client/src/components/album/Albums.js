@@ -61,17 +61,12 @@ const Albums = (props) => {
         setSkip(skipAfter);
     };
 
-    const albumsView = () => {
-        const {user_id, album_id} = props.match.params;
-
-        if (album_id) {
-            return <AlbumPage user_id={+user_id} album_id={+album_id}/>
-        }
+    const AlbumsView = () => {
 
         if (albums.length !== 0) {
             return albums.map((item) => {
                 return (
-                    <div className="album-card-wrapper" key={item.albumId}>
+                    <div className="album-card__item" key={item.album_id}>
                         <AlbumCard {...item}/>
                     </div>
                 )
@@ -93,35 +88,66 @@ const Albums = (props) => {
     };
 
     const Content = () => {
-        return loading
-            ? <Spinner/>
-            : <div className='albums'>{albumsView()}</div>
+        const {user_id, album_id} = props.match.params;
+        let element;
+        if (album_id) {
+            return <AlbumPage user_id={+user_id} album_id={+album_id}/>
+        }
+
+        if (!loading && !albums.length) {
+            element = <ErrorNotFound title={'albums'}/>
+        } else if (!loading && albums.length) {
+            element = (
+                <Fragment>
+                    <div className='album-list'>
+                        <AlbumsView/>
+                    </div>
+                </Fragment>
+            )
+        } else if (loading && albums.length) {
+            element = (
+                <Fragment>
+                    <div className='album-list'>
+                        <AlbumsView/>
+                    </div>
+                    <div className='album-list__more'>
+                        <Spinner/>
+                    </div>
+                </Fragment>
+            )
+        }
+
+        return (
+            <Fragment>
+                <Search
+                    setSkip={setSkip}
+                    setItemSize={setItemSize}
+                    setAllItemSize={setAllItemSize}
+                    setSearchText={setSearchText}
+                />
+                <AlbumSize/>
+                <LimitSelect
+                    limit={limit}
+                    refreshFunction={setLimit}
+                />
+                <SortSelect
+                    sort={sort}
+                    refreshFunction={setSort}
+                />
+
+                {element}
+
+                <LoadMoreBtn
+                    limit={limit}
+                    size={itemSize}
+                    refreshFunction={loadMore}
+                />
+            </Fragment>
+        )
     };
 
     return (
-        <Fragment>
-            <Search
-                setSkip={setSkip}
-                setItemSize={setItemSize}
-                setAllItemSize={setAllItemSize}
-                setSearchText={setSearchText}
-            />
-            <AlbumSize/>
-            <LimitSelect
-                limit={limit}
-                refreshFunction={setLimit}
-            />
-            <SortSelect
-                sort={sort}
-                refreshFunction={setSort}
-            />
-            <Content/>
-            <LoadMoreBtn
-                limit={limit}
-                size={itemSize}
-                refreshFunction={loadMore}
-            />
-        </Fragment>
+        <Content/>
     )
 };
 

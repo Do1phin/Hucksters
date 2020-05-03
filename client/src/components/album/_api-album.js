@@ -1,22 +1,16 @@
 const getAlbumsFromDB = (params) => {
-    console.log('params ', params)
-    const {title, skip, limit, sort} = params;
+
+    const {title, skip, limit, sort, page, user_id} = params;
 
     const body = {
+        user_id,
         title,
         skip,
         limit,
-        sort
+        sort,
+        page
     };
 
-    // const body = {
-    //     title: '',
-    //     skip: 0,
-    //     limit: 0,
-    //     sort: -1
-    // };
-
-    console.log('body  b ', body);
     try {
         return fetch('/sellers/albums', {
             method: "POST",

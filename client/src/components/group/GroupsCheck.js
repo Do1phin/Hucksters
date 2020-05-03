@@ -39,9 +39,9 @@ const GroupsCheck = () => {
 
     return (
         <Fragment>
-            <div className='get-all-members'>
+            <div className='group-check'>
+                <SellerCheckAlbumAccess/>
             </div>
-            <SellerCheckAlbumAccess/>
         </Fragment>
     )
 };

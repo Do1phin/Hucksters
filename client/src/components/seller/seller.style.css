@@ -1,4 +1,4 @@
-.sellers {
+.seller-list {
     display: grid;
     background-color: #2E2F42;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -11,7 +11,7 @@
 .seller-card-header_img { grid-area: img}
 .seller-card-header_id { grid-area: id}
 
-.seller-card-wrapper {
+.seller-card__item {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 45px 150px 20px;

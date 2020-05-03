@@ -4,32 +4,38 @@ import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createInfo = async (req, res) => {
 
+    try {
     const all_users = await Seller.find({}).countDocuments();
     const banned = await Seller.find({deactivated: "banned"}).countDocuments();
-    const closed = await Seller.find({is_closed:true}).countDocuments();
+    const closed = await Seller.find({is_closed: true}).countDocuments();
     const deleted = await Seller.find({deactivated: "deleted"}).countDocuments();
     const seller = await Seller.find({seller: true}).countDocuments();
 
-    await InfoCounters.find({info:"counters"}, (err, counters) => {
+     const counters = await InfoCounters.findOne({info: "counters"}, (err) => {
         if (err) {
             return res.status(400).json({error: getErrorMessage(err)})
         }
-        return res.status(400).json({message: 'Counters is already exist', counters})
-    }).catch((err) => console.error(err));
+    });
 
-    new InfoCounters({
+     if (counters) {
+         return res.status(400).json({counters})
+     }
+
+    await new InfoCounters({
         all_users,
         banned,
         closed,
         deleted,
         seller
     }).save((err, counters) => {
-        console.log(err, counters)
         if (err) {
             return res.status(400).json({error: getErrorMessage(err)})
         }
-        return res.status(200)
+        return res.status(200).json({counters})
     })
+    } catch (e) {
+        return res.status(500).json({error: getErrorMessage(e)})
+    }
 };
 
 const readInfo = async (req, res) => {
@@ -38,7 +44,7 @@ const readInfo = async (req, res) => {
         if (err) {
             return res.status(400).json({error: getErrorMessage(err)})
         }
-        return res.status(200).json({message: 'good'})
+        return res.status(200).json({message: 'good', counters: counters})
     })
 };
 

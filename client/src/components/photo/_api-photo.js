@@ -45,21 +45,22 @@ const addPhotosToDb = (photoArray) => new Promise((resolve, reject) => {
     console.log('photoObj ', photoArray)
     photoArray.map((item) => {
 
-        try {
-            fetch('/photos/add', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json'
-                },
-                body: JSON.stringify(item)
-            }).then((response) => {
-                resolve(response.json())
-            }).catch((err) => reject(err))
+            try {
+                fetch('/photos/add', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": 'application/json'
+                    },
+                    body: JSON.stringify(item)
+                }).then((response) => {
+                    resolve(response.json())
+                }).catch((err) => reject(err))
 
-        } catch (e) {
-            reject(e)
-        }
-    });
+            } catch (e) {
+                reject(e)
+            }
+            return null
+        });
 });
 
 const updateAddPhotosCount = (props) => new Promise((resolve, reject) => {

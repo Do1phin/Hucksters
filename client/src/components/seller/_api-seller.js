@@ -2,12 +2,13 @@
 const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
 
     console.log('getMembersFromDB ', params);
-    const {first_name, skip, limit} = params;
+    const {first_name, skip, limit, status} = params;
 
     let body = {
         first_name,
         skip,
         limit,
+        status
     };
 
     try {
@@ -70,7 +71,7 @@ const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject
     console.info('4. Update members info in DB [start]');
     membersWithInfoArray.map((item) => {
         try {
-            const body = item;
+            const body = {item, info: 'full'};
             fetch('./sellers/update', {
                 method: 'POST',
                 headers: {

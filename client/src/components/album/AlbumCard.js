@@ -8,24 +8,24 @@ const AlbumCard = ({user_id, album_id, title, size, created, updated, photo}) =>
     return (
         <Fragment>
              <NavLink to={'/sellers/' + user_id + '/albums/' + album_id}>
-            <div className='album-card-header'>
-                <div className='album-card-header_title'>
+            <div className='album-card__item-header'>
+                <div className='album-card__item-header-title'>
                     <span>{title}</span>
                 </div>
             </div>
 
-            <div className='album-card-body'>
-                <div className='album-card-body_img'>
+            <div className='album-card__item-body'>
+                <div className='album-card__item-body-picture'>
                     <img src={photo} alt={title}/>
                 </div>
             </div>
 
-            <div className="album-card-footer">
-                <div className='album-card-size'>
+            <div className="album-card__item-footer">
+                <div className='album-card__item-footer-size'>
                     Фотографий: {size}
                 </div>
 
-                <div className='album-card-date-info'>
+                <div className='album-card__item-footer-info'>
                     <span>Update: {stampToDate(updated)}</span><br/>
                     <span>Create: {stampToDate(created)}</span>
                 </div>

@@ -5,12 +5,13 @@ const createAlbum = async (req, res) => {
     try {
         const {owner_id, id, thumb_id, title, sizes, created, updated, size} = req.body;
 
-        await Album.findOne({album_id: id}, (err, album) => {
+        const album = await Album.findOne({album_id: id}, (err) => {
             if (err) {
                 return res.status(400).json({error: getErrorMessage(err)})
             }
-            return res.status(400).json({message: 'Album is already exist', album})
-        }).catch((err) => console.error(err));
+        });
+        if (album) return res.status(400).json({message: 'Album is already exist', album});
+
 
         new Album({
             user_id: owner_id,
@@ -34,16 +35,25 @@ const createAlbum = async (req, res) => {
 
 const readAlbum = async (req, res) => {
 
-    const {title, skip, limit, sort} = req.body;
+    let {user_id, title, skip, limit, sort, page} = req.body;
     const sortParams = {"updated": sort};
     let params;
 
-    if (!title) {
-        params = {}
-    } else {
-        params = {title: new RegExp(title, 'i')}
+    console.log('page ', page)
+    if (page === 'list') {
+        params = !title ? {} : {title: new RegExp(title, 'i')}
+    } else if (page === 'seller') {
+        params = {user_id: user_id}
+    } else if (page === 'check') {
+
     }
 
+    // if (!title) {
+    //     params = {}
+    // } else {
+    //     params = {title: new RegExp(title, 'i')}
+    // }
+    console.log('ppppppppppppppppp ', params)
     try {
 
         await Album.find(params)

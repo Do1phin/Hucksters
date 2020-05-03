@@ -7,7 +7,7 @@ const LimitSelect = ({limit, refreshFunction}) => {
 
     return (
         <div className='limit-select'>
-            <span>Выводить по - </span>
+            <label>Выводить по - </label>
             <select
                 value={limit}
                 onChange={(event) => refreshFunction(+event.target.value)}

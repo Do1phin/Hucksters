@@ -15,7 +15,7 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
 
     const handleRemoveBtn = async (event) => {
         setLoading(true);
-        const groupId = event.target.id;
+        const group_id = event.target.id;
         delGroupFromDB(group_id);
         refreshFunction(groupsCount - 1);
         setLoading(false);
@@ -119,6 +119,7 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
                     >
                         Получить пользователей
                     </button>
+                    {actionStatus}
                 </div>
             </Fragment>
         )
