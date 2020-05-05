@@ -16,7 +16,7 @@ a {
     align-content: center;
 }
 
-.photo-card-wrapper {
+.photo-card__item {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 50px 200px 50px;

@@ -1,7 +1,7 @@
 #Content {
     text-align: end;
 }
-.albums {
+.album-list {
     display: grid;
     background-color: #2E2F42;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -15,7 +15,7 @@ a {
     text-decoration: none;
 }
 
-.album-card-wrapper {
+.album-card__item {
     display: grid;
     background-color: #404258;
     border-radius: 5px;
@@ -23,17 +23,17 @@ a {
     gap: 3px;
 }
 
-.album-card-header {
+.album-card__item-header {
     height: 50px;
 }
 
-.album-card-footer {
+.album-card__item-footer {
     text-align: left;
     padding-left: 7px;
     color: #a3a3af;
 }
 
-.album-card-header_title {
+.album-card__item-header-title {
     text-align: center;
     color: #FFFFFF;
 }
@@ -42,11 +42,11 @@ a {
     text-align: center;
 }
 
-.album-card-header_title span {
+.album-card__item-header-title span {
     justify-content: center;
 }
 
-.album-card-body_img img {
+.album-card__item-body-picture img {
     width: 90%;
     height: 200px;
 }

@@ -1,15 +1,16 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {getMembersFromDB} from './_api-seller';
 import SellerCard from "./SellerCard";
-import PropTypes from 'prop-types';
 import ErrorNotFound from "../errors/ErrorNotFound";
-import Spinner from '../spinner';
 import './seller.style.css';
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
+import SellerPage from "./SellerPage";
+import StatusSelect from "../UI/StatusSelect/StatusSelect";
+import Spinner from "../spinner";
 
-const Sellers = () => {
+const Sellers = (props) => {
     const [loading, setLoading] = useState(true);
     const [sellers, setSellers] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -18,29 +19,33 @@ const Sellers = () => {
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(100);
     const [more, setMore] = useState(false);
+    const [status, setStatus] = useState('seller');
 
 
     useEffect(() => {
-
         const variables = {
+            info: 'list',
             first_name: searchText,
             skip,
-            limit
+            limit,
+            status
         };
 
         const loadSellers = (variables) => {
+            setLoading(true);
+
             getMembersFromDB(variables)
                 .then(data => {
 
                     if (data) {
-                        setItemSize(data.sellers.length);
+                        setItemSize(data.length);
 
                         if (more) {
-                            setSellers([...sellers, ...data.sellers]);
-                            setAllItemSize(allItemSize + data.sellers.length);
+                            setSellers([...sellers, ...data]);
+                            setAllItemSize(allItemSize + data.length);
                         } else {
-                            setSellers(data.sellers);
-                            setAllItemSize(data.sellers.length);
+                            setSellers(data);
+                            setAllItemSize(data.length);
                         }
                         setLoading(false);
                     }
@@ -49,7 +54,7 @@ const Sellers = () => {
 
         loadSellers(variables);
         setMore(false);
-    }, [searchText, limit, skip]);
+    }, [searchText, limit, skip, status]);
 
     const loadMore = () => {
         let skipAfter = skip + limit;
@@ -57,11 +62,12 @@ const Sellers = () => {
         setSkip(skipAfter);
     };
 
-    const sellersView = () => {
-        if (sellers.length !== 0) {
+    const SellersView = () => {
+
+        if (sellers.length) {
             return sellers.map((item) => {
                 return (
-                    <div className='seller-card-wrapper' key={item.userId}>
+                    <div className='seller-card__item' key={item.user_id}>
                         <SellerCard {...item}/>
                     </div>
                 );
@@ -71,12 +77,13 @@ const Sellers = () => {
         }
     };
 
-    const SellerSize = () => {
+    const SellersSize = () => {
         return (
             <div className='seller-size'>
-                {allItemSize
-                    ? <span>Результатов - {allItemSize}</span>
-                    : null
+                {
+                    allItemSize
+                        ? <span>Результатов - {allItemSize}</span>
+                        : null
                 }
             </div>
         )
@@ -84,31 +91,67 @@ const Sellers = () => {
     };
 
     const Content = () => {
-        return loading
-            ? <Spinner/>
-            : <div className='sellers'>{sellersView()}</div>
+        const user_id = +props.match.params.user_id;
+        let element;
+        if (user_id) {
+            return <SellerPage user_id={user_id}/>
+        }
+
+        if (!loading && !sellers.length) {
+            element = <ErrorNotFound title={'sellers'}/>
+        } else if (!loading && sellers.length) {
+            element = (
+                <Fragment>
+                    <div className='seller-list'>
+                        <SellersView/>
+                    </div>
+                </Fragment>
+            )
+        } else if (loading && sellers.length) {
+            element = (
+                <Fragment>
+                    <div className='seller-list'>
+                        <SellersView/>
+                    </div>
+                    <div className='seller-list__more'>
+                        <Spinner/>
+                    </div>
+                </Fragment>
+            )
+        }
+
+        return (
+            <Fragment>
+                <Search
+                    setSkip={setSkip}
+                    setItemSize={setItemSize}
+                    setAllItemSize={setAllItemSize}
+                    setSearchText={setSearchText}
+                />
+                <SellersSize/>
+                <LimitSelect
+                    limit={limit}
+                    refreshFunction={setLimit}
+                />
+                <StatusSelect
+                    status={status}
+                    refreshFunction={setStatus}
+                />
+
+                {element}
+
+                <LoadMoreBtn
+                    limit={limit}
+                    size={itemSize}
+                    refreshFunction={loadMore}
+                />
+            </Fragment>
+
+        )
     };
 
     return (
-        <Fragment>
-            <Search
-                setSkip={setSkip}
-                setItemSize={setItemSize}
-                setAllItemSize={setAllItemSize}
-                setSearchText={setSearchText}
-            />
-            <SellerSize/>
-            <LimitSelect
-                limit={limit}
-                refreshFunction={setLimit}
-            />
-            <Content/>
-            <LoadMoreBtn
-                limit={limit}
-                size={itemSize}
-                refreshFunction={loadMore}
-            />
-        </Fragment>
+        <Content/>
     )
 };
 

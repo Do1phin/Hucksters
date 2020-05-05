@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import GroupCard from "./GroupCard";
 import Spinner from "../spinner";
 import {getGroupListFromDB} from "./_api-group";
@@ -29,20 +29,34 @@ const GroupsList = () => {
 
     const groupsView = groups.map((item) => {
         return (
-            <div className='group-card-wrapper' key={item.groupId}>
+            <div className='group-list__item' key={item.group_id}>
                 <GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>
             </div>
         )
     });
 
+
     const Content = () => {
-        return loading ? <Spinner/> : (groups.length ? groupsView : <span>Вы не добавили ни одной группы</span>)
+        return loading ? <Spinner/> : (!groups.length && !loading? <span>Вы не добавили ни одной группы</span> : groupsView)
     };
 
-    return(
-        <Fragment>
+    return (
+        <div className='group-list'>
+
+            <div className='group-list__item-name'>
+                <p>Группы</p>
+            </div>
+            <div className='group-list__item-titles'>
+                {/*<ul className='group-list__item-titles-ul'>*/}
+                <p>photo</p>
+                <p>id</p>
+                <p>name</p>
+                <p>members</p>
+                <p>actions</p>
+                {/*</ul>*/}
+            </div>
             <Content/>
-        </Fragment>
+        </div>
     )
 };
 

@@ -30,7 +30,7 @@ const login = () => {
 
 // Получаем всех пользователей группы
 const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, reject) => {
-    console.info('1. Get members [start]');
+    console.log('getMembersGroupFromVk ', group_id);
     const params = {
         group_id,
         sort: 'id_asc',
@@ -41,15 +41,14 @@ const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, rejec
 
     call('groups.getMembers', params)
         .then((response) => {
-            if (response) resolve(response.response.items);
+            if (response) resolve(response.response.items); // массив пользователей группы
         }).catch((err) => reject(err));
 
-    console.info('1. Get members [finish]');
 });
 
 // Получаем подробную информацию по пользователям
 const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => {
-    console.info('3. Get members info [start]');
+    console.log('getMembersInfoFromVk' , membersArray);
     let ids = membersArray.join();
 
     const params = {
@@ -71,15 +70,15 @@ const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => 
             if (response) resolve(response.response);
         }).catch((err) => reject(err));
 
-    console.info('3. Get members info [finish]');
 });
 
 // Получаем все фотографии из альбома
 const getPhotosFromVk = (groupObj) => new Promise((resolve, reject) => {
-    const {userId, albumId} = groupObj;
+
+    const {user_id, album_id} = groupObj;
     const params = {
-        owner_id: userId,
-        album_id: albumId,
+        owner_id: user_id,
+        album_id,
         rev: 0,
         extended: 1,
         count: 1000,
@@ -89,7 +88,8 @@ const getPhotosFromVk = (groupObj) => new Promise((resolve, reject) => {
 
     call('photos.get', params)
         .then((response) => {
-            if (response) resolve(response.items);
+            if (response.response.items) resolve(response.response.items);
+            if (!response.response.items) reject('* 0 photos *')
         }).catch((err) => reject(err))
 });
 
@@ -122,6 +122,13 @@ const getCommentsFromVk = (photoObj) => new Promise((resolve, reject) => {
 
 // Получаем подробную информацию о группе
 const getGroupInfoFromVk = (group_id) => new Promise((resolve, reject) => {
+    let gr_id;
+    if (group_id.type !== 'string') {
+
+    } else {
+        gr_id = new RegExp(/\/.*/g, 'asdf')
+    }
+
     if (group_id < 0) {
         reject('Group not found')
     }
@@ -165,6 +172,35 @@ const getGroupSizeFromVk = (groupObj) => new Promise((resolve, reject) => {
         }).catch((err) => reject(err))
 });
 
+// Получаем все альбомы пользователя
+const getAlbumsFromVk = (obj) => new Promise((resolve, reject) => {
+    console.log('getAlbumsFromVk ', obj)
+    const {user_id} = obj;
+
+    const params = {
+        owner_id: user_id,
+        need_covers: 1,
+        photo_sizes: 1,
+        count: 1000,
+        v: 5.103
+    };
+
+    try {
+        call('photos.getAlbums', params)
+            .then((data) => {
+                if (!data || !data.response.count) {
+                    reject('(reject - empty)')
+                } else {
+                    resolve(data.response.items) // массив альбомов
+                }
+            }).catch((err) => {
+            reject(err)
+        })
+    } catch (e) {
+        reject(e)
+    }
+});
+
 export {
     call,
     login,
@@ -173,5 +209,6 @@ export {
     getGroupInfoFromVk,
     getGroupSizeFromVk,
     getPhotosFromVk,
-    getCommentsFromVk
+    getCommentsFromVk,
+    getAlbumsFromVk
 }

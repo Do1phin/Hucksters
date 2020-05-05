@@ -7,9 +7,9 @@ const LoadMoreBtn = ({limit, size, refreshFunction}) => {
 
     return (
         size >= limit
-            ? <div className='photos-load-more'>
+            ? <div className='load-more'>
                 <button
-                    className='load-more-btn'
+                    className='load-more__button'
                     onClick={refreshFunction}
                 >
                     Показать ещё

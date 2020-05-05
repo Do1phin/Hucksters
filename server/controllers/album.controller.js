@@ -5,12 +5,12 @@ const createAlbum = async (req, res) => {
     try {
         const {owner_id, id, thumb_id, title, sizes, created, updated, size} = req.body;
 
-        await Album.findOne({album_id: id}, (err, album) => {
+        const album = await Album.findOne({album_id: id}, (err) => {
             if (err) {
                 return res.status(400).json({error: getErrorMessage(err)})
             }
-            return res.status(400).json({message: 'Album is already exist', album})
-        }).catch((err) => console.error(err));
+        });
+        if (album) return res.status(400).json({message: 'Album is already exist', album});
 
         new Album({
             user_id: owner_id,
@@ -25,7 +25,7 @@ const createAlbum = async (req, res) => {
             if (err) {
                 return res.status(400).json({error: getErrorMessage(err)});
             }
-            return res.status(200).json({message: 'Album with id ' + id + ' was created', album})
+            return res.status(200).json({album})
         });
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
@@ -34,15 +34,7 @@ const createAlbum = async (req, res) => {
 
 const readAlbum = async (req, res) => {
 
-    const {title, skip, limit, sort} = req.body;
-    const sortParams = {"updated": sort};
-    let params;
-
-    if (!title) {
-        params = {}
-    } else {
-        params = {title: new RegExp(title, 'i')}
-    }
+    let {skip, limit, sortParams, params} = req.body;
 
     try {
 
@@ -54,7 +46,7 @@ const readAlbum = async (req, res) => {
                 if (err) {
                     return res.status(400).json({error: getErrorMessage(err)})
                 }
-                return res.status(200).json({albums})
+                return res.status(200).json(albums)
             })
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})

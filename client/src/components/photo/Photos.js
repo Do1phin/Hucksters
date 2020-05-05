@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {getPhotosFromDB} from './_api-photo';
 import PhotoCard from './PhotoCard';
+import PhotoPage from "./PhotoPage";
 import ErrorNotFound from '../errors/ErrorNotFound';
 import Spinner from "../spinner";
 import Search from "../search/Search";
@@ -10,7 +11,7 @@ import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
 
 import './photo.style.css';
 
-const Photos = () => {
+const Photos = (props) => {
     const [loading, setLoading] = useState(true);
     const [photos, setPhotos] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -31,23 +32,27 @@ const Photos = () => {
         };
 
         const loadPhotos = (variables) => {
+            setLoading(true);
 
             getPhotosFromDB(variables)
                 .then(data => {
-
+                    console.log('getPhotosFromDB ', data.photos);
                     if (data) {
                         setItemSize(data.photos.length);
 
                         if (more) {
+                            console.log('data.photos more ', data.photos)
                             setPhotos([...photos, ...data.photos]);
                             setAllItemSize(allItemSize + data.photos.length);
                         } else {
+                            console.log('data.photos no more ', data.photos)
                             setPhotos(data.photos);
                             setAllItemSize(data.photos.length);
                         }
-                        return setLoading(false);
+
                     }
                 });
+            return setLoading(false);
         };
 
         loadPhotos(variables);
@@ -60,12 +65,13 @@ const Photos = () => {
         setSkip(skipAfter);
     };
 
-    const photosView = () => {
+    const PhotosView = () => {
 
-        if (photos.length !== 0) {
+        if (photos.length) {
             return photos.map((item) => {
+                console.log('PhotosView ', item)
                 return (
-                    <div className='photo-card-wrapper' key={item.photoId}>
+                    <div className='photo-card__item' key={item.photo_id}>
                         <PhotoCard {...item} />
                     </div>
                 )
@@ -87,37 +93,57 @@ const Photos = () => {
     };
 
     const Content = () => {
-        return loading
-            ? <Spinner/>
-            : <div className='photos'>{photosView()}</div>
+        console.log('props.match.params ', props.match.params)
+        const {user_id, album_id, photo_id} = props.match.params;
+        if (user_id) {
+            return <PhotoPage photo_id={photo_id}/>
+        }
+
+        let element;
+        if (loading) {
+            element = <Spinner/>
+        } else if (!loading && !photos.length) {
+            element = <ErrorNotFound title={'photos'}/>
+        } else {
+            element = <div className='photo-list'>
+                <PhotosView/>
+            </div>
+        }
+
+        return (
+            <Fragment>
+                <Search
+                    setSkip={setSkip}
+                    setItemSize={setItemSize}
+                    setAllItemSize={setAllItemSize}
+                    setSearchText={setSearchText}
+                />
+                <PhotoSize/>
+                <LimitSelect
+                    limit={limit}
+                    refreshFunction={setLimit}
+                />
+                <SortSelect
+                    sort={sort}
+                    refreshFunction={setSort}
+                />
+
+                {element}
+
+                <LoadMoreBtn
+                    limit={limit}
+                    size={itemSize}
+                    refreshFunction={loadMore}
+                />
+            </Fragment>
+        );
     };
 
     return (
         <Fragment>
-            <Search
-                setSkip={setSkip}
-                setItemSize={setItemSize}
-                setAllItemSize={setAllItemSize}
-                setSearchText={setSearchText}
-            />
-            <PhotoSize/>
-            <LimitSelect
-                limit={limit}
-                refreshFunction={setLimit}
-            />
-            <SortSelect
-                sort={sort}
-                refreshFunction={setSort}
-            />
             <Content/>
-            <LoadMoreBtn
-                limit={limit}
-                size={itemSize}
-                refreshFunction={loadMore}
-            />
         </Fragment>
     )
-
 };
 
 export default Photos;

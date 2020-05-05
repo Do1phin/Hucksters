@@ -2,29 +2,32 @@ import Photo from '../models/photo.model.js';
 import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createPhoto = async (req, res) => {
+
     const {id, album_id, owner_id, sizes, text, date, likes, comments} = req.body;
 
     try {
-        Photo.findOne({album_id: id}, (err, photo) => {
+        const photo = await Photo.findOne({photo_id: id}, (err) => {
             if (err) {
                 return res.status(400).json({error: getErrorMessage(err)})
             }
+        });
 
-            new Photo({
-                user_id: owner_id,
-                album_id,
-                photo_id: id,
-                text,
-                date,
-                likes: likes.count,
-                comments: comments.count,
-                photoSizes: sizes,
-            });
+        if (photo) return res.status(400).json({message: 'Photo is already exist', photo});
+
+        new Photo({
+            user_id: owner_id,
+            album_id,
+            photo_id: id,
+            text,
+            date,
+            likes: likes.count,
+            comments: comments.count,
+            photo_sizes: sizes,
         }).save((err, photo) => {
             if (err) {
                 return res.status(400).json({error: getErrorMessage(err)})
             }
-            return res.status(200).json({photo})
+            return res.status(200).json(photo)
         })
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
@@ -41,7 +44,6 @@ const readPhoto = async (req, res) => {
     } else {
         params = {text: new RegExp(text, 'i')}
     }
-    console.log('prm ', params)
 
     try {
         await Photo.find(params)
@@ -52,7 +54,6 @@ const readPhoto = async (req, res) => {
                 if (err) return res.status(400).json({
                     error: getErrorMessage(err)
                 });
-                console.log('photos ', {photos})
                 return res.status(200).json({photos})
             });
     } catch (e) {
@@ -85,7 +86,8 @@ const updatePhoto = async (req, res) => {
     }
 };
 
-const deletePhoto = async (req, res) => {};
+const deletePhoto = async (req, res) => {
+};
 
 export default {
     createPhoto,

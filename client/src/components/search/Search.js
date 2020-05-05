@@ -8,6 +8,7 @@ const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
 
     const handleSubmit = (event) => {
         if (event.key === "Enter") {
+            setText(text);
             return updateSearchText(text);
         }
     };
@@ -17,7 +18,8 @@ const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
             setText(event.target.value);
             return updateSearchText();
         }
-        return setSearchText(event.target.value);
+        event.preventDefault();
+        return setText(event.target.value);
     };
 
     const updateSearchText = (newSearchText) => {
@@ -28,8 +30,8 @@ const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
     };
 
     return (
-        <div className='search-block-wrapper'>
-            <div className='search-block-str'>
+        <div className='search-block'>
+            <div className='search-block__input'>
                 <input
                     placeholder='Искать ...'
                     value={text}

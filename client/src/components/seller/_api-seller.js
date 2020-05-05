@@ -2,12 +2,14 @@
 const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
 
     console.log('getMembersFromDB ', params);
-    const {first_name, skip, limit} = params;
+    const {first_name, skip, limit, status, user_id} = params;
 
     let body = {
         first_name,
         skip,
         limit,
+        status,
+        user_id
     };
 
     try {
@@ -47,7 +49,7 @@ const getMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
 // Добавляем продавцов в базу
 const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
     const body = {source: membersArray};
-    console.info('2. Create members in DB [start]');
+    console.log('createMembersToDB ', membersArray);
     try {
         fetch('./sellers/create', {
             method: 'POST',
@@ -62,21 +64,20 @@ const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
     } catch (e) {
         reject(e);
     }
-    console.info('2. Create members in DB [finish]');
 });
 
 // Обновляем информацию в аккаунте (только общая инфа)
 const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject) => {
-    console.info('4. Update members info in DB [start]');
+    console.log('updateMembersInDB ', membersWithInfoArray);
+
     membersWithInfoArray.map((item) => {
         try {
-            const body = item;
             fetch('./sellers/update', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(body)
+                body: JSON.stringify(item)
             }).then((response) => {
                 resolve(response.json())
             }).catch((err) => reject(err));
@@ -85,7 +86,6 @@ const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject
         }
         return null
     });
-    console.info('4. Update members info in DB [finish]');
 });
 
 export {
