@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {getPhotosFromDb, updateAddPhotosCount} from '../photo/_api-photo';
+import {getPhotosFromDB, updateAddPhotosCount} from '../photo/_api-photo';
 import {addCommentsToDb, checkCommentsBeforeAdd} from '../comment/_api-comment';
 import {getCommentsFromVk} from "./_api-vk";
 
@@ -9,7 +9,7 @@ const GetComments = () => {
     try {
         let items, itemSize;
         await Promise.resolve()
-            .then(getPhotosFromDb)
+            .then(getPhotosFromDB)
             .then((response) => {
                     items = response.photos;
                     itemSize = response.itemSize;

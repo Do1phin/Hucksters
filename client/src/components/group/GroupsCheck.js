@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
 import {createMembersToDB, updateMembersInDB} from '../seller/_api-seller';
-import SellerCheckAlbumAccess from "../admin/SellerCheckAlbumAccess";
+import GetAlbums from "../admin/GetAlbums";
 
 const GroupsCheck = () => {
 
@@ -39,9 +39,7 @@ const GroupsCheck = () => {
 
     return (
         <Fragment>
-            <div className='group-check'>
-                <SellerCheckAlbumAccess/>
-            </div>
+            <GetAlbums/>
         </Fragment>
     )
 };

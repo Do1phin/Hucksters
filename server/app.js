@@ -39,6 +39,7 @@ async function startApp() {
         await mongoose.connect(mongoUri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            useFindAndModify: false,
             useCreateIndex: true
         }, () => {
             mongoose.set('debug', true);

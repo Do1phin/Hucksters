@@ -4,30 +4,41 @@ import getErrorMessage from "../helpers/dbErrorHandler.js";
 const createMember = async (req, res) => {
     let arr = [];
     const {source} = req.body;
+    console.log('req.body ', req.body)
 
-    source.map((item) => {
-        arr.push({_id: +item, user_id: +item})
-    });
+    // source.map((item) => {
+    //     arr.push({user_id: +item})
+    // });
 
     try {
-        const sellers = await Seller.insertMany(arr, { ordered: false }, (err) => {
-            if (err) {
-                return res.status(400).json({error: getErrorMessage(err)})
-            }
+        // const sellers = await Seller.insertMany(arr, { ordered: false, acknowledged: false }, (err) => {
+        //     if (err) {
+        //         return res.status(400).json({error: getErrorMessage(err)})
+        //     }
+        //
+        // });
+        source.map((item) => {
+            const sellers = Seller.insert(item, {ordered: false, acknowledged: true}, (err) => {
+                if (err) {
+                    return res.status(400).json({error: getErrorMessage(err)})
+                }
+                return res.status(200).json({sellers})
+            });
         });
-        return res.status(200).json({sellers})
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
     }
 };
 
 const readMember = async (req, res) => {
-    console.log('req match ', req.body)
-    const {first_name, skip, limit, status} = req.body;
+
+    const {first_name, skip, limit, status, user_id} = req.body;
     let params;
 
     if (status === 'all' || !status) {
         params = {}
+    } else if (status === 'id') {
+        params = {user_id: user_id}
     } else if (status === 'seller') {
         params = {seller: true}
     } else if (status === 'closed') {
@@ -36,6 +47,8 @@ const readMember = async (req, res) => {
         params = {deactivated: 'banned'}
     } else if (status === 'deleted') {
         params = {deactivated: 'deleted'}
+    } else if (status === 'rest') {
+        params = {} // доделать чтобы только оставшихся брало
     }
 
     if (first_name) {
@@ -50,7 +63,7 @@ const readMember = async (req, res) => {
                 if (err) {
                     return res.status(400).json({error: getErrorMessage(err)})
                 }
-                return res.status(200).json({sellers})
+                return res.status(200).json(sellers)
             });
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
@@ -58,9 +71,9 @@ const readMember = async (req, res) => {
 };
 
 const updateMember = async (req, res) => {
+    console.log('updateMember ', req.body)
     try {
-        const {id, is_closed, first_name, last_name, nickname, domain, sex, country, photo_200, deactivated, seller, info} = req.body;
-        console.log('info ', info)
+        const {id, user_id, is_closed, first_name, last_name, nickname, domain, sex, country, photo_200, deactivated, seller, info} = req.body;
 
         let doc;
         if (info === 'full') {
@@ -81,10 +94,15 @@ const updateMember = async (req, res) => {
                 seller: true,
                 _updated: Date.now()
             }
+        } else if (info === 'check_one') {
+            doc = {
+                seller: true,
+                _updated: Date.now()
+            }
         }
 
         await Seller.findOneAndUpdate(
-            {user_id: id},
+            {user_id: id || user_id},
             {
                 $set: doc
             },
@@ -102,7 +120,8 @@ const updateMember = async (req, res) => {
 };
 
 
-const deleteMember = async (req, res) => {};
+const deleteMember = async (req, res) => {
+};
 
 
 export default {

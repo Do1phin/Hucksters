@@ -32,23 +32,27 @@ const Photos = (props) => {
         };
 
         const loadPhotos = (variables) => {
+            setLoading(true);
 
             getPhotosFromDB(variables)
                 .then(data => {
-
+                    console.log('getPhotosFromDB ', data.photos);
                     if (data) {
                         setItemSize(data.photos.length);
 
                         if (more) {
+                            console.log('data.photos more ', data.photos)
                             setPhotos([...photos, ...data.photos]);
                             setAllItemSize(allItemSize + data.photos.length);
                         } else {
+                            console.log('data.photos no more ', data.photos)
                             setPhotos(data.photos);
                             setAllItemSize(data.photos.length);
                         }
-                        return setLoading(false);
+
                     }
                 });
+            return setLoading(false);
         };
 
         loadPhotos(variables);
@@ -63,10 +67,11 @@ const Photos = (props) => {
 
     const PhotosView = () => {
 
-        if (photos.length !== 0) {
+        if (photos.length) {
             return photos.map((item) => {
+                console.log('PhotosView ', item)
                 return (
-                    <div className='photo-card__item' key={item.photoId}>
+                    <div className='photo-card__item' key={item.photo_id}>
                         <PhotoCard {...item} />
                     </div>
                 )

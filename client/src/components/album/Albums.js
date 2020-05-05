@@ -37,14 +37,14 @@ const Albums = (props) => {
                 .then(data => {
 
                     if (data) {
-                        setItemSize(data.itemSize);
+                        setItemSize(data.length);
 
                         if (more) {
-                            setAllItemSize(allItemSize + data.itemSize);
-                            setAlbums([...albums, ...data.albums]);
+                            setAllItemSize(allItemSize + data.length);
+                            setAlbums([...albums, ...data]);
                         } else {
-                            setAllItemSize(data.itemSize);
-                            setAlbums(data.albums);
+                            setAllItemSize(data.length);
+                            setAlbums(data);
                         }
                         return setLoading(false);
                     }

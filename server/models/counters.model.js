@@ -7,7 +7,7 @@ const schema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    all_users: {
+    all_members: {
         type: Number
     },
     banned: {
@@ -19,9 +19,15 @@ const schema = new mongoose.Schema({
     deleted: {
         type: Number
     },
-    sellers: {
+    seller: {
+        type: Number
+    },
+    all_albums: {
+        type: Number
+    },
+    all_photos: {
         type: Number
     }
 });
 
-export default mongoose.model('InfoCounters', schema)
+export default mongoose.model('Counters', schema)

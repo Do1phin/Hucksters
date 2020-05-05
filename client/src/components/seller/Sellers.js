@@ -24,7 +24,7 @@ const Sellers = (props) => {
 
     useEffect(() => {
         const variables = {
-            page: 'list',
+            info: 'list',
             first_name: searchText,
             skip,
             limit,
@@ -38,14 +38,14 @@ const Sellers = (props) => {
                 .then(data => {
 
                     if (data) {
-                        setItemSize(data.sellers.length);
+                        setItemSize(data.length);
 
                         if (more) {
-                            setSellers([...sellers, ...data.sellers]);
-                            setAllItemSize(allItemSize + data.sellers.length);
+                            setSellers([...sellers, ...data]);
+                            setAllItemSize(allItemSize + data.length);
                         } else {
-                            setSellers(data.sellers);
-                            setAllItemSize(data.sellers.length);
+                            setSellers(data);
+                            setAllItemSize(data.length);
                         }
                         setLoading(false);
                     }

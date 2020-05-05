@@ -6,7 +6,7 @@ import photosRoutes from './photo.routes.js';
 import groupsRoutes from './group.routes.js';
 import commentsRoutes from './comment.routes.js';
 import searchRoutes from './search.routes.js';
-import infoCountersRoutes from './infoCounters.routes.js';
+import countersRoutes from './counters.routes.js';
 
 const router = express.Router();
 
@@ -17,6 +17,6 @@ router.use('/', photosRoutes);
 router.use('/', groupsRoutes);
 router.use('/', commentsRoutes);
 router.use('/', searchRoutes);
-router.use('/', infoCountersRoutes);
+router.use('/', countersRoutes);
 
 export default router;

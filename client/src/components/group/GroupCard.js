@@ -35,6 +35,8 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
 
 
     const getAllMembers = async (group_id) => {
+        console.log('getAllMembers ', group_id);
+
         setLoading(true);
         try {
             const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
@@ -48,9 +50,16 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
                     const obj = {group_id: group_id, count};
                     Promise.resolve(obj)
                         .then(getMembersGroupFromVk)
-                        .then(createMembersToDB)
-                        .then(getMembersInfoFromVk)
-                        .then(updateMembersInDB)
+                        .then((response) => {
+                            return response // массив пользователей группы
+                        }).then(createMembersToDB)
+                        .then((response) => {
+                            return response
+                        }).then(getMembersInfoFromVk)
+                        .then((response) => {
+                            response.map((item) => {item['info'] = 'full'});
+                            return response
+                        }).then(updateMembersInDB)
                         .catch((err) => console.error(err));
 
                     count++;

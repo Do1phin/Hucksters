@@ -1,36 +1,59 @@
 import React, {Fragment, useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import {getAlbumsFromDB} from "../album/_api-album";
+import {getMembersFromDB} from '../seller/_api-seller';
 import AlbumCardS from "../album/AlbumCardS";
+import SellerInfo from "./SellerInfo";
 import Spinner from "../spinner";
+
+import './SellerPage.style.css';
 
 const SellerPage = ({user_id}) => {
     const [loading, setLoading] = useState(true);
     const [albums, setAlbums] = useState([]);
-
+    const [photos, setPhotos] = useState([]);
+    const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
+
+        const loadInfo = () => {
+            const variables = {
+                user_id: user_id,
+                status: 'id',
+                first_name: '',
+            };
+            getMembersFromDB(variables)
+                .then((response) => {
+                    return setUserInfo(...response)
+                })
+        };
 
         const loadAlbums = () => {
             const variables = {
                 user_id: user_id,
-                page: 'seller',
+                info: 'seller',
                 first_name: '',
             };
-
             getAlbumsFromDB(variables)
-                .then(response => {
-                    return setAlbums(response.albums)
+                .then((response) => {
+                    return setAlbums(response)
                 });
             setLoading(false);
         };
 
-        loadAlbums()
+        const loadPhotos = () => {
+            const variables = {
+
+            };
+
+        };
+
+        loadInfo();
+        loadAlbums();
+        loadPhotos();
     }, [user_id]);
 
-
     const albumsView = () => {
-
         if (albums.length) {
             return albums.map((item) => {
                 return (
@@ -46,26 +69,41 @@ const SellerPage = ({user_id}) => {
         }
     };
 
-    const SellerPage = () => {
-        return (
-            <div className='seller-page'>
-                <div className='album-list'>
-                    {albumsView()}
-                </div>
-            </div>
-        )
-    };
+
+
+    // const SellerPage = () => {
+    //     return (
+    //         <div className='seller-page'>
+    //             <SellerInfo {...userInfo}/>
+    //             <div className='album-list'>
+    //                 {albumsView()}
+    //             </div>
+    //             <div className='photo-list'>
+    //                 фотографии выбранного альбома
+    //             </div>
+    //         </div>
+    //     )
+    // };
 
     const Content = () => {
         return loading
             ? <Spinner/>
-            : <SellerPage/>
+            : (
+                <div className='seller-page'>
+                    <SellerInfo {...userInfo}/>
+                    <div className='album-list'>
+                        {albumsView()}
+                    </div>
+                    <div className='photo-list'>
+                        фотографии выбранного альбома
+                    </div>
+                </div>
+            )
     };
 
 
     return (
         <Fragment>
-            страница продавца {user_id}
             <Content/>
         </Fragment>
     )

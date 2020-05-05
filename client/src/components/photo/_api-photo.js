@@ -7,6 +7,10 @@ const getPhotosFromDB = (params) => {
         sort
     };
 
+    // const body = {
+    //     text: '', skip: 0, limit: 0, sort: 1, sortParams: {'date': 1}
+    // };
+
     try {
         return fetch('/sellers/albums/photos', {
             method: 'POST',
@@ -22,31 +26,12 @@ const getPhotosFromDB = (params) => {
     }
 };
 
-const getPhotosFromDb = () => new Promise((resolve, reject) => {
-    const body = {
-        text: '', skip: 0, limit: 0, sort: 1, sortParams: {'date': 1}
-    };
-    try {
-        return fetch('/sellers/albums/photos_for_check', {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify(body)
-        }).then((response) => {
-            resolve(response.json())
-        }).catch((err) => reject(err))
-    } catch (e) {
-
-    }
-});
-
 const addPhotosToDb = (photoArray) => new Promise((resolve, reject) => {
-    console.log('photoObj ', photoArray)
+
     photoArray.map((item) => {
 
             try {
-                fetch('/photos/add', {
+                fetch('/photos/create', {
                     method: 'POST',
                     headers: {
                         "Content-Type": 'application/json'
@@ -69,8 +54,7 @@ const updateAddPhotosCount = (props) => new Promise((resolve, reject) => {
 
 
 export {
-    getPhotosFromDB,
     addPhotosToDb,
-    getPhotosFromDb,
+    getPhotosFromDB,
     updateAddPhotosCount,
 }
