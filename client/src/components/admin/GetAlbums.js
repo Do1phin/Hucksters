@@ -1,15 +1,13 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {getAlbumsFromVk} from "./_api-vk";
 import {createCountersToDB, readCountersFromDB} from './_api-counters';
-import {getMembersFromDB, updateMembersInDB} from "../seller/_api-seller";
+import {getMembersFromDB, updateMembersInDB} from "../member/_api-member";
 import {checkAlbumsNames, createAlbumsToDB} from "../album/_api-album";
 
 import './GetAlbums.style.css';
 
-let source, tempCount;
 
-const GetAlbums = (source, tempCount) => {
-    const [members, setMembers] = useState(null);
+const GetAlbums = () => {
     const [checkStatus, setCheckStatus] = useState('');
     const [checkCount, setCheckCount] = useState(0);
     const [counters, setCounters] = useState({
@@ -20,34 +18,34 @@ const GetAlbums = (source, tempCount) => {
         seller: 0,
     });
 
-
+    useEffect(() => {
+        readCounters()
+    }, []);
 
     // Проверить на закрытие альбомов
     const checkAccessToAlbums = async () => {
 
         try {
-
+            let source;
             await Promise.resolve([])
                 .then(() => {
                     setCheckStatus('Получение счётчиков из базы');
                     return null
                 }).then(readCounters)
                 .then((response) => {
-                    console.log('response ', response);
                     setCheckStatus('Получение пользователей из базы');
                     return []
                 }).then(getMembersFromDB)
-                .then((result) => {
-                    source = result.sellers; // массив продавцов
+                .then((response) => {
+                    source = response; // массив продавцов
+                    return source
                 });
-
-            console.log('source ', source, 'counters ', tempCount);
 
             async function action(i) {
                 setCheckCount(i);
-                console.log('продолжение');
+
                 let obj = {
-                    user_id: source[i].user_id,
+                    owner_id: source[i].owner_id,
                     info: 'check_one'
                 };
 
@@ -64,13 +62,13 @@ const GetAlbums = (source, tempCount) => {
                         setCheckStatus('Добавление альбомов в базу');
                         return data // массив отобранных альбомов
                     }).then(createAlbumsToDB)
-                    .then((data) => {
+                    .then(() => {
                         let membersArray = [];
                         membersArray.push(obj);
                         setCheckStatus('Изменение информации о пользователе');
                         return membersArray // массив где id и тело пользователя
                     }).then(updateMembersInDB)
-                    .catch((err) => console.error(`Member with id ${source[i].user_id} does not checked`, err));
+                    .catch((err) => console.error(`Member with id ${source[i].owner_id} does not checked`, err));
             }
 
             for (let i = 1; i <= counters.all_members; i++) {
@@ -81,14 +79,25 @@ const GetAlbums = (source, tempCount) => {
 
         }
     };
-    
+
     const createCounters = () => {
         createCountersToDB()
             .then((response) => {
                 return response.json()
             }).then((data) => {
-            const {all_members, banned, deleted, closed, seller} = data;
-            tempCount = {all_members, banned, deleted, closed, seller};
+            const {all_members, banned, deleted, closed, seller, all_albums, all_photos, photo_with_text,
+                photo_with_addit_photo} = data;
+            let tempCount = {
+                all_members,
+                banned,
+                deleted,
+                closed,
+                seller,
+                all_albums,
+                all_photos,
+                photo_with_text,
+                photo_with_addit_photo
+            };
             setCounters(tempCount);
         }).catch((err) => console.error(err))
     };
@@ -96,13 +105,11 @@ const GetAlbums = (source, tempCount) => {
     const readCounters = async () => {
         await readCountersFromDB()
             .then((response) => {
-                console.log('r ', response)
                 return response
             }).then((data) => {
-            const {all_members, banned, deleted, closed, seller} = data;
-            setCounters({all_members, banned, deleted, closed, seller});
-        }).catch((err) => console.error(err))
-        console.log('readCounters ', counters)
+                const {all_members, banned, deleted, closed, seller} = data;
+                setCounters({all_members, banned, deleted, closed, seller});
+            }).catch((err) => console.error(err));
     };
 
 
@@ -117,8 +124,9 @@ const GetAlbums = (source, tempCount) => {
                 <button className='album-loader__btn-refresh'
                         onClick={readCounters}
                 >
-                    Обновить счётчики
+                    Получить счётчики
                 </button>
+
             </div>
             <div className='album-loader'>
                 <div className='album-loader__counters'>
@@ -130,7 +138,8 @@ const GetAlbums = (source, tempCount) => {
                         <li>Удалённые - {counters.deleted}</li>
 
                         <p>Проверяем {checkCount} из {counters.all_members - counters.seller - counters.banned -
-                        counters.deleted - counters.closed}</p>
+                            counters.deleted - counters.closed}
+                        </p>
                         <span>Статус: {checkStatus}</span>
                     </ul>
 

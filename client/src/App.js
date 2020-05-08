@@ -4,8 +4,8 @@ import NotFound from './components/errors';
 import ErrorBoundary from "./components/errors/ErrorBoundary";
 import AuthPage from './components/pages/AuthPage';
 import MainPage from "./components/pages/MainPage";
-import Sellers from "./components/seller/Sellers";
-import SellerPage from "./components/seller/SellerPage";
+import Members from "./components/member/Members";
+import MemberPage from "./components/member/MemberPage";
 import Albums from "./components/album/Albums";
 import Photos from "./components/photo/Photos";
 import Search from "./components/search/Search";
@@ -25,9 +25,10 @@ function App() {
 
                 <Switch>
                     <Route exact path='/' component={MainPage}/>
-                    <Route exact path='/sellers/:user_id?/albums/:album_id?/photos/:photo_id?' component={Photos}/>
-                    <Route exact path='/sellers/:user_id?/albums/:album_id?' component={Albums}/>
-                    <Route exact path='/sellers/:user_id?' component={Sellers}/>
+                    <Route exact path='/members/:owner_id?/albums/:album_id?/photos/:photo_id?' component={Photos}/>
+                    <Route exact path='/members/:owner_id?/albums/:album_id?' component={Albums}/>
+                    <Route exact path='/members/:owner_id?' component={Members}/>
+                    <Route exact path='/members/albums/' component={Members}/>
                     <Route path='/panel' component={AdminPanel}/>
                     <Route path='/signup' action="signup" component={AuthPage}/>
                     <Route path='/signin' action="signin" component={AuthPage}/>

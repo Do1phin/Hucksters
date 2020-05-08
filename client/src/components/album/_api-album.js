@@ -17,17 +17,18 @@ const createAlbumsToDB = (albumsArray) => new Promise((resolve, reject) => {
         } catch (e) {
             reject(e)
         }
+        return null
     })
 });
 
 // Получаем альбомы пользователей из базы
 const getAlbumsFromDB = (props) => {
 
-    let {title, skip, limit, sort, info, user_id} = props;
+    let {title, skip, limit, sort, info, owner_id} = props;
     let params;
 
     let body = {
-        user_id,
+        owner_id,
         title,
         skip,
         limit,
@@ -37,19 +38,19 @@ const getAlbumsFromDB = (props) => {
     };
 
     if (info === 'list') {
-        params = !title ? {} : {title: new RegExp(title, 'i')}
+        params = title ? {title: new RegExp(title, 'i')}: {} // регулярка выполняется, а это не надо
     } else if (info === 'seller') {
-        params = {user_id: user_id}
+        params = {owner_id: owner_id}
     } else if (info === 'check_one') {
-        params = {user_id: user_id}
+        params = {owner_id: owner_id}
     } else if (info === 'check_all') {
         params = {}
     }
-
+    // console.log('params ', params)
     body['params'] = params;
 
     try {
-        return fetch('/sellers/albums', {
+        return fetch('/members/albums', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

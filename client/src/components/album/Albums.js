@@ -25,13 +25,15 @@ const Albums = (props) => {
     useEffect(() => {
 
         const variables = {
+            info: 'list',
             title: searchText,
             skip,
             limit,
-            sort
+            sort,
         };
 
         const loadAlbums = (variables) => {
+            console.log('vari ', variables)
 
             getAlbumsFromDB(variables)
                 .then(data => {
@@ -88,10 +90,10 @@ const Albums = (props) => {
     };
 
     const Content = () => {
-        const {user_id, album_id} = props.match.params;
+        const {owner_id, album_id} = props.match.params;
         let element;
         if (album_id) {
-            return <AlbumPage user_id={+user_id} album_id={+album_id}/>
+            return <AlbumPage owner_id={+owner_id} album_id={+album_id}/>
         }
 
         if (!loading && !albums.length) {

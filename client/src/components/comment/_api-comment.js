@@ -1,5 +1,6 @@
 const checkCommentsBeforeAdd = (commentsArray) => new Promise((resolve, reject) => {
-    const photoId = +commentsArray.slice(-1);
+    console.log('checkCommentsBeforeAdd ', commentsArray)
+    const photo_id = +commentsArray.slice(-1);
     let arr = [], arr2 = [];
     const keys = ['продан', 'больше нет', 'sold', 'цена'];
 
@@ -10,16 +11,16 @@ const checkCommentsBeforeAdd = (commentsArray) => new Promise((resolve, reject) 
                 arr.push(item);
             } else {
                 if (!arr2.includes(item) && item.attachments.length > 0) {
-                    item['photoId'] = photoId;
+                    item['photo_id'] = photo_id;
                     arr2.push(item);
                 }
             }
         });
         if (!arr.length) {
+            console.log('arr 2 ', arr2)
             resolve(arr2);
         }
     });
-    resolve('ok!')
 });
 
 const addCommentsToDb = (commentArray) => new Promise((resolve, reject) => {

@@ -69,7 +69,6 @@ const Photos = (props) => {
 
         if (photos.length) {
             return photos.map((item) => {
-                console.log('PhotosView ', item)
                 return (
                     <div className='photo-card__item' key={item.photo_id}>
                         <PhotoCard {...item} />
@@ -94,8 +93,8 @@ const Photos = (props) => {
 
     const Content = () => {
         console.log('props.match.params ', props.match.params)
-        const {user_id, album_id, photo_id} = props.match.params;
-        if (user_id) {
+        const {owner_id, album_id, photo_id} = props.match.params;
+        if (owner_id) {
             return <PhotoPage photo_id={photo_id}/>
         }
 

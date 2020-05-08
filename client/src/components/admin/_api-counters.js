@@ -1,10 +1,10 @@
-// const getCountersFromDB = (user_id) => new Promise((resolve, reject) => {
+// const getCountersFromDB = (owner_id) => new Promise((resolve, reject) => {
 //
 //     console.info('getSizesMembers')
 //     const body = {limit: 1000, skip: 0, first_name: ''};
 //
 //     try {
-//         fetch('./sellers', {
+//         fetch('./members', {
 //             method: 'POST',
 //             headers: {
 //                 "Content-Type": "application/json",
@@ -45,6 +45,7 @@ const readCountersFromDB = () => new Promise((resolve, reject) =>{
     try {
         fetch('/vk/info')
             .then((response) => {
+                const data = response
                 resolve(response.json())
             }).then(data => console.info(data))
             .catch((err) => {

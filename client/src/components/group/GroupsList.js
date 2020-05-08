@@ -23,7 +23,11 @@ const GroupsList = () => {
         };
 
         loadGroups(groups)
-    }, [groupsCount]);
+
+        return () => {
+            console.log('exit')
+        }
+    }, []);
 
 
 
@@ -37,7 +41,7 @@ const GroupsList = () => {
 
 
     const Content = () => {
-        return loading ? <Spinner/> : (!groups.length && !loading? <span>Вы не добавили ни одной группы</span> : groupsView)
+        return loading ? <Spinner/> : (!groups.length ? <span>Вы не добавили ни одной группы</span> : groupsView)
     };
 
     return (

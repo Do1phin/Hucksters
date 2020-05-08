@@ -6,7 +6,7 @@ const router = express.Router();
 router.route('/albums/create')
     .post(albumCtrl.createAlbum);
 
-router.route('/sellers/albums')
+router.route('/members/albums')
     .post(albumCtrl.readAlbum);
 
 // router.route('/albums/update')

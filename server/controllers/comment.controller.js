@@ -21,7 +21,7 @@ const createComment = async (req, res) => {
         });
 
         new Comment({
-            user_id: from_id,
+            owner_id: from_id,
             album_id,
             photo_id,
             comment_id: id,

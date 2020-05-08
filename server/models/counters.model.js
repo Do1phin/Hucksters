@@ -27,6 +27,12 @@ const schema = new mongoose.Schema({
     },
     all_photos: {
         type: Number
+    },
+    photo_with_text: {
+        type: Number
+    },
+    photo_with_addit_photo: {
+        type: Number
     }
 });
 

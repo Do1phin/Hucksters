@@ -9,7 +9,7 @@ const AlbumPage = ({album_id}) => {
 };
 
 AlbumPage.propTypes = {
-    user_id: PropTypes.number.isRequired,
+    owner_id: PropTypes.number.isRequired,
     album_id: PropTypes.number.isRequired,
 };
 export default AlbumPage;

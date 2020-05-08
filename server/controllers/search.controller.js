@@ -7,7 +7,7 @@ const search = async (req, res) => {
     try {
         const searchStr = req.query.q;
         console.log('search.controller.js - > searchStr ', searchStr);
-        if (!searchStr || searchStr === undefined) {
+        if (!searchStr) {
             return res.status(400).json({message: 'Search string is empty'})
         }
 
@@ -16,7 +16,7 @@ const search = async (req, res) => {
         // } else if (location === 'albums') {
         //     data = await Album.find({title: new RegExp(searchStr, 'i')});
         // } else if (location === 'sellers') {
-        //     data = await Seller.find({lastName: new RegExp(searchStr, 'i')});
+        //     data = await Member.find({lastName: new RegExp(searchStr, 'i')});
         // }
 
         await Photo.find({text: new RegExp(searchStr, 'i')}, (err, photo) => {

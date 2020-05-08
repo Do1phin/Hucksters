@@ -4,11 +4,12 @@ import {delGroupFromDB, updateGroupInfoInDB} from './_api-group.js';
 import PropTypes from 'prop-types';
 import SpinnerItem from "../spinner-item";
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
-import {createMembersToDB, updateMembersInDB} from "../seller/_api-seller";
+import {createMembersToDB, updateMembersInDB} from "../member/_api-member";
 
 const GroupCard = ({item, groupsCount, refreshFunction}) => {
     const [loading, setLoading] = useState(false);
     const [actionStatus, setActionStatus] = useState('');
+    const [checkCount] = useState(0);
 
     const {photo, name, group_id, size} = item;
     // console.log('item ', props)
@@ -35,9 +36,8 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
 
 
     const getAllMembers = async (group_id) => {
-        console.log('getAllMembers ', group_id);
-
         setLoading(true);
+
         try {
             const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
             const membersSize = await members.response.count;
@@ -48,22 +48,25 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
                 if (count < Math.ceil(membersSize / 1000)) {
 
                     const obj = {group_id: group_id, count};
+
                     Promise.resolve(obj)
                         .then(getMembersGroupFromVk)
                         .then((response) => {
                             return response // массив пользователей группы
                         }).then(createMembersToDB)
                         .then((response) => {
-                            return response
+                            return response // массив пользователей группы
                         }).then(getMembersInfoFromVk)
                         .then((response) => {
-                            response.map((item) => {item['info'] = 'full'});
-                            return response
+                            response.map((item) => {
+                                item['info'] = 'full'
+                            });
+                            return response // массив пользователей с информацией
                         }).then(updateMembersInDB)
                         .catch((err) => console.error(err));
 
                     count++;
-                    setTimeout(f, 150000);
+                    setTimeout(f, 60000);
                 } else {
                     console.log('All members added');
                 }
@@ -98,6 +101,10 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
                     <div className='group-list__item-info-size'>
                         {size}
                     </div>
+                </div>
+                <div className='group-list__status'>
+                    <span>Проверяем {checkCount} из {size}</span>
+                    <span>Статус: {actionStatus}</span>
                 </div>
 
                 <div className='group-list__item-actions'>

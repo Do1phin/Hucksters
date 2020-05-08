@@ -6,7 +6,7 @@ const router = express.Router();
 router.route('/photos/create')
     .post(photoCtrl.createPhoto);
 
-router.route('/sellers/albums/photos')
+router.route('/members/albums/photos')
     .post(photoCtrl.readPhoto);
 
 // router.route('/photos/update')

@@ -1,10 +1,10 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-const AlbumCardS = ({user_id, album_id, photo, size, title}) => {
+const AlbumCardS = ({owner_id, album_id, photo, size, title}) => {
 
     return(
-        <NavLink to={'/sellers/' + user_id + '/albums/' + album_id}>
+        <NavLink to={'/members/' + owner_id + '/albums/' + album_id}>
             <div className='album-list__item-header'>
                 <div className='album-list__item-header-title'>
                     <span>{title}</span>

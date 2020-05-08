@@ -6,7 +6,7 @@ import {getGroupInfoFromVk, getGroupSizeFromVk} from '../admin/_api-vk';
 // import './group.style.css';
 
 const GroupsAdd = () => {
-    const [groupId, setGroupId] = useState('');
+    const [group_id, setGroupId] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleChange = (event) => {
@@ -17,7 +17,7 @@ const GroupsAdd = () => {
     const handleGroupAddBtn = async (event) => {
         event.preventDefault();
         setLoading(true);
-        Promise.resolve(groupId)
+        Promise.resolve(group_id)
             .then(getGroupInfoFromVk)
             .then(getGroupSizeFromVk)
             .then(createGroupInDB);
@@ -25,8 +25,6 @@ const GroupsAdd = () => {
         setGroupId('');
         setLoading(false);
     };
-
-    // const isDisabled = props.groups.some((item) => item.groupId === +groupId);
 
     return (
         loading
@@ -44,7 +42,7 @@ const GroupsAdd = () => {
                         aria-label='Значение группы'
                         placeholder='https://vk.com/group1'
                         disabled={loading}
-                        value={groupId}
+                        value={group_id}
                         onChange={(event) => handleChange(event)}
                     />
                     <button
