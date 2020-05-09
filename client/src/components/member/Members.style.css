@@ -38,6 +38,13 @@ a {
     border-radius: 100px;
 }
 
+/*.member-card__body_img {*/
+/*    width: 90%;*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: contain;*/
+/*    background-image: url('./assets/camera_loading_200.png');*/
+/*}*/
+
 .member-size span {
     color: #FFFFFF;
 }

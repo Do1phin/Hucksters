@@ -29,11 +29,15 @@ const schema = new mongoose.Schema({
     },
     likes: {
         type: Number,
-        default: null
+        default: 0
+    },
+    favorites: {
+        type: Number,
+        default: 0
     },
     comments: {
         type: Number,
-        default: null
+        default: 0
     },
     date: {
         type: Number,

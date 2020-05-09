@@ -7,6 +7,7 @@ import groupsRoutes from './group.routes.js';
 import commentsRoutes from './comment.routes.js';
 import searchRoutes from './search.routes.js';
 import countersRoutes from './counters.routes.js';
+import favoriteRoutes from './favorite.routes.js';
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.use('/', groupsRoutes);
 router.use('/', commentsRoutes);
 router.use('/', searchRoutes);
 router.use('/', countersRoutes);
+router.use('/', favoriteRoutes);
 
 export default router;

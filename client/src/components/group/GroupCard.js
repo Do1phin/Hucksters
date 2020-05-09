@@ -66,7 +66,7 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
                         .catch((err) => console.error(err));
 
                     count++;
-                    setTimeout(f, 60000);
+                    setTimeout(f, 150000);
                 } else {
                     console.log('All members added');
                 }

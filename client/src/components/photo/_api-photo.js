@@ -6,10 +6,6 @@ const getPhotosFromDB = (params) => {
         limit: limit || 10000,
         sort
     };
-    console.log('body ', body)
-    // const body = {
-    //     text: '', skip: 0, limit: 0, sort: 1, sortParams: {'date': 1}
-    // };
 
     try {
         return fetch('/members/albums/photos', {

@@ -45,7 +45,7 @@ const readCountersFromDB = () => new Promise((resolve, reject) =>{
     try {
         fetch('/vk/info')
             .then((response) => {
-                const data = response
+                // const data = response
                 resolve(response.json())
             }).then(data => console.info(data))
             .catch((err) => {

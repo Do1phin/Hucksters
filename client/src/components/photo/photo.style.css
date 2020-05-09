@@ -19,7 +19,7 @@ a {
 .photo-card__item {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 200px 50px;
+    grid-template-rows: 50px 250px 50px;
     background-color: #404258;
     align-content: center;
 }

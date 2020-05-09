@@ -36,7 +36,7 @@ const createComment = async (req, res) => {
         });
 
         await Photo.findOneAndUpdate(
-            {photoId: photo_id},
+            {photo_id: photo_id},
             {
                 $set: {
                     additional_photos: 1,

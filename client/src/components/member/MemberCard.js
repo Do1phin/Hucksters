@@ -18,7 +18,7 @@ const MemberCard = ({owner_id, first_name, last_name, domain, photo}) => {
                 <div className="member-card__body">
                     <div className='member-card__body_img'>
                         <img
-                            src={photo || "https://vk.com/images/camera_200.png"}
+                            src={photo}
                             alt={first_name + ' ' + last_name + ' [' + domain + ']'}/>
                     </div>
                 </div>
