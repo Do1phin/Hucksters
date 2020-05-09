@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-    user_id: {
+    owner_id: {
         type: Number,
         default: null
     },
@@ -36,10 +36,16 @@ const schema = new mongoose.Schema({
         default: null
     },
     _updated: {
-        type: Date,
-        default: Date.now()
+        date: {
+            type: Date,
+            default: Date.now()
+        },
+        info: {
+            type: String,
+            default: null
+        }
     },
-    owner: {type: mongoose.Schema.ObjectId, ref: 'Seller'}
+    owner: {type: mongoose.Schema.ObjectId, ref: 'Member'}
 });
 
 export default mongoose.model('Album', schema);

@@ -2,25 +2,27 @@
 const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
 
     console.log('getMembersFromDB ', params);
-    const {first_name, skip, limit, status, user_id} = params;
+    const {first_name, skip, limit, status, owner_id} = params;
 
     let body = {
         first_name,
         skip,
         limit,
         status,
-        user_id
+        owner_id
     };
 
     try {
-        return fetch('/sellers', {
+        return fetch('/members', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body)
         }).then((response) => {
-            resolve(response.json())
+            const data = response.json();
+            console.log('res , ', data);
+            resolve(data)
         }).catch((err) => reject(err));
     } catch (e) {
         reject(e)
@@ -48,19 +50,23 @@ const getMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
 
 // Добавляем продавцов в базу
 const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
-    const body = {source: membersArray};
     console.log('createMembersToDB ', membersArray);
-    try {
-        fetch('./sellers/create', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body)
-        }).then((response) => {
-            resolve(membersArray);
-        }).catch((err) => reject(err))
+    const body = {source: membersArray};
 
+    try {
+            fetch('/members/create', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body)
+            }).then((response) => {
+                const data = response.json();
+                console.log('respon ', data)
+                resolve(membersArray);
+            }).catch((err) => {
+                reject(err)
+            })
     } catch (e) {
         reject(e);
     }
@@ -72,7 +78,7 @@ const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject
 
     membersWithInfoArray.map((item) => {
         try {
-            fetch('./sellers/update', {
+            fetch('/members/update', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

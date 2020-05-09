@@ -23,7 +23,7 @@ const Photos = (props) => {
     const [more, setMore] = useState(false);
 
     useEffect(() => {
-
+        console.log('useEffect')
         let variables = {
             text: searchText,
             skip,
@@ -32,20 +32,19 @@ const Photos = (props) => {
         };
 
         const loadPhotos = (variables) => {
+            console.log('loadPhotos')
             setLoading(true);
 
             getPhotosFromDB(variables)
                 .then(data => {
-                    console.log('getPhotosFromDB ', data.photos);
+                    console.log('getPhotosFromDB')
                     if (data) {
                         setItemSize(data.photos.length);
 
                         if (more) {
-                            console.log('data.photos more ', data.photos)
                             setPhotos([...photos, ...data.photos]);
                             setAllItemSize(allItemSize + data.photos.length);
                         } else {
-                            console.log('data.photos no more ', data.photos)
                             setPhotos(data.photos);
                             setAllItemSize(data.photos.length);
                         }
@@ -60,16 +59,17 @@ const Photos = (props) => {
     }, [searchText, limit, skip, sort]);
 
     const loadMore = () => {
+        console.log('loadMore')
         let skipAfter = skip + limit;
         setMore(true);
         setSkip(skipAfter);
     };
 
     const PhotosView = () => {
+        console.log('PhotosView')
 
         if (photos.length) {
             return photos.map((item) => {
-                console.log('PhotosView ', item)
                 return (
                     <div className='photo-card__item' key={item.photo_id}>
                         <PhotoCard {...item} />
@@ -82,6 +82,7 @@ const Photos = (props) => {
     };
 
     const PhotoSize = () => {
+        console.log('PhotoSize')
         return (
             <div className='photos-size'>
                 {allItemSize
@@ -93,9 +94,9 @@ const Photos = (props) => {
     };
 
     const Content = () => {
-        console.log('props.match.params ', props.match.params)
-        const {user_id, album_id, photo_id} = props.match.params;
-        if (user_id) {
+        console.log('Photo Content ', props.match.params)
+        const {owner_id, album_id, photo_id} = props.match.params;
+        if (owner_id) {
             return <PhotoPage photo_id={photo_id}/>
         }
 

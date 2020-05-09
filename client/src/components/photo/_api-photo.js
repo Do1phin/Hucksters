@@ -3,16 +3,12 @@ const getPhotosFromDB = (params) => {
     let body = {
         text,
         skip,
-        limit,
+        limit: limit || 10000,
         sort
     };
 
-    // const body = {
-    //     text: '', skip: 0, limit: 0, sort: 1, sortParams: {'date': 1}
-    // };
-
     try {
-        return fetch('/sellers/albums/photos', {
+        return fetch('/members/albums/photos', {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json'

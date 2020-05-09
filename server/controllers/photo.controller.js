@@ -15,7 +15,7 @@ const createPhoto = async (req, res) => {
         if (photo) return res.status(400).json({message: 'Photo is already exist', photo});
 
         new Photo({
-            user_id: owner_id,
+            owner_id,
             album_id,
             photo_id: id,
             text,
@@ -45,6 +45,7 @@ const readPhoto = async (req, res) => {
         params = {text: new RegExp(text, 'i')}
     }
 
+    console.log('paea ', params)
     try {
         await Photo.find(params)
             .sort(sortParams)
@@ -67,10 +68,10 @@ const updatePhoto = async (req, res) => {
     const {photo_id, additionalPhotosCount} = req.body;
     try {
         Photo.findOneAndUpdate(
-            {photoId: id},
+            {photo_id: id},
             {
                 $set: {
-                    additionalPhotos: 77
+                    additional_photos: 77
                 }
             },
             {returnOriginal: false},

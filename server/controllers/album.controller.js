@@ -13,7 +13,7 @@ const createAlbum = async (req, res) => {
         if (album) return res.status(400).json({message: 'Album is already exist', album});
 
         new Album({
-            user_id: owner_id,
+            owner_id,
             album_id: id,
             thumb_id,
             title,
@@ -55,13 +55,13 @@ const readAlbum = async (req, res) => {
 
 const updateAlbum = async (req, res) => {
     console.log('updateAlbums ', req.body);
-    const {id, user_id, thumb_id, title, size, photo, updated} = req.body;
+    const {id, owner_id, thumb_id, title, size, photo, updated} = req.body;
 
     try {
         await Album.findOneAndUpdate({album_id: id},
             {
                 $set: {
-                    user_id,
+                    owner_id,
                     album_id: id,
                     thumb_id,
                     title,

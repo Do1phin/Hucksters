@@ -1,4 +1,4 @@
-.seller-page {
+.member-page {
     display: grid;
     grid-template-columns: 300px 250px 1fr;
     row-gap: 10px;

@@ -1,16 +1,16 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {getMembersFromDB} from './_api-seller';
-import SellerCard from "./SellerCard";
+import {getMembersFromDB} from './_api-member';
+import MemberCard from "./MemberCard";
 import ErrorNotFound from "../errors/ErrorNotFound";
-import './seller.style.css';
+import './Members.style.css';
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
-import SellerPage from "./SellerPage";
+import MemberPage from "./MemberPage";
 import StatusSelect from "../UI/StatusSelect/StatusSelect";
 import Spinner from "../spinner";
 
-const Sellers = (props) => {
+const Members = (props) => {
     const [loading, setLoading] = useState(true);
     const [sellers, setSellers] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -31,7 +31,7 @@ const Sellers = (props) => {
             status
         };
 
-        const loadSellers = (variables) => {
+        const loadMembers = (variables) => {
             setLoading(true);
 
             getMembersFromDB(variables)
@@ -52,7 +52,7 @@ const Sellers = (props) => {
                 })
         };
 
-        loadSellers(variables);
+        loadMembers(variables);
         setMore(false);
     }, [searchText, limit, skip, status]);
 
@@ -62,13 +62,13 @@ const Sellers = (props) => {
         setSkip(skipAfter);
     };
 
-    const SellersView = () => {
+    const MembersView = () => {
 
         if (sellers.length) {
             return sellers.map((item) => {
                 return (
-                    <div className='seller-card__item' key={item.user_id}>
-                        <SellerCard {...item}/>
+                    <div className='member-card__item' key={item.owner_id}>
+                        <MemberCard {...item}/>
                     </div>
                 );
             });
@@ -77,9 +77,9 @@ const Sellers = (props) => {
         }
     };
 
-    const SellersSize = () => {
+    const MembersSize = () => {
         return (
-            <div className='seller-size'>
+            <div className='member-size'>
                 {
                     allItemSize
                         ? <span>Результатов - {allItemSize}</span>
@@ -91,10 +91,10 @@ const Sellers = (props) => {
     };
 
     const Content = () => {
-        const user_id = +props.match.params.user_id;
+        const owner_id = +props.match.params.owner_id;
         let element;
-        if (user_id) {
-            return <SellerPage user_id={user_id}/>
+        if (owner_id) {
+            return <MemberPage owner_id={owner_id}/>
         }
 
         if (!loading && !sellers.length) {
@@ -102,18 +102,18 @@ const Sellers = (props) => {
         } else if (!loading && sellers.length) {
             element = (
                 <Fragment>
-                    <div className='seller-list'>
-                        <SellersView/>
+                    <div className='member-list' key={owner_id}>
+                        <MembersView/>
                     </div>
                 </Fragment>
             )
         } else if (loading && sellers.length) {
             element = (
                 <Fragment>
-                    <div className='seller-list'>
-                        <SellersView/>
+                    <div className='member-list' key={owner_id}>
+                        <MembersView/>
                     </div>
-                    <div className='seller-list__more'>
+                    <div className='member-list__more'>
                         <Spinner/>
                     </div>
                 </Fragment>
@@ -128,7 +128,7 @@ const Sellers = (props) => {
                     setAllItemSize={setAllItemSize}
                     setSearchText={setSearchText}
                 />
-                <SellersSize/>
+                <MembersSize/>
                 <LimitSelect
                     limit={limit}
                     refreshFunction={setLimit}
@@ -155,4 +155,4 @@ const Sellers = (props) => {
     )
 };
 
-export default Sellers;
+export default Members;

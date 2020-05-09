@@ -61,7 +61,7 @@ const signin = async (req, res) => {
         //         vkId: candidateEmail.vkId,
         //         first_name: candidateEmail.firstName,
         //         last_name: candidateEmail.lastName,
-        //         seller: candidateEmail.seller,
+        //         member: candidateEmail.member,
         //         avatar: candidateEmail.avatar,
         //     }
         // });

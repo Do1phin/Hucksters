@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-    user_id: {
+    owner_id: {
         type: Number,
         default: null
     },
@@ -29,19 +29,29 @@ const schema = new mongoose.Schema({
     },
     likes: {
         type: Number,
-        default: null
+        default: 0
+    },
+    favorites: {
+        type: Number,
+        default: 0
     },
     comments: {
         type: Number,
-        default: null
+        default: 0
     },
     date: {
         type: Number,
         default: null
     },
     _updated: {
-        type: Date,
-        default: Date.now()
+        date: {
+            type: Date,
+            default: Date.now()
+        },
+        info: {
+            type: String,
+            default: null
+        }
     },
     album: {type: mongoose.Schema.ObjectId, ref: 'Album'}
 });

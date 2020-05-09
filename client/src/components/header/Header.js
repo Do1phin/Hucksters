@@ -16,9 +16,9 @@ const Header = () => {
             </Link>
 
             <nav className='header-menu'>
-                <NavLink to='/sellers/' className="header-menu__item">Продавцы</NavLink>
-                <NavLink to='/sellers/albums/' className="header-menu__item">Альбомы</NavLink>
-                <NavLink to='/sellers/albums/photos/' className="header-menu__item">Фотографии</NavLink>
+                <NavLink to='/members/' className="header-menu__item">Продавцы</NavLink>
+                <NavLink to='/members/albums/' className="header-menu__item">Альбомы</NavLink>
+                <NavLink to='/members/albums/photos/' className="header-menu__item">Фотографии</NavLink>
                 <NavLink to='/panel' className="header-menu__item">Управление</NavLink>
             </nav>
 

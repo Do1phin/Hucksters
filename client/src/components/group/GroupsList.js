@@ -6,11 +6,12 @@ import {getGroupListFromDB} from "./_api-group";
 import './group.style.css';
 
 const GroupsList = () => {
+    const [loading, setLoading] = useState(true);
     const [groups, setGroups] = useState([]);
     const [groupsCount, setGroupsCount] = useState(0);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+
         const loadGroups = () => {
             getGroupListFromDB()
                 .then((data) => {
@@ -22,23 +23,36 @@ const GroupsList = () => {
             setLoading(false)
         };
 
-        loadGroups(groups)
-    }, [groupsCount]);
+        loadGroups(groups);
+
+        return () => {
+            console.log('exit')
+        }
+    }, []);
 
 
+    // const groupsView = groups.map((item) => {
+    //     return (
+    //         <div className='group-list__item' key={item.group_id}>
+    //             <GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>
+    //         </div>
+    //     )
+    // });
 
-    const groupsView = groups.map((item) => {
-        return (
-            <div className='group-list__item' key={item.group_id}>
-                <GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>
-            </div>
-        )
-    });
 
-
-    const Content = () => {
-        return loading ? <Spinner/> : (!groups.length && !loading? <span>Вы не добавили ни одной группы</span> : groupsView)
-    };
+    const content = loading ? (
+        <Spinner/>
+    ) : !groups.length ? (
+        <span>Вы не добавили ни одной группы</span>
+    ) : (
+        groups.map((item) => {
+            return (
+                <div className='group-list__item' key={item.group_id}>
+                    <GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>
+                </div>
+            )
+        })
+    );
 
     return (
         <div className='group-list'>
@@ -55,7 +69,7 @@ const GroupsList = () => {
                 <p>actions</p>
                 {/*</ul>*/}
             </div>
-            <Content/>
+            {content}
         </div>
     )
 };

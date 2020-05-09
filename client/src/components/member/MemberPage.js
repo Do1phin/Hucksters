@@ -1,36 +1,36 @@
 import React, {Fragment, useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import {getAlbumsFromDB} from "../album/_api-album";
-import {getMembersFromDB} from '../seller/_api-seller';
+import {getMembersFromDB} from './_api-member';
 import AlbumCardS from "../album/AlbumCardS";
-import SellerInfo from "./SellerInfo";
+import MemberInfo from "./MemberInfo";
 import Spinner from "../spinner";
 
-import './SellerPage.style.css';
+import './MemberPage.style.css';
 
-const SellerPage = ({user_id}) => {
+const MemberPage = ({owner_id}) => {
     const [loading, setLoading] = useState(true);
     const [albums, setAlbums] = useState([]);
-    const [photos, setPhotos] = useState([]);
+    // const [photos, setPhotos] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
 
         const loadInfo = () => {
             const variables = {
-                user_id: user_id,
+                owner_id,
                 status: 'id',
                 first_name: '',
             };
             getMembersFromDB(variables)
                 .then((response) => {
-                    return setUserInfo(...response)
+                    return setUserInfo(response)
                 })
         };
 
         const loadAlbums = () => {
             const variables = {
-                user_id: user_id,
+                owner_id,
                 info: 'seller',
                 first_name: '',
             };
@@ -45,13 +45,13 @@ const SellerPage = ({user_id}) => {
             const variables = {
 
             };
-
+            return variables
         };
 
         loadInfo();
         loadAlbums();
         loadPhotos();
-    }, [user_id]);
+    }, [owner_id]);
 
     const albumsView = () => {
         if (albums.length) {
@@ -71,10 +71,10 @@ const SellerPage = ({user_id}) => {
 
 
 
-    // const SellerPage = () => {
+    // const MemberPage = () => {
     //     return (
-    //         <div className='seller-page'>
-    //             <SellerInfo {...userInfo}/>
+    //         <div className='member-page'>
+    //             <MemberInfo {...userInfo}/>
     //             <div className='album-list'>
     //                 {albumsView()}
     //             </div>
@@ -89,8 +89,8 @@ const SellerPage = ({user_id}) => {
         return loading
             ? <Spinner/>
             : (
-                <div className='seller-page'>
-                    <SellerInfo {...userInfo}/>
+                <div className='member-page'>
+                    <MemberInfo {...userInfo}/>
                     <div className='album-list'>
                         {albumsView()}
                     </div>
@@ -111,8 +111,8 @@ const SellerPage = ({user_id}) => {
 
 };
 
-SellerPage.propTypes = {
-    user_id: PropTypes.number.isRequired
+MemberPage.propTypes = {
+    owner_id: PropTypes.number.isRequired
 };
 
-export default SellerPage;
+export default MemberPage;

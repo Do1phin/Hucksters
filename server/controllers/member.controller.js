@@ -1,14 +1,13 @@
-import Seller from '../models/seller.model.js';
+import Member from '../models/member.model.js';
 import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createMember = async (req, res) => {
     let arr = [];
     const {source} = req.body;
-    console.log('req.body ', req.body)
 
-    // source.map((item) => {
-    //     arr.push({user_id: +item})
-    // });
+    await source.map((item) => {
+        arr.push({"owner_id": +item})
+    });
 
     try {
         // const sellers = await Seller.insertMany(arr, { ordered: false, acknowledged: false }, (err) => {
@@ -17,13 +16,12 @@ const createMember = async (req, res) => {
         //     }
         //
         // });
-        source.map((item) => {
-            const sellers = Seller.insert(item, {ordered: false, acknowledged: true}, (err) => {
-                if (err) {
-                    return res.status(400).json({error: getErrorMessage(err)})
-                }
-                return res.status(200).json({sellers})
-            });
+
+        const members = await Member.insertMany(arr, {ordered: false, acknowledged: true}, (err) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(200).json({members})
         });
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
@@ -32,13 +30,13 @@ const createMember = async (req, res) => {
 
 const readMember = async (req, res) => {
 
-    const {first_name, skip, limit, status, user_id} = req.body;
+    const {first_name, skip, limit, status, owner_id} = req.body;
     let params;
 
     if (status === 'all' || !status) {
         params = {}
     } else if (status === 'id') {
-        params = {user_id: user_id}
+        params = {owner_id: owner_id}
     } else if (status === 'seller') {
         params = {seller: true}
     } else if (status === 'closed') {
@@ -52,17 +50,24 @@ const readMember = async (req, res) => {
     }
 
     if (first_name) {
-        params = {...params, first_name: new RegExp(first_name, 'i')}
+        // params = {...params, first_name: new RegExp(first_name, 'i'), last_name: new RegExp(first_name, 'i')}
+        params = {
+            $or: [
+                {first_name: new RegExp(first_name, 'i')},
+                {last_name: new RegExp(first_name, 'i')}
+            ]
+        }
     }
 
     try {
-        await Seller.find(params)
+        await Member.find(params)
             .limit(limit)
             .skip(skip || 0)
             .exec((err, sellers) => {
                 if (err) {
                     return res.status(400).json({error: getErrorMessage(err)})
                 }
+
                 return res.status(200).json(sellers)
             });
     } catch (e) {
@@ -71,9 +76,12 @@ const readMember = async (req, res) => {
 };
 
 const updateMember = async (req, res) => {
-    console.log('updateMember ', req.body)
+
     try {
-        const {id, user_id, is_closed, first_name, last_name, nickname, domain, sex, country, photo_200, deactivated, seller, info} = req.body;
+        const {
+            id, owner_id, is_closed, first_name, last_name, nickname, domain, sex, country,
+            photo_200, deactivated, seller, info, instagram
+        } = req.body;
 
         let doc;
         if (info === 'full') {
@@ -85,24 +93,38 @@ const updateMember = async (req, res) => {
                 nickname,
                 domain,
                 sex,
-                country: country ? country.title : null,
+                instagram,
+                country: {
+                    id: country.id,
+                    title: country.title,
+                },
                 photo: photo_200,
-                _updated: Date.now()
+                _updated: {
+                    date: Date.now(),
+                    info
+                },
+                // _obj: JSON.stringify(req.body)
             }
         } else if (info === 'seller') {
             doc = {
                 seller: true,
-                _updated: Date.now()
+                _updated: {
+                    date: Date.now(),
+                    info
+                }
             }
         } else if (info === 'check_one') {
             doc = {
                 seller: true,
-                _updated: Date.now()
+                _updated: {
+                    date: Date.now(),
+                    info
+                }
             }
         }
 
-        await Seller.findOneAndUpdate(
-            {user_id: id || user_id},
+        await Member.findOneAndUpdate(
+            {owner_id: id || owner_id},
             {
                 $set: doc
             },

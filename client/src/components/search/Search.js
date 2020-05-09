@@ -41,7 +41,6 @@ const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
             </div>
         </div>
     )
-
 };
 
 Search.propTypes = {

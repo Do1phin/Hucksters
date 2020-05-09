@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
-    user_id: {
+    owner_id: {
         type: Number,
         default: null,
     },

@@ -6,9 +6,9 @@ const schema = new mongoose.Schema({
     //     unique: true,
     //     required: true
     // },
-    user_id: {
+    owner_id: {
         type: Number,
-        required: 'User id is required true',
+        required: 'Owner id is required true',
         unique: true
     },
     seller: {
@@ -29,7 +29,8 @@ const schema = new mongoose.Schema({
     },
     last_name: {
         type: String,
-        default: null},
+        default: null
+    },
     nickname: {
         type: String,
         default: null
@@ -43,6 +44,16 @@ const schema = new mongoose.Schema({
         default: null
     },
     country: {
+        id: {
+            type: Number,
+            default: null
+        },
+        title: {
+            type: String,
+            default: null
+        }
+    },
+    instagram: {
         type: String,
         default: null
     },
@@ -58,8 +69,21 @@ const schema = new mongoose.Schema({
         type: Number,
         default: null
     },
-    _updated: {type: Date, default: Date.now()}
+    _updated: {
+        date: {
+            type: Date,
+            default: Date.now()
+        },
+        info: {
+            type: String,
+            default: null
+        }
+    },
+    // _obj: {
+    //     type: JSON,
+    //     default: null
+    // }
 });
 
-export default mongoose.model('Sellers', schema);
+export default mongoose.model('Member', schema);
 
