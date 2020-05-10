@@ -54,7 +54,7 @@ const readMember = async (req, res) => {
         params = {
             $or: [
                 {first_name: new RegExp(first_name, 'i')},
-                {last_name: new RegExp(first_name, 'i')}
+                {last_name: new RegExp(first_name, 'i')},
             ]
         }
     }

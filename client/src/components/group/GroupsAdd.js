@@ -15,10 +15,18 @@ const GroupsAdd = () => {
     };
 
     const handleGroupAddBtn = async (event) => {
+
+
         event.preventDefault();
         setLoading(true);
         Promise.resolve(group_id)
-            .then(getGroupInfoFromVk)
+            .then(() => {
+                let pos = group_id.indexOf('://');
+                if (pos !== -1) {
+                    return group_id.substr(pos + 10);
+                }
+                return group_id
+            }).then(getGroupInfoFromVk)
             .then(getGroupSizeFromVk)
             .then(createGroupInDB);
         // props.refreshFunc()

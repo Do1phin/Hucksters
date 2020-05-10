@@ -7,11 +7,12 @@ import MemberInfo from "./MemberInfo";
 import Spinner from "../spinner";
 
 import './MemberPage.style.css';
+import {getPhotosFromDB} from "../photo/_api-photo";
 
 const MemberPage = ({owner_id}) => {
     const [loading, setLoading] = useState(true);
     const [albums, setAlbums] = useState([]);
-    // const [photos, setPhotos] = useState([]);
+    const [photos, setPhotos] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
@@ -24,8 +25,8 @@ const MemberPage = ({owner_id}) => {
             };
             getMembersFromDB(variables)
                 .then((response) => {
-                    return setUserInfo(response)
-                })
+                    return setUserInfo(...response)
+                }).catch(err => console.error(err));
         };
 
         const loadAlbums = () => {
@@ -37,14 +38,19 @@ const MemberPage = ({owner_id}) => {
             getAlbumsFromDB(variables)
                 .then((response) => {
                     return setAlbums(response)
-                });
+                }).catch(err => console.error(err));
             setLoading(false);
         };
 
         const loadPhotos = () => {
             const variables = {
-
+                owner_id
             };
+
+            getPhotosFromDB(variables)
+                .then(response => {
+                    return setPhotos(response)
+                }).catch(err => console.error(err));
             return variables
         };
 
@@ -71,19 +77,19 @@ const MemberPage = ({owner_id}) => {
 
 
 
-    // const MemberPage = () => {
-    //     return (
-    //         <div className='member-page'>
-    //             <MemberInfo {...userInfo}/>
-    //             <div className='album-list'>
-    //                 {albumsView()}
-    //             </div>
-    //             <div className='photo-list'>
-    //                 фотографии выбранного альбома
-    //             </div>
-    //         </div>
-    //     )
-    // };
+    const MemberPage = () => {
+        return (
+            <div className='member-page'>
+                <MemberInfo {...userInfo}/>
+                <div className='album-list'>
+                    {albumsView()}
+                </div>
+                <div className='photo-list'>
+                    фотографии выбранного альбома
+                </div>
+            </div>
+        )
+    };
 
     const Content = () => {
         return loading
