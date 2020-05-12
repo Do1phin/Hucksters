@@ -8,6 +8,7 @@ import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
 import MemberPage from "./MemberPage";
 import StatusSelect from "../UI/StatusSelect/StatusSelect";
+import CountrySelect from "../UI/CountrySelect/CountrySelect";
 import Spinner from "../spinner";
 
 const Members = (props) => {
@@ -20,6 +21,7 @@ const Members = (props) => {
     const [limit, setLimit] = useState(100);
     const [more, setMore] = useState(false);
     const [status, setStatus] = useState('seller');
+    const [country, setCountry] = useState('');
 
 
     useEffect(() => {
@@ -28,7 +30,8 @@ const Members = (props) => {
             first_name: searchText,
             skip,
             limit,
-            status
+            status,
+            country
         };
 
         const loadMembers = (variables) => {
@@ -54,7 +57,7 @@ const Members = (props) => {
 
         loadMembers(variables);
         setMore(false);
-    }, [searchText, limit, skip, status]);
+    }, [searchText, limit, skip, status, country]);
 
     const loadMore = () => {
         let skipAfter = skip + limit;
@@ -136,6 +139,10 @@ const Members = (props) => {
                 <StatusSelect
                     status={status}
                     refreshFunction={setStatus}
+                />
+                <CountrySelect
+                    country={country}
+                    refreshFunction={setCountry}
                 />
 
                 {element}

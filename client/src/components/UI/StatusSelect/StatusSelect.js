@@ -9,12 +9,12 @@ const StatusSelect = ({status, refreshFunction}) => {
         return refreshFunction(event.target.value)
     };
 
-    return(
+    return (
         <div className='status-select'>
             <label></label>
             <select
                 value={status}
-                onChange={(event) => handleChanger(event)}
+                onChange={handleChanger}
             >
                 <option value='all'>все пользователи</option>
                 <option value='seller'>продавцы</option>

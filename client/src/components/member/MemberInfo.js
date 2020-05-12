@@ -1,7 +1,5 @@
 import React from "react";
 
-import './memberInfo.style.scss';
-
 const MemberInfo = (props) => {
 
     const {

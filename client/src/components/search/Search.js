@@ -8,19 +8,20 @@ const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
 
     const handleSubmit = (event) => {
         if (event.key === "Enter") {
+            setText(event.target.value);
             setText(text);
             return updateSearchText(text);
         }
     };
 
-    const handleChange = (event) => {
-        if (!event.target.value) {
-            setText(event.target.value);
-            return updateSearchText();
-        }
-        event.preventDefault();
-        return setText(event.target.value);
-    };
+    // const handleChange = (event) => {
+    //     if (!event.target.value) {
+    //         setText(event.target.value);
+    //         return updateSearchText();
+    //     }
+    //     event.preventDefault();
+    //     return setText(event.target.value);
+    // };
 
     const updateSearchText = (newSearchText) => {
             setSkip(0);
@@ -35,8 +36,8 @@ const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
                 <input
                     placeholder='Искать ...'
                     value={text}
-                    onChange={(event) => handleChange(event)}
-                    onKeyPress={(event) => handleSubmit(event)}
+                    // onChange={(event) => handleChange(event)}
+                    onKeyPress={handleSubmit}
                 />
             </div>
         </div>

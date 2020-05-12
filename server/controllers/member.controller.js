@@ -30,7 +30,7 @@ const createMember = async (req, res) => {
 
 const readMember = async (req, res) => {
 
-    const {first_name, skip, limit, status, owner_id} = req.body;
+    const {owner_id, first_name, skip, limit, status, country} = req.body;
     let params;
 
     if (status === 'all' || !status) {
@@ -59,6 +59,10 @@ const readMember = async (req, res) => {
         }
     }
 
+    if (country) {
+        params = {...params, 'country.title': country}
+    }
+
     try {
         await Member.find(params)
             .limit(limit)
@@ -67,7 +71,6 @@ const readMember = async (req, res) => {
                 if (err) {
                     return res.status(400).json({error: getErrorMessage(err)})
                 }
-
                 return res.status(200).json(sellers)
             });
     } catch (e) {

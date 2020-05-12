@@ -7,17 +7,9 @@
     padding: 25px 25px 25px 25px;
 }
 
-.member-card__header_info {
-    grid-area: info;
-}
-
-.member-card__header_img {
-    grid-area: img;
-}
-
-.member-card__header_id {
-    grid-area: id;
-}
+.member-card__header_info { grid-area: info }
+.member-card__header_img { grid-area: img}
+.member-card__header_id { grid-area: id}
 
 .member-card__item {
     display: grid;
@@ -38,7 +30,6 @@ a {
 
 .member-card__header_id {
     color: #a3a3af;
-
     /*background-color: #0f9d58;*/
 }
 
@@ -54,11 +45,11 @@ a {
 /*    background-image: url('./assets/camera_loading_200.png');*/
 /*}*/
 
-.member-size {
-    span {
-        color: #FFFFFF;
-    }
+.member-size span {
+    color: #FFFFFF;
+}
 
+.member-size {
     text-align: center;
     background-color: #2E2F42;
 }

@@ -2,60 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/public/style.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/config/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/FavoriteBtn.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/favoriteBtn.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/limitSelect.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/limitSelect.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/loadMoreBtn.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/loadMoreBtn.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/SortSelect/sortSelect.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/SortSelect/sortSelect.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/statusSelect.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/statusSelect.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/getAlbums.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetComments.style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetPhotos.style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/vk.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/vk.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/Albums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/Albums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/album.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/albums.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/errors/ErrorNotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/errors/ErrorNotFound.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/errors/error.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/errors/error.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/footer/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/footer/footer.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/footer/footer.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/group/group.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/groups.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header/header.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/header.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberInfo.style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberPage.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/memberPage.style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/member/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/Members.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/Members.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/members.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/photo/PhotoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/PhotoCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/photo/Photos.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/Photos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/photo/photo.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/photos.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/_api-member.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/_api-member.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/members.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/members.style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/search/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/search/search.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/search/search.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/spinner-item/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/spinner-item/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/spinner-item/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/spinner-item/spinnerItem.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/spinner/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/spinner/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/spinner/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/spinner/spinner.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/passport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/photo.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/photo.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/member.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/member.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/webpack.config.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +37,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../mern-marketplace" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Programming\Projects\Hucksters\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
   </component>
   <component name="RecentsManager">
@@ -85,8 +46,8 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Programming\Projects\Hucksters\server" />
-      <recent name="C:\Programming\Projects\Hucksters\client" />
       <recent name="C:\Programming\Projects\Hucksters\" />
+      <recent name="C:\Programming\Projects\Hucksters\client" />
       <recent name="C:\Programming\Projects\Hucksters" />
       <recent name="C:\Programming\Projects\Hucksters\client\src\components\member\assets" />
     </key>
@@ -135,7 +96,8 @@
       <workItem from="1588877455953" duration="2248000" />
       <workItem from="1588928996503" duration="53159000" />
       <workItem from="1589043878715" duration="6855000" />
-      <workItem from="1589131113171" duration="29833000" />
+      <workItem from="1589131113171" duration="34306000" />
+      <workItem from="1589306827969" duration="5446000" />
     </task>
     <servers />
   </component>
@@ -159,6 +121,10 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state width="435" height="646" key="DebuggerActiveHint/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588945630437" />
+    <state x="92" y="92" width="1496" height="836" key="DiffContextDialog" timestamp="1589303323979">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="92" y="92" width="1496" height="836" key="DiffContextDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589303323979" />
     <state x="506" y="287" width="668" height="660" key="EditFileWatcherDialog" timestamp="1589222014177">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
@@ -167,54 +133,54 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="620" y="266" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588951753956" />
-    <state width="1637" height="255" key="GridCell.Tab.0.bottom" timestamp="1589298481593">
+    <state width="1637" height="255" key="GridCell.Tab.0.bottom" timestamp="1589305857809">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="255" key="GridCell.Tab.0.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589298481593" />
-    <state width="1637" height="255" key="GridCell.Tab.0.center" timestamp="1589298481592">
+    <state width="1637" height="255" key="GridCell.Tab.0.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857809" />
+    <state width="1637" height="255" key="GridCell.Tab.0.center" timestamp="1589305857809">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="255" key="GridCell.Tab.0.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589298481592" />
-    <state width="1637" height="255" key="GridCell.Tab.0.left" timestamp="1589298481592">
+    <state width="1637" height="255" key="GridCell.Tab.0.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857809" />
+    <state width="1637" height="255" key="GridCell.Tab.0.left" timestamp="1589305857809">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="255" key="GridCell.Tab.0.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589298481592" />
-    <state width="1637" height="255" key="GridCell.Tab.0.right" timestamp="1589298481592">
+    <state width="1637" height="255" key="GridCell.Tab.0.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857809" />
+    <state width="1637" height="255" key="GridCell.Tab.0.right" timestamp="1589305857809">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="255" key="GridCell.Tab.0.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589298481592" />
-    <state width="1637" height="225" key="GridCell.Tab.1.bottom" timestamp="1589135811217">
+    <state width="1637" height="255" key="GridCell.Tab.0.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857809" />
+    <state width="1637" height="225" key="GridCell.Tab.1.bottom" timestamp="1589305857803">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="225" key="GridCell.Tab.1.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
-    <state width="1637" height="225" key="GridCell.Tab.1.center" timestamp="1589135811217">
+    <state width="1637" height="225" key="GridCell.Tab.1.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857803" />
+    <state width="1637" height="225" key="GridCell.Tab.1.center" timestamp="1589305857802">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="225" key="GridCell.Tab.1.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
-    <state width="1637" height="225" key="GridCell.Tab.1.left" timestamp="1589135811217">
+    <state width="1637" height="225" key="GridCell.Tab.1.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857802" />
+    <state width="1637" height="225" key="GridCell.Tab.1.left" timestamp="1589305857802">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="225" key="GridCell.Tab.1.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
-    <state width="1637" height="225" key="GridCell.Tab.1.right" timestamp="1589135811217">
+    <state width="1637" height="225" key="GridCell.Tab.1.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857802" />
+    <state width="1637" height="225" key="GridCell.Tab.1.right" timestamp="1589305857803">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="225" key="GridCell.Tab.1.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
-    <state width="1637" height="225" key="GridCell.Tab.2.bottom" timestamp="1589135811217">
+    <state width="1637" height="225" key="GridCell.Tab.1.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857803" />
+    <state width="1637" height="225" key="GridCell.Tab.2.bottom" timestamp="1589305857803">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="225" key="GridCell.Tab.2.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
-    <state width="1637" height="225" key="GridCell.Tab.2.center" timestamp="1589135811217">
+    <state width="1637" height="225" key="GridCell.Tab.2.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857803" />
+    <state width="1637" height="225" key="GridCell.Tab.2.center" timestamp="1589305857803">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="225" key="GridCell.Tab.2.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
-    <state width="1637" height="225" key="GridCell.Tab.2.left" timestamp="1589135811217">
+    <state width="1637" height="225" key="GridCell.Tab.2.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857803" />
+    <state width="1637" height="225" key="GridCell.Tab.2.left" timestamp="1589305857803">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="225" key="GridCell.Tab.2.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
-    <state width="1637" height="225" key="GridCell.Tab.2.right" timestamp="1589135811217">
+    <state width="1637" height="225" key="GridCell.Tab.2.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857803" />
+    <state width="1637" height="225" key="GridCell.Tab.2.right" timestamp="1589305857803">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state width="1637" height="225" key="GridCell.Tab.2.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state width="1637" height="225" key="GridCell.Tab.2.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305857803" />
     <state x="420" y="247" key="IDE.errors.dialog" timestamp="1587909687393">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
@@ -223,10 +189,14 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="421" y="161" width="1081" height="710" key="SettingsEditor/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588953128101" />
-    <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1589300840877">
+    <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1589303355679">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589300840877" />
+    <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589303355679" />
+    <state x="71" y="-17" width="1496" height="836" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589305362287">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="71" y="-17" width="1496" height="836" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305362287" />
     <state x="614" y="199" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589220253613">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>

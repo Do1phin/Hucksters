@@ -14,7 +14,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 
 
-import './App.css';
+import './App.scss';
 
 
 function App() {

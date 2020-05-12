@@ -2,14 +2,15 @@
 const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
 
     console.log('getMembersFromDB ', params);
-    const {first_name, skip, limit, status, owner_id} = params;
+    const {owner_id, first_name, skip, limit, status, country} = params;
 
     let body = {
+        owner_id,
         first_name,
         skip,
         limit,
         status,
-        owner_id
+        country
     };
 
     try {
@@ -21,7 +22,6 @@ const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
             body: JSON.stringify(body)
         }).then((response) => {
             const data = response.json();
-            console.log('res , ', data);
             resolve(data)
         }).catch((err) => reject(err));
     } catch (e) {
