@@ -3,7 +3,7 @@ import GroupCard from "./GroupCard";
 import Spinner from "../spinner";
 import {getGroupListFromDB} from "./_api-group";
 
-import './group.style.css';
+import './groups.style.scss';
 
 const GroupsList = () => {
     const [loading, setLoading] = useState(true);

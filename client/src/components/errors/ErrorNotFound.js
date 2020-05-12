@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import './error.style.css';
+import './error.style.scss';
 
 const ErrorNotFound = ({title}) => {
     let className = 'not-found';

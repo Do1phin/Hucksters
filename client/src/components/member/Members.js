@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from "react";
 import {getMembersFromDB} from './_api-member';
 import MemberCard from "./MemberCard";
 import ErrorNotFound from "../errors/ErrorNotFound";
-import './Members.style.css';
+import './members.style.scss';
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";

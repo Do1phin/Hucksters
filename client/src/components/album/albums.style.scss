@@ -1,6 +1,7 @@
 #Content {
     text-align: end;
 }
+
 .album-list {
     display: grid;
     background-color: #2E2F42;
@@ -51,11 +52,11 @@ a {
     height: 200px;
 }
 
-.album-size span {
-    color: #FFFFFF;
-}
-
 .album-size {
+    span {
+        color: #FFFFFF;
+    }
+
     text-align: center;
     background-color: #2E2F42;
 }

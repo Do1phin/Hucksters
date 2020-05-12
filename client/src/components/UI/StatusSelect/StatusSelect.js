@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import './statusSelect.style.css';
+import './statusSelect.style.scss';
 
 const StatusSelect = ({status, refreshFunction}) => {
 

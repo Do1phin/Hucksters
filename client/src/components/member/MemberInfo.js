@@ -1,6 +1,6 @@
 import React from "react";
 
-import './MemberInfo.style.css';
+import './memberInfo.style.scss';
 
 const MemberInfo = (props) => {
 

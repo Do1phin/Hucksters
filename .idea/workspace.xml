@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/public/style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/FavoriteBtn.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/favoriteBtn.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/limitSelect.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/limitSelect.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/loadMoreBtn.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/loadMoreBtn.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/SortSelect/sortSelect.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/SortSelect/sortSelect.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/statusSelect.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/statusSelect.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/getAlbums.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetComments.style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetPhotos.style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/vk.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/vk.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/album/Albums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/Albums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/album/album.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/albums.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/errors/ErrorNotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/errors/ErrorNotFound.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/errors/error.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/errors/error.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/footer/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/footer/footer.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/footer/footer.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/group.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/groups.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/header/header.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/header.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberInfo.style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberPage.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/memberPage.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/Members.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/Members.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/members.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/PhotoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/PhotoCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/Photos.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/Photos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/photo.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/photos.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/search/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/search/search.style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/search/search.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/spinner-item/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/spinner-item/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/spinner-item/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/spinner-item/spinnerItem.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/spinner/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/spinner/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/spinner/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/spinner/spinner.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/passport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/photo.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/photo.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/webpack.config.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1atSBdTA6Ha0sS7WwFHpwOD5fPl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mern-marketplace" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
+  </component>
+  <component name="RecentsManager">
+    <key name="es6.move.members.recent.items">
+      <recent name="C:\Programming\Projects\Hucksters\client\src\components\group\api-group.js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Programming\Projects\Hucksters\server" />
+      <recent name="C:\Programming\Projects\Hucksters\client" />
+      <recent name="C:\Programming\Projects\Hucksters\" />
+      <recent name="C:\Programming\Projects\Hucksters" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\components\member\assets" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="checkCount" />
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="" />
+      <created>1587553263545</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587553263545</updated>
+      <workItem from="1587553266590" duration="27802000" />
+      <workItem from="1587637932994" duration="10398000" />
+      <workItem from="1587661721846" duration="10605000" />
+      <workItem from="1587717290765" duration="77020000" />
+      <workItem from="1587878227208" duration="17871000" />
+      <workItem from="1587908641730" duration="67000" />
+      <workItem from="1587908719594" duration="269000" />
+      <workItem from="1587909002110" duration="341000" />
+      <workItem from="1587909357125" duration="892000" />
+      <workItem from="1587910271074" duration="716000" />
+      <workItem from="1587911004282" duration="662000" />
+      <workItem from="1587911685042" duration="15247000" />
+      <workItem from="1587964006186" duration="88000" />
+      <workItem from="1587964107773" duration="269000" />
+      <workItem from="1587964400983" duration="12271000" />
+      <workItem from="1587991079045" duration="22042000" />
+      <workItem from="1588063282164" duration="50906000" />
+      <workItem from="1588162577027" duration="9367000" />
+      <workItem from="1588172387423" duration="584000" />
+      <workItem from="1588173222788" duration="17012000" />
+      <workItem from="1588241309465" duration="3621000" />
+      <workItem from="1588245146974" duration="25659000" />
+      <workItem from="1588272877977" duration="27212000" />
+      <workItem from="1588436668240" duration="48176000" />
+      <workItem from="1588572434287" duration="83714000" />
+      <workItem from="1588847870738" duration="25520000" />
+      <workItem from="1588877455953" duration="2248000" />
+      <workItem from="1588928996503" duration="53159000" />
+      <workItem from="1589043878715" duration="6855000" />
+      <workItem from="1589131113171" duration="29833000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="580" y="302" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588007050882">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="580" y="302" key="#com.intellij.fileTypes.FileTypeChooser/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588007050882" />
+    <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589300523606">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589300523606" />
+    <state x="985" y="212" key="#xdebugger.evaluate" timestamp="1589134425935">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="985" y="212" key="#xdebugger.evaluate/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589134425935" />
+    <state width="435" height="646" key="DebuggerActiveHint" timestamp="1588945630437">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="435" height="646" key="DebuggerActiveHint/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588945630437" />
+    <state x="506" y="287" width="668" height="660" key="EditFileWatcherDialog" timestamp="1589222014177">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="506" y="287" width="668" height="660" key="EditFileWatcherDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589222014177" />
+    <state x="620" y="266" key="FileChooserDialogImpl" timestamp="1588951753956">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="620" y="266" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588951753956" />
+    <state width="1637" height="255" key="GridCell.Tab.0.bottom" timestamp="1589298481593">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="255" key="GridCell.Tab.0.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589298481593" />
+    <state width="1637" height="255" key="GridCell.Tab.0.center" timestamp="1589298481592">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="255" key="GridCell.Tab.0.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589298481592" />
+    <state width="1637" height="255" key="GridCell.Tab.0.left" timestamp="1589298481592">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="255" key="GridCell.Tab.0.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589298481592" />
+    <state width="1637" height="255" key="GridCell.Tab.0.right" timestamp="1589298481592">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="255" key="GridCell.Tab.0.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589298481592" />
+    <state width="1637" height="225" key="GridCell.Tab.1.bottom" timestamp="1589135811217">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="225" key="GridCell.Tab.1.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state width="1637" height="225" key="GridCell.Tab.1.center" timestamp="1589135811217">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="225" key="GridCell.Tab.1.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state width="1637" height="225" key="GridCell.Tab.1.left" timestamp="1589135811217">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="225" key="GridCell.Tab.1.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state width="1637" height="225" key="GridCell.Tab.1.right" timestamp="1589135811217">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="225" key="GridCell.Tab.1.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state width="1637" height="225" key="GridCell.Tab.2.bottom" timestamp="1589135811217">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="225" key="GridCell.Tab.2.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state width="1637" height="225" key="GridCell.Tab.2.center" timestamp="1589135811217">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="225" key="GridCell.Tab.2.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state width="1637" height="225" key="GridCell.Tab.2.left" timestamp="1589135811217">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="225" key="GridCell.Tab.2.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state width="1637" height="225" key="GridCell.Tab.2.right" timestamp="1589135811217">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="225" key="GridCell.Tab.2.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589135811217" />
+    <state x="420" y="247" key="IDE.errors.dialog" timestamp="1587909687393">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="420" y="247" key="IDE.errors.dialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1587909687393" />
+    <state x="421" y="161" width="1081" height="710" key="SettingsEditor" timestamp="1588953128101">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="421" y="161" width="1081" height="710" key="SettingsEditor/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588953128101" />
+    <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1589300840877">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589300840877" />
+    <state x="614" y="199" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589220253613">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="614" y="199" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589220253613" />
+    <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1589132477973">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589132477973" />
+    <state x="539" y="236" width="958" height="551" key="find.popup" timestamp="1589299665007">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="539" y="236" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589299665007" />
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1589026968786">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589026968786" />
+    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1588674209961">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588674209961" />
+  </component>
+</project>

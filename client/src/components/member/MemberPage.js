@@ -6,7 +6,7 @@ import AlbumCardS from "../album/AlbumCardS";
 import MemberInfo from "./MemberInfo";
 import Spinner from "../spinner";
 
-import './MemberPage.style.css';
+import './memberPage.style.scss';
 import {getPhotosFromDB} from "../photo/_api-photo";
 
 const MemberPage = ({owner_id}) => {

@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import './Members.style.css';
+import './members.style.scss';
 
 const MemberCard = ({owner_id, first_name, last_name, domain, photo}) => {
 

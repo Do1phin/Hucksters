@@ -36,10 +36,10 @@ const PhotoCard = ({owner_id, album_id, photo_id, text, photo_sizes, date, addit
             </div>
 
             <div className="photo-card__item-footer">
-                <div className='photo-card__item-footer-info'>
+                <div className={text ? 'photo-card__item-footer-info' : 'photo-card__item-footer-info-none'}>
                     info
                 </div>
-                <div className='photo-card__item-footer-photos'>
+                <div className={additional_photos ? 'photo-card__item-footer-photos' : 'photo-card__item-footer-photos-none'}>
                     {additional_photos}
                 </div>
                 <div className='photo-card__item-footer-size'>

@@ -3,7 +3,7 @@ import Spinner from "../spinner";
 import {createGroupInDB} from "./_api-group";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../admin/_api-vk';
 
-// import './group.style.css';
+// import './groups.style.scss';
 
 const GroupsAdd = () => {
     const [group_id, setGroupId] = useState('');

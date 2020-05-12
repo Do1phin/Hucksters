@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import './limitSelect.style.css';
+import './limitSelect.style.scss';
 
 const LimitSelect = ({limit, refreshFunction}) => {
 

@@ -9,7 +9,7 @@ import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import SortSelect from "../UI/SortSelect/SortSelect";
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
 
-import './photo.style.css';
+import './photos.style.scss';
 
 const Photos = (props) => {
     const [loading, setLoading] = useState(true);

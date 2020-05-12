@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import './loadMoreBtn.style.css';
+import './loadMoreBtn.style.scss';
 
 const LoadMoreBtn = ({limit, size, refreshFunction}) => {
 

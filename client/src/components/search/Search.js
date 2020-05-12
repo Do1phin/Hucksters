@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types';
 
-import './search.style.css';
+import './search.style.scss';
 
 const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
     const [text, setText] = useState();

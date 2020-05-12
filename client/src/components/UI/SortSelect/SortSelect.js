@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import './sortSelect.style.css';
+import './sortSelect.style.scss';
 
 const SortSelect = ({sort, refreshFunction}) => {
 

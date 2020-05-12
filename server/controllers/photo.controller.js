@@ -45,7 +45,6 @@ const readPhoto = async (req, res) => {
         params = {text: new RegExp(text, 'i')}
     }
 
-    console.log('paea ', params)
     try {
         await Photo.find(params)
             .sort(sortParams)
