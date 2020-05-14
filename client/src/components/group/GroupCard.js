@@ -152,8 +152,8 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
 
 GroupCard.propTypes = {
     item: PropTypes.object.isRequired,
-    groupsCount: PropTypes.number.isRequired,
-    refreshFunction: PropTypes.func.isRequired
+    // groupsCount: PropTypes.number.isRequired,
+    // refreshFunction: PropTypes.func.isRequired
 };
 
 export default GroupCard;

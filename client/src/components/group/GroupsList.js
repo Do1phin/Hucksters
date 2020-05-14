@@ -1,35 +1,33 @@
 import React, {useEffect, useState} from "react";
 import GroupCard from "./GroupCard";
 import Spinner from "../spinner";
-import {getGroupListFromDB} from "./_api-group";
+import store from "../../redux/store";
+import {useDispatch, useSelector} from "react-redux";
+import {asyncGroupsList} from '../../redux/actions/group.actions';
 
 import './groups.style.scss';
 
 const GroupsList = () => {
     const [loading, setLoading] = useState(true);
-    const [groups, setGroups] = useState([]);
-    const [groupsCount, setGroupsCount] = useState(0);
+
+    const dispatch = useDispatch();
+    const groups = useSelector((state) => {
+        return state.group.groups
+    });
 
     useEffect(() => {
+        dispatch(asyncGroupsList());
 
-        const loadGroups = () => {
-            getGroupListFromDB()
-                .then((data) => {
-                    if (!data) return console.error('GroupsAdd not loaded');
-                    setGroups(data);
-                    setGroupsCount(data.length);
-                    return data
-                });
-            setLoading(false)
-        };
-
-        loadGroups(groups);
-
+        setLoading(false);
         return () => {
             console.log('exit')
         }
     }, []);
 
+    store.subscribe(() => {
+        const state = store.getState();
+        console.info('state ', state)
+    });
 
     // const groupsView = groups.map((item) => {
     //     return (
@@ -39,7 +37,6 @@ const GroupsList = () => {
     //     )
     // });
 
-
     const content = loading ? (
         <Spinner/>
     ) : !groups.length ? (
@@ -48,7 +45,8 @@ const GroupsList = () => {
         groups.map((item) => {
             return (
                 <div className='group-list__item' key={item.group_id}>
-                    <GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>
+                    {/*<GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>*/}
+                    <GroupCard item={item}/>
                 </div>
             )
         })

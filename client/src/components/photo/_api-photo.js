@@ -3,7 +3,7 @@ const getPhotosFromDB = (params) => {
     let body = {
         text,
         skip,
-        limit: limit || 10000,
+        limit: limit || 100000,
         sort
     };
 

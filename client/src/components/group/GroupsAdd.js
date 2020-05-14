@@ -1,7 +1,10 @@
 import React, {Fragment, useState} from "react";
 import Spinner from "../spinner";
+import store from '../../redux/store';
+// import {groupAdd} from "../../redux/actions/group.actions";
 import {createGroupInDB} from "./_api-group";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../admin/_api-vk';
+// import {useDispatch, useSelector} from "react-redux";
 
 // import './groups.style.scss';
 
@@ -9,14 +12,17 @@ const GroupsAdd = () => {
     const [group_id, setGroupId] = useState('');
     const [loading, setLoading] = useState(false);
 
+    // const dispatch = useDispatch();
+    //     // const group_id = useSelector((state) => {
+    //     //     return state.group.group_id
+    //     // });
+
     const handleChange = (event) => {
         event.preventDefault();
         setGroupId(event.target.value);
     };
 
     const handleGroupAddBtn = async (event) => {
-
-
         event.preventDefault();
         setLoading(true);
         Promise.resolve(group_id)
@@ -33,6 +39,16 @@ const GroupsAdd = () => {
         setGroupId('');
         setLoading(false);
     };
+
+    // const dispatchBtnAction = (event) => {
+    //     const group_id = event.target.value;
+    //     store.dispatch(groupAdd(group_id))
+    // };
+
+    store.subscribe(() => {
+        const state = store.getState();
+        console.info('state ', state);
+    });
 
     return (
         loading
@@ -58,6 +74,7 @@ const GroupsAdd = () => {
                         aria-label='Добавить группу'
                         disabled={loading}
                         onClick={(event) => handleGroupAddBtn(event)}
+                        // onClick={event => dispatchBtnAction(event)}
                     >
                         Добавить
                     </button>
