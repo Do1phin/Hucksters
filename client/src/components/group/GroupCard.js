@@ -1,25 +1,39 @@
 import React, {Fragment, useState} from "react";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../admin/_api-vk.js';
-import {delGroupFromDB, updateGroupInfoInDB} from './_api-group.js';
+import {updateGroupInfoInDB} from './_api-group.js';
 import PropTypes from 'prop-types';
 import SpinnerItem from "../spinner-item";
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
 import {createMembersToDB, updateMembersInDB} from "../member/_api-member";
+import {useDispatch} from "react-redux";
+import {asyncDeleteGroup, asyncUpdateGroupInfo} from "../../redux/actions/group.actions";
+import store from "../../redux/store";
 
 const GroupCard = ({item, groupsCount, refreshFunction}) => {
     const [loading, setLoading] = useState(false);
     const [actionStatus, setActionStatus] = useState('');
     const [checkCount] = useState(0);
 
-    const {photo, name, group_id, size} = item;
-    // console.log('item ', props)
+    const dispatch = useDispatch();
 
-    const handleRemoveBtn = async (event) => {
-        setLoading(true);
-        const group_id = event.target.id;
-        delGroupFromDB(group_id);
-        refreshFunction(groupsCount - 1);
-        setLoading(false);
+    const {photo, name, group_id, size} = item;
+
+    // const handleRemoveBtn = async (event) => {
+    //     setLoading(true);
+    //     const group_id = event.target.id;
+    //     delGroupFromDB(group_id);
+    //     refreshFunction(groupsCount - 1);
+    //     setLoading(false);
+    // };
+
+    const dispatchRemoveBtn = (event) => {
+        const group_id = +event.target.id;
+        dispatch(asyncDeleteGroup(group_id))
+    };
+
+    const dispatchRefreshInfoBtn = (event) => {
+        const group_id = +event.target.id
+        dispatch(asyncUpdateGroupInfo(group_id))
     };
 
     const handleRefreshInfoBtn = (event) => {
@@ -34,6 +48,10 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
         setLoading(false);
     };
 
+    store.subscribe(() => {
+        const state = store.getState();
+        console.info('state ', state);
+    });
 
     const getAllMembers = async (group_id) => {
         setLoading(true);
@@ -113,7 +131,7 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
                         id={group_id}
                         disabled={loading}
                         aria-label='Обновить данные группы'
-                        onClick={(event) => handleRefreshInfoBtn(event)}
+                        onClick={dispatchRefreshInfoBtn}
                     >
                         Обновить данные
                     </button>
@@ -122,7 +140,7 @@ const GroupCard = ({item, groupsCount, refreshFunction}) => {
                         id={group_id}
                         disabled={loading}
                         aria-label='Удалить группу'
-                        onClick={(event) => handleRemoveBtn(event)}
+                        onClick={dispatchRemoveBtn}
                     >
                         Удалить группу
                     </button>

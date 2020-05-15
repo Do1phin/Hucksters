@@ -7,7 +7,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
     entry: {
-        app: './src/index.js'
+        app: './src/index.ts'
     },
     output: {
         filename: '[name].js',

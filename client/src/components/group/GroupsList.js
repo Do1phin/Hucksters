@@ -3,20 +3,23 @@ import GroupCard from "./GroupCard";
 import Spinner from "../spinner";
 import store from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
-import {asyncGroupsList} from '../../redux/actions/group.actions';
+import {asyncListGroups} from '../../redux/actions/group.actions';
 
 import './groups.style.scss';
 
 const GroupsList = () => {
+    console.log('start')
     const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
     const groups = useSelector((state) => {
+        console.log('useSelector')
         return state.group.groups
     });
 
     useEffect(() => {
-        dispatch(asyncGroupsList());
+        console.log('useEffect')
+        dispatch(asyncListGroups());
 
         setLoading(false);
         return () => {
@@ -39,7 +42,7 @@ const GroupsList = () => {
 
     const content = loading ? (
         <Spinner/>
-    ) : !groups.length ? (
+    ) ? !groups.length : (
         <span>Вы не добавили ни одной группы</span>
     ) : (
         groups.map((item) => {

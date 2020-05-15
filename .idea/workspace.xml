@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/actions/group.actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/reducers/group.reducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/reducers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/redux/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/photo/_api-photo.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/_api-photo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/group.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/group.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/group.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/group.reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/webpack.config.client.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/webpack.config.client.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +35,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Programming\Projects\Hucksters\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
+    <property name="ts.external.directory.path" value="C:\Programming\Projects\Hucksters\client\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="es6.move.members.recent.items">
@@ -99,7 +97,8 @@
       <workItem from="1589306827969" duration="6900000" />
       <workItem from="1589342649846" duration="10706000" />
       <workItem from="1589469221097" duration="12813000" />
-      <workItem from="1589484180369" duration="737000" />
+      <workItem from="1589484180369" duration="3749000" />
+      <workItem from="1589559120714" duration="10226000" />
     </task>
     <servers />
   </component>
@@ -207,14 +206,14 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589132477973" />
-    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1589341329523">
+    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1589565539782">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589341329523" />
-    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1589026968786">
+    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589565539782" />
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1589564455109">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589026968786" />
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589564455109" />
     <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1588674209961">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
