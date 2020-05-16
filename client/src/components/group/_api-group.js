@@ -1,4 +1,7 @@
 // Получаем список групп из базы
+import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
+import {createMembersToDB, updateMembersInDB} from "../member/_api-member";
+
 const getGroupListFromDB = (params) => {
     try {
         return fetch('/vk/groups', {
@@ -70,9 +73,51 @@ const delGroupFromDB = (group_id) => {
     }
 };
 
+const getAllMembers = async (group_id) => {
+
+    try {
+        const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
+        const membersSize = await members.response.count;
+
+        let count = 0;
+        await (function f() {
+            console.info(`Step ${count} from ${membersSize / 1000}`);
+            if (count < Math.ceil(membersSize / 1000)) {
+
+                const obj = {group_id: group_id, count};
+
+                Promise.resolve(obj)
+                    .then(getMembersGroupFromVk)
+                    .then((response) => {
+                        return response // массив пользователей группы
+                    }).then(createMembersToDB)
+                    .then((response) => {
+                        return response // массив пользователей группы
+                    }).then(getMembersInfoFromVk)
+                    .then((response) => {
+                        response.map((item) => {
+                            item['info'] = 'full'
+                        });
+                        return response // массив пользователей с информацией
+                    }).then(updateMembersInDB)
+                    .catch((err) => console.error(err));
+
+                count++;
+                setTimeout(f, 150000);
+            } else {
+                console.log('All members added');
+            }
+        }());
+
+    } catch (e) {
+        throw new Error(e)
+    }
+};
+
 export {
     getGroupListFromDB,
     createGroupInDB,
     updateGroupInfoInDB,
-    delGroupFromDB
+    delGroupFromDB,
+    getAllMembers
 };

@@ -2,7 +2,6 @@ import React, {Fragment, useEffect, useState} from "react";
 import {getMembersFromDB} from './_api-member';
 import MemberCard from "./MemberCard";
 import ErrorNotFound from "../errors/ErrorNotFound";
-import './members.style.scss';
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
@@ -10,28 +9,25 @@ import MemberPage from "./MemberPage";
 import StatusSelect from "../UI/StatusSelect/StatusSelect";
 import CountrySelect from "../UI/CountrySelect/CountrySelect";
 import Spinner from "../spinner";
+import {connect, useDispatch, useSelector} from "react-redux";
+import {setLoadMore, setSkipItemsNumber, setPartItems, setTotalItems} from "../../redux/actions/list.actions";
+import './members.style.scss';
 
 const Members = (props) => {
     const [loading, setLoading] = useState(true);
     const [sellers, setSellers] = useState([]);
-    const [searchText, setSearchText] = useState('');
-    const [itemSize, setItemSize] = useState(0);
-    const [allItemSize, setAllItemSize] = useState(0);
-    const [skip, setSkip] = useState(0);
-    const [limit, setLimit] = useState(100);
-    const [more, setMore] = useState(false);
-    const [status, setStatus] = useState('seller');
-    const [country, setCountry] = useState('');
 
+    const dispatch = useDispatch();
+    const listSettings = useSelector(state => state.list);
 
     useEffect(() => {
         const variables = {
             info: 'list',
-            first_name: searchText,
-            skip,
-            limit,
-            status,
-            country
+            search_text: listSettings.search_text,
+            skip: listSettings.skip,
+            limit: listSettings.limit,
+            status: listSettings.member_status,
+            country: listSettings.member_country
         };
 
         const loadMembers = (variables) => {
@@ -41,29 +37,30 @@ const Members = (props) => {
                 .then(data => {
 
                     if (data) {
-                        setItemSize(data.length);
+                        dispatch(setPartItems(data.length));
 
-                        if (more) {
+                        if (listSettings.loadMore) {
                             setSellers([...sellers, ...data]);
-                            setAllItemSize(allItemSize + data.length);
+                            dispatch(setTotalItems(listSettings.total_items + data.length));
                         } else {
+                            dispatch(setSkipItemsNumber(0));
                             setSellers(data);
-                            setAllItemSize(data.length);
+                            dispatch(setTotalItems(data.length));
                         }
-                        setLoading(false);
+                        return setLoading(false);
                     }
                 })
         };
 
         loadMembers(variables);
-        setMore(false);
-    }, [searchText, limit, skip, status, country]);
-
-    const loadMore = () => {
-        let skipAfter = skip + limit;
-        setMore(true);
-        setSkip(skipAfter);
-    };
+        dispatch(setLoadMore(false));
+    }, [
+        listSettings.search_text,
+        listSettings.limit,
+        listSettings.skip,
+        listSettings.member_status,
+        listSettings.member_country
+    ]);
 
     const MembersView = () => {
 
@@ -84,13 +81,12 @@ const Members = (props) => {
         return (
             <div className='member-size'>
                 {
-                    allItemSize
-                        ? <span>Результатов - {allItemSize}</span>
+                    listSettings.total_items
+                        ? <span>Результатов - {listSettings.total_items}</span>
                         : null
                 }
             </div>
         )
-
     };
 
     const Content = () => {
@@ -125,35 +121,16 @@ const Members = (props) => {
 
         return (
             <Fragment>
-                <Search
-                    setSkip={setSkip}
-                    setItemSize={setItemSize}
-                    setAllItemSize={setAllItemSize}
-                    setSearchText={setSearchText}
-                />
+                <Search/>
                 <MembersSize/>
-                <LimitSelect
-                    limit={limit}
-                    refreshFunction={setLimit}
-                />
-                <StatusSelect
-                    status={status}
-                    refreshFunction={setStatus}
-                />
-                <CountrySelect
-                    country={country}
-                    refreshFunction={setCountry}
-                />
+                <LimitSelect/>
+                <StatusSelect/>
+                <CountrySelect/>
 
                 {element}
 
-                <LoadMoreBtn
-                    limit={limit}
-                    size={itemSize}
-                    refreshFunction={loadMore}
-                />
+                <LoadMoreBtn/>
             </Fragment>
-
         )
     };
 
@@ -162,4 +139,4 @@ const Members = (props) => {
     )
 };
 
-export default Members;
+export default connect()(Members);

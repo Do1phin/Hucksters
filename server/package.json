@@ -25,6 +25,7 @@
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix ../client",
+    "client:ts": "npm run tsc -w --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start:dev": "webpack --mode development && node ../client/index.js"
   },

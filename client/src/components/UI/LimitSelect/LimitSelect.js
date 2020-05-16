@@ -1,29 +1,31 @@
 import React from "react";
-import PropTypes from 'prop-types';
-
+import {useDispatch, useSelector} from "react-redux";
+import {setLimitItemsSelect} from '../../../redux/actions/list.actions';
 import './limitSelect.style.scss';
 
-const LimitSelect = ({limit, refreshFunction}) => {
+const LimitSelect = () => {
+    const dispatch = useDispatch();
+    const limit = useSelector(state => state.list.limit);
+
+    const dispatchSetLimitSelect = (event) => {
+        const limit = +event.target.value;
+        dispatch(setLimitItemsSelect(limit))
+    };
 
     return (
         <div className='limit-select'>
             <label>Выводить по - </label>
             <select
                 value={limit}
-                onChange={(event) => refreshFunction(+event.target.value)}
+                onChange={dispatchSetLimitSelect}
             >
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
             </select>
         </div>
     )
-};
-
-LimitSelect.propTypes = {
-    limit: PropTypes.number.isRequired,
-    refreshFunction: PropTypes.func.isRequired
 };
 
 export default LimitSelect;

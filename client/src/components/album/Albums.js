@@ -5,47 +5,44 @@ import Spinner from "../spinner";
 import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import SortSelect from "../UI/SortSelect/SortSelect";
-import './albums.style.scss';
-import '../UI/SortSelect/sortSelect.style.scss';
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
 import ErrorNotFound from "../errors/ErrorNotFound";
 import AlbumPage from "./AlbumPage";
+import {useDispatch, useSelector} from "react-redux";
+import {setLoadMore, setPartItems, setTotalItems} from "../../redux/actions/list.actions";
+import '../UI/SortSelect/sortSelect.style.scss';
+import './albums.style.scss';
 
 const Albums = (props) => {
     const [loading, setLoading] = useState(true);
     const [albums, setAlbums] = useState([]);
-    const [searchText, setSearchText] = useState('');
-    const [itemSize, setItemSize] = useState(0);
-    const [allItemSize, setAllItemSize] = useState(0);
-    const [skip, setSkip] = useState(0);
-    const [limit, setLimit] = useState(100);
-    const [sort, setSort] = useState(-1);
-    const [more, setMore] = useState(false);
+
+    const dispatch = useDispatch();
+    const listSettings = useSelector(state => state.list);
 
     useEffect(() => {
 
         const variables = {
             info: 'list',
-            title: searchText,
-            skip,
-            limit,
-            sort,
+            search_text: listSettings.search_text,
+            skip: listSettings.skip,
+            limit: listSettings.limit,
+            sort: listSettings.sort,
         };
 
         const loadAlbums = (variables) => {
-            console.log('vari ', variables)
 
             getAlbumsFromDB(variables)
                 .then(data => {
 
                     if (data) {
-                        setItemSize(data.length);
+                        dispatch(setPartItems(data.length));
 
-                        if (more) {
-                            setAllItemSize(allItemSize + data.length);
+                        if (listSettings.loadMore) {
+                            dispatch(setTotalItems(listSettings.total_items + data.length));
                             setAlbums([...albums, ...data]);
                         } else {
-                            setAllItemSize(data.length);
+                            dispatch(setTotalItems(data.length));
                             setAlbums(data);
                         }
                         return setLoading(false);
@@ -53,19 +50,18 @@ const Albums = (props) => {
                 })
         };
 
-        setMore(false);
+        dispatch(setLoadMore(false));
         loadAlbums(variables)
-    }, [searchText, limit, skip, sort]);
-
-    const loadMore = () => {
-        let skipAfter = skip + limit;
-        setMore(true);
-        setSkip(skipAfter);
-    };
+    }, [
+        listSettings.search_text,
+        listSettings.limit,
+        listSettings.skip,
+        listSettings.sort
+    ]);
 
     const AlbumsView = () => {
 
-        if (albums.length !== 0) {
+        if (albums.length) {
             return albums.map((item) => {
                 return (
                     <div className="album-card__item" key={item.album_id}>
@@ -81,8 +77,8 @@ const Albums = (props) => {
     const AlbumSize = () => {
         return (
             <div className='album-size'>
-                {allItemSize
-                    ? <span>Результатов - {allItemSize}</span>
+                {listSettings.total_items
+                    ? <span>Результатов - {listSettings.total_items}</span>
                     : null
                 }
             </div>
@@ -121,29 +117,14 @@ const Albums = (props) => {
 
         return (
             <Fragment>
-                <Search
-                    setSkip={setSkip}
-                    setItemSize={setItemSize}
-                    setAllItemSize={setAllItemSize}
-                    setSearchText={setSearchText}
-                />
+                <Search/>
                 <AlbumSize/>
-                <LimitSelect
-                    limit={limit}
-                    refreshFunction={setLimit}
-                />
-                <SortSelect
-                    sort={sort}
-                    refreshFunction={setSort}
-                />
+                <LimitSelect/>
+                <SortSelect/>
 
                 {element}
 
-                <LoadMoreBtn
-                    limit={limit}
-                    size={itemSize}
-                    refreshFunction={loadMore}
-                />
+                <LoadMoreBtn/>
             </Fragment>
         )
     };

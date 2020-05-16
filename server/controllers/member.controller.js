@@ -29,8 +29,7 @@ const createMember = async (req, res) => {
 };
 
 const readMember = async (req, res) => {
-
-    const {owner_id, first_name, skip, limit, status, country} = req.body;
+    const {owner_id, search_text, skip, limit, status, country} = req.body;
     let params;
 
     if (status === 'all' || !status) {
@@ -49,12 +48,12 @@ const readMember = async (req, res) => {
         params = {} // доделать чтобы только оставшихся брало
     }
 
-    if (first_name) {
+    if (search_text) {
         // params = {...params, first_name: new RegExp(first_name, 'i'), last_name: new RegExp(first_name, 'i')}
         params = {
             $or: [
-                {first_name: new RegExp(first_name, 'i')},
-                {last_name: new RegExp(first_name, 'i')},
+                {first_name: new RegExp(search_text, 'i')},
+                {last_name: new RegExp(search_text, 'i')},
             ]
         }
     }

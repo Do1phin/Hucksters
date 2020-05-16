@@ -47,6 +47,7 @@ const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, rejec
 
     call('groups.getMembers', params) // https://vk.com/dev/groups.getMembers
         .then((response) => {
+            console.log('groups.getMembers ' , response)
             if (response) resolve(response.response.items); // массив пользователей группы
         }).catch((err) => reject(err));
 

@@ -1,10 +1,17 @@
-import {GROUP_ADD, GROUP_DELETE, GROUP_UPDATE_INFO, GROUP_LIST} from './actionTypes';
+import {
+    GROUP_ADD,
+    GROUP_DELETE,
+    GROUP_LIST,
+    GROUP_MEMBERS_GET,
+    GROUP_UPDATE_INFO
+} from './actionTypes';
 
 import {
     createGroupInDB,
     delGroupFromDB,
     getGroupListFromDB,
-    updateGroupInfoInDB
+    updateGroupInfoInDB,
+    getAllMembers
 } from "../../components/group/_api-group";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from "../../components/admin/_api-vk";
 
@@ -29,6 +36,10 @@ export const asyncAddGroup = (group_id) => {
                 return group_id
             }).then(getGroupInfoFromVk)
             .then(getGroupSizeFromVk)
+            .then(response => {
+
+
+            })
             .then(createGroupInDB)
             .then(response => {
                 if (!response) return console.error('Group not added');
@@ -46,7 +57,6 @@ export function listGroups() {
 export const asyncListGroups = () => {
     return (dispatch, getState) => {
         // const state = getState();
-
         getGroupListFromDB()
             .then(response => {
                 if (!response) return console.error('Groups not loaded');
@@ -70,9 +80,18 @@ export const asyncUpdateGroupInfo = (group_id) => {
             .then(updateGroupInfoInDB)
             .then(getGroupListFromDB)
             .then(response => {
-                console.log('response')
                 if (!response) return console.error('Update group info failed');
                 dispatch({type: GROUP_UPDATE_INFO, payload: response})
+            })
+    }
+};
+
+export const asyncGetGroupMembers = (group_id) => {
+    return (dispatch) => {
+        getAllMembers(group_id)
+            .then(response => {
+                if (!response) return console.error('Get group Members failed');
+                dispatch({type: GROUP_MEMBERS_GET, payload: response})
             })
     }
 };

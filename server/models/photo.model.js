@@ -43,6 +43,33 @@ const schema = new mongoose.Schema({
         type: Number,
         default: null
     },
+    thing_info: {
+        brand: {
+            type: String,
+            default: null
+        },
+        gender: {
+            type: String,
+            default: null
+        },
+        type: {
+            type: String,
+            default: null
+        },
+        size: {
+            type: String,
+            default: null
+        },
+        cost: {
+            type: Number,
+            default: null
+        },
+        cost_currency: {
+            type: String,
+            default: null
+        }
+    },
+
     _updated: {
         date: {
             type: Date,

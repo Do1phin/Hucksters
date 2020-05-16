@@ -1,32 +1,28 @@
 import React from "react";
-import PropTypes from 'prop-types';
-
+import {setSortItemsSelect} from "../../../redux/actions/list.actions";
+import {useDispatch, useSelector} from "react-redux";
 import './sortSelect.style.scss';
 
-const SortSelect = ({sort, refreshFunction}) => {
+const SortSelect = () => {
+    const dispatch = useDispatch();
+    const sort = useSelector(state => state.list.sort);
 
-    const handleChanger = (event) => {
-        return refreshFunction(+event.target.value)
+    const dispatchSetSortSelect = (event) => {
+        const sort = +event.target.value;
+        dispatch(setSortItemsSelect(sort))
     };
 
     return (
         <div className='sort-select'>
             <select
                 value={sort}
-                onChange={(event) => handleChanger(event)}
+                onChange={dispatchSetSortSelect}
             >
-                <option value="-1">от новых к старым</option>
-                <option value="1">от старым к новым</option>
+                <option value={-1}>от новых к старым</option>
+                <option value={1}>от старым к новым</option>
             </select>
         </div>
     )
-
-
-};
-
-SortSelect.propTypes = {
-    sort: PropTypes.number.isRequired,
-    refreshFunction: PropTypes.func.isRequired
 };
 
 export default SortSelect;

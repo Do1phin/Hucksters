@@ -1,12 +1,15 @@
 import React, {Fragment} from "react";
-import PropTypes from 'prop-types';
-
+import {useDispatch, useSelector} from "react-redux";
+import {setMemberCountrySelect} from "../../../redux/actions/list.actions";
 import './countrySelect.style.scss';
 
-const CountrySelect = ({country, refreshFunction}) => {
+const CountrySelect = () => {
+    const dispatch = useDispatch();
+    const country = useSelector(state => state.list.member_country);
 
-    const handleChanger = (event) => {
-        return refreshFunction(event.target.value)
+    const dispatchSetCountrySelect = (event) => {
+        const country = event.target.value;
+        dispatch(setMemberCountrySelect(country))
     };
 
     return (
@@ -15,7 +18,7 @@ const CountrySelect = ({country, refreshFunction}) => {
                 <label></label>
                 <select
                     value={country}
-                    onChange={handleChanger}
+                    onChange={dispatchSetCountrySelect}
                 >
                     <option value="">Все страны</option>
                     <option value="Украина">Украина</option>
@@ -25,11 +28,6 @@ const CountrySelect = ({country, refreshFunction}) => {
             </div>
         </Fragment>
     )
-};
-
-CountrySelect.propTypes = {
-    country: PropTypes.string.isRequired,
-    refreshFunction: PropTypes.func.isRequired
 };
 
 export default CountrySelect;

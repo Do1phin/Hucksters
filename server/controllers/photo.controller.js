@@ -38,7 +38,7 @@ const readPhoto = async (req, res) => {
     const {text, skip, limit, sort} = req.body;
     const sortParams = {'date': sort};
     let params;
-
+    console.log('readPhoto ', req.body)
     if (!text) {
         params = {}
     } else {

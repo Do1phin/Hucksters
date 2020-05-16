@@ -77,19 +77,19 @@ const MemberPage = ({owner_id}) => {
 
 
 
-    const MemberPage = () => {
-        return (
-            <div className='member-page'>
-                <MemberInfo {...userInfo}/>
-                <div className='album-list'>
-                    {albumsView()}
-                </div>
-                <div className='photo-list'>
-                    фотографии выбранного альбома
-                </div>
-            </div>
-        )
-    };
+    // const MemberPage = () => {
+    //     return (
+    //         <div className='member-page'>
+    //             <MemberInfo {...userInfo}/>
+    //             <div className='album-list'>
+    //                 {albumsView()}
+    //             </div>
+    //             <div className='photo-list'>
+    //                 фотографии выбранного альбома
+    //             </div>
+    //         </div>
+    //     )
+    // };
 
     const Content = () => {
         return loading
@@ -113,8 +113,6 @@ const MemberPage = ({owner_id}) => {
             <Content/>
         </Fragment>
     )
-        ;
-
 };
 
 MemberPage.propTypes = {

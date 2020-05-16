@@ -33,11 +33,9 @@ const createAlbum = async (req, res) => {
 };
 
 const readAlbum = async (req, res) => {
-
     let {skip, limit, sortParams, params} = req.body;
 
     try {
-
         await Album.find(params)
             .sort(sortParams)
             .limit(limit)

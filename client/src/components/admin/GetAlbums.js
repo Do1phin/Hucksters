@@ -2,10 +2,10 @@ import React, {Fragment, useEffect, useState} from "react";
 import {getAlbumsFromVk} from "./_api-vk";
 import {createCountersToDB, readCountersFromDB} from './_api-counters';
 import {getMembersFromDB, updateMembersInDB} from "../member/_api-member";
-import {checkAlbumsNames, createAlbumsToDB} from "../album/_api-album";
+import {createAlbumsToDB} from "../album/_api-album";
+import {checkAlbumsNames} from '../admin/_api-check';
 
 import './getAlbums.style.scss';
-
 
 const GetAlbums = () => {
     const [checkStatus, setCheckStatus] = useState('');

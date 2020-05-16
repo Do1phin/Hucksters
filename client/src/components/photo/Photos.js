@@ -8,45 +8,42 @@ import Search from "../search/Search";
 import LimitSelect from "../UI/LimitSelect/LimitSelect";
 import SortSelect from "../UI/SortSelect/SortSelect";
 import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
-
+import {useDispatch, useSelector} from "react-redux";
+import {setLoadMore, setPartItems, setTotalItems} from "../../redux/actions/list.actions";
 import './photos.style.scss';
 
 const Photos = (props) => {
     const [loading, setLoading] = useState(true);
     const [photos, setPhotos] = useState([]);
-    const [searchText, setSearchText] = useState('');
-    const [itemSize, setItemSize] = useState(0);
-    const [allItemSize, setAllItemSize] = useState(0);
-    const [skip, setSkip] = useState(0);
-    const [limit, setLimit] = useState(100);
-    const [sort, setSort] = useState(-1);
-    const [more, setMore] = useState(false);
+
+    const dispatch = useDispatch();
+    const listSettings = useSelector(state => state.list);
 
     useEffect(() => {
-        console.log('useEffect')
+
         let variables = {
-            text: searchText,
-            skip,
-            limit,
-            sort
+            text: listSettings.search_text,
+            skip: listSettings.skip,
+            limit: listSettings.limit,
+            sort: listSettings.sort
         };
 
         const loadPhotos = (variables) => {
-            console.log('loadPhotos')
+
             setLoading(true);
 
             getPhotosFromDB(variables)
                 .then(data => {
-                    console.log('getPhotosFromDB')
-                    if (data) {
-                        setItemSize(data.photos.length);
 
-                        if (more) {
+                    if (data) {
+                        dispatch(setPartItems(data.photos.length));
+
+                        if (listSettings.loadMore) {
                             setPhotos([...photos, ...data.photos]);
-                            setAllItemSize(allItemSize + data.photos.length);
+                            dispatch(setTotalItems(listSettings.total_items + data.photos.length));
                         } else {
                             setPhotos(data.photos);
-                            setAllItemSize(data.photos.length);
+                            dispatch(setTotalItems(data.photos.length));
                         }
 
                     }
@@ -55,18 +52,15 @@ const Photos = (props) => {
         };
 
         loadPhotos(variables);
-        setMore(false);
-    }, [searchText, limit, skip, sort]);
-
-    const loadMore = () => {
-        console.log('loadMore')
-        let skipAfter = skip + limit;
-        setMore(true);
-        setSkip(skipAfter);
-    };
+        dispatch(setLoadMore(false));
+    }, [
+        listSettings.search_text,
+        listSettings.limit,
+        listSettings.skip,
+        listSettings.sort
+    ]);
 
     const PhotosView = () => {
-        console.log('PhotosView')
 
         if (photos.length) {
             return photos.map((item) => {
@@ -82,11 +76,11 @@ const Photos = (props) => {
     };
 
     const PhotoSize = () => {
-        console.log('PhotoSize')
+
         return (
             <div className='photos-size'>
-                {allItemSize
-                    ? <span>Результатов - {allItemSize}</span>
+                {listSettings.total_items
+                    ? <span>Результатов - {listSettings.total_items}</span>
                     : null
                 }
             </div>
@@ -94,7 +88,7 @@ const Photos = (props) => {
     };
 
     const Content = () => {
-        console.log('Photo Content ', props.match.params)
+
         const {owner_id, album_id, photo_id} = props.match.params;
         if (owner_id) {
             return <PhotoPage photo_id={photo_id}/>
@@ -113,29 +107,14 @@ const Photos = (props) => {
 
         return (
             <Fragment>
-                <Search
-                    setSkip={setSkip}
-                    setItemSize={setItemSize}
-                    setAllItemSize={setAllItemSize}
-                    setSearchText={setSearchText}
-                />
+                <Search/>
                 <PhotoSize/>
-                <LimitSelect
-                    limit={limit}
-                    refreshFunction={setLimit}
-                />
-                <SortSelect
-                    sort={sort}
-                    refreshFunction={setSort}
-                />
+                <LimitSelect/>
+                <SortSelect/>
 
                 {element}
 
-                <LoadMoreBtn
-                    limit={limit}
-                    size={itemSize}
-                    refreshFunction={loadMore}
-                />
+                <LoadMoreBtn/>
             </Fragment>
         );
     };

@@ -1,33 +1,28 @@
 import React, {useState} from "react";
-import PropTypes from 'prop-types';
-
+import {useDispatch} from "react-redux";
+import {setSearchTextString, setSkipItemsNumber, setPartItems, setTotalItems} from "../../redux/actions/list.actions";
 import './search.style.scss';
 
-const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
+const Search = () => {
     const [text, setText] = useState();
 
+    const dispatch = useDispatch();
+
     const handleSubmit = (event) => {
+        // event.preventDefault();
         if (event.key === "Enter") {
             setText(event.target.value);
-            setText(text);
+            // setText(text);
+            const text = event.target.value;
             return updateSearchText(text);
         }
     };
 
-    // const handleChange = (event) => {
-    //     if (!event.target.value) {
-    //         setText(event.target.value);
-    //         return updateSearchText();
-    //     }
-    //     event.preventDefault();
-    //     return setText(event.target.value);
-    // };
-
     const updateSearchText = (newSearchText) => {
-            setSkip(0);
-            setItemSize(0);
-            setAllItemSize(0);
-            setSearchText(newSearchText);
+        dispatch(setSkipItemsNumber(0));
+        dispatch(setPartItems(0));
+        dispatch(setTotalItems(0));
+        dispatch(setSearchTextString(newSearchText));
     };
 
     return (
@@ -36,19 +31,11 @@ const Search = ({setSkip, setItemSize, setAllItemSize, setSearchText}) => {
                 <input
                     placeholder='Искать ...'
                     value={text}
-                    // onChange={(event) => handleChange(event)}
                     onKeyPress={handleSubmit}
                 />
             </div>
         </div>
     )
-};
-
-Search.propTypes = {
-    setSkip: PropTypes.func.isRequired,
-    setItemSize: PropTypes.func.isRequired,
-    setAllItemSize: PropTypes.func.isRequired,
-    setSearchText: PropTypes.func.isRequired
 };
 
 export default Search;

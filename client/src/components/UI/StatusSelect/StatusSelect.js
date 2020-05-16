@@ -1,12 +1,15 @@
 import React from "react";
-import PropTypes from 'prop-types';
-
+import {useDispatch, useSelector} from "react-redux";
+import {setMemberStatusSelect} from '../../../redux/actions/list.actions'
 import './statusSelect.style.scss';
 
-const StatusSelect = ({status, refreshFunction}) => {
+const StatusSelect = () => {
+    const dispatch = useDispatch();
+    const status = useSelector(state => state.list.member_status);
 
-    const handleChanger = (event) => {
-        return refreshFunction(event.target.value)
+    const dispatchSetStatusSelect = (event) => {
+        const status = event.target.value;
+        dispatch(setMemberStatusSelect(status))
     };
 
     return (
@@ -14,7 +17,7 @@ const StatusSelect = ({status, refreshFunction}) => {
             <label></label>
             <select
                 value={status}
-                onChange={handleChanger}
+                onChange={dispatchSetStatusSelect}
             >
                 <option value='all'>все пользователи</option>
                 <option value='seller'>продавцы</option>
@@ -24,11 +27,6 @@ const StatusSelect = ({status, refreshFunction}) => {
             </select>
         </div>
     )
-};
-
-StatusSelect.propTypes = {
-    status: PropTypes.string.isRequired,
-    refreshFunction: PropTypes.func.isRequired,
 };
 
 export default StatusSelect;

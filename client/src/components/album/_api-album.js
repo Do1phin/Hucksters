@@ -24,12 +24,12 @@ const createAlbumsToDB = (albumsArray) => new Promise((resolve, reject) => {
 // Получаем альбомы пользователей из базы
 const getAlbumsFromDB = (props) => {
 
-    let {title, skip, limit, sort, info, owner_id} = props;
+    let {search_text, skip, limit, sort, info, owner_id} = props;
     let params;
 
     let body = {
         owner_id,
-        title,
+        title: search_text,
         skip,
         limit,
         sort,
@@ -38,7 +38,7 @@ const getAlbumsFromDB = (props) => {
     };
 
     if (info === 'list') {
-        params = title ? {title: new RegExp(title, 'i')}: {} // регулярка выполняется, а это не надо
+        params = search_text ? {title: new RegExp(search_text, 'i')}: {} // регулярка выполняется, а это не надо
     } else if (info === 'seller') {
         params = {owner_id: owner_id}
     } else if (info === 'check_one') {
@@ -46,7 +46,7 @@ const getAlbumsFromDB = (props) => {
     } else if (info === 'check_all') {
         params = {}
     }
-    // console.log('params ', params)
+
     body['params'] = params;
 
     try {
@@ -66,40 +66,7 @@ const getAlbumsFromDB = (props) => {
     }
 };
 
-// Проверка имени альбомов на ключевые слова
-const checkAlbumsNames = (albumsArray) => new Promise((resolve, reject) => {
-
-    let albumTitleKeys = ['дорого', 'скидк', 'в наличи', 'футболк', 'поло', 'ремни', 'галстук', 'одежда',
-        'продаж', 'new', 'о б н о в а', 'обнова', 'o b n o v a', 'куртк', 'ветровк', 'пальто', 'плащ',
-        'обувь', 'свитер', 'кардиган', 'худи', 'свитшот', 'олимпийк', 'рубашк', 'рубах', 'джинс', 'чинос', 'брюк',
-        'пиджак', 'костюм', 'майк', 'аксессуар', 'женск', 'шорты', 'низ', 'верх', 'взуття', 'одяг', 'обновление',
-        'в наявност', 'обновка', 'кепк', 'шапк', 'есть', 'в продаж', 'мужское', 'о б у в ь', 'а к с е с с у а р ы',
-        'о б н о в л е н и е', 'наличи', 'C L O T H I N G', 'новые',
-    ];
-
-    console.log('checkAlbumsNames', albumsArray);
-
-    let arr = [];
-
-    albumsArray.map((item) => {
-        albumTitleKeys.map((element) => {
-            if (item.title.toLowerCase().includes(element.toLowerCase()) && !arr.includes(item)) {
-                console.log(element, item);
-                arr.push(item)
-            }
-            return null
-        });
-        return null
-    });
-    if (!arr.length) {
-        reject('(array is empty');
-    } else {
-        resolve(arr); // массив отобранных альбомов
-    }
-});
-
 export {
     createAlbumsToDB,
     getAlbumsFromDB,
-    checkAlbumsNames,
 }

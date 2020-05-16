@@ -1,12 +1,11 @@
 // Получаем продавцов из базы
 const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
 
-    console.log('getMembersFromDB ', params);
-    const {owner_id, first_name, skip, limit, status, country} = params;
+    const {owner_id, search_text, skip, limit, status, country} = params;
 
     let body = {
         owner_id,
-        first_name,
+        search_text,
         skip,
         limit,
         status,

@@ -1,24 +1,20 @@
 import React, {useEffect, useState} from "react";
 import GroupCard from "./GroupCard";
 import Spinner from "../spinner";
-import store from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {asyncListGroups} from '../../redux/actions/group.actions';
 
 import './groups.style.scss';
 
 const GroupsList = () => {
-    console.log('start')
+
     const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
-    const groups = useSelector((state) => {
-        console.log('useSelector')
-        return state.group.groups
-    });
+    const groups = useSelector(state => state.group.groups);
 
     useEffect(() => {
-        console.log('useEffect')
+
         dispatch(asyncListGroups());
 
         setLoading(false);
@@ -26,19 +22,6 @@ const GroupsList = () => {
             console.log('exit')
         }
     }, []);
-
-    store.subscribe(() => {
-        const state = store.getState();
-        console.info('state ', state)
-    });
-
-    // const groupsView = groups.map((item) => {
-    //     return (
-    //         <div className='group-list__item' key={item.group_id}>
-    //             <GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>
-    //         </div>
-    //     )
-    // });
 
     const content = loading ? (
         <Spinner/>

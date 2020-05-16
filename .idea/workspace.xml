@@ -3,15 +3,34 @@
   <component name="ChangeListManager">
     <list default="true" id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/CountrySelect/CountrySelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/CountrySelect/CountrySelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/FavoriteBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/FavoriteBtn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/_api-vk.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/_api-vk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/album/Albums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/Albums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/album/_api-album.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/_api-album.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/_api-group.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/_api-group.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/Members.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/_api-member.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/_api-member.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/Photos.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/Photos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/search/Search.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/actions/group.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/group.actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/group.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/group.reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/webpack.config.client.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/webpack.config.client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/album.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/album.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/member.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/member.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/photo.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/photo.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/photo.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/photo.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +117,10 @@
       <workItem from="1589342649846" duration="10706000" />
       <workItem from="1589469221097" duration="12813000" />
       <workItem from="1589484180369" duration="3749000" />
-      <workItem from="1589559120714" duration="10226000" />
+      <workItem from="1589559120714" duration="28527000" />
+      <workItem from="1589630791832" duration="81000" />
+      <workItem from="1589630878611" duration="6000" />
+      <workItem from="1589630907355" duration="21440000" />
     </task>
     <servers />
   </component>
@@ -106,10 +128,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="294" y="166" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589630860580">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="294" y="166" key="#com.intellij.execution.impl.EditConfigurationsDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589630860580" />
     <state x="580" y="302" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589392697622">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="580" y="302" key="#com.intellij.fileTypes.FileTypeChooser/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589392697622" />
+    <state x="627" y="122" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1589642494262">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="627" y="122" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589642494262" />
     <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589394387898">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
@@ -206,17 +236,17 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589132477973" />
-    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1589565539782">
+    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1589653923286">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589565539782" />
+    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589653923286" />
     <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1589564455109">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589564455109" />
-    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1588674209961">
+    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1589647085433">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1588674209961" />
+    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589647085433" />
   </component>
 </project>
