@@ -20,10 +20,12 @@ const createFavorite = async (req, res) => {
 };
 
 const readFavorite = async (req, res) => {
-
+    console.log('readFavorite ', req.body)
     try {
-        Favorite.find({user_id: req.body.user_id}, (err, favorite) => {
-
+        Favorite.find({photo_id: {$in: [...req.body]}}, (err, favorite) => {
+            if (err) return res.status(400).json({err: getErrorMessage(err)});
+            console.log('favorite   ', favorite);
+            return res.status(200).json(favorite)
         })
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})

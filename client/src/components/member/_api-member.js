@@ -1,3 +1,6 @@
+import {setCheckStatusString} from "../../redux/actions/check.actions";
+import {useDispatch} from "react-redux";
+
 // Получаем продавцов из базы
 const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
 
@@ -49,6 +52,8 @@ const getMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
 
 // Добавляем продавцов в базу
 const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
+    // const dispatch = useDispatch();
+    // dispatch(setCheckStatusString('- добавление мемберов в базу...'));
     console.log('createMembersToDB ', membersArray);
     const body = {source: membersArray};
 
@@ -73,6 +78,8 @@ const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
 
 // Обновляем информацию в аккаунте (только общая инфа)
 const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject) => {
+    // const dispatch = useDispatch();
+    // dispatch(setCheckStatusString('- обновление информации мемберов в базе...'));
     console.log('updateMembersInDB ', membersWithInfoArray);
 
     membersWithInfoArray.map((item) => {

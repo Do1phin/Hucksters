@@ -1,6 +1,8 @@
 // Получаем список групп из базы
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
 import {createMembersToDB, updateMembersInDB} from "../member/_api-member";
+import {setCheckStatusString, setCheckStepNumber} from "../../redux/actions/check.actions";
+import {useDispatch} from "react-redux";
 
 const getGroupListFromDB = (params) => {
     try {
@@ -78,10 +80,10 @@ const getAllMembers = async (group_id) => {
     try {
         const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
         const membersSize = await members.response.count;
-
         let count = 0;
+
         await (function f() {
-            console.info(`Step ${count} from ${membersSize / 1000}`);
+            console.info(`Step ${count} from ${Math.ceil(membersSize / 1000)}`);
             if (count < Math.ceil(membersSize / 1000)) {
 
                 const obj = {group_id: group_id, count};
@@ -98,12 +100,12 @@ const getAllMembers = async (group_id) => {
                         response.map((item) => {
                             item['info'] = 'full'
                         });
-                        return response // массив пользователей с информацией
+                        return response // массив пользователей группы с информацией
                     }).then(updateMembersInDB)
                     .catch((err) => console.error(err));
 
                 count++;
-                setTimeout(f, 150000);
+                setTimeout(f, 100000);
             } else {
                 console.log('All members added');
             }

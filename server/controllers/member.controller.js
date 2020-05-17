@@ -46,6 +46,8 @@ const readMember = async (req, res) => {
         params = {deactivated: 'deleted'}
     } else if (status === 'rest') {
         params = {} // доделать чтобы только оставшихся брало
+    } else if (status === 'check_params') {
+        params = {}
     }
 
     if (search_text) {

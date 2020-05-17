@@ -3,8 +3,12 @@ export const GROUP_ADD = 'ADMIN/GROUP_ADD';
 export const GROUP_DELETE = 'ADMIN/GROUP_DELETE';
 export const GROUP_UPDATE_INFO = 'ADMIN/GROUP_UPDATE_INFO';
 export const GROUP_LIST = 'ADMIN/GROUP_LIST';
+
 // Check groups
 export const GROUP_MEMBERS_GET = 'ADMIN/GROUP_MEMBERS_GET';
+export const CHECK_THING = 'ADMIN/CHECK_THING';
+export const CHECK_STEP = 'ADMIN/CHECK_STEP';
+export const CHECK_STATUS = 'ADMIN/CHECK_STATUS';
 
 // Lists settings
 export const LIST_SETTINGS_LIMIT_ITEMS = 'LIST_SETTINGS_LIMIT_ITEMS';

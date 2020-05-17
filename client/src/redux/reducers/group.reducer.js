@@ -9,8 +9,6 @@ import {
 const initialState = {
     group_id: '',
     groups: [],
-    status: '',
-    step: null
 };
 
 const groupReducer = (state = initialState, action) => {

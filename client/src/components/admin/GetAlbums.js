@@ -85,8 +85,10 @@ const GetAlbums = () => {
             .then((response) => {
                 return response.json()
             }).then((data) => {
-            const {all_members, banned, deleted, closed, seller, all_albums, all_photos, photo_with_text,
-                photo_with_addit_photo} = data;
+            const {
+                all_members, banned, deleted, closed, seller, all_albums, all_photos, photo_with_text,
+                photo_with_addit_photo
+            } = data;
             let tempCount = {
                 all_members,
                 banned,
@@ -138,11 +140,58 @@ const GetAlbums = () => {
                         <li>Удалённые - {counters.deleted}</li>
 
                         <p>Проверяем {checkCount} из {counters.all_members - counters.seller - counters.banned -
-                            counters.deleted - counters.closed}
+                        counters.deleted - counters.closed}
                         </p>
                         <span>Статус: {checkStatus}</span>
                     </ul>
 
+                </div>
+                <div className="album-loader__settings">
+                    <label>
+                        <input
+                            id={'seller'}
+                            type="checkbox"
+                            defaultChecked={false}
+                            // onChange={handleChangeChk}
+                        />
+                        Продавцы
+                    </label>
+                    <label>
+                        <input
+                            id={'closed'}
+                            type="checkbox"
+                            defaultChecked={false}
+                            // onChange={handleChangeChk}
+                        />
+                        Скрытые
+                    </label>
+                    <label>
+                        <input
+                            id={'banned'}
+                            type="checkbox"
+                            defaultChecked={false}
+                            // onChange={handleChangeChk}
+                        />
+                        Забаненные
+                    </label>
+                    <label>
+                        <input
+                            id={'deleted'}
+                            type="checkbox"
+                            defaultChecked={false}
+                            // onChange={handleChangeChk}
+                        />
+                        Удалённые
+                    </label>
+                    <label>
+                        <input
+                            id={'others'}
+                            type="checkbox"
+                            defaultChecked={false}
+                            // onChange={handleChangeChk}
+                        />
+                        Остальные
+                    </label>
                 </div>
                 <div className='album-loader__buttons'>
                     <button className='album-loader__btn-load'

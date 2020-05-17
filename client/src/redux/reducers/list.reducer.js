@@ -20,7 +20,7 @@ const initialState = {
     member_country: '',
 };
 
-const listReducers = (state = initialState, action) => {
+const listReducer = (state = initialState, action) => {
     switch (action.type) {
         case LIST_SETTINGS_LIMIT_ITEMS:
             return {
@@ -72,4 +72,4 @@ const listReducers = (state = initialState, action) => {
     }
 };
 
-export default listReducers;
+export default listReducer;

@@ -14,6 +14,7 @@ import {
     getAllMembers
 } from "../../components/group/_api-group";
 import {getGroupInfoFromVk, getGroupSizeFromVk} from "../../components/admin/_api-vk";
+import {setCheckStatusString} from "./check.actions";
 
 // синхронно
 export function addGroup(group_id) {
@@ -88,6 +89,8 @@ export const asyncUpdateGroupInfo = (group_id) => {
 
 export const asyncGetGroupMembers = (group_id) => {
     return (dispatch) => {
+        dispatch(setCheckStatusString('Получение пользователей из группы: '));
+
         getAllMembers(group_id)
             .then(response => {
                 if (!response) return console.error('Get group Members failed');

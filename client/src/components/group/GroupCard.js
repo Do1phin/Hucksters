@@ -1,16 +1,18 @@
 import React, {Fragment, useState} from "react";
 import PropTypes from 'prop-types';
 import SpinnerItem from "../spinner-item";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {asyncDeleteGroup, asyncUpdateGroupInfo, asyncGetGroupMembers} from "../../redux/actions/group.actions";
 import store from "../../redux/store";
 
+
 const GroupCard = ({item}) => {
     const [loading, setLoading] = useState(false);
-    const [actionStatus] = useState('');
-    const [checkCount] = useState(0);
+    // const [actionStatus] = useState('');
+    // const [checkCount] = useState(0);
 
     const dispatch = useDispatch();
+    const checkInfo = useSelector(state => state.checker);
 
     const {photo, name, group_id, size} = item;
 
@@ -56,8 +58,8 @@ const GroupCard = ({item}) => {
                     </div>
                 </div>
                 <div className='group-list__status'>
-                    <span>Проверяем {checkCount} из {size}</span>
-                    <span>Статус: {actionStatus}</span>
+                    <span>Проверяем {checkInfo.step} из {size}</span>
+                    <span>Статус: {checkInfo.status}</span>
                 </div>
 
                 <div className='group-list__item-actions'>
@@ -88,7 +90,7 @@ const GroupCard = ({item}) => {
                     >
                         Получить пользователей
                     </button>
-                    {actionStatus}
+                    {checkInfo.status}
                 </div>
             </Fragment>
         )

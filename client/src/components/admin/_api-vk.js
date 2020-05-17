@@ -1,4 +1,6 @@
 /* global VK */
+import {useDispatch} from "react-redux";
+import {setCheckStatusString} from "../../redux/actions/check.actions";
 
 // Обращение к API
 const call = (method, params) => {
@@ -30,6 +32,8 @@ const login = () => {
 
 // Получаем всех пользователей группы
 const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, reject) => {
+    // const dispatch = useDispatch();
+    // dispatch(setCheckStatusString('- получение пользователей из группы...'));
     console.log('getMembersGroupFromVk ', group_id);
 
     const params = {
@@ -55,6 +59,8 @@ const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, rejec
 
 // Получаем подробную информацию по пользователям
 const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => {
+    // const dispatch = useDispatch();
+    // dispatch(setCheckStatusString('- получение информации о пользователях из ВК...'));
     console.log('getMembersInfoFromVk' , membersArray);
 
     const params = {
@@ -167,6 +173,7 @@ const getGroupInfoFromVk = (group_id) => new Promise((resolve, reject) => {
 
 // Получаем количество пользователей в группе
 const getGroupSizeFromVk = (groupObj) => new Promise((resolve, reject) => {
+
     if (groupObj.deactivated || groupObj.id < 0) {
         reject('Group not found');
     }

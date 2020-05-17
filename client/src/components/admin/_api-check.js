@@ -30,6 +30,17 @@ const checkAlbumsNames = (albumsArray) => new Promise((resolve, reject) => {
     }
 });
 
+const checkPhotoForPrice = (photoObj) => new Promise((resolve, reject) => {
+    const currency = ['цена', 'price'];
+    const keysUa = ['uah', 'грн', 'гривен'];
+    const keysRu = ['uah', 'руб', 'рублей', '₽'];
+    const keysBl = ['byn', 'руб'];
+
+
+
+});
+
 export {
     checkAlbumsNames,
+    checkPhotoForPrice
 }

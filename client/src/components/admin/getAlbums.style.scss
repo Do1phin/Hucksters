@@ -1,8 +1,12 @@
-.album-loader__counters {
+.album-loader {
     display: grid;
-    grid-template-columns: 300px 100px;
+    grid-template-columns: 300px 150px 1fr;
     column-gap: 5px;
     align-items: center;
+}
+
+.album-loader__settings input {
+    display: list-item;
 }
 
 .album-loader__buttons {

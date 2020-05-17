@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {getPhotosFromDB} from './_api-photo';
+import {getPhotosFavorites, getPhotosFromDB} from './_api-photo';
 import PhotoCard from './PhotoCard';
 import PhotoPage from "./PhotoPage";
 import ErrorNotFound from '../errors/ErrorNotFound';
@@ -36,16 +36,18 @@ const Photos = (props) => {
                 .then(data => {
 
                     if (data) {
-                        dispatch(setPartItems(data.photos.length));
+                        const items = data.photos;
+                        dispatch(setPartItems(items.length));
 
                         if (listSettings.loadMore) {
-                            setPhotos([...photos, ...data.photos]);
-                            dispatch(setTotalItems(listSettings.total_items + data.photos.length));
+                            setPhotos([...photos, ...items]);
+                            dispatch(setTotalItems(listSettings.total_items + items.length));
                         } else {
-                            setPhotos(data.photos);
-                            dispatch(setTotalItems(data.photos.length));
+                            setPhotos(items);
+                            dispatch(setTotalItems(items.length));
                         }
-
+                        const favorites = getPhotosFavorites(items);
+                        console.log('favorites ', favorites);
                     }
                 });
             return setLoading(false);

@@ -3,34 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/CountrySelect/CountrySelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/CountrySelect/CountrySelect.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/FavoriteBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/FavoriteBtn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/_api-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/_api-check.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/admin/_api-vk.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/_api-vk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/Albums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/Albums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/_api-album.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/_api-album.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/getAlbums.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/getAlbums.style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/group/_api-group.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/_api-group.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/Members.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/groups.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/groups.style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/member/_api-member.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/_api-member.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/photo/Photos.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/Photos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/search/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/_api-photo.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/_api-photo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/actions/group.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/group.actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/group.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/group.reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/album.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/album.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/list.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/list.reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/favorite.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/favorite.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/member.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/member.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/photo.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/photo.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/photo.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/photo.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,13 +40,16 @@
     <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/redux/actions" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Programming\Projects\Hucksters\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
     <property name="ts.external.directory.path" value="C:\Programming\Projects\Hucksters\client\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Programming\Projects\Hucksters" />
+    </key>
     <key name="es6.move.members.recent.items">
       <recent name="C:\Programming\Projects\Hucksters\client\src\components\group\api-group.js" />
     </key>
@@ -120,7 +113,7 @@
       <workItem from="1589559120714" duration="28527000" />
       <workItem from="1589630791832" duration="81000" />
       <workItem from="1589630878611" duration="6000" />
-      <workItem from="1589630907355" duration="21440000" />
+      <workItem from="1589630907355" duration="49888000" />
     </task>
     <servers />
   </component>
@@ -236,17 +229,17 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589132477973" />
-    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1589653923286">
+    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1589735999821">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589653923286" />
-    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1589564455109">
+    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589735999821" />
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1589733738930">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589564455109" />
-    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1589647085433">
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589733738930" />
+    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1589727200505">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589647085433" />
+    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589727200505" />
   </component>
 </project>

@@ -42,13 +42,19 @@
     width: 100%;
     grid-column-gap: 2px;
     grid-row-gap: 2px;
+
+    .group-list__item {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-column-gap: 10px;
+    }
 }
 
-.group-list__item {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-column-gap: 10px;
-}
+//.group-list__item {
+//    display: grid;
+//    grid-template-columns: 1fr 2fr;
+//    grid-column-gap: 10px;
+//}
 
 .group-list__item-info {
     display: grid;
