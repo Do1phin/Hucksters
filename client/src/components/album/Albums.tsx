@@ -13,6 +13,14 @@ import {setLoadMore, setPartItems, setTotalItems} from "../../redux/actions/list
 import '../UI/SortSelect/sortSelect.style.scss';
 import './albums.style.scss';
 
+interface getAlbumsReqVariables{
+    info: string,
+    search_text: string,
+    skip: number,
+    limit: number,
+    sort: number
+}
+
 const Albums = (props) => {
     const [loading, setLoading] = useState(true);
     const [albums, setAlbums] = useState([]);
@@ -22,7 +30,7 @@ const Albums = (props) => {
 
     useEffect(() => {
 
-        const variables = {
+        const variables: getAlbumsReqVariables = {
             info: 'list',
             search_text: listSettings.search_text,
             skip: listSettings.skip,
@@ -30,7 +38,7 @@ const Albums = (props) => {
             sort: listSettings.sort,
         };
 
-        const loadAlbums = (variables) => {
+        const loadAlbums = (variables: object): array => {
 
             getAlbumsFromDB(variables)
                 .then(data => {
@@ -62,7 +70,7 @@ const Albums = (props) => {
     const AlbumsView = () => {
 
         if (albums.length) {
-            return albums.map((item) => {
+            return albums.map((item: object) => {
                 return (
                     <div className="album-card__item" key={item.album_id}>
                         <AlbumCard {...item}/>
@@ -87,7 +95,8 @@ const Albums = (props) => {
 
     const Content = () => {
         const {owner_id, album_id} = props.match.params;
-        let element;
+        let element: any;
+
         if (album_id) {
             return <AlbumPage owner_id={+owner_id} album_id={+album_id}/>
         }

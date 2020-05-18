@@ -5,6 +5,7 @@
     "jsx": "react",
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "pretty": true,
     "target": "es5",
     "lib": [
       "es2017",
@@ -16,6 +17,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
@@ -24,7 +26,7 @@
     "noEmit": true
   },
   "include": [
-    "src/**/*"
+    "./src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
