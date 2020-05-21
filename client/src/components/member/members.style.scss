@@ -1,0 +1,60 @@
+.member-list {
+    display: grid;
+    background-color: #2E2F42;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-rows: 220px;
+    grid-gap: 10px;
+    padding: 25px 25px 25px 25px;
+}
+
+.member-card__header_info { grid-area: info }
+.member-card__header_img { grid-area: img}
+.member-card__header_id { grid-area: id}
+
+.member-card__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 45px 150px 20px;
+    align-content: center;
+    background-color: #404258;
+    border-radius: 5px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+a {
+    align-content: center;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.member-card__header_id {
+    color: #a3a3af;
+    /*background-color: #0f9d58;*/
+}
+
+.member-card__body_img img {
+    width: 90%;
+    border-radius: 100px;
+}
+
+/*.member-card__body_img {*/
+/*    width: 90%;*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: contain;*/
+/*    background-image: url('./assets/camera_loading_200.png');*/
+/*}*/
+
+.member-size span {
+    color: #FFFFFF;
+}
+
+.member-size {
+    text-align: center;
+    background-color: #2E2F42;
+}
+
+.member-load-more {
+    text-align: center;
+    background-color: #2E2F42;
+}

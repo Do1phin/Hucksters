@@ -1,47 +1,56 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const config = require('../config/config');
-const bodyParser = require('body-parser');
-const favicon = require('serve-favicon');
-const path = require('path');
+import express from 'express';
+import mongoose from 'mongoose';
+// import {config} from '../config/config.js';
+import bodyParser from 'body-parser';
+import passport from 'passport';
+import favicon from 'serve-favicon';
+import path from 'path';
+
+const __dirname = path.resolve();
 const app = express();
 
-const signupRoutes = require('./routes/signup.routes');
-const signinRoutes = require('./routes/signin.routes');
-const sellerRoutes = require('./routes/sellers.routes');
+import routes from './routes/index.js';
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// require('../config/passport')(passport);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-const {port, mongoUri} = config;
+// const {port, mongoUri} = require('../config/config.js');
 
-app.use(signupRoutes);
-app.use(signinRoutes);
-app.use(sellerRoutes);
+const port = 5000;
+const mongoUri = 'mongodb+srv://mikhail:FXMyt2Aq52zf9qP@cluster0-v5uip.azure.mongodb.net/test?retryWrites=true&w=majority';
 
+app.use(routes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 
-async function startApp() {
+const startApp = async() => {
     try {
-        await mongoose.connect(mongoUri, {
+        const mongoConnectionOptions = {
+            useCreateIndex: true,
+            useFindAndModify: false,
             useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true
-        }, () => {
+            useUnifiedTopology: true
+        };
+
+        await mongoose.connect(mongoUri, mongoConnectionOptions, () => {
             mongoose.set('debug', true);
-            console.log(`MongoDB connected`)
+            console.info(`MongoDB connected`);
         });
         await app.listen(port, () => {
-            console.log(`Express-server started on port № ${port}`)
+            console.info(`Express-server started on port № ${port}`);
         });
     } catch (e) {
         throw new Error(e);
     }
-}
+};
 
 startApp();
 
-module.exports = app;
+export default app;

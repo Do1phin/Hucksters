@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/AdminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/AdminPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/_api-counters.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/_api-counters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/_api-vk.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/_api-vk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/album/Albums.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/album/Albums.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/_api-group.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/_api-group.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/_api-member.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/_api-member.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/counters.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/counters.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/member.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/member.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/counters.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/counters.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/counters.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/counters.routes.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1atSBdTA6Ha0sS7WwFHpwOD5fPl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jsx.switch.disabled" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Programming\Projects\Hucksters\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="ts.external.directory.path" value="C:\Programming\Projects\Hucksters\client\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Programming\Projects\Hucksters" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="C:\Programming\Projects\Hucksters\client\src\components\group\api-group.js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Programming\Projects\Hucksters\client\src\redux\actions" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\redux\reducers" />
+      <recent name="C:\Programming\Projects\Hucksters\server" />
+      <recent name="C:\Programming\Projects\Hucksters\" />
+      <recent name="C:\Programming\Projects\Hucksters\client" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="checkCount" />
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="" />
+      <created>1587553263545</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587553263545</updated>
+      <workItem from="1587553266590" duration="27802000" />
+      <workItem from="1587637932994" duration="10398000" />
+      <workItem from="1587661721846" duration="10605000" />
+      <workItem from="1587717290765" duration="77020000" />
+      <workItem from="1587878227208" duration="17871000" />
+      <workItem from="1587908641730" duration="67000" />
+      <workItem from="1587908719594" duration="269000" />
+      <workItem from="1587909002110" duration="341000" />
+      <workItem from="1587909357125" duration="892000" />
+      <workItem from="1587910271074" duration="716000" />
+      <workItem from="1587911004282" duration="662000" />
+      <workItem from="1587911685042" duration="15247000" />
+      <workItem from="1587964006186" duration="88000" />
+      <workItem from="1587964107773" duration="269000" />
+      <workItem from="1587964400983" duration="12271000" />
+      <workItem from="1587991079045" duration="22042000" />
+      <workItem from="1588063282164" duration="50906000" />
+      <workItem from="1588162577027" duration="9367000" />
+      <workItem from="1588172387423" duration="584000" />
+      <workItem from="1588173222788" duration="17012000" />
+      <workItem from="1588241309465" duration="3621000" />
+      <workItem from="1588245146974" duration="25659000" />
+      <workItem from="1588272877977" duration="27212000" />
+      <workItem from="1588436668240" duration="48176000" />
+      <workItem from="1588572434287" duration="83714000" />
+      <workItem from="1588847870738" duration="25520000" />
+      <workItem from="1588877455953" duration="2248000" />
+      <workItem from="1588928996503" duration="53159000" />
+      <workItem from="1589043878715" duration="6855000" />
+      <workItem from="1589131113171" duration="34306000" />
+      <workItem from="1589306827969" duration="6900000" />
+      <workItem from="1589342649846" duration="10706000" />
+      <workItem from="1589469221097" duration="12813000" />
+      <workItem from="1589484180369" duration="3749000" />
+      <workItem from="1589559120714" duration="28527000" />
+      <workItem from="1589630791832" duration="81000" />
+      <workItem from="1589630878611" duration="6000" />
+      <workItem from="1589630907355" duration="63506000" />
+      <workItem from="1589860922890" duration="47846000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="294" y="166" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589630860580">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="294" y="166" key="#com.intellij.execution.impl.EditConfigurationsDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589630860580" />
+    <state x="580" y="302" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589392697622">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="580" y="302" key="#com.intellij.fileTypes.FileTypeChooser/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589392697622" />
+    <state x="627" y="122" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1589642494262">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="627" y="122" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589642494262" />
+    <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589394387898">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589394387898" />
+    <state x="985" y="212" key="#xdebugger.evaluate" timestamp="1589134425935">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="985" y="212" key="#xdebugger.evaluate/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589134425935" />
+    <state width="531" height="646" key="DebuggerActiveHint" timestamp="1590089979795">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="531" height="646" key="DebuggerActiveHint/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089979795" />
+    <state x="92" y="92" width="1496" height="836" key="DiffContextDialog" timestamp="1589991458584">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="92" y="92" width="1496" height="836" key="DiffContextDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589991458584" />
+    <state x="506" y="287" width="668" height="660" key="EditFileWatcherDialog" timestamp="1589222014177">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="506" y="287" width="668" height="660" key="EditFileWatcherDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589222014177" />
+    <state x="620" y="266" key="FileChooserDialogImpl" timestamp="1589395983729">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="620" y="266" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589395983729" />
+    <state width="1637" height="238" key="GridCell.Tab.0.bottom" timestamp="1590089905704">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.0.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905704" />
+    <state width="1237" height="238" key="GridCell.Tab.0.bottom/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031687352" />
+    <state width="1637" height="238" key="GridCell.Tab.0.center" timestamp="1590089905704">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.0.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905704" />
+    <state width="1237" height="238" key="GridCell.Tab.0.center/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031687352" />
+    <state width="1637" height="238" key="GridCell.Tab.0.left" timestamp="1590089905704">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.0.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905704" />
+    <state width="1237" height="238" key="GridCell.Tab.0.left/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031687351" />
+    <state width="1637" height="238" key="GridCell.Tab.0.right" timestamp="1590089905704">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.0.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905704" />
+    <state width="1237" height="238" key="GridCell.Tab.0.right/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031687352" />
+    <state width="1637" height="238" key="GridCell.Tab.1.bottom" timestamp="1590089905705">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.1.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905705" />
+    <state width="1237" height="238" key="GridCell.Tab.1.bottom/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031696529" />
+    <state width="1637" height="238" key="GridCell.Tab.1.center" timestamp="1590089905705">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.1.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905705" />
+    <state width="1237" height="238" key="GridCell.Tab.1.center/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031696529" />
+    <state width="1637" height="238" key="GridCell.Tab.1.left" timestamp="1590089905705">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.1.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905705" />
+    <state width="1237" height="238" key="GridCell.Tab.1.left/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031696529" />
+    <state width="1637" height="238" key="GridCell.Tab.1.right" timestamp="1590089905705">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.1.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905705" />
+    <state width="1237" height="238" key="GridCell.Tab.1.right/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031696529" />
+    <state width="1637" height="238" key="GridCell.Tab.2.bottom" timestamp="1590089905705">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.2.bottom/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905705" />
+    <state width="1237" height="238" key="GridCell.Tab.2.bottom/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031687250" />
+    <state width="1637" height="238" key="GridCell.Tab.2.center" timestamp="1590089905705">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.2.center/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905705" />
+    <state width="1237" height="238" key="GridCell.Tab.2.center/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031687250" />
+    <state width="1637" height="238" key="GridCell.Tab.2.left" timestamp="1590089905705">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.2.left/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905705" />
+    <state width="1237" height="238" key="GridCell.Tab.2.left/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031687250" />
+    <state width="1637" height="238" key="GridCell.Tab.2.right" timestamp="1590089905705">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state width="1637" height="238" key="GridCell.Tab.2.right/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590089905705" />
+    <state width="1237" height="238" key="GridCell.Tab.2.right/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590031687250" />
+    <state x="420" y="247" key="IDE.errors.dialog" timestamp="1587909687393">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="420" y="247" key="IDE.errors.dialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1587909687393" />
+    <state x="421" y="161" width="1081" height="710" key="SettingsEditor" timestamp="1589743084688">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="421" y="161" width="1081" height="710" key="SettingsEditor/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589743084688" />
+    <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1589303355679">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589303355679" />
+    <state x="71" y="-17" width="1496" height="836" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589305362287">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="71" y="-17" width="1496" height="836" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589305362287" />
+    <state x="614" y="199" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589220253613">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="614" y="199" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589220253613" />
+    <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1589132477973">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589132477973" />
+    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1590090738853">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590090738853" />
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1589828214664">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589828214664" />
+    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1589820464383">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="503" y="220" width="672" height="678" key="search.everywhere.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589820464383" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/member/_api-member.js</url>
+          <line>69</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/member/_api-member.js</url>
+          <line>100</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/member/_api-member.js</url>
+          <line>101</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/member/_api-member.js</url>
+          <line>102</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/member/_api-member.js</url>
+          <line>103</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/member/_api-member.js</url>
+          <line>59</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/member/_api-member.js</url>
+          <line>71</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/member/_api-member.js</url>
+          <line>72</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/group/_api-group.js</url>
+          <line>96</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

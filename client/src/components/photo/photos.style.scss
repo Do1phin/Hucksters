@@ -1,0 +1,106 @@
+.photo-list {
+    display: grid;
+    background-color: #2E2F42;
+    grid-gap: 10px;
+    padding: 25px 25px 25px 25px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.photo-card__item-header-avatar {
+    grid-area: avatar;
+}
+
+.photo-card__item-header-username {
+    grid-area: username;
+}
+
+.photo-card__item-header-date {
+    grid-area: date;
+}
+
+a {
+    text-decoration: none;
+    align-content: center;
+}
+
+.photo-card__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 250px 50px;
+    background-color: #404258;
+    align-content: center;
+}
+
+.body {
+    background-color: #2E2F42;
+    text-align: center;
+}
+
+.photo-card__item-header {
+    display: grid;
+    height: 50px;
+    grid-column-gap: 10px;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 25px 25px;
+    grid-template-areas: 'avatar username' 'avatar date';
+}
+
+.photo-card__item-header-avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.photo-card__item-header-username {
+    color: #FFFFFF;
+}
+
+.photo-card__item-header-date {
+    color: #a3a3af;
+}
+
+.photo-card__item-body {
+    height: 100%;
+}
+
+.photo-card__item-body-img img {
+    padding-top: 5px;
+
+    /*object-fit: cover;*/
+    width: 100%;
+    height: 200px;
+
+    /*background-image: url(./img.jpg);*/
+}
+
+.photo-card__item-footer {
+    span {
+        color: #a3a3af;
+        white-space: pre-line;
+    }
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 10px;
+    color: #FFFFFF;
+    gap: 5px;
+    padding-top: 5px;
+    text-align: center;
+    align-items: center;
+}
+
+.photo-card__item-footer-info, .photo-card__item-footer-photos, .photo-card__item-footer-size {
+    background-color: #667395;
+    border-radius: 5px;
+    height: 70%;
+    width: 90%;
+}
+
+.photo-card__item-footer-info-none, .photo-card__item-footer-photos-none {
+    background-color: darkgray;
+}
+
+.photos-size {
+    color: #FFFFFF;
+    text-align: center;
+    background-color: #2E2F42;
+}

@@ -1,0 +1,40 @@
+.header {
+    display: grid;
+    grid-template-columns: 250px 3fr 1fr;
+    height: 70px;
+    align-items: center;
+    background-color: #94a9ce;
+}
+
+.header-logo {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.header-logo__picture {
+    padding-left: 10px;
+    height: 60px;
+}
+
+.header-logo__text {
+    font-size: 30px;
+}
+
+.header-menu {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    column-gap: 10px;
+}
+
+.header-auth__info {
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    align-items: center;
+}
+
+.header-auth img {
+    border-radius: 50px;
+    height: 50px;
+}

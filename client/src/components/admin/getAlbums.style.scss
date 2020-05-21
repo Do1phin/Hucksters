@@ -1,0 +1,22 @@
+.album-loader {
+    display: grid;
+    grid-template-columns: 300px 150px 1fr;
+    column-gap: 5px;
+    align-items: center;
+}
+
+.album-loader__settings input {
+    display: list-item;
+}
+
+.album-loader__buttons {
+    display: grid;
+    grid-template-columns: 200px;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.album-loader__btn-create, .album-loader__btn-refresh {
+    height: 80px;
+    width: 80px;
+}

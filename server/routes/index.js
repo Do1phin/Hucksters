@@ -1,9 +1,24 @@
-const {Router} = require('express');
-const router = Router();
-const signupRoutes = require('./signup.routes');
-const signinRoutes = require('./signin.routes');
+import express from 'express';
+import authRoutes from './auth.routes.js';
+import membersRoutes from './member.routes.js';
+import albumsRoutes from './album.routes.js';
+import photosRoutes from './photo.routes.js';
+import groupsRoutes from './group.routes.js';
+import commentsRoutes from './comment.routes.js';
+import searchRoutes from './search.routes.js';
+import countersRoutes from './counters.routes.js';
+import favoriteRoutes from './favorite.routes.js';
 
-router.use('/signup', signupRoutes);
-router.use('/signin', signinRoutes);
+const router = express.Router();
 
-module.exports = router;
+router.use('/', authRoutes);
+router.use('/', membersRoutes);
+router.use('/', albumsRoutes);
+router.use('/', photosRoutes);
+router.use('/', groupsRoutes);
+router.use('/', commentsRoutes);
+router.use('/', searchRoutes);
+router.use('/', countersRoutes);
+router.use('/', favoriteRoutes);
+
+export default router;
