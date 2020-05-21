@@ -18,12 +18,13 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": true,
+    "moduleResolution": "node",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "noEmitOnError": true
   },
   "include": [
     "./src/**/*.tsx"

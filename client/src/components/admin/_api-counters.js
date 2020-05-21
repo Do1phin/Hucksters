@@ -59,7 +59,24 @@ const readCountersFromDB = () => new Promise((resolve, reject) =>{
 // Обновляем данные счётчиков
 const updateCountersToDB = () => new Promise((resolve, reject) => {
     try {
+        deleteCounterFromDB();
+        createCountersToDB();
+    } catch (e) {
+        reject(e)
+    }
+});
 
+// Удаляем сами счётчиков
+const deleteCounterFromDB = () => new Promise((resolve, reject) => {
+    try {
+        fetch('/vk/info/delete')
+            .then((response) => {
+                // const data = response
+                resolve(response.json())
+            }).then(data => console.info(data))
+            .catch((err) => {
+                reject(err)
+            })
     } catch (e) {
         reject(e)
     }
@@ -69,4 +86,5 @@ export {
     createCountersToDB,
     readCountersFromDB,
     updateCountersToDB,
+    deleteCounterFromDB
 }

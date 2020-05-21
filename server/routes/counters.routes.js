@@ -12,6 +12,7 @@ router.route('/vk/info')
 router.route('/vk/info/update')
     .get(countersCtrl.updateCounters);
 
-
+router.route('/vk/info/delete')
+    .get(countersCtrl.deleteCounters);
 
 export default router;

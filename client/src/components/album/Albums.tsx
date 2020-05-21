@@ -38,7 +38,7 @@ const Albums = (props) => {
             sort: listSettings.sort,
         };
 
-        const loadAlbums = (variables: object): array => {
+        const loadAlbums = (variables: object) => {
 
             getAlbumsFromDB(variables)
                 .then(data => {

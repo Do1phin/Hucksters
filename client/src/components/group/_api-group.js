@@ -1,8 +1,8 @@
 // Получаем список групп из базы
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
 import {createMembersToDB, updateMembersInDB} from "../member/_api-member";
-import {setCheckStatusString, setCheckStepNumber} from "../../redux/actions/check.actions";
-import {useDispatch} from "react-redux";
+import {setCheckStepNumber} from "../../redux/actions/check.actions";
+import store from "../../redux/store";
 
 const getGroupListFromDB = (params) => {
     try {
@@ -85,7 +85,7 @@ const getAllMembers = async (group_id) => {
         await (function f() {
             console.info(`Step ${count} from ${Math.ceil(membersSize / 1000)}`);
             if (count < Math.ceil(membersSize / 1000)) {
-
+                store.dispatch(setCheckStepNumber(count));
                 const obj = {group_id: group_id, count};
 
                 Promise.resolve(obj)
@@ -94,6 +94,7 @@ const getAllMembers = async (group_id) => {
                         return response // массив пользователей группы
                     }).then(createMembersToDB)
                     .then((response) => {
+                        console.log('response ', response.length)
                         return response // массив пользователей группы
                     }).then(getMembersInfoFromVk)
                     .then((response) => {

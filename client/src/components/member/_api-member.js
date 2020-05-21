@@ -1,8 +1,5 @@
-import {setCheckStatusString} from "../../redux/actions/check.actions";
-import {useDispatch} from "react-redux";
-
 // Получаем продавцов из базы
-const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
+const getMembersFromDB = (params) => new Promise((resolve, reject) => {
 
     const {owner_id, search_text, skip, limit, status, country} = params;
 
@@ -10,7 +7,7 @@ const getMembersFromDB = (params) => new Promise((resolve, reject) =>{
         owner_id,
         search_text,
         skip,
-        limit,
+        limit: limit,
         status,
         country
     };
@@ -51,13 +48,18 @@ const getMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
 });
 
 // Добавляем продавцов в базу
-const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
+const createMembersToDB = (membersArray) => new Promise(async (resolve, reject) => {
     // const dispatch = useDispatch();
     // dispatch(setCheckStatusString('- добавление мемберов в базу...'));
     console.log('createMembersToDB ', membersArray);
-    const body = {source: membersArray};
 
-    try {
+    let preparatoryMembersArray = [];
+
+    await membersArray.filter((owner_id, index) => {
+        console.log('i ', index, membersArray.length - 1)
+        const body = {'owner_id': owner_id, '_updated.info': 'create'};
+
+        try {
             fetch('/members/create', {
                 method: 'POST',
                 headers: {
@@ -65,18 +67,45 @@ const createMembersToDB = (membersArray) => new Promise((resolve, reject) => {
                 },
                 body: JSON.stringify(body)
             }).then((response) => {
-                const data = response.json();
-                console.log('respon ', data)
-                resolve(membersArray);
+                console.log('res ', response);
+                // return owner_id;
+                if (response.ok) {
+                    return preparatoryMembersArray.push(owner_id)
+                }
+
             }).catch((err) => {
-                reject(err)
-            })
-    } catch (e) {
-        reject(e);
-    }
+                reject(err);
+            });
+
+        } catch (e) {
+            reject(e);
+        }
+
+
+    });
+
+    // const finish = (preparatoryMembersArray) => {
+    //     if (index === membersArray.length -1) {
+            if (preparatoryMembersArray.length) {
+                console.log('if')
+                resolve(preparatoryMembersArray)
+            } else {
+                console.log('else')
+                reject('All members already exist')
+            }
+    //     }
+    // }
+
+
+
+    console.log('2', Array.isArray(preparatoryMembersArray))
+    console.log('preparatoryMembersArray ', preparatoryMembersArray);
+    console.log('preparatoryMembersArray typeof ', typeof preparatoryMembersArray);
+    console.log('preparatoryMembersArray length ', preparatoryMembersArray['length'], preparatoryMembersArray);
+
+
 });
 
-// Обновляем информацию в аккаунте (только общая инфа)
 const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject) => {
     // const dispatch = useDispatch();
     // dispatch(setCheckStatusString('- обновление информации мемберов в базе...'));

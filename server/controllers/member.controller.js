@@ -2,27 +2,37 @@ import Member from '../models/member.model.js';
 import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createMember = async (req, res) => {
-    let arr = [];
-    const {source} = req.body;
-
-    await source.map((item) => {
-        arr.push({"owner_id": +item})
-    });
+    const fields = req.body;
 
     try {
         // const sellers = await Seller.insertMany(arr, { ordered: false, acknowledged: false }, (err) => {
         //     if (err) {
         //         return res.status(400).json({error: getErrorMessage(err)})
         //     }
-        //
         // });
 
-        const members = await Member.insertMany(arr, {ordered: false, acknowledged: true}, (err) => {
+        // const members = await Member.insertMany(arr, {ordered: true, acknowledged: true}, (err) => {
+        //     if (err) {
+        //         return res.status(400).json({error: getErrorMessage(err)})
+        //     }
+        //     return res.status(200).json({members})
+        // });
+
+        const member = await Member.findOne(fields, (err) => {
             if (err) {
                 return res.status(400).json({error: getErrorMessage(err)})
             }
-            return res.status(200).json({members})
         });
+        if (member) return res.status(400).json({message: 'This member is already exist'});
+
+        new Member(fields)
+            .save((err, member) => {
+                if (err) {
+                    return res.status(400).json({error: getErrorMessage(err)});
+                }
+                return res.status(200).json(member)
+            })
+
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})
     }

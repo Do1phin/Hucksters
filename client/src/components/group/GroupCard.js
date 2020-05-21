@@ -35,7 +35,7 @@ const GroupCard = ({item}) => {
 
     store.subscribe(() => {
         const state = store.getState();
-        console.info('state ', state);
+        // console.info('state ', state);
     });
 
     const Card = () => {

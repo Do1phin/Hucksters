@@ -10,6 +10,9 @@ const schema = new mongoose.Schema({
     all_members: {
         type: Number
     },
+    with_info: {
+        type: Number
+    },
     banned: {
         type: Number
     },

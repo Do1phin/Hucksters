@@ -8,6 +8,7 @@ const createCounters = async (req, res) => {
 
     try {
         const all_members = await Member.find({}).countDocuments();
+        const with_info = await Member.find({'first_name': {$ne: null}}).countDocuments();
         const banned = await Member.find({deactivated: "banned"}).countDocuments();
         const closed = await Member.find({is_closed: true}).countDocuments();
         const deleted = await Member.find({deactivated: "deleted"}).countDocuments();
@@ -31,6 +32,7 @@ const createCounters = async (req, res) => {
 
         await new Counters({
             all_members,
+            with_info,
             banned,
             closed,
             deleted,
@@ -66,14 +68,27 @@ const updateCounters = async (req, res) => {
         {$set: 'doc'},
         {new: false},
         (err, counters) => {
-        if (err) {
-            return res.status(400).json({error: getErrorMessage(err)})
-        }
-    })
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+        })
+};
+
+const deleteCounters = async (req, res) => {
+    await Counters.deleteOne(
+        {info:"counters"},
+        {},
+        (err, counters) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+        })
+
 };
 
 export default {
     createCounters,
     readCounters,
     updateCounters,
+    deleteCounters
 }
