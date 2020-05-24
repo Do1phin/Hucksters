@@ -17,11 +17,11 @@ const checkAlbumsNames = (albumsArray) => new Promise((resolve, reject) => {
         albumTitleKeys.map((element) => {
             if (item.title.toLowerCase().includes(element.toLowerCase()) && !arr.includes(item)) {
                 console.log(element, item);
-                arr.push(item)
+                arr.push(item);
             }
-            return null
+            return null;
         });
-        return null
+        return null;
     });
     if (!arr.length) {
         reject('(array is empty');
@@ -43,4 +43,4 @@ const checkPhotoForPrice = (photoObj) => new Promise((resolve, reject) => {
 export {
     checkAlbumsNames,
     checkPhotoForPrice
-}
+};

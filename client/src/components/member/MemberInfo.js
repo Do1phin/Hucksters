@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const MemberInfo = (props) => {
 
@@ -34,7 +34,7 @@ const MemberInfo = (props) => {
                 Фотографий: {picturesInAlbums}
             </div>
         </div>
-    )
+    );
 };
 
 export default MemberInfo;

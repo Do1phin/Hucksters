@@ -1,13 +1,13 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {getAlbumsFromDB} from "../album/_api-album";
+import {getAlbumsFromDB} from '../album/_api-album';
 import {getMembersFromDB} from './_api-member';
-import AlbumCardS from "../album/AlbumCardS";
-import MemberInfo from "./MemberInfo";
-import Spinner from "../spinner";
+import AlbumCardS from '../album/AlbumCardS';
+import MemberInfo from './MemberInfo';
+import Spinner from '../spinner';
 
 import './memberPage.style.scss';
-import {getPhotosFromDB} from "../photo/_api-photo";
+import {getPhotosFromDB} from '../photo/_api-photo';
 
 const MemberPage = ({owner_id}) => {
     const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ const MemberPage = ({owner_id}) => {
             };
             getMembersFromDB(variables)
                 .then((response) => {
-                    return setUserInfo(...response)
+                    return setUserInfo(...response);
                 }).catch(err => console.error(err));
         };
 
@@ -37,7 +37,7 @@ const MemberPage = ({owner_id}) => {
             };
             getAlbumsFromDB(variables)
                 .then((response) => {
-                    return setAlbums(response)
+                    return setAlbums(response);
                 }).catch(err => console.error(err));
             setLoading(false);
         };
@@ -49,9 +49,9 @@ const MemberPage = ({owner_id}) => {
 
             getPhotosFromDB(variables)
                 .then(response => {
-                    return setPhotos(response)
+                    return setPhotos(response);
                 }).catch(err => console.error(err));
-            return variables
+            return variables;
         };
 
         loadInfo();
@@ -68,10 +68,10 @@ const MemberPage = ({owner_id}) => {
                     >
                         <AlbumCardS {...item}/>
                     </div>
-                )
-            })
+                );
+            });
         } else {
-            return <span>у пользователя нет альбомов</span>
+            return <span>у пользователя нет альбомов</span>;
         }
     };
 
@@ -104,7 +104,7 @@ const MemberPage = ({owner_id}) => {
                         фотографии выбранного альбома
                     </div>
                 </div>
-            )
+            );
     };
 
 
@@ -112,7 +112,7 @@ const MemberPage = ({owner_id}) => {
         <Fragment>
             <Content/>
         </Fragment>
-    )
+    );
 };
 
 MemberPage.propTypes = {

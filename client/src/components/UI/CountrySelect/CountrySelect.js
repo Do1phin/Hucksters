@@ -1,6 +1,6 @@
-import React, {Fragment} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setMemberCountrySelect} from "../../../redux/actions/list.actions";
+import React, {Fragment} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {setMemberCountrySelect} from '../../../redux/actions/list.actions';
 import './countrySelect.style.scss';
 
 const CountrySelect = () => {
@@ -9,7 +9,7 @@ const CountrySelect = () => {
 
     const dispatchSetCountrySelect = (event) => {
         const country = event.target.value;
-        dispatch(setMemberCountrySelect(country))
+        dispatch(setMemberCountrySelect(country));
     };
 
     return (
@@ -27,7 +27,7 @@ const CountrySelect = () => {
                 </select>
             </div>
         </Fragment>
-    )
+    );
 };
 
 export default CountrySelect;

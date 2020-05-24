@@ -1,7 +1,7 @@
-import React, {Fragment} from "react";
-import { NavLink} from "react-router-dom";
+import React, {Fragment} from 'react';
+import { NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {stampToDate} from "../../services/date.service";
+import {stampToDate} from '../../services/date.service';
 
 const AlbumCard = ({owner_id, album_id, title, size, created, updated, photo}) => {
 
@@ -32,7 +32,7 @@ const AlbumCard = ({owner_id, album_id, title, size, created, updated, photo}) =
             </div>
              </NavLink>
         </Fragment>
-    )
+    );
 };
 
 AlbumCard.propTypes = {

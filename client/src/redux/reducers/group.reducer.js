@@ -4,7 +4,7 @@ import {
     GROUP_UPDATE_INFO,
     GROUP_DELETE,
     GROUP_MEMBERS_GET
-} from "../actions/actionTypes";
+} from '../actions/actionTypes';
 
 const initialState = {
     group_id: '',

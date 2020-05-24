@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment} from 'react';
 
 const PhotoPage = () => {
 
@@ -6,7 +6,7 @@ const PhotoPage = () => {
         <Fragment>
             Тут будет конкретная фотография
         </Fragment>
-    )
+    );
 };
 
 export default PhotoPage;

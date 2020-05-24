@@ -1,9 +1,9 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
-import SpinnerItem from "../spinner-item";
-import {useDispatch, useSelector} from "react-redux";
-import {asyncDeleteGroup, asyncUpdateGroupInfo, asyncGetGroupMembers} from "../../redux/actions/group.actions";
-import store from "../../redux/store";
+import SpinnerItem from '../spinner-item';
+import {useDispatch, useSelector} from 'react-redux';
+import {asyncDeleteGroup, asyncUpdateGroupInfo, asyncGetGroupMembers} from '../../redux/actions/group.actions';
+import store from '../../redux/store';
 
 
 const GroupCard = ({item}) => {
@@ -18,7 +18,7 @@ const GroupCard = ({item}) => {
 
     const dispatchRemoveBtn = (event) => {
         const group_id = +event.target.id;
-        dispatch(asyncDeleteGroup(group_id))
+        dispatch(asyncDeleteGroup(group_id));
     };
 
     const dispatchRefreshInfoBtn = (event) => {
@@ -30,7 +30,7 @@ const GroupCard = ({item}) => {
 
     const dispatchGetMembersBtn = (event) => {
         const group_id = +event.target.id;
-        dispatch(asyncGetGroupMembers(group_id))
+        dispatch(asyncGetGroupMembers(group_id));
     };
 
     store.subscribe(() => {
@@ -93,7 +93,7 @@ const GroupCard = ({item}) => {
                     {checkInfo.status}
                 </div>
             </Fragment>
-        )
+        );
     };
 
     const Content = () => {
@@ -102,7 +102,7 @@ const GroupCard = ({item}) => {
 
     return (
         <Content/>
-    )
+    );
 };
 
 GroupCard.propTypes = {

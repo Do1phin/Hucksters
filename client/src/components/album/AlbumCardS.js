@@ -1,5 +1,5 @@
-import React from "react";
-import {NavLink} from "react-router-dom";
+import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 const AlbumCardS = ({owner_id, album_id, photo, size, title}) => {
 
@@ -23,7 +23,7 @@ const AlbumCardS = ({owner_id, album_id, photo, size, title}) => {
                 </div>
             </div>
         </NavLink>
-    )
+    );
 };
 
 export default AlbumCardS;

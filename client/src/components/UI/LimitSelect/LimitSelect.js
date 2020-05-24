@@ -1,5 +1,5 @@
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {setLimitItemsSelect} from '../../../redux/actions/list.actions';
 import './limitSelect.style.scss';
 
@@ -9,7 +9,7 @@ const LimitSelect = () => {
 
     const dispatchSetLimitSelect = (event) => {
         const limit = +event.target.value;
-        dispatch(setLimitItemsSelect(limit))
+        dispatch(setLimitItemsSelect(limit));
     };
 
     return (
@@ -25,7 +25,7 @@ const LimitSelect = () => {
                 <option value={100}>100</option>
             </select>
         </div>
-    )
+    );
 };
 
 export default LimitSelect;

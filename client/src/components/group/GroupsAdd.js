@@ -1,8 +1,8 @@
-import React, {Fragment, useState} from "react";
-import Spinner from "../spinner";
+import React, {Fragment, useState} from 'react';
+import Spinner from '../spinner';
 import store from '../../redux/store';
-import {asyncAddGroup} from "../../redux/actions/group.actions";
-import {useDispatch} from "react-redux";
+import {asyncAddGroup} from '../../redux/actions/group.actions';
+import {useDispatch} from 'react-redux';
 
 import './groups.style.scss';
 
@@ -61,7 +61,7 @@ const GroupsAdd = () => {
                     </button>
 
                 </div>
-            </Fragment>))
+            </Fragment>));
 };
 
 export default GroupsAdd;

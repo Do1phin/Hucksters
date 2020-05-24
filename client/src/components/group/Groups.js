@@ -1,6 +1,6 @@
-import React, {Fragment} from "react";
-import GroupsList from "./GroupsList";
-import GroupsAdd from "./GroupsAdd";
+import React, {Fragment} from 'react';
+import GroupsList from './GroupsList';
+import GroupsAdd from './GroupsAdd';
 
 const Groups = () => {
 
@@ -9,7 +9,7 @@ const Groups = () => {
             <GroupsAdd/>
             <GroupsList/>
         </Fragment>
-    )
+    );
 
 };
 

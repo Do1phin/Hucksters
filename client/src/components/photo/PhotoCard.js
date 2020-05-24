@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {stampToDate} from "../../services/date.service";
-import FavoriteBtn from "../UI/FavoriteBtn/FavoriteBtn";
+import {stampToDate} from '../../services/date.service';
+import FavoriteBtn from '../UI/FavoriteBtn/FavoriteBtn';
 
 const PhotoCard = ({owner_id, album_id, photo_id, text, photo_sizes, date, additional_photos}) => {
 

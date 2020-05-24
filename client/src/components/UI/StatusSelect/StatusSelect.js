@@ -1,6 +1,6 @@
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setMemberStatusSelect} from '../../../redux/actions/list.actions'
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {setMemberStatusSelect} from '../../../redux/actions/list.actions';
 import './statusSelect.style.scss';
 
 const StatusSelect = () => {
@@ -9,7 +9,7 @@ const StatusSelect = () => {
 
     const dispatchSetStatusSelect = (event) => {
         const status = event.target.value;
-        dispatch(setMemberStatusSelect(status))
+        dispatch(setMemberStatusSelect(status));
     };
 
     return (
@@ -26,7 +26,7 @@ const StatusSelect = () => {
                 <option value='deleted'>удалённые</option>
             </select>
         </div>
-    )
+    );
 };
 
 export default StatusSelect;

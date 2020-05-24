@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import GroupCard from "./GroupCard";
-import Spinner from "../spinner";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect, useState} from 'react';
+import GroupCard from './GroupCard';
+import Spinner from '../spinner';
+import {useDispatch, useSelector} from 'react-redux';
 import {asyncListGroups} from '../../redux/actions/group.actions';
 
 import './groups.style.scss';
@@ -19,8 +19,8 @@ const GroupsList = () => {
 
         setLoading(false);
         return () => {
-            console.log('exit')
-        }
+            console.log('exit');
+        };
     }, []);
 
     const content = loading ? (
@@ -34,7 +34,7 @@ const GroupsList = () => {
                     {/*<GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>*/}
                     <GroupCard item={item}/>
                 </div>
-            )
+            );
         })
     );
 
@@ -55,7 +55,7 @@ const GroupsList = () => {
             </div>
             {content}
         </div>
-    )
+    );
 };
 
 export default GroupsList;
