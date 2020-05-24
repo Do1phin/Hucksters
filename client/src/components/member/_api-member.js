@@ -33,10 +33,10 @@ const getMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
     try {
         return fetch('//')
             .then((response) => {
-                console.log("response ", response)
+                console.log("response ", response);
                 resolve(response)
             }).catch((err) => {
-                console.error('err ', err)
+                console.error('err ', err);
                 reject(err)
             })
 

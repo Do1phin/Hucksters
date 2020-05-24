@@ -3,16 +3,16 @@ const list = ({q}) => {
         return fetch('/search?q=' + q, {
             method: 'GET',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             }
         }).then((response) => {
-            return response.json()
-        }).catch((err) => console.error(err))
+            return response.json();
+        }).catch((err) => console.error(err));
     } catch (e) {
-        throw new Error(e)
+        throw new Error(e);
     }
 };
 
 export {
     list
-}
+};

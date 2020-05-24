@@ -9,11 +9,11 @@ const readFavoritesFromDB = (body) => {
         }).then(response => {
             if (response.ok) {
                 const data = response.json();
-                return data
+                return data;
             }
-        })
+        });
     } catch (e) {
-        console.log('eeee ', e)
+        console.log('eeee ', e);
         throw new Error(e);
     }
 };
@@ -27,11 +27,11 @@ const updateFavoritesFromDB = (body) => {
             },
             body: JSON.stringify(body)
         }).then(response => {
-            return response
-        })
+            return response;
+        });
 
     } catch (e) {
-        throw new Error(e)
+        throw new Error(e);
     }
 };
 
@@ -45,9 +45,9 @@ const deleteFavoriteFromDB = (body) => {
             body: JSON.stringify(body)
         }).then((response) => {
             return response;
-        }).catch((err) => console.error(err))
+        }).catch((err) => console.error(err));
     } catch (e) {
-        throw new Error(e)
+        throw new Error(e);
     }
 };
 
@@ -55,4 +55,4 @@ export {
     readFavoritesFromDB,
     updateFavoritesFromDB,
     deleteFavoriteFromDB
-}
+};

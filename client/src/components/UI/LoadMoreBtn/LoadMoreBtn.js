@@ -1,6 +1,6 @@
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setLoadMore, setSkipItemsNumber} from "../../../redux/actions/list.actions";
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {setLoadMore, setSkipItemsNumber} from '../../../redux/actions/list.actions';
 import './loadMoreBtn.style.scss';
 
 const LoadMoreBtn = () => {
@@ -24,7 +24,7 @@ const LoadMoreBtn = () => {
                 </button>
             </div>
             : null
-    )
+    );
 };
 
 export default LoadMoreBtn;

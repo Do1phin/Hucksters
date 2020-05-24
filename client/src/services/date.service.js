@@ -5,4 +5,4 @@ const stampToDate = (timestamp) => {
 
 export {
     stampToDate
-}
+};

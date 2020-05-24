@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import {readFavoritesFromDB, updateFavoritesFromDB, deleteFavoriteFromDB} from './_api-favorite';
 import PropTypes from 'prop-types';
 
@@ -28,7 +28,7 @@ const FavoriteBtn = ({photo_id, type}) => {
 
         if (!favorited) {
             updateFavoritesFromDB(body, (response) => {
-                console.log('a ', response)
+                console.log('a ', response);
             });
 
                 // .then((response) => {
@@ -41,7 +41,7 @@ const FavoriteBtn = ({photo_id, type}) => {
                 // })
         } else {
 
-            deleteFavoriteFromDB(body)
+            deleteFavoriteFromDB(body);
             //     .exec((response) => {
             //         if (response.ok) {
                         setFavorited(!favorited);
@@ -68,7 +68,7 @@ const FavoriteBtn = ({photo_id, type}) => {
                 {favoriteCount}
             </p>
         </div>
-    )
+    );
 };
 
 FavoriteBtn.propTypes = {

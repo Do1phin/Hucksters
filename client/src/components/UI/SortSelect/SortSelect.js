@@ -1,6 +1,6 @@
-import React from "react";
-import {setSortItemsSelect} from "../../../redux/actions/list.actions";
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
+import {setSortItemsSelect} from '../../../redux/actions/list.actions';
+import {useDispatch, useSelector} from 'react-redux';
 import './sortSelect.style.scss';
 
 const SortSelect = () => {
@@ -9,7 +9,7 @@ const SortSelect = () => {
 
     const dispatchSetSortSelect = (event) => {
         const sort = +event.target.value;
-        dispatch(setSortItemsSelect(sort))
+        dispatch(setSortItemsSelect(sort));
     };
 
     return (
@@ -22,7 +22,7 @@ const SortSelect = () => {
                 <option value={1}>от старым к новым</option>
             </select>
         </div>
-    )
+    );
 };
 
 export default SortSelect;

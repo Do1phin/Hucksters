@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
-import {setSearchTextString, setSkipItemsNumber, setPartItems, setTotalItems} from "../../redux/actions/list.actions";
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {setSearchTextString, setSkipItemsNumber, setPartItems, setTotalItems} from '../../redux/actions/list.actions';
 import './search.style.scss';
 
 const Search = () => {
@@ -10,7 +10,7 @@ const Search = () => {
 
     const handleSubmit = (event) => {
         // event.preventDefault();
-        if (event.key === "Enter") {
+        if (event.key === 'Enter') {
             setText(event.target.value);
             // setText(text);
             const text = event.target.value;
@@ -35,7 +35,7 @@ const Search = () => {
                 />
             </div>
         </div>
-    )
+    );
 };
 
 export default Search;

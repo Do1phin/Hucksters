@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import './footer.style.scss';
 
@@ -8,7 +8,7 @@ const Footer = () => {
         <div className='footer'>
             Тут будет футер
         </div>
-    )
+    );
 };
 
 export default Footer;

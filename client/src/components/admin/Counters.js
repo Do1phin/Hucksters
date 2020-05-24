@@ -7,19 +7,19 @@ const Counters = () => {
         deleteCounterFromDB()
             .then(data => {
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
     };
 
     const refreshCounters = () => {
         updateCountersToDB()
             .then(response => {})
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
     };
 
     const createCounters = () => {
         createCountersToDB()
             .then((response) => {
-                return response.json()
+                return response.json();
             }).then((data) => {
             const {
                 all_members, banned, deleted, closed, seller, all_albums, all_photos, photo_with_text,
@@ -37,13 +37,13 @@ const Counters = () => {
                 photo_with_addit_photo
             };
             // setCounters(tempCount);
-        }).catch((err) => console.error(err))
+        }).catch((err) => console.error(err));
     };
 
     const readCounters = async () => {
         await readCountersFromDB()
             .then((response) => {
-                return response
+                return response;
             }).then((data) => {
                 const {all_members, banned, deleted, closed, seller} = data;
                 // setCounters({all_members, banned, deleted, closed, seller});
@@ -78,6 +78,6 @@ const Counters = () => {
 
         </div>
     )
-}
+};
 
 export default Counters;

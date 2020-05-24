@@ -1,15 +1,15 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from 'react';
 import {getPhotosFavorites, getPhotosFromDB} from './_api-photo';
 import PhotoCard from './PhotoCard';
-import PhotoPage from "./PhotoPage";
+import PhotoPage from './PhotoPage';
 import ErrorNotFound from '../errors/ErrorNotFound';
-import Spinner from "../spinner";
-import Search from "../search/Search";
-import LimitSelect from "../UI/LimitSelect/LimitSelect";
-import SortSelect from "../UI/SortSelect/SortSelect";
-import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
-import {useDispatch, useSelector} from "react-redux";
-import {setLoadMore, setPartItems, setTotalItems} from "../../redux/actions/list.actions";
+import Spinner from '../spinner';
+import Search from '../search/Search';
+import LimitSelect from '../UI/LimitSelect/LimitSelect';
+import SortSelect from '../UI/SortSelect/SortSelect';
+import LoadMoreBtn from '../UI/LoadMoreBtn/LoadMoreBtn';
+import {useDispatch, useSelector} from 'react-redux';
+import {setLoadMore, setPartItems, setTotalItems} from '../../redux/actions/list.actions';
 import './photos.style.scss';
 
 const Photos = (props) => {
@@ -70,10 +70,10 @@ const Photos = (props) => {
                     <div className='photo-card__item' key={item.photo_id}>
                         <PhotoCard {...item} />
                     </div>
-                )
+                );
             });
         } else {
-            return <ErrorNotFound title={'photos'}/>
+            return <ErrorNotFound title={'photos'}/>;
         }
     };
 
@@ -86,25 +86,25 @@ const Photos = (props) => {
                     : null
                 }
             </div>
-        )
+        );
     };
 
     const Content = () => {
 
         const {owner_id, album_id, photo_id} = props.match.params;
         if (owner_id) {
-            return <PhotoPage photo_id={photo_id}/>
+            return <PhotoPage photo_id={photo_id}/>;
         }
 
         let element;
         if (loading) {
-            element = <Spinner/>
+            element = <Spinner/>;
         } else if (!loading && !photos.length) {
-            element = <ErrorNotFound title={'photos'}/>
+            element = <ErrorNotFound title={'photos'}/>;
         } else {
             element = <div className='photo-list'>
                 <PhotosView/>
-            </div>
+            </div>;
         }
 
         return (
@@ -125,7 +125,7 @@ const Photos = (props) => {
         <Fragment>
             <Content/>
         </Fragment>
-    )
+    );
 };
 
 export default Photos;

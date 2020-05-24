@@ -27,15 +27,15 @@
 const createCountersToDB = () => new Promise((resolve, reject) => {
     try {
         fetch('/vk/info/create', {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             },
         }).then((response) => {
-            resolve(response)
-        })
+            resolve(response);
+        });
     } catch (e) {
-        reject(e)
+        reject(e);
     }
 });
 
@@ -46,13 +46,13 @@ const readCountersFromDB = () => new Promise((resolve, reject) =>{
         fetch('/vk/info')
             .then((response) => {
                 // const data = response
-                resolve(response.json())
+                resolve(response.json());
             }).then(data => console.info(data))
             .catch((err) => {
-                reject(err)
-            })
+                reject(err);
+            });
     } catch (e) {
-        console.error(e)
+        console.error(e);
     }
 });
 
@@ -62,7 +62,7 @@ const updateCountersToDB = () => new Promise((resolve, reject) => {
         deleteCounterFromDB();
         createCountersToDB();
     } catch (e) {
-        reject(e)
+        reject(e);
     }
 });
 
@@ -72,13 +72,13 @@ const deleteCounterFromDB = () => new Promise((resolve, reject) => {
         fetch('/vk/info/delete')
             .then((response) => {
                 // const data = response
-                resolve(response.json())
+                resolve(response.json());
             }).then(data => console.info(data))
             .catch((err) => {
-                reject(err)
-            })
+                reject(err);
+            });
     } catch (e) {
-        reject(e)
+        reject(e);
     }
 });
 
@@ -87,4 +87,4 @@ export {
     readCountersFromDB,
     updateCountersToDB,
     deleteCounterFromDB
-}
+};

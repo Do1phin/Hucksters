@@ -10,15 +10,15 @@ const createAlbumsToDB = (albumsArray) => new Promise((resolve, reject) => {
                 },
                 body: JSON.stringify(item)
             }).then((response) => {
-                return response.json()
+                return response.json();
             }).then((data) =>{
-                resolve(data)
-            }).catch((err) => console.error(err))
+                resolve(data);
+            }).catch((err) => console.error(err));
         } catch (e) {
-            reject(e)
+            reject(e);
         }
-        return null
-    })
+        return null;
+    });
 });
 
 // Получаем альбомы пользователей из базы
@@ -34,32 +34,32 @@ const getAlbumsFromDB = (props) => {
         limit,
         sort,
         info,
-        sortParams: {"updated": sort || -1}
+        sortParams: {'updated': sort || -1}
     };
 
     if (info === 'list') {
         params = search_text ? {title: new RegExp(search_text, 'i')}: {} // регулярка выполняется, а это не надо
     } else if (info === 'seller') {
-        params = {owner_id: owner_id}
+        params = {owner_id: owner_id};
     } else if (info === 'check_one') {
-        params = {owner_id: owner_id}
+        params = {owner_id: owner_id};
     } else if (info === 'check_all') {
-        params = {}
+        params = {};
     }
 
     body['params'] = params;
 
     try {
         return fetch('/members/albums', {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)
         }).then((response) => {
-            return response.json()
+            return response.json();
         }).then((data) => {
-            return data
+            return data;
         }).catch((err) => console.error(err));
     } catch (e) {
         throw new Error(e);
@@ -69,4 +69,4 @@ const getAlbumsFromDB = (props) => {
 export {
     createAlbumsToDB,
     getAlbumsFromDB,
-}
+};

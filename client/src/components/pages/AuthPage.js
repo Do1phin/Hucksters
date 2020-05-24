@@ -1,6 +1,6 @@
-import React, {Fragment, useState} from "react";
-import {Link} from "react-router-dom";
-import {login} from "../admin/_api-vk";
+import React, {Fragment, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {login} from '../admin/_api-vk';
 
 function AuthPage(props) {
     const [registered, setRegistered] = useState(false);
@@ -15,13 +15,13 @@ function AuthPage(props) {
             title: 'Registration',
             btnName: 'Sign UP',
             urlPath: '/signup',
-        }
+        };
     } else {
         info = {
             title: 'Authorisation',
             btnName: 'Sign IN',
             urlPath: '/signin',
-        }
+        };
     }
 
 
@@ -78,7 +78,7 @@ function AuthPage(props) {
 
                     </form>
                 </div>
-            </Fragment>
+            </Fragment>;
         } else if (registered && !error) {
             return <Fragment><br/>
                 <div className="card border-success mb-3">
@@ -91,7 +91,7 @@ function AuthPage(props) {
                         </p>
                     </div>
                 </div>
-            </Fragment>
+            </Fragment>;
         } else if (authorised && !error) {
             return <Fragment><br/>
                 <div className="card border-info mb-3">
@@ -104,7 +104,7 @@ function AuthPage(props) {
                         </p>
                     </div>
                 </div>
-            </Fragment>
+            </Fragment>;
         } else if (error) {
             return <Fragment><br/>
                 <div className="card border-danger mb-3">
@@ -117,7 +117,7 @@ function AuthPage(props) {
                         </p>
                     </div>
                 </div>
-            </Fragment>
+            </Fragment>;
         }
     };
 
@@ -126,9 +126,9 @@ function AuthPage(props) {
             const body = {email, password};
 
             fetch(info.urlPath, {
-                method: "POST",
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(body, null, '\t'),
             })
@@ -137,43 +137,43 @@ function AuthPage(props) {
                     if (props.location.pathname === '/signup') {
                         if (res.status === 200) {
                             setRegistered(true);
-                            return setError(false)
+                            return setError(false);
                         } else {
                             return setError(true);
                         }
                     } else {
                         if (res.status === 200) {
                             setAuthorised(true);
-                            return setError(false)
+                            return setError(false);
                         } else {
                             return setError(true);
                         }
                     }
                 })
-                .catch(error => console.log('Error -> ', error))
+                .catch(error => console.log('Error -> ', error));
         } catch (e) {
-            throw new Error(e)
+            throw new Error(e);
         }
     };
 
 
     const handleChange = (props) => {
         if (props.name === 'email') {
-            setEmail(props.value)
+            setEmail(props.value);
         } else if (props.name === 'password') {
-            setPassword(props.value)
+            setPassword(props.value);
         }
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
     };
 
     return (
         <div>
             {renderPage()}
         </div>
-    )
+    );
 
 }
 

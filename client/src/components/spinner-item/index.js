@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './spinnerItem.style.scss';
 
 const SpinnerItem = () => {
@@ -12,7 +12,7 @@ const SpinnerItem = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default SpinnerItem;

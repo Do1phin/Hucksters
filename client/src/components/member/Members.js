@@ -1,16 +1,16 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from 'react';
 import {getMembersFromDB} from './_api-member';
-import MemberCard from "./MemberCard";
-import ErrorNotFound from "../errors/ErrorNotFound";
-import Search from "../search/Search";
-import LimitSelect from "../UI/LimitSelect/LimitSelect";
-import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
-import MemberPage from "./MemberPage";
-import StatusSelect from "../UI/StatusSelect/StatusSelect";
-import CountrySelect from "../UI/CountrySelect/CountrySelect";
-import Spinner from "../spinner";
-import {connect, useDispatch, useSelector} from "react-redux";
-import {setLoadMore, setSkipItemsNumber, setPartItems, setTotalItems} from "../../redux/actions/list.actions";
+import MemberCard from './MemberCard';
+import ErrorNotFound from '../errors/ErrorNotFound';
+import Search from '../search/Search';
+import LimitSelect from '../UI/LimitSelect/LimitSelect';
+import LoadMoreBtn from '../UI/LoadMoreBtn/LoadMoreBtn';
+import MemberPage from './MemberPage';
+import StatusSelect from '../UI/StatusSelect/StatusSelect';
+import CountrySelect from '../UI/CountrySelect/CountrySelect';
+import Spinner from '../spinner';
+import {connect, useDispatch, useSelector} from 'react-redux';
+import {setLoadMore, setSkipItemsNumber, setPartItems, setTotalItems} from '../../redux/actions/list.actions';
 import './members.style.scss';
 
 const Members = (props) => {
@@ -49,7 +49,7 @@ const Members = (props) => {
                         }
                         return setLoading(false);
                     }
-                })
+                });
         };
 
         loadMembers(variables);
@@ -73,7 +73,7 @@ const Members = (props) => {
                 );
             });
         } else {
-            return <ErrorNotFound title={'sellers'}/>
+            return <ErrorNotFound title={'sellers'}/>;
         }
     };
 
@@ -86,18 +86,18 @@ const Members = (props) => {
                         : null
                 }
             </div>
-        )
+        );
     };
 
     const Content = () => {
         const owner_id = +props.match.params.owner_id;
         let element;
         if (owner_id) {
-            return <MemberPage owner_id={owner_id}/>
+            return <MemberPage owner_id={owner_id}/>;
         }
 
         if (!loading && !sellers.length) {
-            element = <ErrorNotFound title={'sellers'}/>
+            element = <ErrorNotFound title={'sellers'}/>;
         } else if (!loading && sellers.length) {
             element = (
                 <Fragment>
@@ -105,7 +105,7 @@ const Members = (props) => {
                         <MembersView/>
                     </div>
                 </Fragment>
-            )
+            );
         } else if (loading && sellers.length) {
             element = (
                 <Fragment>
@@ -116,7 +116,7 @@ const Members = (props) => {
                         <Spinner/>
                     </div>
                 </Fragment>
-            )
+            );
         }
 
         return (
@@ -131,12 +131,12 @@ const Members = (props) => {
 
                 <LoadMoreBtn/>
             </Fragment>
-        )
+        );
     };
 
     return (
         <Content/>
-    )
+    );
 };
 
 export default connect()(Members);

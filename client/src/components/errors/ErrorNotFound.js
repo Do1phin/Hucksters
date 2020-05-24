@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './error.style.scss';
@@ -6,7 +6,7 @@ import './error.style.scss';
 const ErrorNotFound = ({title}) => {
     let className = 'not-found';
     if (title) {
-        className = title + "-" + className;
+        className = title + '-' + className;
     }
 
     title = `${title} not found =(`.toUpperCase();
@@ -18,12 +18,12 @@ const ErrorNotFound = ({title}) => {
                     <span>{title}</span>
                 </div>
             </div>
-        )
+        );
     };
 
     return (
         <Content/>
-    )
+    );
 };
 
 ErrorNotFound.propTypes = {
