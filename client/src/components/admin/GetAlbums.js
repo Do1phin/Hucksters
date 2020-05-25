@@ -23,6 +23,10 @@ const GetAlbums = () => {
         dispatch(asyncGetMemberAlbums())
     };
 
+    const handleChangeCheckSettings = () => {
+        let params;
+
+    };
 
     return (
         <Fragment>
@@ -55,7 +59,7 @@ const GetAlbums = () => {
                             id={'seller'}
                             type="checkbox"
                             defaultChecked={false}
-                            // onChange={handleChangeChk}
+                            onChange={handleChangeCheckSettings}
                         />
                         Продавцы
                     </label>
@@ -64,7 +68,7 @@ const GetAlbums = () => {
                             id={'closed'}
                             type="checkbox"
                             defaultChecked={false}
-                            // onChange={handleChangeChk}
+                            onChange={handleChangeCheckSettings}
                         />
                         Скрытые
                     </label>
@@ -73,7 +77,7 @@ const GetAlbums = () => {
                             id={'banned'}
                             type="checkbox"
                             defaultChecked={false}
-                            // onChange={handleChangeChk}
+                            onChange={handleChangeCheckSettings}
                         />
                         Забаненные
                     </label>
@@ -82,7 +86,7 @@ const GetAlbums = () => {
                             id={'deleted'}
                             type="checkbox"
                             defaultChecked={false}
-                            // onChange={handleChangeChk}
+                            onChange={handleChangeCheckSettings}
                         />
                         Удалённые
                     </label>
@@ -91,7 +95,7 @@ const GetAlbums = () => {
                             id={'others'}
                             type="checkbox"
                             defaultChecked={false}
-                            // onChange={handleChangeChk}
+                            onChange={handleChangeCheckSettings}
                         />
                         Остальные
                     </label>

@@ -2,11 +2,15 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from './reducers';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
+import {customThunk} from './middleware/log.middleware';
 
-const loggerMiddleware = createLogger();
+const loggerMiddleware = createLogger({
+    duration: true,
+    collapsed: true
+});
 const initialState = {};
 
-const middleware = [thunkMiddleware, loggerMiddleware];
+const middleware = [thunkMiddleware, loggerMiddleware, customThunk];
 
 const store = createStore(
     rootReducer,
