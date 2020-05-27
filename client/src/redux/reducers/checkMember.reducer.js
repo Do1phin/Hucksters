@@ -1,11 +1,4 @@
-import {
-    CHECK_MEMBERS_ALL,
-    CHECK_MEMBERS_WITH_INFO,
-    CHECK_MEMBERS_CLOSED,
-    CHECK_MEMBERS_SELLER,
-    CHECK_MEMBERS_BANNED,
-    CHECK_MEMBERS_DELETED
-} from '../actions/actionTypes'
+import { types } from '../actions/actionTypes'
 
 const initialState = {
     all_members: 0,
@@ -18,32 +11,32 @@ const initialState = {
 
 const checkMemberReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CHECK_MEMBERS_ALL:
+        case types.CHECK_MEMBERS_ALL:
             return {
                 ...state,
                 all_members: action.payload
             };
-        case CHECK_MEMBERS_WITH_INFO:
+        case types.CHECK_MEMBERS_WITH_INFO:
             return {
                 ...state,
                 with_info: action.payload
             };
-        case CHECK_MEMBERS_CLOSED:
+        case types.CHECK_MEMBERS_CLOSED:
             return {
                 ...state,
                 closed: action.payload
             };
-        case CHECK_MEMBERS_SELLER:
+        case types.CHECK_MEMBERS_SELLER:
             return {
                 ...state,
                 seller: action.payload
             };
-        case CHECK_MEMBERS_BANNED:
+        case types.CHECK_MEMBERS_BANNED:
             return {
                 ...state,
                 banned: action.payload
             };
-        case CHECK_MEMBERS_DELETED:
+        case types.CHECK_MEMBERS_DELETED:
             return {
                 ...state,
                 deleted: action.payload

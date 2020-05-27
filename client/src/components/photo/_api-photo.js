@@ -48,6 +48,23 @@ const updateAddPhotosCount = (props) => new Promise((resolve, reject) => {
     console.log('props ', props);
 });
 
+const updateFavoritePhotoCount = (props) => new Promise((resolve, reject) => {
+    const body = props;
+    try {
+        fetch('/photos/additional_photos/operation', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        }).then((response) => {
+            const data = response.json();
+            resolve(data);
+        }).catch((err) => reject(err));
+    } catch (e) {
+        reject(e);
+    }
+});
+
+
 const getPhotosFavorites = (props) => new Promise((resolve, reject) => {
 
     let membersIds = props.map(item => +item.photo_id);
@@ -60,7 +77,7 @@ const getPhotosFavorites = (props) => new Promise((resolve, reject) => {
             body: JSON.stringify(membersIds)
         }).then((response) => {
             const data = response.json();
-            console.log('response ' , data);
+            console.log('response ', data);
             resolve(data);
         }).catch((err) => reject(err));
     } catch (e) {
@@ -74,5 +91,6 @@ export {
     addPhotosToDb,
     getPhotosFromDB,
     updateAddPhotosCount,
-    getPhotosFavorites
+    getPhotosFavorites,
+    updateFavoritePhotoCount,
 };

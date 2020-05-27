@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {readFavoritesFromDB, updateFavoritesFromDB, deleteFavoriteFromDB} from './_api-favorite';
+import {createFavoritePhotoInDB, deleteFavoriteFromDB, updateFavoritesFromDB} from './_api-favorite';
+import {updateFavoritePhotoCount} from '../../photo/_api-photo';
 import PropTypes from 'prop-types';
 
-const FavoriteBtn = ({photo_id, type}) => {
+
+const FavoriteBtn = ({photo_id, type, favorite}) => {
     const [loading, setLoading] = useState(true);
     const [favorited, setFavorited] = useState(false);
     const [favoriteCount, setFavoriteCount] = useState(0);
 
     useEffect(() => {
         const body = {};
+
 
         // readFavoritesFromDB(body);
         setLoading(false);
@@ -26,31 +29,22 @@ const FavoriteBtn = ({photo_id, type}) => {
             type
         };
 
-        if (!favorited) {
-            updateFavoritesFromDB(body, (response) => {
-                console.log('a ', response);
-            });
+        if (!favorite) {
+            updateFavoritesFromDB(body);
+            updateFavoritePhotoCount({...body, operation: 'inc'});
 
-                // .then((response) => {
-                //     if (response.ok) {
-                        setFavorited(!favorited);
-                        setFavoriteCount(1 + favoriteCount);
-                //     } else {
-                //         alert('Failed to add to Favorites')
-                //     }
-                // })
+            setFavorited(!favorited);
+            createFavoritePhotoInDB(body);
+
+            setFavoriteCount(1 + favoriteCount);
+
         } else {
 
             deleteFavoriteFromDB(body);
-            //     .exec((response) => {
-            //         if (response.ok) {
-                        setFavorited(!favorited);
-                        setFavoriteCount(favoriteCount - 1);
-            //         } else {
-            //             alert('Failed to remove with favorites')
-            //         }
-            //     })
+            updateFavoritePhotoCount({...body, operation: 'dec'});
 
+            setFavorited(!favorited);
+            setFavoriteCount(favoriteCount - 1);
         }
 
         setLoading(false);
@@ -62,11 +56,8 @@ const FavoriteBtn = ({photo_id, type}) => {
                     onClick={favoriteBtnClick}
                     disabled={loading}
             >
-                {favorited ? <span>Удалить из избранного</span> : <span>Добавить в избранное</span>}
+                {favorite ? <span>Удалить из избранного</span> : <span>Добавить в избранное</span>}
             </button>
-            <p className="favorite-block__counter">
-                {favoriteCount}
-            </p>
         </div>
     );
 };

@@ -10,7 +10,9 @@ import SortSelect from '../UI/SortSelect/SortSelect';
 import LoadMoreBtn from '../UI/LoadMoreBtn/LoadMoreBtn';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLoadMore, setPartItems, setTotalItems} from '../../redux/actions/list.actions';
+import { getFavoritesAsync } from '../../redux/actions/favorite.actions';
 import './photos.style.scss';
+import store from "../../redux/store";
 
 const Photos = (props) => {
     const [loading, setLoading] = useState(true);
@@ -18,6 +20,7 @@ const Photos = (props) => {
 
     const dispatch = useDispatch();
     const listSettings = useSelector(state => state.list);
+    dispatch(getFavoritesAsync());
 
     useEffect(() => {
 
@@ -46,8 +49,6 @@ const Photos = (props) => {
                             setPhotos(items);
                             dispatch(setTotalItems(items.length));
                         }
-                        const favorites = getPhotosFavorites(items);
-                        console.log('favorites ', favorites);
                     }
                 });
             return setLoading(false);

@@ -11,7 +11,10 @@ router.route('/members/albums/photos')
 
 // router.route('/photos/update')
 //     .post(photoCtrl.updatePhoto);
-//
+
+router.route('/photos/additional_photos/operation')
+    .post(photoCtrl.updateFavoritePhotoCount);
+
 // router.route('/photos/delete')
 //     .post(photoCtrl.deletePhoto);
 

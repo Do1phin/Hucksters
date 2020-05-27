@@ -1,8 +1,4 @@
-import {
-    CHECK_THING,
-    CHECK_STEP,
-    CHECK_STATUS
-} from '../actions/actionTypes';
+import { types } from '../actions/actionTypes';
 
 const initialState = {
     thing: '',
@@ -12,17 +8,17 @@ const initialState = {
 
 const checkReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CHECK_THING:
+        case types.CHECK_THING:
             return {
                 ...state,
                 thing: action.payload
             };
-        case CHECK_STEP:
+        case types.CHECK_STEP:
             return {
                 ...state,
                 step: action.payload
             };
-        case CHECK_STATUS:
+        case types.CHECK_STATUS:
             return {
                 ...state,
                 status: action.payload
