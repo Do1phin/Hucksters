@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
     },
     photo_id: {
         type: Number,
-        required: 'Photo id required true',
+        required: 'Photos id required true',
         default: null,
         unique: true
     },
@@ -83,4 +83,4 @@ const schema = new mongoose.Schema({
     album: {type: mongoose.Schema.ObjectId, ref: 'Album'}
 });
 
-export default mongoose.model('Photo', schema);
+export default mongoose.model('Photos', schema);

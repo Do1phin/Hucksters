@@ -7,7 +7,7 @@ import MainPage from './components/pages/MainPage';
 import Members from './components/member/Members';
 import MemberPage from './components/member/MemberPage';
 import Albums from './components/album/Albums';
-import Photos from './components/photo/Photos';
+import Photos from './containers/Photos/PhotosContainer'
 import Search from './components/search/Search';
 import AdminPanel from './components/admin/AdminPanel';
 import Header from './components/header';

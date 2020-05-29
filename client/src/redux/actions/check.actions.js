@@ -1,26 +1,22 @@
-import {
-    CHECK_THING,
-    CHECK_STEP,
-    CHECK_STATUS
-} from './actionTypes';
+import { types } from './actionTypes';
 
 export const setCheckThingString = (thing) => {
     return {
-        type: CHECK_THING,
+        type: types.CHECK_THING,
         payload: thing
     };
 };
 
 export const setCheckStepNumber = (step) => {
     return {
-        type: CHECK_STEP,
+        type: types.CHECK_STEP,
         payload: step
     };
 };
 
 export const setCheckStatusString = (status) => {
     return {
-        type: CHECK_STATUS,
+        type: types.CHECK_STATUS,
         payload: status
     };
 };

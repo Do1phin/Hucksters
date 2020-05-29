@@ -1,11 +1,4 @@
-import {
-    CHECK_MEMBERS_ALL,
-    CHECK_MEMBERS_BANNED,
-    CHECK_MEMBERS_CLOSED,
-    CHECK_MEMBERS_DELETED,
-    CHECK_MEMBERS_SELLER,
-    CHECK_MEMBERS_WITH_INFO
-} from './actionTypes'
+import { types } from './actionTypes'
 import {getMembersFromDB, updateMembersInDB} from "../../components/member/_api-member";
 import {setCheckStepNumber} from "./check.actions";
 import {getAlbumsFromVk} from "../../components/admin/_api-vk";
@@ -15,42 +8,42 @@ import {readCountersFromDB} from "../../components/admin/_api-counters";
 
 export const setCheckMemberAllValue = (members) => {
     return {
-        type: CHECK_MEMBERS_ALL,
+        type: types.CHECK_MEMBERS_ALL,
         payload: members
     }
 };
 
 export const setCheckMembersWithInfoValue = (members) => {
     return {
-        type: CHECK_MEMBERS_WITH_INFO,
+        type: types.CHECK_MEMBERS_WITH_INFO,
         payload: members
     }
 };
 
 export const setCheckMembersClosedValue = (members) => {
     return {
-        type: CHECK_MEMBERS_CLOSED,
+        type: types.CHECK_MEMBERS_CLOSED,
         payload: members
     }
 };
 
 export const setCheckMembersSellerValue = (members) => {
     return {
-        type: CHECK_MEMBERS_SELLER,
+        type: types.CHECK_MEMBERS_SELLER,
         payload: members
     }
 };
 
 export const setCheckMembersBannedValue = (members) => {
     return {
-        type: CHECK_MEMBERS_BANNED,
+        type: types.CHECK_MEMBERS_BANNED,
         payload: members
     }
 };
 
 export const setCheckMembersDeletedValue = (members) => {
     return {
-        type: CHECK_MEMBERS_DELETED,
+        type: types.CHECK_MEMBERS_DELETED,
         payload: members
     }
 };

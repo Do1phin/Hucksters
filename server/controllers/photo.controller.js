@@ -12,7 +12,7 @@ const createPhoto = async (req, res) => {
             }
         });
 
-        if (photo) return res.status(400).json({message: 'Photo is already exist', photo});
+        if (photo) return res.status(400).json({message: 'Photos is already exist', photo});
 
         new Photo({
             owner_id,
@@ -61,16 +61,69 @@ const readPhoto = async (req, res) => {
     }
 };
 
+//updateFavoritePhotoCount
+const updateFavoritePhotoCount = async (req, res) => {
+    const {photo_id, operation} = req.body;
+
+    try {
+        Photo.findOneAndUpdate(
+            {photo_id: photo_id},
+            {
+                // $set: {
+                $inc: {
+                    favorites: operation === 'inc' ? 1 : -1
+                    // }
+                }
+            },
+            {returnOriginal: false},
+            (err, photo) => {
+                if (err) return res.status(400).json({
+                    error: getErrorMessage(err)
+                });
+                return res.status(200).status({photo});
+            }
+        )
+    } catch (e) {
+        return res.status(500).json({error: getErrorMessage(e)})
+    }
+};
+
+const decFavoritePhotoCount = async (req, res) => {
+    const {photo_id} = req.body;
+
+    try {
+        Photo.findOneAndUpdate(
+            {photo_id: photo_id},
+            {
+                // $set: {
+                $dec: {
+                    favorites: -1
+                    // }
+                }
+            },
+            {returnOriginal: false},
+            (err, photo) => {
+                if (err) return res.status(400).json({
+                    error: getErrorMessage(err)
+                });
+                return res.status(200).status({photo});
+            }
+        )
+    } catch (e) {
+        return res.status(500).json({error: getErrorMessage(e)})
+    }
+};
+
 // updateAdditionalPhotosCount
 const updatePhoto = async (req, res) => {
-    console.log('req,body ', req.body)
+    console.log('updatePhoto req,body ', req.body)
     const {photo_id, additionalPhotosCount} = req.body;
     try {
         Photo.findOneAndUpdate(
             {photo_id: id},
             {
                 $set: {
-                    additional_photos: 77
+                    additional_photos: +1
                 }
             },
             {returnOriginal: false},
@@ -94,4 +147,5 @@ export default {
     readPhoto,
     updatePhoto,
     deletePhoto,
+    updateFavoritePhotoCount
 }

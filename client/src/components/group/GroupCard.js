@@ -2,9 +2,15 @@ import React, {Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
 import SpinnerItem from '../spinner-item';
 import {useDispatch, useSelector} from 'react-redux';
-import {asyncDeleteGroup, asyncUpdateGroupInfo, asyncGetGroupMembers} from '../../redux/actions/group.actions';
+import {
+    asyncDeleteGroup,
+    asyncUpdateGroupInfo,
+    asyncGetGroupMembers,
+    deleteGroup,
+    del
+} from '../../redux/actions/group.actions';
 import store from '../../redux/store';
-
+import {watchDeleteGroup} from '../../redux/saga/watchers';
 
 const GroupCard = ({item}) => {
     const [loading, setLoading] = useState(false);
@@ -18,7 +24,8 @@ const GroupCard = ({item}) => {
 
     const dispatchRemoveBtn = (event) => {
         const group_id = +event.target.id;
-        dispatch(asyncDeleteGroup(group_id));
+        // dispatch(asyncDeleteGroup(group_id));
+        dispatch(del(group_id));
     };
 
     const dispatchRefreshInfoBtn = (event) => {

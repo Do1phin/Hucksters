@@ -3,9 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/FavoriteBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FavoriteBtn/FavoriteBtn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/_api-favorite.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FavoriteBtn/favoriteBtn.api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/FavoriteBtn/favoriteBtn.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/favoriteBtn.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetComments.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetComments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetPhotos.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetPhotos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/PhotoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PhotoCard/PhotoCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/PhotoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PhotoPage/PhotoPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/Photos.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/photo/Photos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/_api-photo.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Photos/photos.api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/photo/photos.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/photos.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/favorite.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/favorite.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/photo.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/photo.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/rootReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/rootReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/photo.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/photo.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/search.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/search.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/photo.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/photo.model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +30,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBowerSettings">
+    <node-interpreter value="project" />
+    <bower-package value="" />
+    <bower.json value="" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -31,8 +52,9 @@
     <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="13.12.0" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/styles" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -44,7 +66,7 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Programming\Projects\Hucksters\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
     <property name="ts.external.directory.path" value="C:\Programming\Projects\Hucksters\client\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
@@ -55,11 +77,11 @@
       <recent name="C:\Programming\Projects\Hucksters\client\src\components\group\api-group.js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Programming\Projects\Hucksters\client\src\redux\actions" />
-      <recent name="C:\Programming\Projects\Hucksters\client\src\redux\reducers" />
-      <recent name="C:\Programming\Projects\Hucksters\server" />
-      <recent name="C:\Programming\Projects\Hucksters\" />
-      <recent name="C:\Programming\Projects\Hucksters\client" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\styles" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\components\" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\containers\Photos" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\components\PhotoPage" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\components\PhotoCard" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -68,7 +90,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\Alien\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -117,7 +139,9 @@
       <workItem from="1589630907355" duration="63506000" />
       <workItem from="1589860922890" duration="62642000" />
       <workItem from="1590389136753" duration="1210000" />
-      <workItem from="1590415698627" duration="8741000" />
+      <workItem from="1590415698627" duration="23182000" />
+      <workItem from="1590574061218" duration="27464000" />
+      <workItem from="1590676946705" duration="22243000" />
     </task>
     <servers />
   </component>
@@ -142,10 +166,10 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="627" y="122" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589642494262" />
-    <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589394387898">
+    <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590688474523">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589394387898" />
+    <state x="570" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590688474523" />
     <state x="985" y="212" key="#xdebugger.evaluate" timestamp="1589134425935">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
@@ -162,10 +186,11 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="506" y="287" width="668" height="660" key="EditFileWatcherDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589222014177" />
-    <state x="620" y="266" key="FileChooserDialogImpl" timestamp="1589395983729">
+    <state x="620" y="266" key="FileChooserDialogImpl" timestamp="1590768173373">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="620" y="266" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589395983729" />
+    <state x="620" y="266" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590768173373" />
+    <state x="2152" y="292" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590520146171" />
     <state width="1637" height="248" key="GridCell.Tab.0.bottom" timestamp="1590387276581">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
@@ -230,10 +255,11 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="420" y="247" key="IDE.errors.dialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1587909687393" />
-    <state x="421" y="161" width="1081" height="710" key="SettingsEditor" timestamp="1590344572318">
-      <screen x="0" y="0" width="1680" height="1020" />
+    <state x="2001" y="190" width="916" height="708" key="SettingsEditor" timestamp="1590522137667">
+      <screen x="1680" y="33" width="1280" height="994" />
     </state>
     <state x="421" y="161" width="1081" height="710" key="SettingsEditor/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590344572318" />
+    <state x="2001" y="190" width="916" height="708" key="SettingsEditor/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590522137667" />
     <state x="95" y="95" width="1496" height="836" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1589303355679">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
@@ -250,14 +276,15 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589132477973" />
-    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1590432659648">
+    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1590767225993">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590432659648" />
-    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1589828214664">
+    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590767225993" />
+    <state x="2057" y="253" width="730" height="548" key="find.popup/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590518948275" />
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1590762177835">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589828214664" />
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590762177835" />
     <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1590332778164">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>

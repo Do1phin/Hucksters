@@ -11,7 +11,7 @@ const GroupsList = () => {
     const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
-    const groups = useSelector(state => state.group.groups);
+    const groups = useSelector(state => state.groups.groups);
 
     useEffect(() => {
 

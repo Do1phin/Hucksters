@@ -2,9 +2,15 @@ import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {stampToDate} from '../../services/date.service';
-import FavoriteBtn from '../UI/FavoriteBtn/FavoriteBtn';
+import FavoriteBtn from '../FavoriteBtn/FavoriteBtn';
+import {useSelector} from "react-redux";
 
-const PhotoCard = ({owner_id, album_id, photo_id, text, photo_sizes, date, additional_photos}) => {
+const PhotoCard = (props) => {
+
+    const {owner_id, album_id, photo_id, text, photo_sizes, date, additional_photos, favorites} = props;
+
+    const favorite = useSelector(state => state.favorites);
+    const isFavorite = favorite.favorite_photos.some((value) => value === photo_id);
 
     return (
         <Fragment>
@@ -31,7 +37,16 @@ const PhotoCard = ({owner_id, album_id, photo_id, text, photo_sizes, date, addit
                     <img src={photo_sizes[photo_sizes.length - 1].url} alt={photo_id}/>
                 </div>
                 <div className="photo-card__item-body-actions">
-                    <FavoriteBtn owner_id={owner_id} album_id={album_id} photo_id={photo_id} type={'photos'}/>
+                    <FavoriteBtn
+                        owner_id={owner_id}
+                        album_id={album_id}
+                        photo_id={photo_id}
+                        type={'photos'}
+                        favorite={isFavorite}
+                    />
+                    <p className="favorite-block__counter">
+                        {favorites}
+                    </p>
                 </div>
             </div>
 
@@ -48,13 +63,14 @@ const PhotoCard = ({owner_id, album_id, photo_id, text, photo_sizes, date, addit
                 <span>{text}</span>
             </div>
         </Fragment>
-    )
+    );
 };
 
 PhotoCard.propTypes = {
     owner_id: PropTypes.number.isRequired,
     album_id: PropTypes.number.isRequired,
     photo_id: PropTypes.number.isRequired,
+    favorites: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
     additional_photos: PropTypes.number.isRequired,
     photo_sizes: PropTypes.array.isRequired,

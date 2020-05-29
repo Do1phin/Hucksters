@@ -115,5 +115,3 @@ const GetAlbums = () => {
 };
 
 export default GetAlbums;
-
-
