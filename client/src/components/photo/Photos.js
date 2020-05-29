@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {getPhotosFavorites, getPhotosFromDB} from './_api-photo';
-import PhotoCard from './PhotoCard';
-import PhotoPage from './PhotoPage';
+import {getPhotosFavorites, getPhotosFromDB} from '../../containers/Photos/photos.api';
+import PhotoCard from '../PhotoCard/PhotoCard';
+import PhotoPage from '../PhotoPage/PhotoPage';
 import ErrorNotFound from '../errors/ErrorNotFound';
 import Spinner from '../spinner';
 import Search from '../search/Search';
@@ -11,8 +11,7 @@ import LoadMoreBtn from '../UI/LoadMoreBtn/LoadMoreBtn';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLoadMore, setPartItems, setTotalItems} from '../../redux/actions/list.actions';
 import { getFavoritesAsync } from '../../redux/actions/favorite.actions';
-import './photos.style.scss';
-import store from "../../redux/store";
+import '../../styles/photos.style.scss';
 
 const Photos = (props) => {
     const [loading, setLoading] = useState(true);

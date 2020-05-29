@@ -1,9 +1,8 @@
-const createFavoritePhotoInDB = (props) => {
-
+const createFavoritePhotoInDB = async (props) => {
     console.log('createFavoritePhotoInDB ' , props)
     const body = {};
     try {
-        return fetch('', {
+        await fetch('', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -20,10 +19,10 @@ const createFavoritePhotoInDB = (props) => {
     }
 };
 
-const readFavoritesFromDB = (body) => {
+const readFavoritesFromDB = async (body) => {
     body = {};
     try {
-        return fetch('/api/favorite', {
+        await fetch('/api/favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -40,10 +39,10 @@ const readFavoritesFromDB = (body) => {
     }
 };
 
-const updateFavoritesFromDB = (body) => {
+const updateFavoritesFromDB = async (body) => {
     console.log('updateFavoritesFromDB' , body)
     try {
-        fetch('/api/favorite/update', {
+        await fetch('/api/favorite/update', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -58,9 +57,9 @@ const updateFavoritesFromDB = (body) => {
     }
 };
 
-const deleteFavoriteFromDB = (body) => {
+const deleteFavoriteFromDB = async (body) => {
     try {
-        fetch('/api/favorite/delete', {
+        await fetch('/api/favorite/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

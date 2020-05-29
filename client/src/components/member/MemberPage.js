@@ -7,7 +7,7 @@ import MemberInfo from './MemberInfo';
 import Spinner from '../spinner';
 
 import './memberPage.style.scss';
-import {getPhotosFromDB} from '../photo/_api-photo';
+import {getPhotosFromDB} from '../../containers/Photos/photos.api';
 
 const MemberPage = ({owner_id}) => {
     const [loading, setLoading] = useState(true);

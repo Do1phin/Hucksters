@@ -12,7 +12,7 @@ const createPhoto = async (req, res) => {
             }
         });
 
-        if (photo) return res.status(400).json({message: 'Photo is already exist', photo});
+        if (photo) return res.status(400).json({message: 'Photos is already exist', photo});
 
         new Photo({
             owner_id,

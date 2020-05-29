@@ -12,7 +12,7 @@ const search = async (req, res) => {
         }
 
         // if (location === 'photos') {
-        //     data = await Photo.find({text: new RegExp(searchStr, 'i')});
+        //     data = await Photos.find({text: new RegExp(searchStr, 'i')});
         // } else if (location === 'albums') {
         //     data = await Album.find({title: new RegExp(searchStr, 'i')});
         // } else if (location === 'sellers') {

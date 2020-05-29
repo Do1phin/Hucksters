@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from "react";
-import {getPhotosFromDB, updateAddPhotosCount} from '../photo/_api-photo';
+import {getPhotosFromDB, updateAddPhotosCount} from '../../containers/Photos/photos.api';
 import {addCommentsToDb, checkCommentsBeforeAdd} from '../comment/_api-comment';
 import {getCommentsFromVk} from "./_api-vk";
 import {readCountersFromDB} from "./_api-counters";

@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 import {getAlbumsFromDB} from "../album/_api-album";
-import {addPhotosToDb} from '../photo/_api-photo';
+import {addPhotosToDb} from '../../containers/Photos/photos.api';
 import {getPhotosFromVk} from "./_api-vk";
 import {readCountersFromDB} from "./_api-counters";
 

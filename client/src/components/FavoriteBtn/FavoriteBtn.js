@@ -1,13 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {createFavoritePhotoInDB, deleteFavoriteFromDB, updateFavoritesFromDB} from './_api-favorite';
-import {updateFavoritePhotoCount} from '../../photo/_api-photo';
+import {createFavoritePhotoInDB, deleteFavoriteFromDB, updateFavoritesFromDB} from './favoriteBtn.api';
+import {updateFavoritePhotoCount} from '../../containers/Photos/photos.api';
 import PropTypes from 'prop-types';
 
 
-const FavoriteBtn = ({photo_id, type, favorite}) => {
+const FavoriteBtn = (props) => {
+    const {photo_id, type, favorite} = props;
+    console.log('favorite ' , favorite)
+
     const [loading, setLoading] = useState(true);
     const [favorited, setFavorited] = useState(false);
     const [favoriteCount, setFavoriteCount] = useState(0);
+
+    localStorage.setItem('user_id', '5e8ca6ef2fe3e651a4d723ac');
 
     useEffect(() => {
         const body = {};
@@ -17,10 +22,7 @@ const FavoriteBtn = ({photo_id, type, favorite}) => {
         setLoading(false);
     }, []);
 
-    localStorage.setItem('user_id', '5e8ca6ef2fe3e651a4d723ac');
-
-
-    const favoriteBtnClick = () => {
+    const favoriteBtnClick = async () => {
         setLoading(true);
 
         const body = {
@@ -30,12 +32,11 @@ const FavoriteBtn = ({photo_id, type, favorite}) => {
         };
 
         if (!favorite) {
-            updateFavoritesFromDB(body);
-            updateFavoritePhotoCount({...body, operation: 'inc'});
+            await createFavoritePhotoInDB(body);
+            await updateFavoritesFromDB(body);
+            await updateFavoritePhotoCount({...body, operation: 'inc'});
 
             setFavorited(!favorited);
-            createFavoritePhotoInDB(body);
-
             setFavoriteCount(1 + favoriteCount);
 
         } else {

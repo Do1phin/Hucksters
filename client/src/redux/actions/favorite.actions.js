@@ -1,5 +1,5 @@
 import {types} from '../actions/actionTypes';
-import {createFavoritePhotoInDB, readFavoritesFromDB} from "../../components/UI/FavoriteBtn/_api-favorite";
+import {createFavoritePhotoInDB, readFavoritesFromDB} from "../../components/FavoriteBtn/favoriteBtn.api";
 
 export const getFavoritesAsync = () => {
     return async (dispatch) => {

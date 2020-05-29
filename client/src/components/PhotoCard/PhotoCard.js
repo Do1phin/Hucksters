@@ -2,10 +2,12 @@ import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {stampToDate} from '../../services/date.service';
-import FavoriteBtn from '../UI/FavoriteBtn/FavoriteBtn';
+import FavoriteBtn from '../FavoriteBtn/FavoriteBtn';
 import {useSelector} from "react-redux";
 
-const PhotoCard = ({owner_id, album_id, photo_id, text, photo_sizes, date, additional_photos, favorites}) => {
+const PhotoCard = (props) => {
+
+    const {owner_id, album_id, photo_id, text, photo_sizes, date, additional_photos, favorites} = props;
 
     const favorite = useSelector(state => state.favorites);
     const isFavorite = favorite.favorite_photos.some((value) => value === photo_id);

@@ -3,7 +3,7 @@ import groupReducer from './reducers/group.reducer';
 import listReducer from './reducers/list.reducer';
 import checkReducer from './reducers/check.reducer';
 import checkMemberReducer from './reducers/checkMember.reducer';
-import photoReducer from './reducers/photo.reducer';
+import photoReducer from '../containers/Photos/photos.reducer';
 import favoriteReducer from './reducers/favorite.reducer';
 
 export default combineReducers({
