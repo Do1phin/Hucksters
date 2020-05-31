@@ -1,4 +1,6 @@
+// Core
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const MemberInfo = (props) => {
 
@@ -38,3 +40,19 @@ const MemberInfo = (props) => {
 };
 
 export default MemberInfo;
+
+MemberInfo.propTypes = {
+    owner_id: PropTypes.number,
+    is_closed: PropTypes.bool,
+    deactivated: PropTypes.string,
+    first_name: PropTypes.string,
+    last_name: PropTypes.string,
+    nickname: PropTypes.string,
+    domain: PropTypes.string,
+    sex: PropTypes.number,
+    country: PropTypes.string,
+    photo: PropTypes.string,
+    albums: PropTypes.number,
+    picturesInAlbums: PropTypes.number,
+    instagram: PropTypes.string
+};

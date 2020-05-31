@@ -1,15 +1,21 @@
+// Core
 import React, {Fragment, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {getAlbumsFromDB} from '../album/_api-album';
-import {getMembersFromDB} from './_api-member';
-import AlbumCardS from '../album/AlbumCardS';
-import MemberInfo from './MemberInfo';
-import Spinner from '../spinner';
-
-import './memberPage.style.scss';
+// API
+import {getMembersFromDB} from '../../containers/Members/members.api';
 import {getPhotosFromDB} from '../../containers/Photos/photos.api';
+// Components
+import {getAlbumsFromDB} from '../../containers/Albums/albums.api';
+import AlbumCardSmall from '../AlbumCardSmall/AlbumCardSmall';
+import MemberInfo from '../MemberInfo/MemberInfo';
+import Spinner from '../spinner';
+// Styles
+import '../../styles/memberPage.style.scss';
 
-const MemberPage = ({owner_id}) => {
+const MemberPage = (props) => {
+
+    const {owner_id} = props;
+
     const [loading, setLoading] = useState(true);
     const [albums, setAlbums] = useState([]);
     const [photos, setPhotos] = useState([]);
@@ -66,7 +72,7 @@ const MemberPage = ({owner_id}) => {
                     <div className='album-list__item'
                          key={item.album_id}
                     >
-                        <AlbumCardS {...item}/>
+                        <AlbumCardSmall {...item}/>
                     </div>
                 );
             });
@@ -115,8 +121,8 @@ const MemberPage = ({owner_id}) => {
     );
 };
 
+export default MemberPage;
+
 MemberPage.propTypes = {
     owner_id: PropTypes.number.isRequired
 };
-
-export default MemberPage;

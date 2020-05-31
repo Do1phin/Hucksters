@@ -1,9 +1,9 @@
 import { types } from './actionTypes'
-import {getMembersFromDB, updateMembersInDB} from "../../components/member/_api-member";
+import {getMembersFromDB, updateMembersInDB} from "../../containers/Members/members.api";
 import {setCheckStepNumber} from "./check.actions";
 import {getAlbumsFromVk} from "../../components/admin/_api-vk";
 import {checkAlbumsNames} from "../../components/admin/_api-check";
-import {createAlbumsToDB} from "../../components/album/_api-album";
+import {createAlbumsToDB} from "../../containers/Albums/albums.api";
 import {readCountersFromDB} from "../../components/admin/_api-counters";
 
 export const setCheckMemberAllValue = (members) => {

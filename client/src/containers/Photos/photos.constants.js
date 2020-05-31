@@ -1,4 +1,4 @@
-// Photos
+// Photos constants
 export const FETCH_PHOTOS_ASYNC = 'PHOTOS/FETCH_PHOTOS_ASYNC';
 export const FILL_PHOTOS = 'PHOTOS/FILL_PHOTOS';
 export const FILL_PHOTOS_MORE = 'PHOTOS/FILL_PHOTOS_MORE';

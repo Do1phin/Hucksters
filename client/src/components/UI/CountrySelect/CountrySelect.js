@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {setMemberCountrySelect} from '../../../redux/actions/list.actions';
+import {setMemberCountrySelect} from '../../../redux/actions/listSettings.actions';
 import './countrySelect.style.scss';
 
 const CountrySelect = () => {
     const dispatch = useDispatch();
-    const country = useSelector(state => state.list.member_country);
+    const country = useSelector(state => state.list_settings.member_country);
 
     const dispatchSetCountrySelect = (event) => {
         const country = event.target.value;

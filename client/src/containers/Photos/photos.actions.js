@@ -1,6 +1,9 @@
+// Constants
 import {FETCH_PHOTOS_ASYNC, FILL_PHOTOS, FILL_PHOTOS_MORE} from '../Photos/photos.constants';
+// API
 import {getPhotosFromDB} from './photos.api';
-import {setPartItems, setTotalItems} from '../../redux/actions/list.actions';
+// Actions
+import {setPartItems, setTotalItems} from '../../redux/actions/listSettings.actions';
 
 export const getPhotos = () => {
     return {
@@ -13,10 +16,10 @@ export const setPhotosToStore = (photos) => {
         const state = getState();
 
         let variables = {
-            text: state.list.search_text,
-            skip: state.list.skip,
-            limit: state.list.limit,
-            sort: state.list.sort
+            text: state.search.search_text,
+            skip: state.list_settings.skip,
+            limit: state.list_settings.limit,
+            sort: state.list_settings.sort
         };
 
         await getPhotosFromDB(variables)
@@ -26,16 +29,13 @@ export const setPhotosToStore = (photos) => {
                     const items = data.photos;
                     dispatch(setPartItems(items.length));
 
-
-                    if (state.list.loadMore) {
-                        // setPhotos([...photos, ...items]);
+                    if (state.list_settings.load_more) {
                         dispatch({
                             type: FILL_PHOTOS_MORE,
                             payload: items
                         });
-                        dispatch(setTotalItems(getState().list.total_items + items.length));
+                        dispatch(setTotalItems(state.list_settings.total_items + items.length));
                     } else {
-                        // setPhotos(items);
                         dispatch({
                             type: FILL_PHOTOS,
                             payload: items

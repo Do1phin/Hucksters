@@ -2,15 +2,14 @@ import { types } from '../actions/actionTypes';
 
 const initialState = {
     limit: 100,
-    skip: 0,
     sort: -1,
-    search_text: '',
+    skip: 0,
     total_items: 0,
     member_status: 'Seller',
     member_country: '',
 };
 
-const listReducer = (state = initialState, action) => {
+const listSettingsReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.LIST_SETTINGS_LIMIT_ITEMS:
             return {
@@ -45,7 +44,7 @@ const listReducer = (state = initialState, action) => {
         case types.LIST_SETTINGS_LOAD_MORE:
             return {
                 ...state,
-                loadMore: action.payload
+                load_more: action.payload
             };
         case types.LIST_SETTINGS_MEMBER_STATUS:
             return {
@@ -62,4 +61,4 @@ const listReducer = (state = initialState, action) => {
     }
 };
 
-export default listReducer;
+export default listSettingsReducer;

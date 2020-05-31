@@ -21,13 +21,6 @@ export const setSortItemsSelect = (sort) => {
     };
 };
 
-export const setSearchTextString = (string) => {
-    return {
-        type: types.LIST_SETTINGS_SEARCH_TEXT,
-        payload: string
-    };
-};
-
 export const setPartItems = (count) => {
     return {
         type: types.LIST_SETTINGS_FETCHED_PART_ITEMS,
@@ -42,10 +35,10 @@ export const setTotalItems = (total) => {
     };
 };
 
-export const setLoadMore = (loadMore) => {
+export const setLoadMore = (load_more) => {
     return {
         type: types.LIST_SETTINGS_LOAD_MORE,
-        payload: loadMore
+        payload: load_more
     };
 };
 

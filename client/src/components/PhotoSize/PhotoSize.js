@@ -1,22 +1,23 @@
+// Core
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const PhotoSize = (props) => {
 
-    const { listSettings } = props;
+    const { list_settings } = props;
 
     return (
         <div className='photos-size'>
-            {listSettings.total_items
-                ? <span>Результатов - {listSettings.total_items}</span>
+            {list_settings.total_items
+                ? <span>Результатов - {list_settings.total_items}</span>
                 : null
             }
         </div>
     );
 };
 
-PhotoSize.propTypes = {
-    listSettings: PropTypes.object.isRequired
-};
-
 export default PhotoSize;
+
+PhotoSize.propTypes = {
+    list_settings: PropTypes.object.isRequired
+};

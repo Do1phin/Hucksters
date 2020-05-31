@@ -1,3 +1,4 @@
+// Core
 import React, {Fragment} from 'react';
 
 const PhotoPage = () => {

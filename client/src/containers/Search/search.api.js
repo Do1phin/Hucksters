@@ -1,6 +1,6 @@
 const list = ({q}) => {
     try {
-        return fetch('/search?q=' + q, {
+        return fetch('/SearchContainer?q=' + q, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
