@@ -1,17 +1,22 @@
+// Core
 import React, {Fragment, useEffect, useState} from 'react';
-import {getAlbumsFromDB} from './_api-album';
-import AlbumCard from './AlbumCard';
-import Spinner from "../spinner";
-import Search from "../search/Search";
-import LimitSelect from "../UI/LimitSelect/LimitSelect";
-import SortSelect from "../UI/SortSelect/SortSelect";
-import LoadMoreBtn from "../UI/LoadMoreBtn/LoadMoreBtn";
-import ErrorNotFound from "../errors/ErrorNotFound";
-import AlbumPage from "./AlbumPage";
 import {useDispatch, useSelector} from "react-redux";
-import {setLoadMore, setPartItems, setTotalItems} from "../../redux/actions/list.actions";
-import '../UI/SortSelect/sortSelect.style.scss';
-import './albums.style.scss';
+// API
+import {getAlbumsFromDB} from '../../containers/Albums/albums.api';
+// Redux-actions
+import {setLoadMore, setPartItems, setTotalItems} from "../../redux/actions/listSettings.actions";
+// Components
+import AlbumCard from '../AlbumCard/AlbumCard';
+import Spinner from "../../components/spinner/index";
+import SearchContainer from '../../containers/Search/SearchContainer';
+import LimitSelect from "../../components/UI/LimitSelect/LimitSelect";
+import SortSelect from "../../components/UI/SortSelect/SortSelect";
+import LoadMoreBtn from "../../components/UI/LoadMoreBtn/LoadMoreBtn";
+import ErrorNotFound from "../../components/errors/ErrorNotFound";
+import AlbumPage from "../AlbumPage/AlbumPage";
+// Styles
+import '../../components/UI/SortSelect/sortSelect.style.scss';
+import '../../styles/albums.style.scss';
 
 interface getAlbumsReqVariables{
     info: string,
@@ -26,16 +31,17 @@ const Albums = (props) => {
     const [albums, setAlbums] = useState([]);
 
     const dispatch = useDispatch();
-    const listSettings = useSelector(state => state.list);
+    const list_settings = useSelector(state => state.list_settings);
+    const search = useSelector(state => state.search);
 
     useEffect(() => {
 
         const variables: getAlbumsReqVariables = {
             info: 'list',
-            search_text: listSettings.search_text,
-            skip: listSettings.skip,
-            limit: listSettings.limit,
-            sort: listSettings.sort,
+            search_text: search.search_text,
+            skip: list_settings.skip,
+            limit: list_settings.limit,
+            sort: list_settings.sort,
         };
 
         const loadAlbums = (variables: object) => {
@@ -46,8 +52,8 @@ const Albums = (props) => {
                     if (data) {
                         dispatch(setPartItems(data.length));
 
-                        if (listSettings.loadMore) {
-                            dispatch(setTotalItems(listSettings.total_items + data.length));
+                        if (list_settings.load_more) {
+                            dispatch(setTotalItems(list_settings.total_items + data.length));
                             setAlbums([...albums, ...data]);
                         } else {
                             dispatch(setTotalItems(data.length));
@@ -61,10 +67,10 @@ const Albums = (props) => {
         dispatch(setLoadMore(false));
         loadAlbums(variables)
     }, [
-        listSettings.search_text,
-        listSettings.limit,
-        listSettings.skip,
-        listSettings.sort
+        list_settings.search_text,
+        list_settings.limit,
+        list_settings.skip,
+        list_settings.sort
     ]);
 
     const AlbumsView = () => {
@@ -85,8 +91,8 @@ const Albums = (props) => {
     const AlbumSize = () => {
         return (
             <div className='album-size'>
-                {listSettings.total_items
-                    ? <span>Результатов - {listSettings.total_items}</span>
+                {list_settings.total_items
+                    ? <span>Результатов - {list_settings.total_items}</span>
                     : null
                 }
             </div>
@@ -126,7 +132,7 @@ const Albums = (props) => {
 
         return (
             <Fragment>
-                <Search/>
+                <SearchContainer/>
                 <AlbumSize/>
                 <LimitSelect/>
                 <SortSelect/>

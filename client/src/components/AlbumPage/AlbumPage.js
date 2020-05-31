@@ -1,15 +1,19 @@
+// Core
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AlbumPage = ({album_id}) => {
+const AlbumPage = (props) => {
+
+    const {album_id} = props;
 
     return(
-        <span>конкретный альбом № {album_id}</span>
+        <span>Конкретный альбом № {album_id}</span>
     );
 };
+
+export default AlbumPage;
 
 AlbumPage.propTypes = {
     owner_id: PropTypes.number.isRequired,
     album_id: PropTypes.number.isRequired,
 };
-export default AlbumPage;

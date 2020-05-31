@@ -3,7 +3,7 @@ import searchCtrl from '../controllers/search.controller.js';
 
 const router = express.Router();
 
-router.route('/search')
+router.route('/SearchContainer')
     .get(searchCtrl.search);
 
 export default router;

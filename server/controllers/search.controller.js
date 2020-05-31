@@ -6,9 +6,9 @@ const search = async (req, res) => {
 
     try {
         const searchStr = req.query.q;
-        console.log('search.controller.js - > searchStr ', searchStr);
+        console.log('SearchContainer.controller.js - > searchStr ', searchStr);
         if (!searchStr) {
-            return res.status(400).json({message: 'Search string is empty'})
+            return res.status(400).json({message: 'SearchContainer string is empty'})
         }
 
         // if (location === 'photos') {

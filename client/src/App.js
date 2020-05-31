@@ -1,21 +1,22 @@
+// Core
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+// Components
 import NotFound from './components/errors';
 import ErrorBoundary from './components/errors/ErrorBoundary';
 import AuthPage from './components/pages/AuthPage';
 import MainPage from './components/pages/MainPage';
-import Members from './components/member/Members';
-import MemberPage from './components/member/MemberPage';
-import Albums from './components/album/Albums';
-import Photos from './containers/Photos/PhotosContainer'
-import Search from './components/search/Search';
+import MembersContainer from './containers/Members/MembersContainer';
+import MemberPage from './components/MemberPage/MemberPage';
+import AlbumsContainer from './containers/Albums/AlbumsContainer';
+import PhotosContainer from './containers/Photos/PhotosContainer';
+import SearchContainer from './containers/Search/SearchContainer';
 import AdminPanel from './components/admin/AdminPanel';
 import Header from './components/header';
 import Footer from './components/footer';
-
-
+// Styles
 import './App.scss';
-
+// import '../src/styles/index.scss';
 
 function App() {
     return (
@@ -25,14 +26,14 @@ function App() {
 
                 <Switch>
                     <Route exact path='/' component={MainPage}/>
-                    <Route exact path='/members/:owner_id?/albums/:album_id?/photos/:photo_id?' component={Photos}/>
-                    <Route exact path='/members/:owner_id?/albums/:album_id?' component={Albums}/>
-                    <Route exact path='/members/:owner_id?' component={Members}/>
-                    <Route exact path='/members/albums/' component={Members}/>
+                    <Route exact path='/members/:owner_id?/albums/:album_id?/photos/:photo_id?' component={PhotosContainer}/>
+                    <Route exact path='/members/:owner_id?/albums/:album_id?' component={AlbumsContainer}/>
+                    <Route exact path='/members/:owner_id?' component={MembersContainer}/>
+                    <Route exact path='/members/albums/' component={MembersContainer}/>
                     <Route path='/panel' component={AdminPanel}/>
                     <Route path='/signup' action="signup" component={AuthPage}/>
                     <Route path='/signin' action="signin" component={AuthPage}/>
-                    <Route path='/search' component={Search}/>
+                    <Route path='/search' component={SearchContainer}/>
                     <Route component={NotFound}/>
                 </Switch>
 

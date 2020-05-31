@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
-import {createMembersToDB, updateMembersInDB} from '../member/_api-member';
+import {createMembersToDB, updateMembersInDB} from '../../containers/Members/members.api';
 import GetAlbums from "../admin/GetAlbums";
 
 const GroupsCheck = () => {

@@ -1,10 +1,13 @@
+// Core
 import React, {Fragment} from 'react';
 import {NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
+// Styles
+import '../../styles/members.style.scss';
 
-import './members.style.scss';
+const MemberCard = (props) => {
 
-const MemberCard = ({owner_id, first_name, last_name, domain, photo}) => {
+    const {owner_id, first_name, last_name, domain, photo} = props;
 
     return (
         <Fragment>
@@ -33,6 +36,8 @@ const MemberCard = ({owner_id, first_name, last_name, domain, photo}) => {
     );
 };
 
+export default MemberCard;
+
 MemberCard.propTypes = {
     owner_id: PropTypes.number.isRequired,
     first_name: PropTypes.string.isRequired,
@@ -40,4 +45,7 @@ MemberCard.propTypes = {
     domain: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired
 };
-export default MemberCard;
+
+MemberCard.defaultProps = {
+    owner_id: ''
+};

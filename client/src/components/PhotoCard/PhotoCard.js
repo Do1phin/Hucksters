@@ -1,9 +1,12 @@
+// Core
 import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {useSelector} from 'react-redux';
+// Services
 import {stampToDate} from '../../services/date.service';
+// Components
 import FavoriteBtn from '../FavoriteBtn/FavoriteBtn';
-import {useSelector} from "react-redux";
 
 const PhotoCard = (props) => {
 

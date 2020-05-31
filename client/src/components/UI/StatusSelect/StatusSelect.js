@@ -1,11 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {setMemberStatusSelect} from '../../../redux/actions/list.actions';
+import {setMemberStatusSelect} from '../../../redux/actions/listSettings.actions';
 import './statusSelect.style.scss';
 
 const StatusSelect = () => {
     const dispatch = useDispatch();
-    const status = useSelector(state => state.list.member_status);
+    const status = useSelector(state => state.list_settings.member_status);
 
     const dispatchSetStatusSelect = (event) => {
         const status = event.target.value;

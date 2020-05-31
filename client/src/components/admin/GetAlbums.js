@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect} from "react";
 import {getAlbumsFromVk} from "./_api-vk";
-import {getMembersFromDB, updateMembersInDB} from "../member/_api-member";
-import {createAlbumsToDB} from "../album/_api-album";
+import {getMembersFromDB, updateMembersInDB} from "../../containers/Members/members.api";
+import {createAlbumsToDB} from "../../containers/Albums/albums.api";
 import {checkAlbumsNames} from '../admin/_api-check';
 import {useDispatch, useSelector} from "react-redux";
 import {setCheckThingString} from "../../redux/actions/check.actions";

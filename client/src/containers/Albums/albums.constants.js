@@ -1,0 +1,4 @@
+// Albums constants
+export const FETCH_ALBUMS_ASYNC = 'ALBUMS/FETCH_ALBUMS_ASYNC';
+export const FILL_ALBUMS = 'ALBUMS/FILL_ALBUMS';
+export const FILL_ALBUMS_MORE = 'ALBUMS/FILL_ALBUMS_MORE';

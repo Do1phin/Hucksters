@@ -1,0 +1,4 @@
+// Members constants
+export const FETCH_MEMBERS_ASYNC = 'PHOTOS/FETCH_MEMBERS_ASYNC';
+export const FILL_MEMBERS = 'PHOTOS/FILL_MEMBERS';
+export const FILL_MEMBERS_MORE = 'PHOTOS/FILL_MEMBERS_MORE';

@@ -1,0 +1,63 @@
+// Constants
+import {ADD_PHOTO_TO_FAVORITE, REMOVE_PHOTO_TO_FAVORITE} from './favoriteBtn.constants';
+// API
+import {createFavoritePhotoInDB, deleteFavoriteFromDB, updateFavoritesFromDB} from './favoriteBtn.api';
+import {updateFavoritePhotoCount} from '../../containers/Photos/photos.api';
+import {types} from "../../redux/actions/actionTypes";
+
+export const changeFavoritePhoto = (body) => {
+    console.log('changeFavoritePhoto 1 ');
+    return async (dispatch, getState) => {
+        const state = getState();
+        console.log('changeFavoritePhoto 2 ');
+
+        if (!body.favorite) {
+            console.log('1');
+
+            await createFavoritePhotoInDB(body)
+                .then(response => {
+                    if (!response) return console.error('Add favorite photo failed');
+                    dispatch({type: types.FILL_FAVORITE_PHOTOS, payload: response});
+                });
+
+            await updateFavoritesFromDB(body);
+            await updateFavoritePhotoCount({...body, operation: 'inc'});
+
+            dispatch({
+                type: ADD_PHOTO_TO_FAVORITE,
+                payload: body
+            })
+
+            // setFavorited(!favorited);
+            // setFavoriteCount(1 + favoriteCount);
+
+        } else {
+            console.log('2');
+            await deleteFavoriteFromDB(body)
+                .then(response => {
+                    if (!response) return console.error('Remove favorite photo failed');
+                    dispatch({type: types.FILL_FAVORITE_PHOTOS, payload: response});
+                });
+            // await deleteFavoriteFromDB(body);
+            await updateFavoritePhotoCount({...body, operation: 'dec'});
+
+            dispatch({
+                type: REMOVE_PHOTO_TO_FAVORITE,
+                payload: body
+            })
+
+            // setFavorited(!favorited);
+            // setFavoriteCount(favoriteCount - 1);
+        }
+    }
+};
+
+export const changeFavoritePhoto2 = (body) => {
+    return async (dispatch, getState) => {
+        try {
+            console.log(111111111)
+        } catch (e) {
+            console.error(e)
+        }
+    }
+};

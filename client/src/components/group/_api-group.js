@@ -1,6 +1,6 @@
 // Получаем список групп из базы
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
-import {createMembersToDB, updateMembersInDB} from "../member/_api-member";
+import {createMembersToDB, updateMembersInDB} from "../../containers/Members/members.api";
 import {setCheckStepNumber} from "../../redux/actions/check.actions";
 import store from "../../redux/store";
 
