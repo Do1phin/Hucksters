@@ -1,8 +1,9 @@
-// Constants
+// Redux constants
 import {FILL_MEMBERS, FILL_MEMBERS_MORE} from './members.constants';
+// Redux actions
+import {setPartItems, setTotalLoadedItems} from "../../redux/actions/listSettings.actions";
 // API
-import {getMembersFromDB} from './members.api';
-import {setPartItems, setTotalItems} from "../../redux/actions/listSettings.actions";
+import {getManyMembersForIdsFromDB, getMembersFromDB} from './members.api';
 
 export const setMembersToStore = () => {
     return async (dispatch, getState) => {
@@ -34,10 +35,30 @@ export const setMembersToStore = () => {
                             type: FILL_MEMBERS,
                             payload: items
                         });
-                        dispatch(setTotalItems(items.length));
+                        dispatch(setTotalLoadedItems(items.length));
                     }
                 }
             });
+    }
+};
 
+export const setManyMembersToStore = () => {
+    return async (dispatch, getState) => {
+        const state = getState();
+
+        const member_ids = await state.photos.photos.map(item => {
+            return item.owner_id
+        });
+        // const member_ids = [937266, 769646, 241306];
+        await getManyMembersForIdsFromDB(member_ids)
+            .then(data => {
+                if (data.length) {
+                    const items = data;
+                    dispatch({
+                        type: FILL_MEMBERS,
+                        payload: items
+                    });
+                }
+            })
     }
 };

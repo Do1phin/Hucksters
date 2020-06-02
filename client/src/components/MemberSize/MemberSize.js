@@ -9,8 +9,8 @@ const MembersSize = (props) => {
     return (
         <div className='member-size'>
             {
-                list_settings.total_items
-                    ? <span>Результатов - {list_settings.total_items}</span>
+                list_settings.total_loaded_items
+                    ? <span>Результатов - {list_settings.total_loaded_items} из {list_settings.total_items}</span>
                     : null
             }
         </div>

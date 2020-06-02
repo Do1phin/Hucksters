@@ -2,7 +2,7 @@
 import { takeEvery, all, call } from 'redux-saga/effects';
 
 // Types
-import { types } from '../actions/actionTypes';
+import {GROUP_DELETE} from '../../containers/Groups/groups.constants';
 
 // Workers
 // import { deleteGroup } from '../saga/workers';
@@ -10,7 +10,7 @@ import { types } from '../actions/actionTypes';
 import { deleteGroup } from '../saga/workers';
 
 function* watchDeleteGroup() {
-    yield takeEvery(types.GROUP_DELETE, deleteGroup);
+    yield takeEvery(GROUP_DELETE, deleteGroup);
 }
 
 export function* watchGroups() {

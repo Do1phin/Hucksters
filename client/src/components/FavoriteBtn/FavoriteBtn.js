@@ -1,9 +1,8 @@
+// Core
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {createFavoritePhotoInDB, deleteFavoriteFromDB, updateFavoritesFromDB} from './favoriteBtn.api';
-import {updateFavoritePhotoCount} from '../../containers/Photos/photos.api';
-import {changeFavoritePhoto, changeFavoritePhoto2} from './favoriteBtn.actions';
-
+// Redux actions
+import {changeFavoritePhoto} from './favoriteBtn.actions';
 
 const FavoriteBtn = (props) => {
     const {photo_id, type, favorite} = props;
@@ -25,7 +24,7 @@ const FavoriteBtn = (props) => {
             favorite
         };
 
-        await changeFavoritePhoto2(body);
+        await changeFavoritePhoto(body);
         setLoading(false);
     };
 
@@ -35,7 +34,10 @@ const FavoriteBtn = (props) => {
                     onClick={favoriteBtnClick}
                     disabled={loading}
             >
-                {favorite ? <span>Удалить из избранного</span> : <span>Добавить в избранное</span>}
+                {
+                    favorite
+                        ? <span>Удалить из избранного</span>
+                        : <span>Добавить в избранное</span>}
             </button>
         </div>
     );

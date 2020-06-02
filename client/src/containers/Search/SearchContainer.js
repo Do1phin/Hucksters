@@ -1,8 +1,8 @@
 // Core
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-// Redux-actions
-import {setSkipItemsNumber, setPartItems, setTotalItems} from '../../redux/actions/listSettings.actions';
+// Redux actions
+import {setSkipItemsNumber, setPartItems, setTotalLoadedItems} from '../../redux/actions/listSettings.actions';
 import {updateSearchString} from './search.actions';
 // Styles
 import '../../styles/search.style.scss';
@@ -20,7 +20,7 @@ const SearchContainer = () => {
         if (event.key === 'Enter') {
             dispatch(setSkipItemsNumber(0));
             dispatch(setPartItems(0));
-            dispatch(setTotalItems(0));
+            dispatch(setTotalLoadedItems(0));
             dispatch(updateSearchString(text));
         }
     };

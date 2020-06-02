@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 // API
 import {getMembersFromDB} from '../../containers/Members/members.api';
 import {getPhotosFromDB} from '../../containers/Photos/photos.api';
-// Components
 import {getAlbumsFromDB} from '../../containers/Albums/albums.api';
+// React components
 import AlbumCardSmall from '../AlbumCardSmall/AlbumCardSmall';
 import MemberInfo from '../MemberInfo/MemberInfo';
-import Spinner from '../spinner';
+import Spinner from '../Spinners/GeneralSpinner';
 // Styles
 import '../../styles/memberPage.style.scss';
 
@@ -97,26 +97,34 @@ const MemberPage = (props) => {
     //     )
     // };
 
-    const Content = () => {
-        return loading
-            ? <Spinner/>
-            : (
-                <div className='member-page'>
-                    <MemberInfo {...userInfo}/>
-                    <div className='album-list'>
-                        {albumsView()}
-                    </div>
-                    <div className='photo-list'>
-                        фотографии выбранного альбома
-                    </div>
-                </div>
-            );
-    };
+    // const Content = () => {
+    //     return loading
+    //         ? <GeneralSpinner/>
+    //         : (
+    //             <div className='member-page'>
+    //                 <MemberInfo {...userInfo}/>
+    //                 <div className='album-list'>
+    //                     {albumsView()}
+    //                 </div>
+    //                 <div className='photo-list'>
+    //                     фотографии выбранного альбома
+    //                 </div>
+    //             </div>
+    //         );
+    // };
 
 
     return (
         <Fragment>
-            <Content/>
+            <div className='member-page'>
+                <MemberInfo {...userInfo}/>
+                <div className='album-list'>
+                    {albumsView()}
+                </div>
+                <div className='photo-list'>
+                    фотографии выбранного альбома
+                </div>
+            </div>
         </Fragment>
     );
 };

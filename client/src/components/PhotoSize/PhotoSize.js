@@ -8,8 +8,8 @@ const PhotoSize = (props) => {
 
     return (
         <div className='photos-size'>
-            {list_settings.total_items
-                ? <span>Результатов - {list_settings.total_items}</span>
+            {list_settings.total_loaded_items
+                ? <span>Результатов - {list_settings.total_loaded_items} из {list_settings.total_items}</span>
                 : null
             }
         </div>

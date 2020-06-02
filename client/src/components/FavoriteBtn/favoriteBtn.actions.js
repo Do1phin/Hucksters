@@ -1,9 +1,10 @@
-// Constants
+// Redux constants
 import {ADD_PHOTO_TO_FAVORITE, REMOVE_PHOTO_TO_FAVORITE} from './favoriteBtn.constants';
+// Redux actions
+import {types} from "../../redux/actions/actionTypes";
 // API
 import {createFavoritePhotoInDB, deleteFavoriteFromDB, updateFavoritesFromDB} from './favoriteBtn.api';
 import {updateFavoritePhotoCount} from '../../containers/Photos/photos.api';
-import {types} from "../../redux/actions/actionTypes";
 
 export const changeFavoritePhoto = (body) => {
     console.log('changeFavoritePhoto 1 ');

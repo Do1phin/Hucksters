@@ -1,12 +1,12 @@
 // Core
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-// Redux-actions
+// Redux actions
 import {loading} from '../../redux/actions/generalSettings.actions';
 import {setLoadMore} from '../../redux/actions/listSettings.actions';
 import {setMembersToStore} from './members.actions';
 import {getFavoritesAsync} from '../../redux/actions/favorite.actions';
-// Components
+// React components
 import SearchContainer from '../Search/SearchContainer';
 import LimitSelect from '../../components/UI/LimitSelect/LimitSelect';
 import LoadMoreBtn from '../../components/UI/LoadMoreBtn/LoadMoreBtn';

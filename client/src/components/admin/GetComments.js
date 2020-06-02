@@ -2,7 +2,7 @@ import React, {Fragment, useState} from "react";
 import {getPhotosFromDB, updateAddPhotosCount} from '../../containers/Photos/photos.api';
 import {addCommentsToDb, checkCommentsBeforeAdd} from '../comment/_api-comment';
 import {getCommentsFromVk} from "./_api-vk";
-import {readCountersFromDB} from "./_api-counters";
+import {readCountersFromDB} from "../Counters/counters.api";
 
 const GetComments = () => {
     // const [loading, setLoading] = useState(true);

@@ -2,7 +2,7 @@
 import { put, apply } from 'redux-saga/effects';
 
 // Instruments
-import { api } from '../../../components/group/_api-group';
+import { api } from '../../../containers/Groups/groups.api';
 import { createGroup as createGroupAC } from '../../actions/actionTypes';
 
 export function* deleteGroup(action) {

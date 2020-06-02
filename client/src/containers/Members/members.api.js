@@ -28,6 +28,27 @@ const getMembersFromDB = (params) => new Promise((resolve, reject) => {
     }
 });
 
+const getManyMembersForIdsFromDB = (params) => new Promise((resolve, reject) => {
+    const {member_ids} = params;
+
+    let body = params;
+
+    try {
+        return fetch('/members_for_ids', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        }).then((response) => {
+            const data = response.json();
+            resolve(data)
+        }).catch((err) => reject(err));
+    } catch (e) {
+        reject(e)
+    }
+});
+
 // Получаем количество продавцов в базе
 const getMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
     try {
@@ -131,6 +152,7 @@ const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject
 
 export {
     getMembersFromDB,
+    getManyMembersForIdsFromDB,
     getMembersSizesFromDB,
     createMembersToDB,
     updateMembersInDB

@@ -35,6 +35,13 @@ export const setTotalItems = (total) => {
     };
 };
 
+export const setTotalLoadedItems = (total) => {
+    return {
+        type: types.LIST_SETTINGS_TOTAL_LOADED_ITEMS,
+        payload: total
+    };
+};
+
 export const setLoadMore = (load_more) => {
     return {
         type: types.LIST_SETTINGS_LOAD_MORE,

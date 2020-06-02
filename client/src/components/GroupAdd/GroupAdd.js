@@ -1,30 +1,38 @@
+// Core
 import React, {Fragment, useState} from 'react';
-import Spinner from '../spinner';
+import {useDispatch, useSelector} from 'react-redux';
 import store from '../../redux/store';
-import {asyncAddGroup} from '../../redux/actions/group.actions';
-import {useDispatch} from 'react-redux';
+// Redux actions
+import {asyncAddGroup} from '../../containers/Groups/groups.actions';
+import {loading} from '../../redux/actions/generalSettings.actions';
+// React components
+import Spinner from '../Spinners/GeneralSpinner';
+// Styles
+import '../../styles/groups.style.scss';
 
-import './groups.style.scss';
+const GroupAdd = () => {
 
-const GroupsAdd = () => {
-    const [group_id, setGroupId] = useState('');
-    const [loading, setLoading] = useState(false);
+    let text;
+
+    const group_id = useSelector(state => state.groups.group_id);
+    const general_settings = useSelector(state => state.general_settings);
 
     const dispatch = useDispatch();
 
     const handleChange = (event) => {
-        event.preventDefault();
-        setGroupId(event.target.value);
+        // event.preventDefault();
+        text = event.target.value;
     };
 
     const dispatchBtnAction = (event) => {
         event.preventDefault();
-        setLoading(true);
 
-        dispatch(asyncAddGroup(group_id));
+        dispatch(loading(true));
 
-        setGroupId('');
-        setLoading(false);
+        dispatch(asyncAddGroup(text));
+        text = '';
+
+        dispatch(loading(false));
     };
 
     store.subscribe(() => {
@@ -33,7 +41,7 @@ const GroupsAdd = () => {
     });
 
     return (
-        loading
+        general_settings.loading
             ? <Spinner/>
             : (<Fragment>
                 <div className='group-add'>
@@ -47,14 +55,14 @@ const GroupsAdd = () => {
                         className='group-add__input'
                         aria-label='Значение группы'
                         placeholder='https://vk.com/group'
-                        disabled={loading}
-                        value={group_id}
+                        disabled={general_settings.loading}
+                        value={text}
                         onChange={(event) => handleChange(event)}
                     />
                     <button
                         className='group-add__button'
                         aria-label='Добавить группу'
-                        disabled={loading}
+                        disabled={general_settings.loading}
                         onClick={dispatchBtnAction}
                     >
                         Добавить
@@ -64,4 +72,4 @@ const GroupsAdd = () => {
             </Fragment>));
 };
 
-export default GroupsAdd;
+export default GroupAdd;

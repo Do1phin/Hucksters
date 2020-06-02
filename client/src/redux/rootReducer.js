@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 // Reducers
 import albumReducer from '../containers/Albums/albums.reducer';
-import groupReducer from './reducers/group.reducer';
+import groupsReducer from '../containers/Groups/groups.reducer';
 import listSettingsReducer from './reducers/listSettingsReducer';
 import checkReducer from './reducers/check.reducer';
 import checkMemberReducer from './reducers/checkMember.reducer';
@@ -13,7 +13,7 @@ import memberReducer from '../containers/Members/members.reducer';
 import generalSettingsReducer from './reducers/generalSettings.reducer';
 
 export default combineReducers({
-    groups: groupReducer,
+    groups: groupsReducer,
     albums: albumReducer,
     members: memberReducer,
     photos: photoReducer,

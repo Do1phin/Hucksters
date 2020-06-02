@@ -12,6 +12,10 @@
         "quotes": ["error", "single"]
     },
     "extends": [
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier"
     ]
 }
