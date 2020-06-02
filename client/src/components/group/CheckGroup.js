@@ -1,10 +1,14 @@
-import React, {Fragment} from "react";
-import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../admin/_api-vk";
+// Core
+import React, {Fragment} from 'react';
+// VK API
+import {call, getMembersGroupFromVk, getMembersInfoFromVk} from '../admin/_api-vk';
+// API
 import {createMembersToDB, updateMembersInDB} from '../../containers/Members/members.api';
-import GetAlbums from "../admin/GetAlbums";
-
-const GroupsCheck = () => {
-
+// React components
+import GetAlbums from '../admin/GetAlbums';
+ 
+const CheckGroup = () => {
+    // const group_id = 39284544;
     const getAllMembers = async (group_id) => {
         try {
             const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
@@ -36,7 +40,6 @@ const GroupsCheck = () => {
         }
     };
 
-
     return (
         <Fragment>
             <GetAlbums/>
@@ -44,4 +47,4 @@ const GroupsCheck = () => {
     )
 };
 
-export default GroupsCheck;
+export default CheckGroup;

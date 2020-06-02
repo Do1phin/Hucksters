@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import {Link} from 'react-router-dom';
-import {login} from '../admin/_api-vk';
+import {login} from '../../components/admin/_api-vk';
 
 function AuthPage(props) {
     const [registered, setRegistered] = useState(false);

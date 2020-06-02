@@ -1,10 +1,9 @@
-// Constants
+// Redux constants
 import {FILL_ALBUMS, FILL_ALBUMS_MORE} from './albums.constants';
+// Redux actions
+import {setPartItems, setTotalLoadedItems} from "../../redux/actions/listSettings.actions";
 // API
 import {getAlbumsFromDB} from './albums.api';
-// Redux-actions
-import {setPartItems, setTotalItems} from "../../redux/actions/listSettings.actions";
-
 
 export const setAlbumsToStore = (albums) => {
     return async (dispatch, getState) => {
@@ -39,13 +38,13 @@ export const setAlbumsToStore = (albums) => {
                             type: FILL_ALBUMS_MORE,
                             payload: items
                         });
-                        dispatch(setTotalItems(state.list_settings.total_items + items.length));
+                        dispatch(setTotalLoadedItems(state.list_settings.total_loaded_items + items.length));
                     } else {
                         dispatch({
                             type: FILL_ALBUMS,
                             payload: items
                         });
-                        dispatch(setTotalItems(items.length));
+                        dispatch(setTotalLoadedItems(items.length));
                     }
                 }
             })

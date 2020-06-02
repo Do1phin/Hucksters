@@ -165,7 +165,7 @@ const getGroupInfoFromVk = (group_id) => new Promise((resolve, reject) => {
         fields: 'city, country, place, description, wiki_page, market, members_count, counters, start_date, ' +
             'finish_date, can_post, can_see_all_posts, activity, status, contacts, links, fixed_post, verified, ' +
             'site, ban_info, cover',
-        v: 5.120
+        v: 5.107
     };
 
     call('groups.getById', params) // https://vk.com/dev/groups.getById

@@ -1,11 +1,11 @@
 // Core
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-// Redux-actions
+// Redux actions
 import {loading} from '../../redux/actions/generalSettings.actions';
 import {setLoadMore} from '../../redux/actions/listSettings.actions';
 import {setAlbumsToStore} from './albums.actions';
-// Components
+// React components
 import AlbumSize from '../../components/AlbumSize/AlbumSize';
 import AlbumList from '../../components/AlbumList/AlbumList';
 import SearchContainer from '../Search/SearchContainer';

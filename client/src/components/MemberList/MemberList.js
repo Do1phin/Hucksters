@@ -1,7 +1,7 @@
 // Core
 import React from 'react';
 import PropTypes from 'prop-types';
-// Components
+// React components
 import MemberCard from '../MemberCard/MemberCard';
 
 const MemberList = (props) => {

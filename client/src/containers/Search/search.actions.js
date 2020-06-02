@@ -1,4 +1,4 @@
-// Constants
+// Redux constants
 import {UPDATE_SEARCH_STRING} from './search.constants';
 
 export const updateSearchString = (string) => {

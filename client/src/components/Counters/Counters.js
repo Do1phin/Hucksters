@@ -1,5 +1,5 @@
 import React from "react";
-import {createCountersToDB, deleteCounterFromDB, readCountersFromDB, updateCountersToDB} from "./_api-counters";
+import {createCountersToDB, deleteCounterFromDB, readCountersFromDB, updateCountersToDB} from "./counters.api";
 
 const Counters = () => {
 

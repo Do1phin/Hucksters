@@ -6,7 +6,7 @@ import {checkAlbumsNames} from '../admin/_api-check';
 import {useDispatch, useSelector} from "react-redux";
 import {setCheckThingString} from "../../redux/actions/check.actions";
 import {asyncGetMemberAlbums} from "../../redux/actions/checkMember.actions";
-import './getAlbums.style.scss';
+import '../../styles/getAlbums.style.scss';
 
 const GetAlbums = () => {
     const dispatch = useDispatch();

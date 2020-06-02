@@ -89,6 +89,24 @@ const readMember = async (req, res) => {
     }
 };
 
+const readManyMembersForIds = async (req, res) => {
+    // const member_ids = req.body;
+    const member_ids = [52980405];
+
+    try {
+        await Member.find({
+            'owner_id': {$in: [...member_ids]}
+        }).exec((err, members) => {
+            if (err) {
+                return res.status(400).json({error: getErrorMessage(err)})
+            }
+            return res.status(200).json(members)
+        })
+    } catch (e) {
+        return res.status(500).json({error: getErrorMessage(e)})
+    }
+};
+
 const updateMember = async (req, res) => {
 
     try {
@@ -163,6 +181,7 @@ const deleteMember = async (req, res) => {
 export default {
     createMember,
     readMember,
+    readManyMembersForIds,
     updateMember,
     deleteMember,
 }

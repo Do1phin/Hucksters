@@ -4,7 +4,7 @@ import {setCheckStepNumber} from "./check.actions";
 import {getAlbumsFromVk} from "../../components/admin/_api-vk";
 import {checkAlbumsNames} from "../../components/admin/_api-check";
 import {createAlbumsToDB} from "../../containers/Albums/albums.api";
-import {readCountersFromDB} from "../../components/admin/_api-counters";
+import {readCountersFromDB} from "../../components/Counters/counters.api";
 
 export const setCheckMemberAllValue = (members) => {
     return {

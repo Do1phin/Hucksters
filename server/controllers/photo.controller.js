@@ -35,10 +35,11 @@ const createPhoto = async (req, res) => {
 };
 
 const readPhoto = async (req, res) => {
+
     const {text, skip, limit, sort} = req.body;
     const sortParams = {'date': sort};
     let params;
-    console.log('readPhoto ', req.body)
+
     if (!text) {
         params = {}
     } else {
@@ -46,7 +47,12 @@ const readPhoto = async (req, res) => {
     }
 
     try {
-        await Photo.find(params)
+        // let totalPhotos;
+        // if (1) {
+        //     totalPhotos = await Photo.find(params)
+        // }
+
+        const photos = await Photo.find(params)
             .sort(sortParams)
             .limit(limit)
             .skip(skip)

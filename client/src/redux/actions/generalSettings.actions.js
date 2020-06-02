@@ -1,4 +1,4 @@
-// Constants
+// Redux constants
 import { types } from './actionTypes';
 
 export const loading = () => {

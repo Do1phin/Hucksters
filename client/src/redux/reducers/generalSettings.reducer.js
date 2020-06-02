@@ -1,9 +1,9 @@
-// Constants
+// Redux constants
 import { types } from '../actions/actionTypes';
 
 const initialState = {
-    loading: true,
-    fetching: true
+    loading: false,
+    fetching: false
 };
 
 const generalSettingsReducer = (state = initialState, action) => {

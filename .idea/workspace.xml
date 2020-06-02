@@ -2,60 +2,74 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b532508-391c-4575-ac88-83561a0424ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/AlbumCardSmall/AlbumCardSmall.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Albums/AlbumsContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AlbumList/AlbumList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AlbumList/AlbumList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AlbumSize/AlbumSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AlbumSize/AlbumSize.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/FavoriteBtn/FavoriteBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FavoriteBtn/FavoriteBtn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/FavoriteBtn/favoriteBtn.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FavoriteBtn/favoriteBtn.actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/FavoriteBtn/favoriteBtn.constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FavoriteBtn/favoriteBtn.constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/FavoriteBtn/favoriteBtn.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FavoriteBtn/favoriteBtn.reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MemberList/MemberList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MemberList/MemberList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MemberPage/MemberPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MemberPage/MemberPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MemberSize/MemberSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MemberSize/MemberSize.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/PhotoCard/PhotoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PhotoCard/PhotoCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/PhotoList/PhotoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PhotoList/PhotoList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/PhotoPage/PhotoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PhotoPage/PhotoPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/PhotoSize/PhotoSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PhotoSize/PhotoSize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/CountrySelect/CountrySelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/CountrySelect/CountrySelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LimitSelect/LimitSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/LoadMoreBtn/LoadMoreBtn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/SortSelect/SortSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/StatusSelect/StatusSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/AdminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/AdminPanel/AdminPanelContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/Counters.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Counters/Counters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetAlbums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetComments.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetComments.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/admin/GetPhotos.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/GetPhotos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/AlbumCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AlbumCard/AlbumCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/AlbumCardS.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/AlbumPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AlbumPage/AlbumPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/_api-counters.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Counters/counters.api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/_api-vk.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/_api-vk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/getAlbums.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/getAlbums.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/vk.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/vk.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/vkErrorHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/vkErrorHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/album/Albums.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/_api-album.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Albums/albums.api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/album/albums.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/albums.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsCheck.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/GroupsCheck.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/group/_api-group.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/_api-group.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MemberCard/MemberCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MemberInfo/MemberInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/MemberPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MemberPage/MemberPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Members/MembersContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/_api-member.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Members/members.api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/assets/camera_loading_200.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Members/assets/camera_loading_200.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/assets/placeholder_no_image.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Members/assets/placeholder_no_image.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/memberPage.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/memberPage.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/member/members.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/members.style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/photo/Photos.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Search/SearchContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/search/_api-search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Search/search.api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/search/search.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/search.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/GroupCard/GroupCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/Groups.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Groups/GroupsContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/GroupAdd/GroupAdd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsCheck.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/group/CheckGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/GroupsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/GroupList/GroupList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/_api-group.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Groups/groups.api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/assets/images/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Groups/assets/images/delete.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/assets/images/load.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Groups/assets/images/load.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/assets/images/refresh.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Groups/assets/images/refresh.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/assets/images/url-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Groups/assets/images/url-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/group/groups.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/groups.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/pages/AuthPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/AuthPage/AuthPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/HomePage/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/spinner-item/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Spinners/ItemSpinner/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/spinner-item/spinnerItem.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Spinners/ItemSpinner/spinnerItem.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/spinner/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Spinners/GeneralSpinner/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/spinner/spinner.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Spinners/GeneralSpinner/spinner.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/Albums/AlbumsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Albums/AlbumsContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/Albums/albums.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Albums/albums.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/Members/MembersContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Members/MembersContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/Members/members.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Members/members.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/Members/members.api.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Members/members.api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/containers/Photos/PhotosContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Photos/PhotosContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/containers/Photos/photos.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Photos/photos.actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/containers/Photos/photos.constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Photos/photos.constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/Search/SearchContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Search/SearchContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/containers/Search/search.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Search/search.actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/actionTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/actions/checkMember.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/checkMember.actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/list.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/listSettings.actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/photo.actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/favorite.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/favorite.reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/list.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/listSettingsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/photo.reducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/generalSettings.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/generalSettings.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/group.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Groups/groups.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/listSettings.actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/listSettings.actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/generalSettings.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/generalSettings.reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/group.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/containers/Groups/groups.reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/reducers/listSettingsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/reducers/listSettingsReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/rootReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/rootReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/rootSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/rootSaga.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/search.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/search.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/search.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/search.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/saga/watchers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/saga/watchers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/saga/workers/deleteGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/saga/workers/deleteGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles/photos.style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/photos.style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/member.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/member.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/photo.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/photo.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/member.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/member.routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +102,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="13.12.0" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/components/AlbumPage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/containers/AuthPage" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -105,11 +119,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Programming\Projects\Hucksters\client\src\components\AlbumPage" />
-      <recent name="C:\Programming\Projects\Hucksters\client\src\containers\Albums" />
-      <recent name="C:\Programming\Projects\Hucksters\client\src\components\AlbumCardSmall" />
-      <recent name="C:\Programming\Projects\Hucksters\client\src\components" />
-      <recent name="C:\Programming\Projects\Hucksters\client\src\AlbumCard" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\containers\AuthPage" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\containers\HomePage" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\components\Spinners" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\components\Counters" />
+      <recent name="C:\Programming\Projects\Hucksters\client\src\utils" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="C:\Programming\Projects\Hucksters\client\src\components\group\api-group.js" />
@@ -178,7 +192,10 @@
       <workItem from="1590415698627" duration="23182000" />
       <workItem from="1590574061218" duration="27464000" />
       <workItem from="1590676946705" duration="22473000" />
-      <workItem from="1590913282619" duration="38406000" />
+      <workItem from="1590913282619" duration="45930000" />
+      <workItem from="1591038399489" duration="10102000" />
+      <workItem from="1591088002032" duration="19088000" />
+      <workItem from="1591114256801" duration="10494000" />
     </task>
     <servers />
   </component>
@@ -223,10 +240,10 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="506" y="287" width="668" height="660" key="EditFileWatcherDialog/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589222014177" />
-    <state x="620" y="266" key="FileChooserDialogImpl" timestamp="1590948601560">
+    <state x="620" y="266" key="FileChooserDialogImpl" timestamp="1591123432525">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="620" y="266" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590948601560" />
+    <state x="620" y="266" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1591123432525" />
     <state x="2152" y="292" key="FileChooserDialogImpl/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590520146171" />
     <state width="1637" height="248" key="GridCell.Tab.0.bottom" timestamp="1590387276581">
       <screen x="0" y="0" width="1680" height="1020" />
@@ -313,29 +330,18 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="405" y="165" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1589132477973" />
-    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1590953754607">
+    <state x="495" y="226" width="958" height="551" key="find.popup" timestamp="1591113176335">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590953754607" />
+    <state x="495" y="226" width="958" height="551" key="find.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1591113176335" />
     <state x="2057" y="253" width="730" height="548" key="find.popup/1680.33.1280.994/0.0.1680.1020@1680.33.1280.994" timestamp="1590518948275" />
-    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1590948802391">
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup" timestamp="1591112205516">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590948802391" />
+    <state x="496" y="235" width="672" height="677" key="run.anything.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1591112205516" />
     <state x="503" y="220" width="672" height="678" key="search.everywhere.popup" timestamp="1590951133152">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="503" y="220" width="672" height="678" key="search.everywhere.popup/1680.33.1280.994/0.0.1680.1020@0.0.1680.1020" timestamp="1590951133152" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/client/src/components/group/_api-group.js</url>
-          <line>96</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
