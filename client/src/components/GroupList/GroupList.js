@@ -11,6 +11,7 @@ const GroupList = (props) => {
     const content = () => {
         return (
             groups.map((item) => {
+
                 return (
                     <div className='group-list__item' key={item.group_id}>
                         {/*<GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>*/}
@@ -37,19 +38,7 @@ const GroupList = (props) => {
                 {/*</ul>*/}
             </div>
 
-            {content}
-
-            {/*{*/}
-            {/*    groups.map((item) => {*/}
-            {/*        return (*/}
-            {/*            <div className='group-list__item' key={item.group_id}>*/}
-            {/*                /!*<GroupCard item={item} groupsCount={groupsCount} refreshFunction={setGroupsCount}/>*!/*/}
-            {/*                <GroupCard item={item}/>*/}
-            {/*            </div>*/}
-            {/*        );*/}
-            {/*    })*/}
-            {/*}*/}
-
+            {content()}
 
         </div>
     );
