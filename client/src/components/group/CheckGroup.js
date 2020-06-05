@@ -3,10 +3,10 @@ import React, {Fragment} from 'react';
 // VK API
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from '../admin/_api-vk';
 // API
-import {createMembersToDB, updateMembersInDB} from '../../containers/Members/members.api';
+import { createMembersToDB, updateMembersInDB} from '../../containers/Members/members.api';
 // React components
 import GetAlbums from '../admin/GetAlbums';
- 
+
 const CheckGroup = () => {
     // const group_id = 39284544;
     const getAllMembers = async (group_id) => {
