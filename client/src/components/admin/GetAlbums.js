@@ -4,8 +4,8 @@ import {getMembersFromDB, updateMembersInDB} from "../../containers/Members/memb
 import {createAlbumsToDB} from "../../containers/Albums/albums.api";
 import {checkAlbumsNames} from '../admin/_api-check';
 import {useDispatch, useSelector} from "react-redux";
-import {setCheckThingString} from "../../redux/actions/check.actions";
-import {asyncGetMemberAlbums} from "../../redux/actions/checkMember.actions";
+import {CheckerSetThingStringAction} from "../../redux/actions/check.actions";
+import {MemberAlbumsGetAsyncAction} from "../../redux/actions/checkMember.actions";
 import '../../styles/getAlbums.style.scss';
 
 const GetAlbums = () => {
@@ -19,8 +19,8 @@ const GetAlbums = () => {
 
     // Проверить на закрытие альбомов
     const checkAccessToAlbums = async () => {
-        dispatch(setCheckThingString('Albums'));
-        dispatch(asyncGetMemberAlbums())
+        dispatch(CheckerSetThingStringAction('Albums'));
+        dispatch(MemberAlbumsGetAsyncAction())
     };
 
     const handleChangeCheckSettings = () => {

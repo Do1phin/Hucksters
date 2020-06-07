@@ -1,54 +1,54 @@
 import { types } from './actionTypes'
 import {getMembersFromDB, updateMembersInDB} from "../../containers/Members/members.api";
-import {setCheckStepNumber} from "./check.actions";
+import {CheckerSetStepNumberAction} from "./check.actions";
 import {getAlbumsFromVk} from "../../components/admin/_api-vk";
 import {checkAlbumsNames} from "../../components/admin/_api-check";
 import {createAlbumsToDB} from "../../containers/Albums/albums.api";
 import {readCountersFromDB} from "../../components/Counters/counters.api";
 
-export const setCheckMemberAllValue = (members) => {
+export const CheckMembersAllAction = (members) => {
     return {
         type: types.CHECK_MEMBERS_ALL,
         payload: members
     }
 };
 
-export const setCheckMembersWithInfoValue = (members) => {
+export const CheckMembersWithInfoAction = (members) => {
     return {
         type: types.CHECK_MEMBERS_WITH_INFO,
         payload: members
     }
 };
 
-export const setCheckMembersClosedValue = (members) => {
+export const CheckMembersClosedAction = (members) => {
     return {
         type: types.CHECK_MEMBERS_CLOSED,
         payload: members
     }
 };
 
-export const setCheckMembersSellerValue = (members) => {
+export const CheckMembersSellerAction = (members) => {
     return {
         type: types.CHECK_MEMBERS_SELLER,
         payload: members
     }
 };
 
-export const setCheckMembersBannedValue = (members) => {
+export const CheckMembersBannedAction = (members) => {
     return {
         type: types.CHECK_MEMBERS_BANNED,
         payload: members
     }
 };
 
-export const setCheckMembersDeletedValue = (members) => {
+export const CheckMembersDeletedAction = (members) => {
     return {
         type: types.CHECK_MEMBERS_DELETED,
         payload: members
     }
 };
 
-export const asyncGetMemberAlbums = (owner_id) => {
+export const MemberAlbumsGetAsyncAction = (owner_id) => {
     return async (dispatch, getState) => {
         let state = getState();
         try {
@@ -56,12 +56,12 @@ export const asyncGetMemberAlbums = (owner_id) => {
             await Promise.resolve([])
                 .then(async response => { // Получение счётчиков из базы
                     const counters = await readCountersFromDB();
-                    dispatch(setCheckMemberAllValue(counters.all_members));
-                    dispatch(setCheckMembersWithInfoValue(counters.with_info));
-                    dispatch(setCheckMembersClosedValue(counters.closed));
-                    dispatch(setCheckMembersSellerValue(counters.seller));
-                    dispatch(setCheckMembersBannedValue(counters.banned));
-                    dispatch(setCheckMembersDeletedValue(counters.deleted));
+                    dispatch(CheckMembersAllAction(counters.all_members));
+                    dispatch(CheckMembersWithInfoAction(counters.with_info));
+                    dispatch(CheckMembersClosedAction(counters.closed));
+                    dispatch(CheckMembersSellerAction(counters.seller));
+                    dispatch(CheckMembersBannedAction(counters.banned));
+                    dispatch(CheckMembersDeletedAction(counters.deleted));
                     return []
                 }).then(getMembersFromDB) // Получение пользователей из базы
                 .then((response) => {
@@ -71,7 +71,7 @@ export const asyncGetMemberAlbums = (owner_id) => {
                 });
 
             async function action(i) {
-                dispatch(setCheckStepNumber(i));
+                dispatch(CheckerSetStepNumberAction(i));
 
                 let obj = {
                     owner_id: source[i].owner_id,

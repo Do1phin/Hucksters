@@ -1,7 +1,7 @@
 /* global VK */
 import {useDispatch} from "react-redux";
-import {setCheckStatusString} from "../../redux/actions/check.actions";
-import store from "../../redux/store";
+import {CheckerSetStatusStringAction} from "../../redux/actions/check.actions";
+import { store } from "../../redux/store";
 
 // Обращение к API
 const call = (method, params) => {
@@ -34,7 +34,7 @@ const login = () => {
 // Получаем всех пользователей группы
 const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, reject) => {
     // const dispatch = useDispatch();
-    store.dispatch(setCheckStatusString('- получение пользователей из группы...'));
+    store.dispatch(CheckerSetStatusStringAction('- получение пользователей из группы...'));
     console.log('getMembersGroupFromVk ', group_id);
 
     const params = {
@@ -47,7 +47,7 @@ const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, rejec
         //     'site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, ' +
         //     'can_write_private_message, status, last_seen, common_count, relation, relatives',
         // filter: ,
-        v: 5.125
+        v: 5.107
     };
 
     call('groups.getMembers', params) // https://vk.com/dev/groups.getMembers
@@ -61,7 +61,7 @@ const getMembersGroupFromVk = ({group_id, count}) => new Promise((resolve, rejec
 // Получаем подробную информацию по пользователям
 const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => {
     // const dispatch = useDispatch();
-    store.dispatch(setCheckStatusString('- получение информации о пользователях из ВК...'));
+    store.dispatch(CheckerSetStatusStringAction('- получение информации о пользователях из ВК...'));
     console.log('getMembersInfoFromVk' , membersArray);
 
     const params = {
@@ -87,7 +87,7 @@ const getMembersInfoFromVk = (membersArray) => new Promise((resolve, reject) => 
 
 // Получаем все фотографии из альбома
 const getPhotosFromVk = (groupObj) => new Promise((resolve, reject) => {
-    store.dispatch(setCheckStatusString('- получение всех фотографий из альбома ВК...'));
+    store.dispatch(CheckerSetStatusStringAction('- получение всех фотографий из альбома ВК...'));
 
     const {owner_id, album_id} = groupObj;
     const params = {
@@ -101,7 +101,7 @@ const getPhotosFromVk = (groupObj) => new Promise((resolve, reject) => {
         photo_sizes: 1,
         offset: 0,
         count: 1000,
-        v: 5.103
+        v: 5.107
     };
 
     call('photos.get', params) // https://vk.com/dev.php?method=photos.get
@@ -113,7 +113,7 @@ const getPhotosFromVk = (groupObj) => new Promise((resolve, reject) => {
 
 // Получаем комментарии
 const getCommentsFromVk = (photoObj) => new Promise((resolve, reject) => {
-    store.dispatch(setCheckStatusString('- получение всех комментариев из фотографии ВК...'));
+    store.dispatch(CheckerSetStatusStringAction('- получение всех комментариев из фотографии ВК...'));
 
     const {owner_id, photo_id} = photoObj;
     const params = {
@@ -134,7 +134,7 @@ const getCommentsFromVk = (photoObj) => new Promise((resolve, reject) => {
             'can_see_all_posts, can_see_audio, can_write_private_message, can_send_friend_request, is_favorite, ' +
             'is_hidden_from_feed, timezone, screen_name, maiden_name, crop_photo, is_friend, friend_status, ' +
             'career, military, blacklisted, blacklisted_by_me',
-        v: 5.103
+        v: 5.107
     };
 
     call('photos.getComments', params) // https://vk.com/dev/photos.getComments
@@ -153,7 +153,7 @@ const getCommentsFromVk = (photoObj) => new Promise((resolve, reject) => {
 
 // Получаем подробную информацию о группе
 const getGroupInfoFromVk = (group_id) => new Promise((resolve, reject) => {
-    store.dispatch(setCheckStatusString('- получение информации о группе ВК...'));
+    store.dispatch(CheckerSetStatusStringAction('- получение информации о группе ВК...'));
 
     if (group_id < 0) {
         reject('Group not found')
@@ -187,7 +187,7 @@ const getGroupSizeFromVk = (groupObj) => new Promise((resolve, reject) => {
 
     const params = {
         group_id: groupObj.id,
-        v: 5.103
+        v: 5.107
     };
 
     call('groups.getMembers', params)
@@ -202,7 +202,7 @@ const getGroupSizeFromVk = (groupObj) => new Promise((resolve, reject) => {
 
 // Получаем все альбомы пользователя
 const getAlbumsFromVk = (obj) => new Promise((resolve, reject) => {
-    store.dispatch(setCheckStatusString('- получение всех альбомов пользователя из ВК...'));
+    store.dispatch(CheckerSetStatusStringAction('- получение всех альбомов пользователя из ВК...'));
 
     const {owner_id} = obj;
 
@@ -214,7 +214,7 @@ const getAlbumsFromVk = (obj) => new Promise((resolve, reject) => {
         need_system: 0,
         need_covers: 1,
         photo_sizes: 1,
-        v: 5.103
+        v: 5.107
     };
 
     try {

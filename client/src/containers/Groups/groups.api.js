@@ -1,8 +1,8 @@
 // Получаем список групп из базы
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../../components/admin/_api-vk";
 import {createMembersToDB, updateMembersInDB} from "../Members/members.api";
-import {setCheckStepNumber} from "../../redux/actions/check.actions";
-import store from "../../redux/store";
+import {CheckerSetStepNumberAction} from "../../redux/actions/check.actions";
+import { store } from "../../redux/store";
 
 const getGroupListFromDB = (params) => {
     try {
@@ -60,6 +60,7 @@ const updateGroupInfoInDB = (groupObject) => new Promise((resolve, reject) => {
 
 // Удаляем группу из базы
 const delGroupFromDB = (group_id) => {
+
     try {
         fetch('/vk/groups/delete', {
             method: 'POST',
@@ -78,14 +79,14 @@ const delGroupFromDB = (group_id) => {
 const getAllMembers = async (group_id) => {
 
     try {
-        const members = await call('groups.getMembers', {group_id: group_id, v: 5.9});
+        const members = await call('groups.getMembers', {group_id: group_id, v: 5.107});
         const membersSize = await members.response.count;
         let count = 0;
 
         await (function f() {
             console.info(`Step ${count} from ${Math.ceil(membersSize / 1000)}`);
             if (count < Math.ceil(membersSize / 1000)) {
-                store.dispatch(setCheckStepNumber(count));
+                store.dispatch(CheckerSetStepNumberAction(count));
                 const obj = {group_id: group_id, count};
 
                 Promise.resolve(obj)

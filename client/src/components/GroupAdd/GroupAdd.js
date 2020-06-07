@@ -1,10 +1,10 @@
 // Core
 import React, {Fragment, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import store from '../../redux/store';
+import { store } from '../../redux/store';
 // Redux actions
-import {asyncAddGroup} from '../../containers/Groups/groups.actions';
-import {loading} from '../../redux/actions/generalSettings.actions';
+import {GroupAddAsyncAction} from '../../containers/Groups/groups.actions';
+import {loading_start, loading_stop} from '../../redux/actions/generalSettings.actions';
 // React components
 import Spinner from '../Spinners/GeneralSpinner';
 // Styles
@@ -27,12 +27,12 @@ const GroupAdd = () => {
     const dispatchBtnAction = (event) => {
         event.preventDefault();
 
-        dispatch(loading(true));
+        dispatch(loading_start());
 
-        dispatch(asyncAddGroup(text));
+        dispatch(GroupAddAsyncAction(text));
         text = '';
 
-        dispatch(loading(false));
+        dispatch(loading_stop());
     };
 
     store.subscribe(() => {

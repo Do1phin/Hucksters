@@ -1,6 +1,3 @@
-const getErrorMessage =(err) => {
-
+ export const getErrorMessage =(err) => {
 
 };
-
-export default getErrorMessage;

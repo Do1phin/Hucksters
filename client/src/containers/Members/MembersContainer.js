@@ -2,10 +2,10 @@
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 // Redux actions
-import {loading} from '../../redux/actions/generalSettings.actions';
+import {loading_start, loading_stop} from '../../redux/actions/generalSettings.actions';
 import {setLoadMore} from '../../redux/actions/listSettings.actions';
-import {setMembersToStore} from './members.actions';
-import {getFavoritesAsync} from '../../redux/actions/favorite.actions';
+import {MembersFillAsyncAction} from './members.actions';
+import {FavoritesGetAsyncAction} from '../../redux/actions/favorite.actions';
 // React components
 import SearchContainer from '../Search/SearchContainer';
 import LimitSelect from '../../components/UI/LimitSelect/LimitSelect';
@@ -27,16 +27,16 @@ const MembersContainer = (props) => {
 
     const dispatch = useDispatch();
 
-    dispatch(getFavoritesAsync());
+    dispatch(FavoritesGetAsyncAction());
 
     useEffect(() => {
 
-        dispatch(loading(true));
+        dispatch(loading_start());
 
-        dispatch(setMembersToStore());
+        dispatch(MembersFillAsyncAction());
         dispatch(setLoadMore(false));
 
-        dispatch(loading(false));
+        dispatch(loading_stop());
     }, [
         search.search_text,
         list_settings.limit,

@@ -1,10 +1,14 @@
+// Core
 import {createStore, applyMiddleware, compose} from 'redux';
-import rootReducer from './rootReducer';
 import thunkMiddleware from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+// Reducers
+import rootReducer from './rootReducer';
+// Redux sagas
+import {rootSaga} from './rootSaga';
+// Middleware
 import {createLogger} from 'redux-logger';
 import {customThunk} from './middleware/log.middleware';
-import createSagaMiddleware from 'redux-saga';
-import {rootSaga} from './rootSaga';
 
 const loggerMiddleware = createLogger({
     duration: true,
@@ -13,11 +17,11 @@ const loggerMiddleware = createLogger({
 
 const sagaMiddleware = createSagaMiddleware();
 
-const initialState = {};
-
 const middleware = [sagaMiddleware, thunkMiddleware, loggerMiddleware, customThunk];
 
-const store = createStore(
+const initialState = {};
+
+export const store = createStore(
     rootReducer,
     initialState,
     compose(
@@ -27,5 +31,3 @@ const store = createStore(
 );
 
 sagaMiddleware.run(rootSaga);
-
-export default store;

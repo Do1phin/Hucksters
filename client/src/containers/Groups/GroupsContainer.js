@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 // React components
 import GroupList from '../../components/GroupList/GroupList';
 import GroupAdd from '../../components/GroupAdd/GroupAdd';
-import {asyncGetGroupMembers, asyncListGroups} from './groups.actions';
+import {GroupMembersGetAsyncAction, GroupsFillAsyncAction} from './groups.actions';
 // Styles
 import '../../styles/groups.style.scss';
 
@@ -15,7 +15,7 @@ const GroupsContainer = () => {
     const groups = useSelector(state => state.groups.groups);
 
     useEffect(() => {
-        dispatch(asyncListGroups());
+        dispatch(GroupsFillAsyncAction());
     }, []);
 
     return(

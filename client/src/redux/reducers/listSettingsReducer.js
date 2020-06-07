@@ -12,17 +12,17 @@ const initialState = {
 
 const listSettingsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.LIST_SETTINGS_LIMIT_ITEMS:
+        case types.LIST_SETTINGS_SET_ITEMS_LIMIT:
             return {
                 ...state,
                 limit: action.payload
             };
-        case types.LIST_SETTINGS_SKIP_ITEMS:
+        case types.LIST_SETTINGS_SET_NUMBER_OF_SKIP:
             return {
                 ...state,
                 skip: action.payload
             };
-        case types.LIST_SETTINGS_SORT_ITEMS:
+        case types.LIST_SETTINGS_SET_SORT_TYPE_OF_ITEMS:
             return {
                 ...state,
                 sort: action.payload
@@ -32,7 +32,7 @@ const listSettingsReducer = (state = initialState, action) => {
                 ...state,
                 part_items: action.payload
             };
-        case types.LIST_SETTINGS_TOTAL_LOADED_ITEMS:
+        case types.LIST_SETTINGS_SET_TOTAL_LOADED_ITEMS:
             return {
                 ...state,
                 total_loaded_items: action.payload
@@ -42,17 +42,17 @@ const listSettingsReducer = (state = initialState, action) => {
                 ...state,
                 search_text: action.payload
             };
-        case types.LIST_SETTINGS_LOAD_MORE:
+        case types.LIST_SETTINGS_SET_LOAD_MORE:
             return {
                 ...state,
                 load_more: action.payload
             };
-        case types.LIST_SETTINGS_MEMBER_STATUS:
+        case types.LIST_SETTINGS_SET_MEMBER_STATUS:
             return {
                 ...state,
                 member_status: action.payload
             };
-        case types.LIST_SETTINGS_MEMBER_COUNTRY:
+        case types.LIST_SETTINGS_SET_MEMBER_COUNTRY:
             return {
                 ...state,
                 member_country: action.payload
