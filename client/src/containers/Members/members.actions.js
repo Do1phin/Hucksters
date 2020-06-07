@@ -1,11 +1,11 @@
 // Redux constants
-import {FILL_MEMBERS, FILL_MEMBERS_MORE} from './members.constants';
+import {MEMBERS_FILL, MEMBERS_FILL_MORE} from './members.constants';
 // Redux actions
 import {setPartItems, setTotalLoadedItems} from "../../redux/actions/listSettings.actions";
 // API
 import {getManyMembersForIdsFromDB, getMembersFromDB} from './members.api';
 
-export const setMembersToStore = () => {
+export const MembersFillAsyncAction = () => {
     return async (dispatch, getState) => {
         const state = getState();
 
@@ -27,12 +27,12 @@ export const setMembersToStore = () => {
 
                     if (state.list_settings.load_more) {
                         dispatch({
-                            type: FILL_MEMBERS_MORE,
+                            type: MEMBERS_FILL_MORE,
                             payload: items
                         });
                     } else {
                         dispatch({
-                            type: FILL_MEMBERS,
+                            type: MEMBERS_FILL,
                             payload: items
                         });
                         dispatch(setTotalLoadedItems(items.length));
@@ -42,7 +42,7 @@ export const setMembersToStore = () => {
     }
 };
 
-export const setManyMembersToStore = () => {
+export const SomeMembersFillAsyncAction = () => {
     return async (dispatch, getState) => {
         const state = getState();
 
@@ -55,7 +55,7 @@ export const setManyMembersToStore = () => {
                 if (data.length) {
                     const items = data;
                     dispatch({
-                        type: FILL_MEMBERS,
+                        type: MEMBERS_FILL,
                         payload: items
                     });
                 }

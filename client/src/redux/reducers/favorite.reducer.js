@@ -9,7 +9,7 @@ const initialState = {
 
 const favoriteReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.FILL_FAVORITES:
+        case types.FAVORITES_FILL:
             return {
                 ...state,
                 user_id: action.payload.user_id,

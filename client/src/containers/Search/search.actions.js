@@ -1,7 +1,7 @@
 // Redux constants
 import {UPDATE_SEARCH_STRING} from './search.constants';
 
-export const updateSearchString = (string) => {
+export const SearchStringUpdateAsyncAction = (string) => {
     return async (dispatch) => {
 
         dispatch({

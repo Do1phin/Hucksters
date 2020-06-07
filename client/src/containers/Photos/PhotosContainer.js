@@ -2,11 +2,11 @@
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 // Redux actions
-import {loading} from '../../redux/actions/generalSettings.actions';
+import {loading_start, loading_stop} from '../../redux/actions/generalSettings.actions';
 import {setLoadMore} from '../../redux/actions/listSettings.actions';
-import {getFavoritesAsync} from '../../redux/actions/favorite.actions';
-import {setPhotosToStore} from './photos.actions';
-import {setManyMembersToStore} from '../Members/members.actions';
+import {FavoritesGetAsyncAction} from '../../redux/actions/favorite.actions';
+import {PhotosFillAsyncAction} from './photos.actions';
+import {SomeMembersFillAsyncAction} from '../Members/members.actions';
 // React components
 import PhotoList from '../../components/PhotoList/PhotoList';
 import PhotoSize from '../../components/PhotoSize/PhotoSize';
@@ -29,17 +29,17 @@ const Photos = () => {
 
     const dispatch = useDispatch();
 
-    dispatch(getFavoritesAsync());
+    dispatch(FavoritesGetAsyncAction());
     // dispatch(setManyMembersToStore());
 
     useEffect(() => {
-        dispatch(loading(true));
+        dispatch(loading_start());
 
-        dispatch(setPhotosToStore());
-        dispatch(setManyMembersToStore());
+        dispatch(PhotosFillAsyncAction());
+        dispatch(SomeMembersFillAsyncAction());
 
         dispatch(setLoadMore(false));
-        dispatch(loading(false));
+        dispatch(loading_stop());
     }, [
         search.search_text,
         list_settings.limit,

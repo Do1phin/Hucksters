@@ -1,8 +1,18 @@
-import { GROUP_UPDATE_INFO, GROUP_DELETE, GROUP_LIST, GROUP_ADD } from './groups.constants';
+import {
+    GROUP_ADD,
+    GROUP_UPDATE_INFO,
+    GROUP_DELETE,
+    GROUPS_FILL,
+    GROUPS_START_FETCHING,
+    GROUPS_STOP_FETCHING,
+    GROUPS_SET_FETCHING_ERROR
+} from './groups.constants';
 
 const initialState = {
     groups: [],
     group_id: '',
+    groups_fetching: null,
+    groups_fetching_error: null
 };
 
 const groupReducer = (state = initialState, action) => {
@@ -25,10 +35,26 @@ const groupReducer = (state = initialState, action) => {
                     // .filter(item => item.group_id !== action.payload.group_id)
                     // .push(action.payload)
             };
-        case GROUP_LIST:
+        case GROUPS_START_FETCHING:
+            return {
+                ...state,
+                groups_fetching: true
+            };
+        case GROUPS_STOP_FETCHING:
+            return {
+                ...state,
+                groups_fetching: false
+            };
+        case GROUPS_FILL:
             return {
                 ...state,
                 groups: [...state.groups, ...action.payload]
+            };
+        case GROUPS_SET_FETCHING_ERROR:
+            return {
+                ...state,
+                error: true,
+                groups_fetching_error: action.payload
             };
         // case GROUP_MEMBERS_GET:
         //     return {

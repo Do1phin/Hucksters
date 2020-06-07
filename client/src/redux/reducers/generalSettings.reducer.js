@@ -8,15 +8,25 @@ const initialState = {
 
 const generalSettingsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.LOADING:
+        case types.LOADING_START:
             return {
                 ...state,
-                loading: action.payload
+                loading: true
             };
-        case types.FETCHING:
+        case types.LOADING_STOP:
             return {
                 ...state,
-                fetching: action.payload
+                loading: false
+            };
+        case types.FETCHING_START:
+            return {
+                ...state,
+                fetching: true
+            };
+        case types.FETCHING_STOP:
+            return {
+                ...state,
+                fetching: false
             };
         default:
             return state;

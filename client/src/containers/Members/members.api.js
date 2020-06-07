@@ -77,7 +77,7 @@ const createMembersToDB = (membersArray) => new Promise(async (resolve, reject) 
     let preparatoryMembersArray = [];
 
     await membersArray.filter((owner_id, index) => {
-        console.log('i ', index, membersArray.length - 1)
+
         const body = {'owner_id': owner_id, '_updated.info': 'create'};
 
         try {

@@ -1,18 +1,18 @@
 import {types} from '../actions/actionTypes';
 import {createFavoritePhotoInDB, readFavoritesFromDB} from "../../components/FavoriteBtn/favoriteBtn.api";
 
-export const getFavoritesAsync = () => {
+export const FavoritesGetAsyncAction = () => {
     return async (dispatch) => {
 
         readFavoritesFromDB()
             .then(response => {
                 if (!response) return console.error('Get favorites failed');
-                dispatch({type: types.FILL_FAVORITES, payload: response[0]});
+                dispatch({type: types.FAVORITES_FILL, payload: response[0]});
             });
     }
 };
 
-export const addFavoritePhoto = () => {
+export const FavoritesPhotoAddAsyncAction = () => {
     return async (dispatch) => {
 
         createFavoritePhotoInDB()

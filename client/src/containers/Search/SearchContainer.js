@@ -3,7 +3,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 // Redux actions
 import {setSkipItemsNumber, setPartItems, setTotalLoadedItems} from '../../redux/actions/listSettings.actions';
-import {updateSearchString} from './search.actions';
+import {SearchStringUpdateAsyncAction} from './search.actions';
 // Styles
 import '../../styles/search.style.scss';
 
@@ -21,7 +21,7 @@ const SearchContainer = () => {
             dispatch(setSkipItemsNumber(0));
             dispatch(setPartItems(0));
             dispatch(setTotalLoadedItems(0));
-            dispatch(updateSearchString(text));
+            dispatch(SearchStringUpdateAsyncAction(text));
         }
     };
 

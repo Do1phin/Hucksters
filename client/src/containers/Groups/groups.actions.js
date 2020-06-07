@@ -1,7 +1,7 @@
 // Redux constants
-import { GROUP_UPDATE_INFO, GROUP_ADD, GROUP_LIST, GROUP_DELETE } from './groups.constants';
+import { GROUP_UPDATE_INFO, GROUP_ADD, GROUPS_FILL, GROUP_DELETE } from './groups.constants';
 // Redux actions
-import {setCheckStatusString} from '../../redux/actions/check.actions';
+import {CheckerSetStatusStringAction} from '../../redux/actions/check.actions';
 // Redux-saga effects
 import {put} from 'redux-saga/effects';
 // API
@@ -16,7 +16,7 @@ import {
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../../components/admin/_api-vk';
 
 // синхронно
-export function addGroup(group_id) {
+export function GroupAddAction(group_id) {
     return {
         type: GROUP_ADD,
         payload: group_id
@@ -24,7 +24,7 @@ export function addGroup(group_id) {
 }
 
 // асинхронно через redux-thunk (используя dispatch)
-export const asyncAddGroup = (group_id) => {
+export const GroupAddAsyncAction = (group_id) => {
     return (dispatch, getState) => {
 
         Promise.resolve(group_id)
@@ -48,44 +48,43 @@ export const asyncAddGroup = (group_id) => {
     };
 };
 
-export function listGroups() {
+export function GroupsFillAction() {
     return {
-        type: GROUP_LIST
+        type: GROUPS_FILL
     };
 }
 
-export const asyncListGroups = () => {
+export const GroupsFillAsyncAction = () => {
     return (dispatch, getState) => {
         // const state = getState();
         getGroupListFromDB()
             .then(response => {
                 if (!response) return console.error('GroupsContainer not loaded');
-                dispatch({type: GROUP_LIST, payload: response});
+                dispatch({type: GROUPS_FILL, payload: response});
             });
     };
 };
 
-export const del = (group_id) => {
+export const GroupDeleteAction = (group_id) => {
     return {
         type: GROUP_DELETE,
         payload: group_id
     };
 };
 
-export function* deleteGroup(group_id) {
+export function* GroupDeleteAsyncSagaAction(group_id) {
     yield delGroupFromDB(group_id);
     yield put({type: GROUP_DELETE, payload: group_id});
 }
 
-// export const asyncDeleteGroup = (group_id) => {
-//     return (dispatch, getState) => {
-//         delGroupFromDB(group_id);
-//         call(console.log, 'удаление группы');
-//         dispatch({type: GROUP_DELETE, payload: group_id});
-//     };
-// };
+export const GroupDeleteAsyncAction = (group_id) => {
+    return (dispatch, getState) => {
+        delGroupFromDB(group_id);
+        dispatch({type: GROUP_DELETE, payload: group_id});
+    };
+};
 
-export const asyncUpdateGroupInfo = (group_id) => {
+export const GroupInfoUpdateAsyncAction = (group_id) => {
     return (dispatch, getState) => {
         Promise.resolve(group_id)
             .then(getGroupInfoFromVk)
@@ -99,9 +98,9 @@ export const asyncUpdateGroupInfo = (group_id) => {
     };
 };
 
-export const asyncGetGroupMembers = (group_id) => {
+export const GroupMembersGetAsyncAction = (group_id) => {
     return (dispatch) => {
-        dispatch(setCheckStatusString('Получение пользователей из группы: '));
+        dispatch(CheckerSetStatusStringAction('Получение пользователей из группы: '));
 
         getAllMembers(group_id)
             .then(response => {

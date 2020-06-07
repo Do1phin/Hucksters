@@ -1,11 +1,11 @@
 // Redux constants
-import {FILL_ALBUMS, FILL_ALBUMS_MORE} from './albums.constants';
+import {ALBUMS_FILL, ALBUMS_FILL_MORE} from './albums.constants';
 // Redux actions
 import {setPartItems, setTotalLoadedItems} from "../../redux/actions/listSettings.actions";
 // API
 import {getAlbumsFromDB} from './albums.api';
 
-export const setAlbumsToStore = (albums) => {
+export const AlbumsFillAsyncAction = (albums) => {
     return async (dispatch, getState) => {
 
         // interface getAlbumsReqVariables {
@@ -35,13 +35,13 @@ export const setAlbumsToStore = (albums) => {
 
                     if (state.list_settings.load_more) {
                         dispatch({
-                            type: FILL_ALBUMS_MORE,
+                            type: ALBUMS_FILL_MORE,
                             payload: items
                         });
                         dispatch(setTotalLoadedItems(state.list_settings.total_loaded_items + items.length));
                     } else {
                         dispatch({
-                            type: FILL_ALBUMS,
+                            type: ALBUMS_FILL,
                             payload: items
                         });
                         dispatch(setTotalLoadedItems(items.length));

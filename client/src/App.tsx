@@ -1,6 +1,6 @@
 // Core
-import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React, { FC } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // React components
 import NotFound from './components/errors';
 import ErrorBoundary from './components/errors/ErrorBoundary';
@@ -18,7 +18,7 @@ import Footer from './components/footer';
 import './App.scss';
 // import '../src/styles/index.scss';
 
-function App() {
+export const App: FC = () => {
     return (
         <ErrorBoundary>
             <Router>
@@ -41,6 +41,4 @@ function App() {
             </Router>
         </ErrorBoundary>
     );
-}
-
-export default App;
+};

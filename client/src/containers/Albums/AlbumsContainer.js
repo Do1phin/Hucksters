@@ -2,9 +2,9 @@
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 // Redux actions
-import {loading} from '../../redux/actions/generalSettings.actions';
+import {loading_start, loading_stop} from '../../redux/actions/generalSettings.actions';
 import {setLoadMore} from '../../redux/actions/listSettings.actions';
-import {setAlbumsToStore} from './albums.actions';
+import {AlbumsFillAsyncAction} from './albums.actions';
 // React components
 import AlbumSize from '../../components/AlbumSize/AlbumSize';
 import AlbumList from '../../components/AlbumList/AlbumList';
@@ -25,12 +25,12 @@ const AlbumsContainer = () => {
 
     useEffect(() => {
 
-        dispatch(loading(true));
+        dispatch(loading_start());
 
-        dispatch(setAlbumsToStore());
+        dispatch(AlbumsFillAsyncAction());
         dispatch(setLoadMore(false));
 
-        dispatch(loading(false));
+        dispatch(loading_stop());
 
     }, [
         search.search_text,
