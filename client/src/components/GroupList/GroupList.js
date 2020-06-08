@@ -6,7 +6,7 @@ import GroupCard from '../GroupCard/GroupCard';
 
 const GroupList = (props) => {
 
-    const {groups} = props;
+    const groups = props.groups;
 
     const content = () => {
         return (

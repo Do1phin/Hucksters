@@ -15,11 +15,13 @@ const checkCommentsBeforeAdd = (commentsArray) => new Promise((resolve, reject) 
                     arr2.push(item);
                 }
             }
+            return null;
         });
         if (!arr.length) {
             console.log('arr 2 ', arr2);
             resolve(arr2);
         }
+        return null;
     });
 });
 
@@ -41,6 +43,7 @@ const addCommentsToDb = (commentArray) => new Promise((resolve, reject) => {
         } catch (e) {
             reject(e);
         }
+        return null;
     });
     resolve(commentArray);
 });

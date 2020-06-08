@@ -1,4 +1,4 @@
-import { UPDATE_SEARCH_STRING } from './search.constants';
+import { SEARCH_STRING_UPDATE } from './search.constants';
 
 const initialState = {
     search_text: ''
@@ -6,7 +6,7 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_SEARCH_STRING:
+        case SEARCH_STRING_UPDATE:
             return {
                 ...state,
                 search_text: action.payload

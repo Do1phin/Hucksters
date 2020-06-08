@@ -40,12 +40,16 @@ export default MemberCard;
 
 MemberCard.propTypes = {
     owner_id: PropTypes.number.isRequired,
-    first_name: PropTypes.string.isRequired,
-    last_name: PropTypes.string.isRequired,
-    domain: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired
+    first_name: PropTypes.string,
+    last_name: PropTypes.string,
+    domain: PropTypes.string,
+    photo: PropTypes.string
 };
 
 MemberCard.defaultProps = {
-    owner_id: ''
+    owner_id: '',
+    first_name: '',
+    last_name: '',
+    domain: '',
+    photo: ''
 };

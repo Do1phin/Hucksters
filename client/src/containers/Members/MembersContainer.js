@@ -2,60 +2,73 @@
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 // Redux actions
-import {loading_start, loading_stop} from '../../redux/actions/generalSettings.actions';
-import {setLoadMore} from '../../redux/actions/listSettings.actions';
+import {loadingStart, loadingStop} from '../../redux/actions/generalSettings.actions';
+import {ListSettingsSetLoadMoreAction} from '../../redux/actions/listSettings.actions';
 import {MembersFillAsyncAction} from './members.actions';
 import {FavoritesGetAsyncAction} from '../../redux/actions/favorite.actions';
 // React components
 import SearchContainer from '../Search/SearchContainer';
 import LimitSelect from '../../components/UI/LimitSelect/LimitSelect';
 import LoadMoreBtn from '../../components/UI/LoadMoreBtn/LoadMoreBtn';
-import MemberPage from '../../components/MemberPage/MemberPage';
-import MembersSize from '../../components/MemberSize/MemberSize';
+import ItemsSize from '../../components/ItemsSize/ItemsSize';
 import MemberList from '../../components/MemberList/MemberList';
 import StatusSelect from '../../components/UI/StatusSelect/StatusSelect';
 import CountrySelect from '../../components/UI/CountrySelect/CountrySelect';
+import Spinner from '../../components/Spinners/GeneralSpinner';
 // Styles
 import '../../styles/members.style.scss';
 
 const MembersContainer = (props) => {
 
-    const list_settings = useSelector(state => state.list_settings);
-    const members = useSelector(state => state.members);
-    const search = useSelector(state => state.search);
-    const general_settings = useSelector(state => state.general_settings);
-
     const dispatch = useDispatch();
 
-    dispatch(FavoritesGetAsyncAction());
+    const list_settings = useSelector(state => state.list_settings);
+    const general_settings = useSelector(state => state.general_settings);
+    const members = useSelector(state => state.members);
+    const search = useSelector(state => state.search);
 
     useEffect(() => {
 
-        dispatch(loading_start());
-
+        dispatch(loadingStart());
+        dispatch(FavoritesGetAsyncAction());
         dispatch(MembersFillAsyncAction());
-        dispatch(setLoadMore(false));
+        dispatch(ListSettingsSetLoadMoreAction(false));
+        dispatch(loadingStop());
 
-        dispatch(loading_stop());
     }, [
         search.search_text,
         list_settings.limit,
         list_settings.skip,
         list_settings.member_status,
-        list_settings.member_country
+        list_settings.member_country,
+        dispatch
     ]);
 
     return (
         <Fragment>
             <SearchContainer/>
-            <MembersSize list_settings={list_settings}/>
+            <ItemsSize
+                loading={general_settings.loading}
+                total_items={list_settings.total_items}
+                total_loaded_items={list_settings.total_loaded_items}
+            />
             <LimitSelect/>
             <StatusSelect/>
             <CountrySelect/>
 
-            <div className='member-list'>
-                <MemberList members={members}/>
-            </div>
+            {
+                !members.members.length && !members.members_fetching_error
+                    ? <Spinner/>
+                    : (
+                        <div className='member-list'>
+                            <MemberList members={[...members.members]}/>
+                        </div>
+                    )
+            }
+
+            {
+                members.members_fetching_error && 'ERROR'
+            }
 
             <LoadMoreBtn/>
         </Fragment>

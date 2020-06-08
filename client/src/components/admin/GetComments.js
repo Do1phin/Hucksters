@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from "react";
-import {getPhotosFromDB, updateAddPhotosCount} from '../../containers/Photos/photos.api';
+import {APIReadPhotosFromDB, APIUpdateCounterForAddedPhotos} from '../../containers/Photos/photos.api';
 import {addCommentsToDb, checkCommentsBeforeAdd} from '../comment/_api-comment';
 import {getCommentsFromVk} from "./_api-vk";
 import {readCountersFromDB} from "../Counters/counters.api";
@@ -29,7 +29,7 @@ const GetComments = () => {
                     setCounters({...response});
                     return counters
                 })
-                .then(getPhotosFromDB)
+                .then(APIReadPhotosFromDB)
                 .then((response) => {
                     // source = response.photos;
                     items = response.photos;
@@ -65,7 +65,7 @@ const GetComments = () => {
                             setCheckStatus('Обновляем счётчик доп.фото');
                             console.log('resp 3 ', response);
                             return response
-                        }).then(updateAddPhotosCount)
+                        }).then(APIUpdateCounterForAddedPhotos)
                         .catch((err) => console.error(err));
 
                     count++;

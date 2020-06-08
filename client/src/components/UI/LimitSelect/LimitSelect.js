@@ -1,15 +1,17 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {setLimitItemsSelect} from '../../../redux/actions/listSettings.actions';
+import {ListSettingsSetItemsLimitAction} from '../../../redux/actions/listSettings.actions';
 import './limitSelect.style.scss';
 
 const LimitSelect = () => {
+
     const dispatch = useDispatch();
+
     const limit = useSelector(state => state.list_settings.limit);
 
     const dispatchSetLimitSelect = (event) => {
         const limit = +event.target.value;
-        dispatch(setLimitItemsSelect(limit));
+        dispatch(ListSettingsSetItemsLimitAction(limit));
     };
 
     return (

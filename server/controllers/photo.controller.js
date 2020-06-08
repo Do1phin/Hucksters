@@ -1,4 +1,6 @@
+// Mongoose models
 import Photo from '../models/photo.model.js';
+// Utils
 import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createPhoto = async (req, res) => {
@@ -36,7 +38,7 @@ const createPhoto = async (req, res) => {
 
 const readPhoto = async (req, res) => {
 
-    const {text, skip, limit, sort} = req.body;
+    const {text, skip, limit, sort, flagTotalPhotos} = req.body;
     const sortParams = {'date': sort};
     let params;
 
@@ -47,10 +49,11 @@ const readPhoto = async (req, res) => {
     }
 
     try {
-        // let totalPhotos;
-        // if (1) {
-        //     totalPhotos = await Photo.find(params)
-        // }
+
+        let totalPhotos;
+        if (flagTotalPhotos) {
+            totalPhotos = await Photo.find(params).countDocuments()
+        }
 
         const photos = await Photo.find(params)
             .sort(sortParams)
@@ -60,7 +63,7 @@ const readPhoto = async (req, res) => {
                 if (err) return res.status(400).json({
                     error: getErrorMessage(err)
                 });
-                return res.status(200).json({photos})
+                return res.status(200).json({photos, totalPhotos})
             });
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})

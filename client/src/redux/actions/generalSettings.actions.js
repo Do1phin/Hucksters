@@ -1,25 +1,25 @@
 // Redux constants
 import { types } from './actionTypes';
 
-export const loading_start = () => {
+export const loadingStart = () => {
     return {
         type: types.LOADING_START,
     };
 };
 
-export const loading_stop = () => {
+export const loadingStop = () => {
     return {
         type: types.LOADING_STOP,
     };
 };
 
-export const fetching_start = () => {
+export const fetchingStart = () => {
     return {
         type: types.FETCHING_START,
     };
 };
 
-export const fetching_stop = () => {
+export const fetchingStop = () => {
     return {
         type: types.FETCHING_STOP,
     };

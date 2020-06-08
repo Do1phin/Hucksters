@@ -4,8 +4,9 @@ const initialState = {
     limit: 100,
     sort: -1,
     skip: 0,
-    total_items: 0,
+    part_items: 0,
     total_loaded_items: 0,
+    total_items: 0,
     member_status: 'Seller',
     member_country: '',
 };
@@ -32,15 +33,15 @@ const listSettingsReducer = (state = initialState, action) => {
                 ...state,
                 part_items: action.payload
             };
+        case types.LIST_SETTINGS_SET_TOTAL_ITEMS:
+            return {
+                ...state,
+                total_items: action.payload
+            };
         case types.LIST_SETTINGS_SET_TOTAL_LOADED_ITEMS:
             return {
                 ...state,
                 total_loaded_items: action.payload
-            };
-        case types.LIST_SETTINGS_SEARCH_TEXT:
-            return {
-                ...state,
-                search_text: action.payload
             };
         case types.LIST_SETTINGS_SET_LOAD_MORE:
             return {

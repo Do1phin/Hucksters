@@ -1,9 +1,19 @@
 // Redux constants
-import {PHOTOS_START_FETCHING, PHOTOS_STOP_FETCHING, PHOTOS_FILL, PHOTOS_FILL_MORE} from '../Photos/photos.constants';
+import {
+    PHOTOS_START_FETCHING,
+    PHOTOS_STOP_FETCHING,
+    PHOTOS_FILL,
+    PHOTOS_FILL_MORE,
+    PHOTOS_SET_FETCHING_ERROR
+} from '../Photos/photos.constants';
 // Redux actions
-import {setPartItems, setTotalLoadedItems} from '../../redux/actions/listSettings.actions';
+import {
+    ListSettingsSetFetchedPartItemsAction,
+    ListSettingsSetItemsToSkipAction, ListSettingsSetTotalItemsAction,
+    ListSettingsSetTotalLoadedItemsAction
+} from '../../redux/actions/listSettings.actions';
 // API
-import {getPhotosFromDB} from './photos.api';
+import { APIReadPhotosFromDB } from './photos.api';
 
 export const PhotosStartFetchingAction = () => {
     return {
@@ -29,27 +39,39 @@ export const PhotosFillAsyncAction = (photos) => {
             flagTotalPhotos: true
         };
 
-        await getPhotosFromDB(variables)
+        dispatch({ type: PHOTOS_START_FETCHING });
+        await APIReadPhotosFromDB(variables)
             .then(data => {
+
+                dispatch({ type: PHOTOS_STOP_FETCHING });
 
                 if (data) {
                     const items = data.photos;
-                    dispatch(setPartItems(items.length));
+                    dispatch(ListSettingsSetFetchedPartItemsAction(items.length));
+                    dispatch(ListSettingsSetTotalItemsAction(data.totalPhotos));
 
                     if (state.list_settings.load_more) {
                         dispatch({
                             type: PHOTOS_FILL_MORE,
                             payload: items
                         });
-                        dispatch(setTotalLoadedItems(state.list_settings.total_loaded_items + items.length));
+                        dispatch(ListSettingsSetTotalLoadedItemsAction(
+                            state.list_settings.total_loaded_items + items.length
+                        ));
                     } else {
+                        dispatch(ListSettingsSetItemsToSkipAction(0));
                         dispatch({
                             type: PHOTOS_FILL,
                             payload: items
                         });
-                        dispatch(setTotalLoadedItems(items.length));
-
+                        dispatch(ListSettingsSetTotalLoadedItemsAction(items.length));
                     }
+                } else {
+                    dispatch({
+                        type: PHOTOS_SET_FETCHING_ERROR,
+                        error: true,
+                        payload: 'ERROR'
+                    })
                 }
             });
     };

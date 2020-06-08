@@ -4,7 +4,9 @@ import {useDispatch, useSelector} from 'react-redux';
 // React components
 import GroupList from '../../components/GroupList/GroupList';
 import GroupAdd from '../../components/GroupAdd/GroupAdd';
-import {GroupMembersGetAsyncAction, GroupsFillAsyncAction} from './groups.actions';
+import Spinner from '../../components/Spinners/GeneralSpinner';
+// React actions
+import {GroupsFillAsyncAction} from './groups.actions';
 // Styles
 import '../../styles/groups.style.scss';
 
@@ -12,16 +14,23 @@ const GroupsContainer = () => {
 
     const dispatch = useDispatch();
 
-    const groups = useSelector(state => state.groups.groups);
+    const groups = useSelector(state => state.groups);
 
     useEffect(() => {
         dispatch(GroupsFillAsyncAction());
-    }, []);
+    }, [dispatch]);
 
-    return(
+    return (
         <Fragment>
             <GroupAdd/>
-            <GroupList groups={groups}/>
+            {
+                !groups.groups.length
+                    ? <Spinner/>
+                    : (
+                        <GroupList groups={[...groups.groups]}/>
+                    )
+            }
+
         </Fragment>
     );
 };

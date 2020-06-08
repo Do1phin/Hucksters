@@ -1,4 +1,4 @@
-const createAlbumsToDB = (albumsArray) => new Promise((resolve, reject) => {
+const APICreateAlbumsToDB = (albumsArray) => new Promise((resolve, reject) => {
     console.log('createAlbumsToDB ', albumsArray);
 
     albumsArray.map((item) => {
@@ -22,9 +22,9 @@ const createAlbumsToDB = (albumsArray) => new Promise((resolve, reject) => {
 });
 
 // Получаем альбомы пользователей из базы
-const getAlbumsFromDB = (props) => {
+const APIReadAlbumsFromDB = (props) => {
 
-    let {search_text, skip, limit, sort, info, owner_id} = props;
+    let {search_text, skip, limit, sort, info, owner_id, flagTotalAlbums} = props;
     let params;
 
     let body = {
@@ -34,6 +34,7 @@ const getAlbumsFromDB = (props) => {
         limit,
         sort,
         info,
+        flagTotalAlbums,
         sortParams: {'updated': sort || -1}
     };
 
@@ -67,6 +68,6 @@ const getAlbumsFromDB = (props) => {
 };
 
 export {
-    createAlbumsToDB,
-    getAlbumsFromDB,
+    APICreateAlbumsToDB,
+    APIReadAlbumsFromDB,
 };

@@ -6,7 +6,7 @@ import MemberCard from '../MemberCard/MemberCard';
 
 const MemberList = (props) => {
 
-    const {members} = props.members;
+    const members = props.members;
 
     return members.map((item) => (
         <div className='member-card__item' key={item.owner_id}>

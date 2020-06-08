@@ -1,12 +1,10 @@
 import React, {Fragment, useState} from "react";
-import {getAlbumsFromDB} from "../../containers/Albums/albums.api";
-import {addPhotosToDb} from '../../containers/Photos/photos.api';
+import {APIReadAlbumsFromDB} from "../../containers/Albums/albums.api";
+import {APICreatePhotosToDb} from '../../containers/Photos/photos.api';
 import {getPhotosFromVk} from "./_api-vk";
 import {readCountersFromDB} from "../Counters/counters.api";
 
 const GetPhotos = () => {
-    const [loading, setLoading] = useState(false);
-    const [photos, setPhotos] = useState([]);
     const [checkStatus, setCheckStatus] = useState('');
     const [checkCount, setCheckCount] = useState(0);
     const [counters, setCounters] = useState({
@@ -14,7 +12,7 @@ const GetPhotos = () => {
     });
 
     const getAllPhotos = async () => {
-        setLoading(true);
+
         try {
 
             let items, itemSize;
@@ -30,7 +28,7 @@ const GetPhotos = () => {
                     return {
                         info: 'check_all'
                     }
-                }).then(getAlbumsFromDB)
+                }).then(APIReadAlbumsFromDB)
                 .then((response) => {
                     items = response;
                     itemSize = items.length;
@@ -51,7 +49,7 @@ const GetPhotos = () => {
                         .then((response) => {
                             setCheckStatus('Сохранение фотографий в базу');
                             return response // массив фотографий
-                        }).then(addPhotosToDb)
+                        }).then(APICreatePhotosToDb)
                         .catch((err) => console.error(err));
 
                     count++;
@@ -64,7 +62,6 @@ const GetPhotos = () => {
             console.log('er ', e);
             throw new Error(e)
         }
-        setLoading(false);
     };
 
     return (

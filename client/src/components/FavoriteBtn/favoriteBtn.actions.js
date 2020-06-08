@@ -4,12 +4,12 @@ import {ADD_PHOTO_TO_FAVORITE, REMOVE_PHOTO_TO_FAVORITE} from './favoriteBtn.con
 import {types} from "../../redux/actions/actionTypes";
 // API
 import {createFavoritePhotoInDB, deleteFavoriteFromDB, updateFavoritesFromDB} from './favoriteBtn.api';
-import {updateFavoritePhotoCount} from '../../containers/Photos/photos.api';
+import {APIUpdateFavoritePhotosCount} from '../../containers/Photos/photos.api';
 
 export const changeFavoritePhoto = (body) => {
     console.log('changeFavoritePhoto 1 ');
     return async (dispatch, getState) => {
-        const state = getState();
+
         console.log('changeFavoritePhoto 2 ');
 
         if (!body.favorite) {
@@ -18,11 +18,11 @@ export const changeFavoritePhoto = (body) => {
             await createFavoritePhotoInDB(body)
                 .then(response => {
                     if (!response) return console.error('Add favorite photo failed');
-                    dispatch({type: types.FILL_FAVORITE_PHOTOS, payload: response});
+                    dispatch({type: types.FAVORITES_PHOTOS_FILL, payload: response});
                 });
 
             await updateFavoritesFromDB(body);
-            await updateFavoritePhotoCount({...body, operation: 'inc'});
+            await APIUpdateFavoritePhotosCount({...body, operation: 'inc'});
 
             dispatch({
                 type: ADD_PHOTO_TO_FAVORITE,
@@ -37,10 +37,10 @@ export const changeFavoritePhoto = (body) => {
             await deleteFavoriteFromDB(body)
                 .then(response => {
                     if (!response) return console.error('Remove favorite photo failed');
-                    dispatch({type: types.FILL_FAVORITE_PHOTOS, payload: response});
+                    dispatch({type: types.FAVORITES_PHOTOS_FILL, payload: response});
                 });
             // await deleteFavoriteFromDB(body);
-            await updateFavoritePhotoCount({...body, operation: 'dec'});
+            await APIUpdateFavoritePhotosCount({...body, operation: 'dec'});
 
             dispatch({
                 type: REMOVE_PHOTO_TO_FAVORITE,

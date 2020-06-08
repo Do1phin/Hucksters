@@ -4,7 +4,9 @@ import {setMemberStatusSelect} from '../../../redux/actions/listSettings.actions
 import './statusSelect.style.scss';
 
 const StatusSelect = () => {
+
     const dispatch = useDispatch();
+
     const status = useSelector(state => state.list_settings.member_status);
 
     const dispatchSetStatusSelect = (event) => {

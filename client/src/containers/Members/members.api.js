@@ -1,7 +1,7 @@
 // Получаем продавцов из базы
-const getMembersFromDB = (params) => new Promise((resolve, reject) => {
+const APIReadMembersFromDB = (params) => new Promise((resolve, reject) => {
 
-    const {owner_id, search_text, skip, limit, status, country} = params;
+    const {owner_id, search_text, skip, limit, status, country, flagTotalMembers} = params;
 
     let body = {
         owner_id,
@@ -9,7 +9,8 @@ const getMembersFromDB = (params) => new Promise((resolve, reject) => {
         skip,
         limit: limit,
         status,
-        country
+        country,
+        flagTotalMembers
     };
 
     try {
@@ -28,8 +29,8 @@ const getMembersFromDB = (params) => new Promise((resolve, reject) => {
     }
 });
 
-const getManyMembersForIdsFromDB = (params) => new Promise((resolve, reject) => {
-    const {member_ids} = params;
+const APIReadManyMembersForIdsFromDB = (params) => new Promise((resolve, reject) => {
+    // const {member_ids} = params;
 
     let body = params;
 
@@ -50,7 +51,7 @@ const getManyMembersForIdsFromDB = (params) => new Promise((resolve, reject) => 
 });
 
 // Получаем количество продавцов в базе
-const getMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
+const APIReadMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
     try {
         return fetch('//')
             .then((response) => {
@@ -64,12 +65,11 @@ const getMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
     } catch (e) {
         reject(e)
     }
-    console.log('getMembersSizesFromDB', params)
     resolve({all_sellers: 10000, banned: 100, deleted: 50, closed: 20, seller: 300})
 });
 
 // Добавляем продавцов в базу
-const createMembersToDB = (membersArray) => new Promise(async (resolve, reject) => {
+const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, reject) => {
     // const dispatch = useDispatch();
     // dispatch(setCheckStatusString('- добавление мемберов в базу...'));
     console.log('createMembersToDB ', membersArray);
@@ -101,8 +101,7 @@ const createMembersToDB = (membersArray) => new Promise(async (resolve, reject) 
         } catch (e) {
             reject(e);
         }
-
-
+        return null;
     });
 
     // const finish = (preparatoryMembersArray) => {
@@ -127,7 +126,7 @@ const createMembersToDB = (membersArray) => new Promise(async (resolve, reject) 
 
 });
 
-const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject) => {
+const APIUpdateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject) => {
     // const dispatch = useDispatch();
     // dispatch(setCheckStatusString('- обновление информации мемберов в базе...'));
     console.log('updateMembersInDB ', membersWithInfoArray);
@@ -151,9 +150,9 @@ const updateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject
 });
 
 export {
-    getMembersFromDB,
-    getManyMembersForIdsFromDB,
-    getMembersSizesFromDB,
-    createMembersToDB,
-    updateMembersInDB
+    APICreateMembersToDB,
+    APIReadMembersFromDB,
+    APIReadManyMembersForIdsFromDB,
+    APIReadMembersSizesFromDB,
+    APIUpdateMembersInDB
 }

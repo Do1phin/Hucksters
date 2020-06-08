@@ -1,4 +1,6 @@
+// Mongoose models
 import Member from '../models/member.model.js';
+// Utils
 import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createMember = async (req, res) => {
@@ -39,7 +41,7 @@ const createMember = async (req, res) => {
 };
 
 const readMember = async (req, res) => {
-    const {owner_id, search_text, skip, limit, status, country} = req.body;
+    const {owner_id, search_text, skip, limit, status, country, flagTotalMembers} = req.body;
     let params;
 
     if (status === 'all' || !status) {
@@ -75,14 +77,20 @@ const readMember = async (req, res) => {
     }
 
     try {
+
+        let totalMembers;
+        if (flagTotalMembers) {
+            totalMembers = await Member.find(params).countDocuments()
+        }
+
         await Member.find(params)
             .limit(limit)
             .skip(skip || 0)
-            .exec((err, sellers) => {
+            .exec((err, members) => {
                 if (err) {
                     return res.status(400).json({error: getErrorMessage(err)})
                 }
-                return res.status(200).json(sellers)
+                return res.status(200).json({members, totalMembers})
             });
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})

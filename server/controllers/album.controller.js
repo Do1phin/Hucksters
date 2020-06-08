@@ -1,4 +1,6 @@
+// Mongoose models
 import Album from '../models/album.model.js';
+// Utils
 import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createAlbum = async (req, res) => {
@@ -33,9 +35,15 @@ const createAlbum = async (req, res) => {
 };
 
 const readAlbum = async (req, res) => {
-    let {skip, limit, sortParams, params} = req.body;
+    let {skip, limit, sortParams, params, flagTotalAlbums} = req.body;
 
     try {
+
+        let totalAlbums;
+        if (flagTotalAlbums) {
+            totalAlbums = await Album.find(params).countDocuments();
+        }
+
         await Album.find(params)
             .sort(sortParams)
             .limit(limit)
@@ -44,7 +52,7 @@ const readAlbum = async (req, res) => {
                 if (err) {
                     return res.status(400).json({error: getErrorMessage(err)})
                 }
-                return res.status(200).json(albums)
+                return res.status(200).json({albums, totalAlbums})
             })
     } catch (e) {
         return res.status(500).json({error: getErrorMessage(e)})

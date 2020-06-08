@@ -36,6 +36,7 @@ const Counters = () => {
                 photo_with_text,
                 photo_with_addit_photo
             };
+            console.log(tempCount);
             // setCounters(tempCount);
         }).catch((err) => console.error(err));
     };
@@ -46,6 +47,7 @@ const Counters = () => {
                 return response;
             }).then((data) => {
                 const {all_members, banned, deleted, closed, seller} = data;
+                console.log(all_members, banned, deleted, closed, seller);
                 // setCounters({all_members, banned, deleted, closed, seller});
             }).catch((err) => console.error(err));
     };

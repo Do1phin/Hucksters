@@ -6,11 +6,11 @@ import {CheckerSetStatusStringAction} from '../../redux/actions/check.actions';
 import {put} from 'redux-saga/effects';
 // API
 import {
-    createGroupInDB,
-    delGroupFromDB,
-    getAllMembers,
-    getGroupListFromDB,
-    updateGroupInfoInDB
+    APICreateGroupInDB,
+    APIDeleteGroupFromDB,
+    APIGetAllMembers,
+    APIReadGroupListFromDB,
+    APIUpdateGroupInfoInDB
 } from './groups.api';
 // VK API
 import {getGroupInfoFromVk, getGroupSizeFromVk} from '../../components/admin/_api-vk';
@@ -40,7 +40,7 @@ export const GroupAddAsyncAction = (group_id) => {
 
 
             })
-            .then(createGroupInDB)
+            .then(APICreateGroupInDB)
             .then(response => {
                 if (!response) return console.error('Group not added');
                 dispatch({type: GROUP_ADD, payload: response});
@@ -57,7 +57,7 @@ export function GroupsFillAction() {
 export const GroupsFillAsyncAction = () => {
     return (dispatch, getState) => {
         // const state = getState();
-        getGroupListFromDB()
+        APIReadGroupListFromDB()
             .then(response => {
                 if (!response) return console.error('GroupsContainer not loaded');
                 dispatch({type: GROUPS_FILL, payload: response});
@@ -73,13 +73,13 @@ export const GroupDeleteAction = (group_id) => {
 };
 
 export function* GroupDeleteAsyncSagaAction(group_id) {
-    yield delGroupFromDB(group_id);
+    yield APIDeleteGroupFromDB(group_id);
     yield put({type: GROUP_DELETE, payload: group_id});
 }
 
 export const GroupDeleteAsyncAction = (group_id) => {
     return (dispatch, getState) => {
-        delGroupFromDB(group_id);
+        APIDeleteGroupFromDB(group_id);
         dispatch({type: GROUP_DELETE, payload: group_id});
     };
 };
@@ -89,8 +89,8 @@ export const GroupInfoUpdateAsyncAction = (group_id) => {
         Promise.resolve(group_id)
             .then(getGroupInfoFromVk)
             .then(getGroupSizeFromVk)
-            .then(updateGroupInfoInDB)
-            .then(getGroupListFromDB)
+            .then(APIUpdateGroupInfoInDB)
+            .then(APIReadGroupListFromDB)
             .then(response => {
                 if (!response) return console.error('Update group info failed');
                 dispatch({type: GROUP_UPDATE_INFO, payload: response});
@@ -99,10 +99,10 @@ export const GroupInfoUpdateAsyncAction = (group_id) => {
 };
 
 export const GroupMembersGetAsyncAction = (group_id) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(CheckerSetStatusStringAction('Получение пользователей из группы: '));
 
-        getAllMembers(group_id)
+        await APIGetAllMembers(group_id)
             .then(response => {
                 if (!response) return console.error('Get group Members failed');
                 // dispatch({type: GROUP_MEMBERS_GET, payload: response});

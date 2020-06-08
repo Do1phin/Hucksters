@@ -1,10 +1,11 @@
-const getPhotosFromDB = (params) => {
-    const {text, skip, limit, sort} = params;
+const APIReadPhotosFromDB = (params) => {
+    const {text, skip, limit, sort, flagTotalPhotos} = params;
     let body = {
         text,
         skip,
         limit: limit || 100000,
-        sort
+        sort,
+        flagTotalPhotos
     };
 
     try {
@@ -22,7 +23,7 @@ const getPhotosFromDB = (params) => {
     }
 };
 
-const addPhotosToDb = (photoArray) => new Promise((resolve, reject) => {
+const APICreatePhotosToDb = (photoArray) => new Promise((resolve, reject) => {
 
     photoArray.map((item) => {
 
@@ -44,11 +45,11 @@ const addPhotosToDb = (photoArray) => new Promise((resolve, reject) => {
     });
 });
 
-const updateAddPhotosCount = (props) => new Promise((resolve, reject) => {
+const APIUpdateCounterForAddedPhotos = (props) => new Promise((resolve, reject) => {
     console.log('props ', props);
 });
 
-const updateFavoritePhotoCount = (props) => new Promise((resolve, reject) => {
+const APIUpdateFavoritePhotosCount = (props) => new Promise((resolve, reject) => {
     const body = props;
     try {
         fetch('/photos/additional_photos/operation', {
@@ -65,7 +66,7 @@ const updateFavoritePhotoCount = (props) => new Promise((resolve, reject) => {
 });
 
 
-const getPhotosFavorites = (props) => new Promise((resolve, reject) => {
+const APIReadFavoritePhotos = (props) => new Promise((resolve, reject) => {
 
     let membersIds = props.map(item => +item.photo_id);
     console.log('arrrr ', membersIds);
@@ -83,14 +84,12 @@ const getPhotosFavorites = (props) => new Promise((resolve, reject) => {
     } catch (e) {
         reject(e);
     }
-    // props.map(item => item.photo_id);
-
 });
 
 export {
-    addPhotosToDb,
-    getPhotosFromDB,
-    updateAddPhotosCount,
-    getPhotosFavorites,
-    updateFavoritePhotoCount,
+    APICreatePhotosToDb,
+    APIReadPhotosFromDB,
+    APIUpdateCounterForAddedPhotos,
+    APIReadFavoritePhotos,
+    APIUpdateFavoritePhotosCount,
 };

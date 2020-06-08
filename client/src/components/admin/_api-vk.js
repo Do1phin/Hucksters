@@ -1,5 +1,4 @@
 /* global VK */
-import {useDispatch} from "react-redux";
 import {CheckerSetStatusStringAction} from "../../redux/actions/check.actions";
 import { store } from "../../redux/store";
 

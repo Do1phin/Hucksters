@@ -6,7 +6,7 @@ import AlbumCard from '../AlbumCard/AlbumCard';
 
 const AlbumList = (props) => {
 
-    const {albums} = props.albums;
+    const albums = props.albums;
 
     return albums.map((item) => (
         <div className="album-card__item" key={item.album_id}>

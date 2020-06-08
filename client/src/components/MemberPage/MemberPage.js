@@ -2,9 +2,9 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 // API
-import {getMembersFromDB} from '../../containers/Members/members.api';
-import {getPhotosFromDB} from '../../containers/Photos/photos.api';
-import {getAlbumsFromDB} from '../../containers/Albums/albums.api';
+import {APIReadMembersFromDB} from '../../containers/Members/members.api';
+import {APIReadPhotosFromDB} from '../../containers/Photos/photos.api';
+import {APIReadAlbumsFromDB} from '../../containers/Albums/albums.api';
 // React components
 import AlbumCardSmall from '../AlbumCardSmall/AlbumCardSmall';
 import MemberInfo from '../MemberInfo/MemberInfo';
@@ -29,7 +29,7 @@ const MemberPage = (props) => {
                 status: 'id',
                 first_name: '',
             };
-            getMembersFromDB(variables)
+            APIReadMembersFromDB(variables)
                 .then((response) => {
                     return setUserInfo(...response);
                 }).catch(err => console.error(err));
@@ -41,7 +41,7 @@ const MemberPage = (props) => {
                 info: 'seller',
                 first_name: '',
             };
-            getAlbumsFromDB(variables)
+            APIReadAlbumsFromDB(variables)
                 .then((response) => {
                     return setAlbums(response);
                 }).catch(err => console.error(err));
@@ -53,7 +53,7 @@ const MemberPage = (props) => {
                 owner_id
             };
 
-            getPhotosFromDB(variables)
+            APIReadPhotosFromDB(variables)
                 .then(response => {
                     return setPhotos(response);
                 }).catch(err => console.error(err));
