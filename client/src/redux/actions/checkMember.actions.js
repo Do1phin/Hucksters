@@ -1,9 +1,9 @@
 import { types } from './actionTypes'
-import {getMembersFromDB, updateMembersInDB} from "../../containers/Members/members.api";
+import {APIReadMembersFromDB, APIUpdateMembersInDB} from "../../containers/Members/members.api";
 import {CheckerSetStepNumberAction} from "./check.actions";
 import {getAlbumsFromVk} from "../../components/admin/_api-vk";
 import {checkAlbumsNames} from "../../components/admin/_api-check";
-import {createAlbumsToDB} from "../../containers/Albums/albums.api";
+import {APICreateAlbumsToDB} from "../../containers/Albums/albums.api";
 import {readCountersFromDB} from "../../components/Counters/counters.api";
 
 export const CheckMembersAllAction = (members) => {
@@ -63,7 +63,7 @@ export const MemberAlbumsGetAsyncAction = (owner_id) => {
                     dispatch(CheckMembersBannedAction(counters.banned));
                     dispatch(CheckMembersDeletedAction(counters.deleted));
                     return []
-                }).then(getMembersFromDB) // Получение пользователей из базы
+                }).then(APIReadMembersFromDB) // Получение пользователей из базы
                 .then((response) => {
                     console.log('re ', response)
                     source = response; // массив продавцов
@@ -81,12 +81,12 @@ export const MemberAlbumsGetAsyncAction = (owner_id) => {
                 await Promise.resolve(obj)
                     .then(getAlbumsFromVk) // Получение альбомов из ВК
                     .then(checkAlbumsNames) // Проверка полученных альбомов на ключи
-                    .then(createAlbumsToDB) // Добавление альбомов в базу
+                    .then(APICreateAlbumsToDB) // Добавление альбомов в базу
                     .then(() => {
                         let membersArray = [];
                         membersArray.push(obj);
                         return membersArray // массив где id и тело пользователя // Изменение информации о пользователе
-                    }).then(updateMembersInDB)
+                    }).then(APIUpdateMembersInDB)
                     .catch((err) => console.error(`* id ${source[i].owner_id}. `, err));
             }
 

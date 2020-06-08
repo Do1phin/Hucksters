@@ -6,8 +6,8 @@ import PhotoCard from '../PhotoCard/PhotoCard';
 
 const PhotoList = (props) => {
 
-    const {photos} = props.photos;
-    const {members} = props.members;
+    const photos = props.photos;
+    const members = props.members;
     const {favorite} = props;
 
     return photos.length && photos.map((item) => {

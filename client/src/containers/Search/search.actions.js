@@ -1,12 +1,13 @@
 // Redux constants
-import {UPDATE_SEARCH_STRING} from './search.constants';
+import { SEARCH_STRING_UPDATE } from './search.constants';
 
 export const SearchStringUpdateAsyncAction = (string) => {
     return async (dispatch) => {
 
         dispatch({
-            type: UPDATE_SEARCH_STRING,
+            type: SEARCH_STRING_UPDATE,
             payload: string
         })
     };
 };
+

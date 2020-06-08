@@ -4,7 +4,9 @@ import {setMemberCountrySelect} from '../../../redux/actions/listSettings.action
 import './countrySelect.style.scss';
 
 const CountrySelect = () => {
+
     const dispatch = useDispatch();
+
     const country = useSelector(state => state.list_settings.member_country);
 
     const dispatchSetCountrySelect = (event) => {

@@ -2,7 +2,6 @@
 import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
 // Services
 import {stampToDate} from '../../services/date.service';
 // React components
@@ -24,10 +23,9 @@ const PhotoCard = (props) => {
         favorites,
         thing_info,
         isFavorite,
-        total_likes
     } = props;
 
-    const favorite = useSelector(state => state.favorites);
+    // const favorite = useSelector(state => state.favorites);
     // console.log('favorite ' ,favorite)
 
     // const isFavorite = favorite.favorite_photos.some((value) => value === photo_id);

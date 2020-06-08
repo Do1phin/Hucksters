@@ -18,7 +18,7 @@ export const FavoritesPhotoAddAsyncAction = () => {
         createFavoritePhotoInDB()
             .then(response => {
                 if (!response) return console.error('Add favorite photo failed');
-                dispatch({type: types.FILL_FAVORITE_PHOTOS, payload: response});
+                dispatch({type: types.FAVORITES_PHOTOS_FILL, payload: response});
             });
     }
 };

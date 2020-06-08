@@ -7,7 +7,6 @@ import ErrorBoundary from './components/errors/ErrorBoundary';
 import AuthPage from './containers/AuthPage/AuthPage';
 import HomePage from './containers/HomePage/HomePage';
 import MembersContainer from './containers/Members/MembersContainer';
-import MemberPage from './components/MemberPage/MemberPage';
 import AlbumsContainer from './containers/Albums/AlbumsContainer';
 import PhotosContainer from './containers/Photos/PhotosContainer';
 import SearchContainer from './containers/Search/SearchContainer';
@@ -16,7 +15,6 @@ import Header from './components/header';
 import Footer from './components/footer';
 // Styles
 import './App.scss';
-// import '../src/styles/index.scss';
 
 export const App: FC = () => {
     return (

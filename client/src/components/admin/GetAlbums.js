@@ -1,15 +1,16 @@
+// Core
 import React, {Fragment, useEffect} from "react";
-import {getAlbumsFromVk} from "./_api-vk";
-import {getMembersFromDB, updateMembersInDB} from "../../containers/Members/members.api";
-import {createAlbumsToDB} from "../../containers/Albums/albums.api";
-import {checkAlbumsNames} from '../admin/_api-check';
 import {useDispatch, useSelector} from "react-redux";
+// Redux actions
 import {CheckerSetThingStringAction} from "../../redux/actions/check.actions";
 import {MemberAlbumsGetAsyncAction} from "../../redux/actions/checkMember.actions";
+// Styles
 import '../../styles/getAlbums.style.scss';
 
 const GetAlbums = () => {
+
     const dispatch = useDispatch();
+
     const check = useSelector(state => state.checker);
     const checkMemberCounters = useSelector(state => state.checker_members);
 
@@ -24,7 +25,6 @@ const GetAlbums = () => {
     };
 
     const handleChangeCheckSettings = () => {
-        let params;
 
     };
 

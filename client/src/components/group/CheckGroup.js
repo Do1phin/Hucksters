@@ -3,7 +3,7 @@ import React, {Fragment} from 'react';
 // VK API
 import {call, getMembersGroupFromVk, getMembersInfoFromVk} from '../admin/_api-vk';
 // API
-import { createMembersToDB, updateMembersInDB} from '../../containers/Members/members.api';
+import { APICreateMembersToDB, APIUpdateMembersInDB} from '../../containers/Members/members.api';
 // React components
 import GetAlbums from '../admin/GetAlbums';
 
@@ -23,9 +23,9 @@ const CheckGroup = () => {
 
                     Promise.resolve(obj)
                         .then(getMembersGroupFromVk)
-                        .then(createMembersToDB)
+                        .then(APICreateMembersToDB)
                         .then(getMembersInfoFromVk)
-                        .then(updateMembersInDB)
+                        .then(APIUpdateMembersInDB)
                         .catch((err) => console.error(err));
 
                     count++;
@@ -39,6 +39,8 @@ const CheckGroup = () => {
             throw new Error(e)
         }
     };
+
+    console.log(typeof getAllMembers);
 
     return (
         <Fragment>

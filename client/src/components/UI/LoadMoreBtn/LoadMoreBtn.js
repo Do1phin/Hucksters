@@ -1,16 +1,24 @@
+// Core
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {setLoadMore, setSkipItemsNumber} from '../../../redux/actions/listSettings.actions';
+// Redux actions
+import {
+    ListSettingsSetItemsToSkipAction,
+    ListSettingsSetLoadMoreAction
+} from '../../../redux/actions/listSettings.actions';
+// Styles
 import './loadMoreBtn.style.scss';
 
 const LoadMoreBtn = () => {
+
     const dispatch = useDispatch();
+
     const list_settings = useSelector(state => state.list_settings);
 
     const dispatchClickLoadMoreBtn = () => {
         let skipAfter = list_settings.skip + list_settings.limit;
-        dispatch(setLoadMore(true));
-        dispatch(setSkipItemsNumber(skipAfter));
+        dispatch(ListSettingsSetLoadMoreAction(true));
+        dispatch(ListSettingsSetItemsToSkipAction(skipAfter));
     };
 
     return (

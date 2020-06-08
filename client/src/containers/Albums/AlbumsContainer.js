@@ -2,53 +2,69 @@
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 // Redux actions
-import {loading_start, loading_stop} from '../../redux/actions/generalSettings.actions';
-import {setLoadMore} from '../../redux/actions/listSettings.actions';
+import {loadingStart, loadingStop} from '../../redux/actions/generalSettings.actions';
+import {ListSettingsSetLoadMoreAction} from '../../redux/actions/listSettings.actions';
 import {AlbumsFillAsyncAction} from './albums.actions';
 // React components
-import AlbumSize from '../../components/AlbumSize/AlbumSize';
+import ItemsSize from '../../components/ItemsSize/ItemsSize';
 import AlbumList from '../../components/AlbumList/AlbumList';
 import SearchContainer from '../Search/SearchContainer';
 import LimitSelect from '../../components/UI/LimitSelect/LimitSelect';
 import SortSelect from '../../components/UI/SortSelect/SortSelect';
 import LoadMoreBtn from '../../components/UI/LoadMoreBtn/LoadMoreBtn';
+import Spinner from '../../components/Spinners/GeneralSpinner';
 // Styles
 import '../../styles/albums.style.scss';
 
-const AlbumsContainer = () => {
 
-    const albums = useSelector(state => state.albums);
-    const list_settings = useSelector(state => state.list_settings);
-    const search = useSelector(state => state.search);
+const AlbumsContainer = () => {
 
     const dispatch = useDispatch();
 
+    const list_settings = useSelector(state => state.list_settings);
+    const general_settings = useSelector(state => state.general_settings);
+    const albums = useSelector(state => state.albums);
+    const search = useSelector(state => state.search);
+
     useEffect(() => {
 
-        dispatch(loading_start());
-
+        dispatch(loadingStart());
         dispatch(AlbumsFillAsyncAction());
-        dispatch(setLoadMore(false));
-
-        dispatch(loading_stop());
+        dispatch(ListSettingsSetLoadMoreAction(false));
+        dispatch(loadingStop());
 
     }, [
         search.search_text,
         list_settings.limit,
         list_settings.skip,
-        list_settings.sort
+        list_settings.sort,
+        dispatch
     ]);
 
     return (
         <Fragment>
             <SearchContainer/>
-            <AlbumSize list_settings={list_settings}/>
+            <ItemsSize
+                loading={general_settings.loading}
+                total_items={list_settings.total_items}
+                total_loaded_items={list_settings.total_loaded_items}
+            />
             <LimitSelect/>
             <SortSelect/>
 
-            <div className='album-list'>
-                <AlbumList albums={albums}/>
-            </div>
+            {
+                !albums.albums.length && !albums.albums_fetching_error
+                    ? <Spinner/>
+                    : (
+                        <div className='album-list'>
+                            <AlbumList albums={[...albums.albums]}/>
+                        </div>
+                    )
+            }
+
+            {
+                albums.albums_fetching_error && 'ERROR'
+            }
 
             <LoadMoreBtn/>
         </Fragment>

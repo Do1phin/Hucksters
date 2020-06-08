@@ -1,15 +1,17 @@
 import React from 'react';
-import {setSortItemsSelect} from '../../../redux/actions/listSettings.actions';
+import {ListSettingsSetSortTypeAction} from '../../../redux/actions/listSettings.actions';
 import {useDispatch, useSelector} from 'react-redux';
 import './sortSelect.style.scss';
 
 const SortSelect = () => {
+
     const dispatch = useDispatch();
+
     const sort = useSelector(state => state.list_settings.sort);
 
     const dispatchSetSortSelect = (event) => {
         const sort = +event.target.value;
-        dispatch(setSortItemsSelect(sort));
+        dispatch(ListSettingsSetSortTypeAction(sort));
     };
 
     return (
