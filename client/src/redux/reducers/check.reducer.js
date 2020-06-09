@@ -28,4 +28,6 @@ const checkReducer = (state = initialState, action) => {
     }
 };
 
-export default checkReducer;
+export {
+    checkReducer
+};

@@ -48,7 +48,7 @@ const groupReducer = (state = initialState, action) => {
         case GROUPS_FILL:
             return {
                 ...state,
-                groups: [...state.groups, ...action.payload]
+                groups: [...action.payload]
             };
         case GROUPS_SET_FETCHING_ERROR:
             return {
@@ -66,4 +66,6 @@ const groupReducer = (state = initialState, action) => {
     }
 };
 
-export default groupReducer;
+export {
+    groupReducer
+};

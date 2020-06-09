@@ -46,4 +46,6 @@ const photoReducer = (state = initialState, action) => {
     }
 };
 
-export default photoReducer;
+export {
+    photoReducer
+};

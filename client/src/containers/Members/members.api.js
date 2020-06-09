@@ -74,14 +74,14 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
     // dispatch(setCheckStatusString('- добавление мемберов в базу...'));
     console.log('createMembersToDB ', membersArray);
 
-    let preparatoryMembersArray = [];
+    // let preparatoryMembersArray = [];
 
-    await membersArray.filter((owner_id, index) => {
+    let preparatoryMembersArray =  await membersArray.map((owner_id, index) => {
 
         const body = {'owner_id': owner_id, '_updated.info': 'create'};
 
         try {
-            fetch('/members/create', {
+            return fetch('/members/create', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -91,9 +91,10 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
                 console.log('res ', response);
                 // return owner_id;
                 if (response.ok) {
-                    return preparatoryMembersArray.push(owner_id)
+                    // return preparatoryMembersArray.push(owner_id)
+                    console.log('owner_id ' , owner_id)
+                    return owner_id
                 }
-
             }).catch((err) => {
                 reject(err);
             });
@@ -121,7 +122,8 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
     console.log('2', Array.isArray(preparatoryMembersArray))
     console.log('preparatoryMembersArray ', preparatoryMembersArray);
     console.log('preparatoryMembersArray typeof ', typeof preparatoryMembersArray);
-    console.log('preparatoryMembersArray length ', preparatoryMembersArray['length'], preparatoryMembersArray);
+    console.log('preparatoryMembersArray length ', preparatoryMembersArray.length, preparatoryMembersArray);
+    console.log('membersArray length ', membersArray.length, membersArray);
 
 
 });

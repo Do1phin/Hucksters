@@ -90,7 +90,7 @@ export const MemberAlbumsGetAsyncAction = (owner_id) => {
                     .catch((err) => console.error(`* id ${source[i].owner_id}. `, err));
             }
 
-            for (let i = 1; i < state.checker_members.all_members; i++) {
+            for (let i = 1; i < state.check_members.all_members; i++) {
                 setTimeout(action, i * 1000, i);
             }
         } catch (e) {

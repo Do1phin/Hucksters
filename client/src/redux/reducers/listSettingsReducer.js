@@ -63,4 +63,6 @@ const listSettingsReducer = (state = initialState, action) => {
     }
 };
 
-export default listSettingsReducer;
+export {
+    listSettingsReducer
+};

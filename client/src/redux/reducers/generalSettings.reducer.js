@@ -33,4 +33,6 @@ const generalSettingsReducer = (state = initialState, action) => {
     }
 };
 
-export default generalSettingsReducer;
+export {
+    generalSettingsReducer
+};

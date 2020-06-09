@@ -1,4 +1,4 @@
-import { types } from '../actions/actionTypes'
+import { types } from '../../redux/actions/actionTypes'
 
 const initialState = {
     all_members: 0,
@@ -46,4 +46,6 @@ const checkMemberReducer = (state = initialState, action) => {
     }
 };
 
-export default checkMemberReducer;
+export {
+    checkMemberReducer
+};
