@@ -1,16 +1,23 @@
-import {call, getMembersGroupFromVk, getMembersInfoFromVk} from "../../components/admin/_api-vk";
-import {store} from "../../redux/store";
-import {CheckerSetStepNumberAction} from "../../redux/actions/check.actions";
-import {APICreateMembersToDB, APIUpdateMembersInDB} from "../Members/members.api";
+import {call, getMembersGroupFromVk, getMembersInfoFromVk} from '../../components/admin/_api-vk';
+import {store} from '../../redux/store';
+import {CheckerSetStepNumberAction} from '../../redux/actions/check.actions';
+import {APICreateMembersToDB, APIUpdateMembersInDB} from '../Members/members.api';
+import {useDispatch} from 'react-redux';
+import {CHECK_GROUP_SET_GROUP_SIZE, CHECK_GROUP_SET_ID_CHECKING_GROUP} from "./checkGroup.constants";
 
 const APIGetAllMembers = async (group_id) => {
+
+    // const dispatch = useDispatch();
 
     try {
         const members = await call('groups.getMembers', {group_id: group_id, v: 5.107});
         const membersSize = await members.response.count;
+        store.dispatch({ type: CHECK_GROUP_SET_ID_CHECKING_GROUP, payload: group_id});
+        store.dispatch({ type: CHECK_GROUP_SET_GROUP_SIZE, payload: membersSize});
+
         let count = 0;
 
-        await (function next() {
+        (function next() {
             console.info(`Step ${count} from ${Math.ceil(membersSize / 1000)}`);
             if (count < Math.ceil(membersSize / 1000)) {
                 store.dispatch(CheckerSetStepNumberAction(count));
@@ -52,6 +59,10 @@ const APIGetAllMembers = async (group_id) => {
     } catch (e) {
         throw new Error(e)
     }
+};
+
+const APICheckAllMembers = async (group_id) => {
+
 };
 
 export {

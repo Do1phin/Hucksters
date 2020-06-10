@@ -4,7 +4,7 @@ import {combineReducers} from 'redux';
 import {albumReducer} from '../containers/Albums/albums.reducer';
 import {groupReducer} from '../containers/Groups/groups.reducer';
 import {listSettingsReducer} from './reducers/listSettingsReducer';
-import {checkReducer} from './reducers/check.reducer';
+import {checkerReducer} from './reducers/checkerReducer';
 import {checkGroupReducer} from '../containers/CheckGroup/checkGroup.reducer';
 import {checkMemberReducer} from '../containers/CheckMember/checkMember.reducer';
 import {favoriteReducer} from './reducers/favorite.reducer';
@@ -22,7 +22,7 @@ export default combineReducers({
     search: searchReducer,
     general_settings: generalSettingsReducer,
     list_settings: listSettingsReducer,
-    checker: checkReducer,
+    checker: checkerReducer,
     check_groups: checkGroupReducer,
     check_members: checkMemberReducer,
 });

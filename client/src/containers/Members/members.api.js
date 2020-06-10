@@ -72,16 +72,15 @@ const APIReadMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
 const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, reject) => {
     // const dispatch = useDispatch();
     // dispatch(setCheckStatusString('- добавление мемберов в базу...'));
-    console.log('createMembersToDB ', membersArray);
 
     // let preparatoryMembersArray = [];
 
-    let preparatoryMembersArray =  await membersArray.map((owner_id, index) => {
+    let preparatoryMembersArray = membersArray.map((owner_id) => {
 
         const body = {'owner_id': owner_id, '_updated.info': 'create'};
 
         try {
-            return fetch('/members/create', {
+            fetch('/members/create', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -93,7 +92,7 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
                 if (response.ok) {
                     // return preparatoryMembersArray.push(owner_id)
                     console.log('owner_id ' , owner_id)
-                    return owner_id
+                   return true;
                 }
             }).catch((err) => {
                 reject(err);
@@ -102,7 +101,7 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
         } catch (e) {
             reject(e);
         }
-        return null;
+        // return null;
     });
 
     // const finish = (preparatoryMembersArray) => {
@@ -118,14 +117,8 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
     // }
 
 
-
-    console.log('2', Array.isArray(preparatoryMembersArray))
     console.log('preparatoryMembersArray ', preparatoryMembersArray);
-    console.log('preparatoryMembersArray typeof ', typeof preparatoryMembersArray);
     console.log('preparatoryMembersArray length ', preparatoryMembersArray.length, preparatoryMembersArray);
-    console.log('membersArray length ', membersArray.length, membersArray);
-
-
 });
 
 const APIUpdateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject) => {

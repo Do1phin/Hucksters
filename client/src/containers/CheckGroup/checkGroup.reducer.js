@@ -1,4 +1,4 @@
-import {CHECK_GROUP_SET_ID_CHECKING_GROUP} from './checkGroup.constants';
+import { CHECK_GROUP_SET_ID_CHECKING_GROUP, CHECK_GROUP_SET_GROUP_SIZE } from './checkGroup.constants';
 
 const initialState = {
     group_id: null,
@@ -11,6 +11,11 @@ const checkGroupReducer = (state = initialState, action) => {
             return {
                 ...state,
                 group_id: action.payload
+            };
+        case CHECK_GROUP_SET_GROUP_SIZE:
+            return {
+                ...state,
+                group_size: action.payload
             };
         default:
             return state

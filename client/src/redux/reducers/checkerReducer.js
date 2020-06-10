@@ -1,12 +1,12 @@
 import { types } from '../actions/actionTypes';
 
 const initialState = {
-    thing: '',
-    step: 0,
-    status: ''
+    thing: null,
+    step: null,
+    status: null
 };
 
-const checkReducer = (state = initialState, action) => {
+const checkerReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.CHECKER_SET_CHECK_THING:
             return {
@@ -29,5 +29,5 @@ const checkReducer = (state = initialState, action) => {
 };
 
 export {
-    checkReducer
+    checkerReducer
 };
