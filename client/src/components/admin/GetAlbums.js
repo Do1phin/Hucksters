@@ -12,7 +12,7 @@ const GetAlbums = () => {
     const dispatch = useDispatch();
 
     const check = useSelector(state => state.checker);
-    const checkMemberCounters = useSelector(state => state.checker_members);
+    const checkMemberCounters = useSelector(state => state.check_members);
 
     useEffect(() => {
         // readCounters()

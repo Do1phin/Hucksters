@@ -72,11 +72,10 @@ const APIReadMembersSizesFromDB = (params) => new Promise((resolve, reject) => {
 const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, reject) => {
     // const dispatch = useDispatch();
     // dispatch(setCheckStatusString('- добавление мемберов в базу...'));
-    console.log('createMembersToDB ', membersArray);
 
-    let preparatoryMembersArray = [];
+    // let preparatoryMembersArray = [];
 
-    await membersArray.filter((owner_id, index) => {
+    let preparatoryMembersArray = membersArray.map((owner_id) => {
 
         const body = {'owner_id': owner_id, '_updated.info': 'create'};
 
@@ -91,9 +90,10 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
                 console.log('res ', response);
                 // return owner_id;
                 if (response.ok) {
-                    return preparatoryMembersArray.push(owner_id)
+                    // return preparatoryMembersArray.push(owner_id)
+                    console.log('owner_id ' , owner_id)
+                   return true;
                 }
-
             }).catch((err) => {
                 reject(err);
             });
@@ -101,7 +101,7 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
         } catch (e) {
             reject(e);
         }
-        return null;
+        // return null;
     });
 
     // const finish = (preparatoryMembersArray) => {
@@ -117,13 +117,8 @@ const APICreateMembersToDB = (membersArray) => new Promise(async (resolve, rejec
     // }
 
 
-
-    console.log('2', Array.isArray(preparatoryMembersArray))
     console.log('preparatoryMembersArray ', preparatoryMembersArray);
-    console.log('preparatoryMembersArray typeof ', typeof preparatoryMembersArray);
-    console.log('preparatoryMembersArray length ', preparatoryMembersArray['length'], preparatoryMembersArray);
-
-
+    console.log('preparatoryMembersArray length ', preparatoryMembersArray.length, preparatoryMembersArray);
 });
 
 const APIUpdateMembersInDB = (membersWithInfoArray) => new Promise((resolve, reject) => {

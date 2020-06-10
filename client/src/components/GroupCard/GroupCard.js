@@ -3,12 +3,11 @@ import React, {Fragment} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {store} from '../../redux/store';
 import PropTypes from 'prop-types';
+// React components
+import {CheckGroup} from '../../containers/CheckGroup/CheckGroup';
 // Redux actions
-import {
-    GroupDeleteAsyncSagaAction,
-    GroupInfoUpdateAsyncAction,
-    GroupMembersGetAsyncAction
-} from '../../containers/Groups/groups.actions';
+import { GroupDeleteAsyncSagaAction, GroupInfoUpdateAsyncAction, } from '../../containers/Groups/groups.actions';
+import { GroupMembersGetAsyncAction } from '../../containers/CheckGroup/checkGroup.actions';
 import {loadingStart, loadingStop} from '../../redux/actions/generalSettings.actions';
 // Redux-saga watchers
 import {watchDeleteGroup} from '../../redux/saga/watchers';
@@ -67,11 +66,8 @@ const GroupCard = (props) => {
                     {size}
                 </div>
             </div>
-            <div className='group-list__status'>
-                {group_id !== groups.group_id ? 1 : 2}
-                <span>Проверяем {checker.step} из {size}</span>
-                <span>Статус: {checker.status}</span>
-            </div>
+
+           <CheckGroup/>
 
             <div className='group-list__item-actions'>
                 <button className='group-list__item-actions-refresh'
@@ -93,12 +89,12 @@ const GroupCard = (props) => {
                 <button className='group-list__item-actions-load'
                         id={group_id}
                         disabled={general_settings.loading}
-                        aria-label='Получить пользователей группы'
+                        aria-label='Загрузить пользователей группы'
                         onClick={dispatchGetMembersBtn}
                 >
-                    Получить пользователей
+                    Загрузить пользователей
                 </button>
-                {checker.status}
+
             </div>
         </Fragment>
     );
