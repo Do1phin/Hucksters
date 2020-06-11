@@ -1,9 +1,9 @@
 {
-  "name": "Huckster",
+  "name": "huckster-backend",
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "server/app.js",
+  "main": "app.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -31,12 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Do1phin/hucksters.git"
+    "url": "git+https://github.com/Do1phin/hucksters-backend.git"
   },
   "author": "Do1phin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Do1phin/hucksters/issues"
+    "url": "https://github.com/Do1phin/hucksters-backend/issues"
   },
-  "homepage": "https://github.com/Do1phin/hucksters#readme"
+  "homepage": "https://github.com/Do1phin/hucksters-backend#readme"
 }

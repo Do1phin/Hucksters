@@ -1,15 +1,16 @@
 # Dependency directory
-/node_modules/
-../client/node_modules
-../server/node_modules
+/node_modules
+/.git
 /dist/
 /data/
 
 # IDE
-.idea/
 /.idea
 
 # Logs
 logs
 *.log
 npm-debug.log*
+
+# X
+server/cd..
