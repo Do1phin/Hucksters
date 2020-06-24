@@ -5,7 +5,7 @@ import getErrorMessage from "../helpers/dbErrorHandler.js";
 
 const createMember = async (req, res) => {
     const fields = req.body;
-
+    console.log('createMember')
     try {
         // const sellers = await Seller.insertMany(arr, { ordered: false, acknowledged: false }, (err) => {
         //     if (err) {
@@ -41,6 +41,7 @@ const createMember = async (req, res) => {
 };
 
 const readMember = async (req, res) => {
+    console.log('readMember')
     const {owner_id, search_text, skip, limit, status, country, flagTotalMembers} = req.body;
     let params;
 
@@ -98,6 +99,7 @@ const readMember = async (req, res) => {
 };
 
 const readManyMembersForIds = async (req, res) => {
+    console.log('readManyMembersForIds')
     // const member_ids = req.body;
     const member_ids = [52980405];
 
@@ -123,45 +125,25 @@ const updateMember = async (req, res) => {
             photo_200, deactivated, seller, info, instagram
         } = req.body;
 
-        let doc;
-        if (info === 'full') {
-            doc = {
-                is_closed,
-                deactivated: deactivated ? deactivated : null,
-                first_name,
-                last_name,
-                nickname,
-                domain,
-                sex,
-                instagram,
-                country: {
-                    id: country.id,
-                    title: country.title,
-                },
-                photo: photo_200,
-                _updated: {
-                    date: Date.now(),
-                    info
-                },
-                // _obj: JSON.stringify(req.body)
-            }
-        } else if (info === 'seller') {
-            doc = {
-                seller: true,
-                _updated: {
-                    date: Date.now(),
-                    info
-                }
-            }
-        } else if (info === 'check_one') {
-            doc = {
-                seller: true,
-                _updated: {
-                    date: Date.now(),
-                    info
-                }
-            }
-        }
+        let doc = {
+            is_closed,
+            deactivated: deactivated || null,
+            first_name,
+            last_name,
+            nickname,
+            domain,
+            sex,
+            instagram: instagram || undefined,
+            country: country ? {
+                id: country.id ? country.id : undefined,
+                title: country.title ? country.title : undefined,
+            } : undefined,
+            photo: photo_200,
+            _updated: {
+                date: Date.now(),
+                info: 'full'
+            },
+        };
 
         await Member.findOneAndUpdate(
             {owner_id: id || owner_id},
