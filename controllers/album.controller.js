@@ -35,6 +35,7 @@ const createAlbum = async (req, res) => {
 };
 
 const readAlbum = async (req, res) => {
+    console.log('readAlbum');
     let {skip, limit, sortParams, params, flagTotalAlbums} = req.body;
 
     try {

@@ -9,7 +9,7 @@ router.route('/members/create')
 router.route('/members')
     .post(memberCtrl.readMember);
 
-router.route('/members_for_ids')
+router.route('/members/some')
     .post(memberCtrl.readManyMembersForIds);
 
 router.route('/members/update')

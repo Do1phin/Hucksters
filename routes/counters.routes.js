@@ -3,16 +3,16 @@ import countersCtrl from '../controllers/counters.controller.js'
 
 const router = express.Router();
 
-router.route('/vk/info/create')
+router.route('/counters/create')
     .post(countersCtrl.createCounters);
 
-router.route('/vk/info')
+router.route('/counters')
     .get(countersCtrl.readCounters);
 
-router.route('/vk/info/update')
+router.route('/counters/update')
     .get(countersCtrl.updateCounters);
 
-router.route('/vk/info/delete')
-    .get(countersCtrl.deleteCounters);
+router.route('/counters/delete')
+    .delete(countersCtrl.deleteCounters);
 
 export default router;

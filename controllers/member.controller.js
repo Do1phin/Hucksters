@@ -99,9 +99,9 @@ const readMember = async (req, res) => {
 };
 
 const readManyMembersForIds = async (req, res) => {
-    console.log('readManyMembersForIds')
-    // const member_ids = req.body;
-    const member_ids = [52980405];
+    console.log('readManyMembersForIds ', req.body)
+    const member_ids = req.body;
+    // const member_ids = [52980405];
 
     try {
         await Member.find({
@@ -125,25 +125,69 @@ const updateMember = async (req, res) => {
             photo_200, deactivated, seller, info, instagram
         } = req.body;
 
-        let doc = {
-            is_closed,
-            deactivated: deactivated || null,
-            first_name,
-            last_name,
-            nickname,
-            domain,
-            sex,
-            instagram: instagram || undefined,
-            country: country ? {
-                id: country.id ? country.id : undefined,
-                title: country.title ? country.title : undefined,
-            } : undefined,
-            photo: photo_200,
-            _updated: {
-                date: Date.now(),
-                info: 'full'
-            },
-        };
+        let doc;
+
+        if (info === 'full') {
+            doc = {
+                is_closed,
+                deactivated: deactivated || null,
+                first_name,
+                last_name,
+                nickname,
+                domain,
+                sex,
+                instagram: instagram || undefined,
+                country: country ? {
+                    id: country.id ? country.id : undefined,
+                    title: country.title ? country.title : undefined,
+                } : undefined,
+                photo: photo_200,
+                _updated: {
+                    date: Date.now(),
+                    info: 'full'
+                },
+            };
+        } else if (info === 'private') {
+            doc = {
+                is_closed: true,
+                _updated: {
+                    date: Date.now(),
+                    info: 'is closed'
+                },
+            }
+        } else if (info === 'deleted') {
+            doc = {
+                deactivated: 'deleted',
+                _updated: {
+                    date: Date.now(),
+                    info: 'deleted'
+                },
+            }
+        } else if (info === 'banned') {
+            doc = {
+                deactivated: 'banned',
+                _updated: {
+                    date: Date.now(),
+                    info: 'banned'
+                },
+            }
+        } else if (info === 'seller') {
+            doc = {
+                seller: true,
+                _updated: {
+                    date: Date.now(),
+                    info: 'seller'
+                },
+            }
+        }else {
+            doc = {
+                seller: false,
+                _updated: {
+                    date: Date.now(),
+                    info: 'seller'
+                },
+            }
+        }
 
         await Member.findOneAndUpdate(
             {owner_id: id || owner_id},
